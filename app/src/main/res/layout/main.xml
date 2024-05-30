@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<ImageView
+                android:layout_marginTop="250dp"
+                android:id="@+id/fundo"
+                android:layout_width="match_parent"                                              android:layout_height="wrap_content"                                             android:src="@drawable/fundo" />
+
+
+	<com.google.android.gms.maps.MapView
+		android:id="@+id/mapView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:apiKey="AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI"
+		android:visibility="gone"/>
+
+
+	<LinearLayout
+		android:id="@+id/data"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:layout_alignParentTop="true"
+		android:gravity="center">
+
+		<LinearLayout
+			android:id="@+id/databottom"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:background="#7B1800"
+			android:gravity="center"
+			android:layout_marginBottom="4dp"
+			android:visibility="gone">
+
+			<TextView
+				android:id="@+id/tTempo"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="Chronometro"
+				android:layout_margin="3dp"
+				android:gravity="center"
+				android:textColor="#FFD888"
+				android:textSize="20sp"/>
+
+			<TextView
+				android:id="@+id/tVmed"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="velocida med"
+				android:layout_margin="3dp"
+				android:gravity="center"
+				android:textColor="#FFD888"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:gravity="center"
+			android:background="#FF8100"
+			android:layout_marginTop="3dp"
+			android:visibility="gone"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:id="@+id/datagps"
+		android:gravity="bottom|center"
+		android:shadowColor="#000000">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_margin="4dp">
+
+			<TextView
+				android:id="@+id/turboTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Velocidade"
+				android:textColor="#000000"
+				android:layout_margin="3dp"
+				android:gravity="center"/>
+
+			<SeekBar
+				android:id="@+id/turboSeekBar"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+				android:max="10"
+				android:layout_margin="3dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="2dp"
+			android:gravity="center"
+			android:background="#000000"/>
+
+		<LinearLayout
+			android:id="@+id/datatop"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:background="#7B1800"
+			android:gravity="center"
+			android:layout_marginTop="3dp"
+			android:paddingBottom="3dp">
+
+			<TextView
+				android:id="@+id/tspeed"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="Speed"
+				android:layout_margin="3dp"
+				android:gravity="center"
+				android:textColor="#FFD888"
+				android:textSize="20sp"/>
+
+			<TextView
+				android:id="@+id/talti"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="Altitude"
+				android:layout_margin="3dp"
+				android:gravity="center"
+				android:textColor="#FFD888"
+				android:textSize="20sp"/>
+
+			<TextView
+				android:id="@+id/tbear"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:visibility="visible"
+				android:layout_weight="1"
+				android:text="Bearing"
+				android:layout_margin="3dp"
+				android:gravity="center"
+				android:textColor="#FFD888"
+				android:textSize="20sp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:background="#FF8100"
+			android:layout_marginTop="1dp"
+			android:padding="6dp"
+			android:layout_marginBottom="0dp">
+
+			<Switch
+				android:text="Fake gps"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/checkfake"
+				android:checked="false"
+				android:layout_margin="3dp"
+				android:textColor="#FFD888"
+				android:textSize="20sp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginTop="0dp"/>
+
+			<Switch
+				android:text="Centralizar mapa"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/checkloc"
+				android:checked="true"
+				android:layout_margin="3dp"
+				android:textColor="#FFD888"
+				android:textSize="20sp"
+				android:layout_marginBottom="0dp"
+				android:layout_marginTop="0dp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:background="#FF8100"
+			android:paddingTop="0dp"
+			android:layout_marginTop="0dp">
+
+			<Button
+				android:text="🛣️ gerar rota"
+				android:id="@+id/brota"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:layout_margin="8dp"
+				android:textColor="#FFD888"
+				android:textSize="20sp"
+				android:gravity="center"
+				android:background="#7B1800"
+				android:layout_marginTop="3dp"/>
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="🛸 Salto"
+				android:id="@+id/bpulo"
+				android:layout_margin="8dp"
+				android:textColor="#FFD888"
+				android:textSize="20sp"
+				android:background="#7B1800"
+				android:layout_marginTop="3dp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</RelativeLayout>
+
