@@ -1,0 +1,2401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lint Report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue-indigo.min.css" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+<style>
+section.section--center {
+    max-width: 860px;
+}
+.mdl-card__supporting-text + .mdl-card__actions {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+main > .mdl-layout__tab-panel {
+  padding: 8px;
+  padding-top: 48px;
+}
+
+.mdl-card__actions {
+    margin: 0;
+    padding: 4px 40px;
+    color: inherit;
+}
+.mdl-card > * {
+    height: auto;
+}
+.mdl-card__actions a {
+    color: #00BCD4;
+    margin: 0;
+}
+.error-icon {
+    color: #bb7777;
+    vertical-align: bottom;
+}
+.warning-icon {
+    vertical-align: bottom;
+}
+.mdl-layout__content section:not(:last-of-type) {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.mdl-card .mdl-card__supporting-text {
+  margin: 40px;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: calc(100% - 80px);
+}
+div.mdl-layout__drawer-button .material-icons {
+    line-height: 48px;
+}
+.mdl-card .mdl-card__supporting-text {
+    margin-top: 0px;
+}
+.chips {
+    float: right;
+    vertical-align: middle;
+}
+
+pre.errorlines {
+    background-color: white;
+    font-family: monospace;
+    border: 1px solid #e0e0e0;
+    line-height: 0.9rem;
+    font-size: 0.9rem;    padding: 1px 0px 1px; 1px;
+    overflow: scroll;
+}
+.prefix {
+    color: #660e7a;
+    font-weight: bold;
+}
+.attribute {
+    color: #0000ff;
+    font-weight: bold;
+}
+.value {
+    color: #008000;
+    font-weight: bold;
+}
+.tag {
+    color: #000080;
+    font-weight: bold;
+}
+.comment {
+    color: #808080;
+    font-style: italic;
+}
+.javadoc {
+    color: #808080;
+    font-style: italic;
+}
+.annotation {
+    color: #808000;
+}
+.string {
+    color: #008000;
+    font-weight: bold;
+}
+.number {
+    color: #0000ff;
+}
+.keyword {
+    color: #000080;
+    font-weight: bold;
+}
+.caretline {
+    background-color: #fffae3;
+}
+.lineno {
+    color: #999999;
+    background-color: #f0f0f0;
+}
+.error {
+    display: inline-block;
+    position:relative;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+}
+.warning {
+    text-decoration: none;
+    background-color: #f6ebbc;
+}
+.overview {
+    padding: 10pt;
+    width: 100%;
+    overflow: auto;
+    border-collapse:collapse;
+}
+.overview tr {
+    border-bottom: solid 1px #eeeeee;
+}
+.categoryColumn a {
+     text-decoration: none;
+     color: inherit;
+}
+.countColumn {
+    text-align: right;
+    padding-right: 20px;
+    width: 50px;
+}
+.issueColumn {
+   padding-left: 16px;
+}
+.categoryColumn {
+   position: relative;
+   left: -50px;
+   padding-top: 20px;
+   padding-bottom: 5px;
+}
+.options {
+   padding-left: 16px;
+}
+</style>
+<script language="javascript" type="text/javascript">
+<!--
+function reveal(id) {
+if (document.getElementById) {
+document.getElementById(id).style.display = 'block';
+document.getElementById(id+'Link').style.display = 'none';
+}
+}
+function hideid(id) {
+if (document.getElementById) {
+document.getElementById(id).style.display = 'none';
+}
+}
+//-->
+</script>
+</head>
+<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Lint Report: 53 warnings</span>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu May 30 16:39:19 GMT 2024 by AGP (8.4.0)</nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Issue Types</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
+      <a class="mdl-navigation__link" href="#LintBaseline"><i class="material-icons warning-icon">warning</i>Baseline Applied (1)</a>
+      <a class="mdl-navigation__link" href="#LintBaselineFixed"><i class="material-icons warning-icon">warning</i>Baselined Issues Fixed (1)</a>
+      <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (5)</a>
+      <a class="mdl-navigation__link" href="#SuspiciousIndentation"><i class="material-icons warning-icon">warning</i>Suspicious indentation (15)</a>
+      <a class="mdl-navigation__link" href="#InflateParams"><i class="material-icons warning-icon">warning</i>Layout Inflation without a Parent (1)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
+      <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (1)</a>
+      <a class="mdl-navigation__link" href="#StaticFieldLeak"><i class="material-icons warning-icon">warning</i>Static Field Leaks (20)</a>
+      <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (1)</a>
+      <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (1)</a>
+      <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (1)</a>
+      <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (1)</a>
+      <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (2)</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-layout__tab-panel is-active">
+<a name="overview"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="OverviewCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Overview</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<table class="overview">
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Lint">Lint</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#LintBaseline">LintBaseline</a>: Baseline Applied</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#LintBaselineFixed">LintBaselineFixed</a>: Baselined Issues Fixed</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
+</td></tr>
+<tr>
+<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#InlinedApi">InlinedApi</a>: Using inlined constants on older versions</td></tr>
+<tr>
+<td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#SuspiciousIndentation">SuspiciousIndentation</a>: Suspicious indentation</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#InflateParams">InflateParams</a>: Layout Inflation without a Parent</td></tr>
+<tr>
+<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ObsoleteSdkInt">ObsoleteSdkInt</a>: Obsolete SDK_INT Version Check</td></tr>
+<tr>
+<td class="countColumn">20</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#StaticFieldLeak">StaticFieldLeak</a>: Static Field Leaks</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Usability:Icons">Usability:Icons</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#IconLocation">IconLocation</a>: Image defined in density-independent drawable folder</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#IconDuplicates">IconDuplicates</a>: Duplicated icons under different names</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ClickableViewAccessibility">ClickableViewAccessibility</a>: Accessibility in Custom Views</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ContentDescription">ContentDescription</a>: Image without <code>contentDescription</code></td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization:Bidirectional Text">Internationalization:Bidirectional Text</a>
+</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#RtlHardcoded">RtlHardcoded</a>: Using left/right instead of start/end attributes</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#ExtraIssues">Included Additional Checks (22)</a>
+</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (39)</a>
+</td></tr>
+</table>
+<br/>              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="OverviewCardLink" onclick="hideid('OverviewCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Lint"></a>
+<a name="LintBaseline"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="LintBaselineCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Baseline Applied</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">42 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml</span><br />
+</div>
+<div class="metadata"><div class="explanation" id="explanationLintBaseline" style="display: none;">
+Lint can be configured with a "baseline"; a set of current issues found in a codebase, which future runs of lint will silently ignore. Only new issues not found in the baseline are reported.<br/>
+<br/>
+Note that while opening files in the IDE, baseline issues are not filtered out; the purpose of baselines is to allow you to get started using lint and break the build on all newly introduced errors, without having to go back and fix the entire codebase up front. However, when you open up existing files you still want to be aware of and fix issues as you come across them.<br/>
+<br/>
+This issue type is used to emit an informational-only warning if any issues were filtered out due to baseline matching. That way, you don't have a false sense of security if you forgot that you've checked in a baseline file.<br/>To suppress this error, use the issue id "LintBaseline" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">LintBaseline</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Information</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 10/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationLintBaselineLink" onclick="reveal('explanationLintBaseline');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="LintBaselineCardLink" onclick="hideid('LintBaselineCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="LintBaselineFixed"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="LintBaselineFixedCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Baselined Issues Fixed</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">14 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with <code>android.lintOptions.checkDependencies=true</code>. Unmatched issue types: DefaultLocale (6), GradleDependency, IconDuplicatesConfig (5), InlinedApi (4), SetTextI18n, SuspiciousIndentation (2)</span><br />
+</div>
+<div class="metadata"><div class="explanation" id="explanationLintBaselineFixed" style="display: none;">
+If a lint baseline describes a problem which is no longer reported, then the problem has either been fixed, or perhaps the issue type has been disabled. In any case, the entry can be removed from the baseline (such that if the issue is reintroduced at some point, lint will complain rather than just silently starting to match the old baseline entry again.)<br/>To suppress this error, use the issue id "LintBaselineFixed" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">LintBaselineFixed</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Information</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 10/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationLintBaselineFixedLink" onclick="reveal('explanationLintBaselineFixed');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="LintBaselineFixedCardLink" onclick="hideid('LintBaselineFixedCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Correctness"></a>
+<a name="InlinedApi"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="InlinedApiCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Using inlined constants on older versions</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:56</span>: <span class="message">Field requires API level 26 (current min is 24): <code>android.view.WindowManager.LayoutParams#TYPE_APPLICATION_OVERLAY</code></span><br /><pre class="errorlines">
+<span class="lineno">  53 </span>        params = <span class="keyword">new</span> WindowManager.LayoutParams(
+<span class="lineno">  54 </span>                (<span class="keyword">int</span>) (windowManager.getDefaultDisplay().getWidth() * <span class="number">0.3</span>),
+<span class="lineno">  55 </span>                (<span class="keyword">int</span>) (windowManager.getDefaultDisplay().getHeight() * <span class="number">0.3</span>),
+<span class="caretline"><span class="lineno">  56 </span>                <span class="warning">WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  57 </span>                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+<span class="lineno">  58 </span>                PixelFormat.TRANSLUCENT);
+<span class="lineno">  59 </span>    params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:154</span>: <span class="message">Field requires API level 31 (current min is 24): <code>android.location.provider.ProviderProperties#ACCURACY_FINE</code></span><br /><pre class="errorlines">
+<span class="lineno"> 151 </span>  <span class="keyword">if</span> (isMockLocationsEnabled) {
+<span class="lineno"> 152 </span>  removeProviders();
+<span class="lineno"> 153 </span><span class="caretline"><span class="lineno"> 154 </span>  androidLocationManager.addTestProvider(GPS_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, <span class="warning">ProviderProperties.ACCURACY_FINE</span>);</span>
+<span class="lineno"> 155 </span><span class="lineno"> 156 </span>  androidLocationManager.setTestProviderEnabled(GPS_PROVIDER, <span class="keyword">true</span>);
+<span class="lineno"> 157 </span>  androidLocationManager.addTestProvider(NETWORK_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:154</span>: <span class="message">Field requires API level 31 (current min is 24): <code>android.location.provider.ProviderProperties#POWER_USAGE_LOW</code></span><br /><pre class="errorlines">
+<span class="lineno"> 151 </span>  <span class="keyword">if</span> (isMockLocationsEnabled) {
+<span class="lineno"> 152 </span>  removeProviders();
+<span class="lineno"> 153 </span><span class="caretline"><span class="lineno"> 154 </span>  androidLocationManager.addTestProvider(GPS_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="warning">ProviderProperties.POWER_USAGE_LOW</span>, ProviderProperties.ACCURACY_FINE);</span>
+<span class="lineno"> 155 </span><span class="lineno"> 156 </span>  androidLocationManager.setTestProviderEnabled(GPS_PROVIDER, <span class="keyword">true</span>);
+<span class="lineno"> 157 </span>  androidLocationManager.addTestProvider(NETWORK_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:157</span>: <span class="message">Field requires API level 31 (current min is 24): <code>android.location.provider.ProviderProperties#ACCURACY_COARSE</code></span><br /><pre class="errorlines">
+<span class="lineno"> 154 </span>  androidLocationManager.addTestProvider(GPS_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+<span class="lineno"> 155 </span><span class="lineno"> 156 </span>  androidLocationManager.setTestProviderEnabled(GPS_PROVIDER, <span class="keyword">true</span>);
+<span class="caretline"><span class="lineno"> 157 </span>  androidLocationManager.addTestProvider(NETWORK_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, <span class="warning">ProviderProperties.ACCURACY_COARSE</span>);</span>
+<span class="lineno"> 158 </span><span class="lineno"> 159 </span>  androidLocationManager.setTestProviderEnabled(NETWORK_PROVIDER, <span class="keyword">true</span>);
+<span class="lineno"> 160 </span>      }
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:157</span>: <span class="message">Field requires API level 31 (current min is 24): <code>android.location.provider.ProviderProperties#POWER_USAGE_LOW</code></span><br /><pre class="errorlines">
+<span class="lineno"> 154 </span>  androidLocationManager.addTestProvider(GPS_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+<span class="lineno"> 155 </span><span class="lineno"> 156 </span>  androidLocationManager.setTestProviderEnabled(GPS_PROVIDER, <span class="keyword">true</span>);
+<span class="caretline"><span class="lineno"> 157 </span>  androidLocationManager.addTestProvider(NETWORK_PROVIDER,<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="warning">ProviderProperties.POWER_USAGE_LOW</span>, ProviderProperties.ACCURACY_COARSE);</span>
+<span class="lineno"> 158 </span><span class="lineno"> 159 </span>  androidLocationManager.setTestProviderEnabled(NETWORK_PROVIDER, <span class="keyword">true</span>);
+<span class="lineno"> 160 </span>      }
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationInlinedApi" style="display: none;">
+This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that's fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it's safe and can be suppressed or whether the code needs to be guarded.<br/>
+<br/>
+If you really want to use this API and don't need to support older devices just set the <code>minSdkVersion</code> in your <code>build.gradle</code> or <code>AndroidManifest.xml</code> files.<br/>
+<br/>
+If your code is <b>deliberately</b> accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the <code>@TargetApi</code> annotation specifying the local minimum SDK to apply, such as <code>@TargetApi(11)</code>, such that this check considers 11 rather than your manifest file's minimum SDK as the required API level.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "InlinedApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">InlinedApi</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationInlinedApiLink" onclick="reveal('explanationInlinedApi');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="InlinedApiCardLink" onclick="hideid('InlinedApiCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="SuspiciousIndentation"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SuspiciousIndentationCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Suspicious indentation</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:47</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  44 </span>        <span class="keyword">super</span>.onCreate();
+<span class="lineno">  45 </span>        <span class="keyword">this</span>.context = getApplicationContext();
+<span class="lineno">  46 </span>
+<span class="caretline"><span class="lineno">  47 </span><span class="warning">    </span>fusedLocationsProvider = <span class="keyword">new</span> FusedLocationsProvider(<span class="keyword">this</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  48 </span>        xLocationManager.initTestProvider(<span class="keyword">this</span>);
+<span class="lineno">  49 </span>        locationManager = xLocationManager.getInstance(<span class="keyword">this</span>);
+<span class="lineno">  50 </span>    }
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:45</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  42 </span>    <span class="annotation">@Override</span>
+<span class="lineno">  43 </span>    <span class="keyword">public</span> <span class="keyword">void</span> onCreate() {
+<span class="lineno">  44 </span>        <span class="keyword">super</span>.onCreate();
+<span class="caretline"><span class="lineno">  45 </span><span class="warning"> </span>       <span class="keyword">this</span>.context = getApplicationContext();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    fusedLocationsProvider = <span class="keyword">new</span> FusedLocationsProvider(<span class="keyword">this</span>);
+<span class="lineno">  48 </span>        xLocationManager.initTestProvider(<span class="keyword">this</span>);
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:144</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 141 </span>            gpsLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
+<span class="lineno"> 142 </span>
+<span class="lineno"> 143 </span>
+<span class="caretline"><span class="lineno"> 144 </span><span class="warning">        </span>fusedLocationsProvider.spoof(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 145 </span>        locationManager.setGpsProvider(gpsLocation);
+<span class="lineno"> 146 </span>
+<span class="lineno"> 147 </span>        <span class="comment">//Log.d("FakeLocationService", "Fake location set: " + location.toString());</span></pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:141</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 138 </span>                gpsLocation.setBearingAccuracyDegrees(<span class="number">10.0f</span>);
+<span class="lineno"> 139 </span>            }
+<span class="lineno"> 140 </span>
+<span class="caretline"><span class="lineno"> 141 </span><span class="warning">     </span>       gpsLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 142 </span>
+<span class="lineno"> 143 </span>
+<span class="lineno"> 144 </span>        fusedLocationsProvider.spoof(gpsLocation);
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:48</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  45 </span>        createNotificationChannel();
+<span class="lineno">  46 </span>        startForeground(<span class="number">1</span>, getNotification(<span class="string">"Fake Location Service Started"</span>).build());
+<span class="lineno">  47 </span>
+<span class="caretline"><span class="lineno">  48 </span><span class="warning">    </span>isRunning = <span class="keyword">true</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>        <span class="comment">// Obter a última posição conhecida</span>
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:46</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  43 </span>        locationManager = xLocationManager.getInstance(MainActivity.mainApp);
+<span class="lineno">  44 </span>
+<span class="lineno">  45 </span>        createNotificationChannel();
+<span class="caretline"><span class="lineno">  46 </span><span class="warning"> </span>       startForeground(<span class="number">1</span>, getNotification(<span class="string">"Fake Location Service Started"</span>).build());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  47 </span>
+<span class="lineno">  48 </span>    isRunning = <span class="keyword">true</span>;
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:113</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 110 </span>          gpsLocation.setSpeed((<span class="keyword">float</span>) ((velocidade+noise)/<span class="number">4</span>));
+<span class="lineno"> 111 </span>          gpsLocation.setTime(Timef);
+<span class="lineno"> 112 </span>          gpsLocation.setAltitude((<span class="keyword">double</span>) ((<span class="number">700</span> + Math.random() * <span class="number">50</span>)+noise));
+<span class="caretline"><span class="lineno"> 113 </span><span class="warning">  </span>gpsLocation.setAccuracy((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 114 </span>
+<span class="lineno"> 115 </span>          <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+<span class="lineno"> 116 </span>              gpsLocation.setVerticalAccuracyMeters((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:112</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 109 </span>          gpsLocation.setBearing(bearing+(noise/<span class="number">2</span>));
+<span class="lineno"> 110 </span>          gpsLocation.setSpeed((<span class="keyword">float</span>) ((velocidade+noise)/<span class="number">4</span>));
+<span class="lineno"> 111 </span>          gpsLocation.setTime(Timef);
+<span class="caretline"><span class="lineno"> 112 </span><span class="warning"></span>          gpsLocation.setAltitude((<span class="keyword">double</span>) ((<span class="number">700</span> + Math.random() * <span class="number">50</span>)+noise));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 113 </span>  gpsLocation.setAccuracy((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));
+<span class="lineno"> 114 </span>
+<span class="lineno"> 115 </span>          <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:133</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 130 </span>                    <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
+<span class="lineno"> 131 </span>                        locationManager.setGpsProvider(gpsLocation);
+<span class="lineno"> 132 </span>            <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Fused");</span>
+<span class="caretline"><span class="lineno"> 133 </span><span class="warning">            </span>fusedLocationsProvider.spoof(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 134 </span>                <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Network"); </span>
+<span class="lineno"> 135 </span>            locationManager.setNetworkProvider(gpsLocation);
+<span class="lineno"> 136 </span>                    }
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:131</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 128 </span>                            <span class="string">", altitude="</span> + gpsLocation.getAltitude());
+<span class="lineno"> 129 </span>
+<span class="lineno"> 130 </span>                    <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
+<span class="caretline"><span class="lineno"> 131 </span><span class="warning">   </span>                     locationManager.setGpsProvider(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 132 </span>            <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Fused");</span>
+<span class="lineno"> 133 </span>            fusedLocationsProvider.spoof(gpsLocation);
+<span class="lineno"> 134 </span>                <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Network"); </span></pre>
+</ul><button class="mdl-button mdl-js-button mdl-button--primary" id="SuspiciousIndentationDivLink" onclick="reveal('SuspiciousIndentationDiv');" />+ 10 More Occurrences...</button>
+<div id="SuspiciousIndentationDiv" style="display: none">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:161</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 158 </span>    RotaFake rotaFakeEntry = <span class="keyword">new</span> RotaFake(latitude, longitude, bearing, velocidade, (<span class="keyword">long</span>) (System.currentTimeMillis() + <span class="number">1000</span>));
+<span class="lineno"> 159 </span>    MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
+<span class="lineno"> 160 </span>  } 
+<span class="caretline"><span class="lineno"> 161 </span><span class="warning">  </span><span class="keyword">try</span> {                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 162 </span>    Log.i(TAG, <span class="string">"Sleeping for 500 ms"</span>);      
+<span class="lineno"> 163 </span>    Thread.sleep(<span class="number">500</span>);                  
+<span class="lineno"> 164 </span>  } <span class="keyword">catch</span> (InterruptedException e) {          
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:151</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 148 </span>      }
+<span class="lineno"> 149 </span>  } <span class="keyword">else</span> {
+<span class="lineno"> 150 </span>
+<span class="caretline"><span class="lineno"> 151 </span><span class="warning"></span>      <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>){             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 152 </span>  <span class="comment">/*if (rotaFake1.getVelocidade()&lt;1.0){
+</span><span class="lineno"> 153 </span><span class="comment">    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+</span><span class="lineno"> 154 </span><span class="comment">    NotificationManagerCompat.from(this).notify(2, getNotification("Fake Location Estacionado").build()); 
+</span></pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:169</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 166 </span>    }                                                    
+<span class="lineno"> 167 </span>        }                                          
+<span class="lineno"> 168 </span>
+<span class="caretline"><span class="lineno"> 169 </span><span class="warning">        </span>MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis()); &nbsp;</span>
+<span class="lineno"> 170 </span>
+<span class="lineno"> 171 </span>      }
+<span class="lineno"> 172 </span>  }).start();
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:89</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  86 </span>        <span class="comment">//MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());</span>
+<span class="lineno">  87 </span>
+<span class="lineno">  88 </span>          RotaFake rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
+<span class="caretline"><span class="lineno">  89 </span><span class="warning"></span>          <span class="keyword">if</span> (rotaFake1 != <span class="keyword">null</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  90 </span>            <span class="comment">/*if (rotaFake1.getVelocidade()>=1.0){                                                              if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {                                                                           NotificationManagerCompat.from(this).notify(2, getNotification("Fake Location Em Rota").build());                                   }                                                                 parado = false;                                           }*/</span>
+<span class="lineno">  91 </span>              latitude = rotaFake1.getLatitude();
+<span class="lineno">  92 </span>              longitude = rotaFake1.getLongitude();
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:180</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 177 </span>  <span class="annotation">@Override</span>
+<span class="lineno"> 178 </span>  <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
+<span class="lineno"> 179 </span>      <span class="keyword">super</span>.onDestroy();
+<span class="caretline"><span class="lineno"> 180 </span><span class="warning">    </span>isRunning = <span class="keyword">false</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 181 </span>      stopForeground(<span class="keyword">true</span>);
+<span class="lineno"> 182 </span>
+<span class="lineno"> 183 </span>      <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:179</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 176 </span>
+<span class="lineno"> 177 </span>    <span class="annotation">@Override</span>
+<span class="lineno"> 178 </span>    <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
+<span class="caretline"><span class="lineno"> 179 </span><span class="warning"> </span>       <span class="keyword">super</span>.onDestroy();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 180 </span>    isRunning = <span class="keyword">false</span>;
+<span class="lineno"> 181 </span>        stopForeground(<span class="keyword">true</span>);
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:31</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  28 </span>
+<span class="lineno">  29 </span>    <span class="keyword">public</span> FusedLocationsProvider(Context context) {
+<span class="lineno">  30 </span>        <span class="keyword">this</span>.context = context;
+<span class="caretline"><span class="lineno">  31 </span><span class="warning">    </span>xthis = context;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  32 </span>        <span class="keyword">this</span>.location = <span class="keyword">new</span> Location(LocationManager.GPS_PROVIDER);
+<span class="lineno">  33 </span>        <span class="keyword">this</span>.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:30</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>    <span class="keyword">public</span> <span class="keyword">static</span> Context xthis;
+<span class="lineno">  28 </span>
+<span class="lineno">  29 </span>    <span class="keyword">public</span> FusedLocationsProvider(Context context) {
+<span class="caretline"><span class="lineno">  30 </span><span class="warning"> </span>       <span class="keyword">this</span>.context = context;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>    xthis = context;
+<span class="lineno">  32 </span>        <span class="keyword">this</span>.location = <span class="keyword">new</span> Location(LocationManager.GPS_PROVIDER);
+<span class="lineno">  33 </span>        <span class="keyword">this</span>.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:105</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 102 </span>          <span class="keyword">return</span> Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION) == <span class="number">1</span>;
+<span class="lineno"> 103 </span>      } <span class="keyword">catch</span> (Settings.SettingNotFoundException e) {
+<span class="lineno"> 104 </span>          e.printStackTrace();
+<span class="caretline"><span class="lineno"> 105 </span><span class="warning">    </span>sToast(<span class="string">"FALHA AO AUTORIZAR FAKE FUSED"</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 106 </span>          <span class="keyword">return</span> <span class="keyword">false</span>;
+<span class="lineno"> 107 </span>      }
+<span class="lineno"> 108 </span>  }
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:104</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 101 </span>  <span class="keyword">try</span> {
+<span class="lineno"> 102 </span>      <span class="keyword">return</span> Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION) == <span class="number">1</span>;
+<span class="lineno"> 103 </span>  } <span class="keyword">catch</span> (Settings.SettingNotFoundException e) {
+<span class="caretline"><span class="lineno"> 104 </span><span class="warning"></span>      e.printStackTrace();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 105 </span>  sToast(<span class="string">"FALHA AO AUTORIZAR FAKE FUSED"</span>);
+<span class="lineno"> 106 </span>      <span class="keyword">return</span> <span class="keyword">false</span>;
+<span class="lineno"> 107 </span>  }
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1335</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 1332 </span><span class="annotation">@Override</span>
+<span class="lineno"> 1333 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
+<span class="lineno"> 1334 </span>        <span class="keyword">super</span>.onStop();
+<span class="caretline"><span class="lineno"> 1335 </span><span class="warning">    </span>saveTurboValue(turbo);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1336 </span>    }
+<span class="lineno"> 1337 </span>
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1334</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 1331 </span>
+<span class="lineno"> 1332 </span><span class="annotation">@Override</span>
+<span class="lineno"> 1333 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
+<span class="caretline"><span class="lineno"> 1334 </span><span class="warning"> </span>       <span class="keyword">super</span>.onStop();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1335 </span>    saveTurboValue(turbo);
+<span class="lineno"> 1336 </span>    }
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:59</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  56 </span>                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+<span class="lineno">  57 </span>                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+<span class="lineno">  58 </span>                PixelFormat.TRANSLUCENT);
+<span class="caretline"><span class="lineno">  59 </span><span class="warning">    </span>params.gravity = Gravity.BOTTOM | Gravity.RIGHT;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>        <span class="comment">//params.gravity = 0; // No specific gravity, allows moving freely</span>
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:53</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  50 </span>        mapView.onResume();
+<span class="lineno">  51 </span>        mapView.getMapAsync(<span class="keyword">this</span>);
+<span class="lineno">  52 </span>
+<span class="caretline"><span class="lineno">  53 </span><span class="warning"> </span>       params = <span class="keyword">new</span> WindowManager.LayoutParams(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  54 </span>                (<span class="keyword">int</span>) (windowManager.getDefaultDisplay().getWidth() * <span class="number">0.3</span>),
+<span class="lineno">  55 </span>                (<span class="keyword">int</span>) (windowManager.getDefaultDisplay().getHeight() * <span class="number">0.3</span>),
+<span class="lineno">  56 </span>                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/VerifyLocationTask.java">../../src/main/java/com/carlex/drive/VerifyLocationTask.java</a>:27</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 24 </span>                mainActivity.currentBearing = lastLocation.getBearing();
+<span class="lineno"> 25 </span>                mainActivity.currentAlt = lastLocation.getAltitude();
+<span class="lineno"> 26 </span>        
+<span class="caretline"><span class="lineno"> 27 </span><span class="warning">        </span><span class="keyword">return</span> <span class="keyword">true</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 28 </span>                <span class="comment">// Verificar se a localização é válida</span>
+<span class="lineno"> 29 </span>                <span class="comment">/*if (mainActivity.latLng.latitude &lt; -10.00) {
+</span><span class="lineno"> 30 </span><span class="comment">            mainActivity.runOnUiThread(() -> {
+</span></pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/VerifyLocationTask.java">../../src/main/java/com/carlex/drive/VerifyLocationTask.java</a>:25</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 22 </span>                mainActivity.latLng = locationManager.getLatLngFromLocation();
+<span class="lineno"> 23 </span>                mainActivity.currentSpeed = lastLocation.getSpeed();
+<span class="lineno"> 24 </span>                mainActivity.currentBearing = lastLocation.getBearing();
+<span class="caretline"><span class="lineno"> 25 </span><span class="warning">  </span>              mainActivity.currentAlt = lastLocation.getAltitude();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 26 </span>        
+<span class="lineno"> 27 </span>        <span class="keyword">return</span> <span class="keyword">true</span>;
+<span class="lineno"> 28 </span>                <span class="comment">// Verificar se a localização é válida</span></pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:48</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>  <span class="keyword">private</span> xLocationManager(Context context) {
+<span class="lineno">  47 </span>      <span class="keyword">this</span>.context = context;
+<span class="caretline"><span class="lineno">  48 </span><span class="warning">    </span>xthis = context;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  49 </span>      androidLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+<span class="lineno">  50 </span>      setupLocationListener();
+<span class="lineno">  51 </span>  }
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:47</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  44 </span>  <span class="keyword">private</span> <span class="keyword">static</span> Random random;
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>  <span class="keyword">private</span> xLocationManager(Context context) {
+<span class="caretline"><span class="lineno">  47 </span><span class="warning"></span>      <span class="keyword">this</span>.context = context;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  48 </span>    xthis = context;
+<span class="lineno">  49 </span>      androidLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+<span class="lineno">  50 </span>      setupLocationListener();
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:150</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 147 </span>      networkLocation = <span class="keyword">new</span> Location(NETWORK_PROVIDER);
+<span class="lineno"> 148 </span>      isMockLocationsEnabled = areLocationPermissionsGranted(context) &amp;&amp; isMockLocationsEnabled(context);
+<span class="lineno"> 149 </span>      random = <span class="keyword">new</span> Random();
+<span class="caretline"><span class="lineno"> 150 </span><span class="warning">    </span>isMockLocationsEnabled=<span class="keyword">true</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 151 </span>      <span class="keyword">if</span> (isMockLocationsEnabled) {
+<span class="lineno"> 152 </span>    removeProviders();
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:149</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 146 </span>      gpsLocation = <span class="keyword">new</span> Location(GPS_PROVIDER);
+<span class="lineno"> 147 </span>      networkLocation = <span class="keyword">new</span> Location(NETWORK_PROVIDER);
+<span class="lineno"> 148 </span>      isMockLocationsEnabled = areLocationPermissionsGranted(context) &amp;&amp; isMockLocationsEnabled(context);
+<span class="caretline"><span class="lineno"> 149 </span><span class="warning"></span>      random = <span class="keyword">new</span> Random();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 150 </span>    isMockLocationsEnabled=<span class="keyword">true</span>;
+<span class="lineno"> 151 </span>      <span class="keyword">if</span> (isMockLocationsEnabled) {
+<span class="lineno"> 152 </span>    removeProviders();
+</pre>
+</ul></div>
+</div>
+<div class="metadata"><div class="explanation" id="explanationSuspiciousIndentation" style="display: none;">
+This check looks for cases where the indentation suggests a grouping that isn't actually there in the code. A common example of this would be something like
+<pre>
+if (column > width)
+    line++
+    column = 0
+</pre>
+Here, the <code>column = 0</code> line will be executed every single time, not just if the condition is true.<br/><br/>
+This check can be configured via the following options:<br/><br/>
+<div class="options">
+<b>always-run</b> (default is false):<br/>
+Whether this check should be included while editing.<br/>
+<br/>
+While you're editing, it's common to have a temporary situation where you have suspicious indentation scenarios -- e.g. you start typing an <code>if</code> statement on the line above something you want to make conditional, and you haven't indented it yet. It can be distracting and misleading to suddenly have both statements light up as errors. Therefore, lint will avoid including this check when running on the fly in the editor, unless it looks like the file has not been recently edited. With this option, you can turn it on in all cases.<br/>
+<br/>
+To configure this option, use a `lint.xml` file in the project or source folder using an <code>&lt;option&gt;</code> block like the following:
+<pre class="errorlines">
+<span class="lineno"> 1 </span><span class="tag">&lt;lint></span>
+<span class="lineno"> 2 </span>    <span class="tag">&lt;issue</span><span class="attribute"> id</span>=<span class="value">"SuspiciousIndentation"</span>>
+<span class="caretline"><span class="lineno"> 3 </span>        <span class="tag">&lt;option</span><span class="attribute"> name</span>=<span class="warning"><span class="value">"always-run"</span> <span class="attribute">value</span>=<span class="value">"false"</span></span> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 4 </span>    <span class="tag">&lt;/issue></span>
+<span class="lineno"> 5 </span><span class="tag">&lt;/lint></span>
+</pre>
+</div>To suppress this error, use the issue id "SuspiciousIndentation" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">SuspiciousIndentation</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationSuspiciousIndentationLink" onclick="reveal('explanationSuspiciousIndentation');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SuspiciousIndentationCardLink" onclick="hideid('SuspiciousIndentationCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="InflateParams"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="InflateParamsCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Layout Inflation without a Parent</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:46</span>: <span class="message">Avoid passing <code>null</code> as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
+<span class="lineno">  43 </span>    <span class="keyword">public</span> <span class="keyword">void</span> onCreate() {
+<span class="lineno">  44 </span>        <span class="keyword">super</span>.onCreate();
+<span class="lineno">  45 </span>        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+<span class="caretline"><span class="lineno">  46 </span>        overlayView = LayoutInflater.from(<span class="keyword">this</span>).inflate(R.layout.overlay_layout, <span class="warning"><span class="keyword">null</span></span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  47 </span>
+<span class="lineno">  48 </span>        mapView = overlayView.findViewById(R.id.mapView);
+<span class="lineno">  49 </span>        mapView.onCreate(<span class="keyword">null</span>);
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationInflateParams" style="display: none;">
+When inflating a layout, avoid passing in null as the parent view, since otherwise any layout parameters on the root of the inflated layout will be ignored.<br/><div class="moreinfo">More info: <a href="https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/">https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/</a>
+</div>To suppress this error, use the issue id "InflateParams" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">InflateParams</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationInflateParamsLink" onclick="reveal('explanationInflateParams');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="InflateParamsCardLink" onclick="hideid('InflateParamsCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="GradleDependency"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="GradleDependencyCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete Gradle Dependency</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:50</span>: <span class="message">A newer version of com.google.android.gms:play-services-location than 21.2.0 is available: 21.3.0</span><br /><pre class="errorlines">
+<span class="lineno"> 47 </span>}
+<span class="lineno"> 48 </span>
+<span class="lineno"> 49 </span>dependencies {
+<span class="caretline"><span class="lineno"> 50 </span>    implementation <span class="warning"><span class="string">'com.google.android.gms:play-services-location:21.2.0'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 51 </span>    implementation <span class="string">'com.google.android.gms:play-services-maps:18.2.0'</span>
+<span class="lineno"> 52 </span>    implementation <span class="string">'com.google.maps:google-maps-services:2.2.0'</span>
+<span class="lineno"> 53 </span>    implementation <span class="string">'androidx.annotation:annotation:1.3.0'</span></pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:54</span>: <span class="message">A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 51 </span>    implementation <span class="string">'com.google.android.gms:play-services-maps:18.2.0'</span>
+<span class="lineno"> 52 </span>    implementation <span class="string">'com.google.maps:google-maps-services:2.2.0'</span>
+<span class="lineno"> 53 </span>    implementation <span class="string">'androidx.annotation:annotation:1.3.0'</span>
+<span class="caretline"><span class="lineno"> 54 </span>    implementation <span class="warning"><span class="string">'androidx.appcompat:appcompat:1.6.1'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 55 </span>    implementation <span class="string">'androidx.constraintlayout:constraintlayout:2.1.4'</span>
+<span class="lineno"> 56 </span>    implementation <span class="string">'com.google.maps.android:android-maps-utils:3.8.2'</span>
+<span class="lineno"> 57 </span>    implementation <span class="string">'androidx.core:core:1.13.1'</span></pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:59</span>: <span class="message">A newer version of androidx.annotation:annotation-experimental than 1.4.0 is available: 1.4.1</span><br /><pre class="errorlines">
+<span class="lineno"> 56 </span>    implementation <span class="string">'com.google.maps.android:android-maps-utils:3.8.2'</span>
+<span class="lineno"> 57 </span>    implementation <span class="string">'androidx.core:core:1.13.1'</span>
+<span class="lineno"> 58 </span>    implementation <span class="string">'androidx.core:core-ktx:1.13.1'</span>
+<span class="caretline"><span class="lineno"> 59 </span>    implementation <span class="warning"><span class="string">'androidx.annotation:annotation-experimental:1.4.0'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 60 </span>
+<span class="lineno"> 61 </span>    <span class="comment">//implementation 'androidx.sqlite:sqlite:2.1.0'</span>
+<span class="lineno"> 62 </span>    implementation <span class="string">'androidx.appcompat:appcompat:1.4.1'</span></pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:62</span>: <span class="message">A newer version of androidx.appcompat:appcompat than 1.4.1 is available: 1.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 59 </span>    implementation <span class="string">'androidx.annotation:annotation-experimental:1.4.0'</span>
+<span class="lineno"> 60 </span>
+<span class="lineno"> 61 </span>    <span class="comment">//implementation 'androidx.sqlite:sqlite:2.1.0'</span>
+<span class="caretline"><span class="lineno"> 62 </span>    implementation <span class="warning"><span class="string">'androidx.appcompat:appcompat:1.4.1'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 63 </span>
+<span class="lineno"> 64 </span>    <span class="comment">//implementation 'androidx.room:room-runtime:2.4.2'</span>
+<span class="lineno"> 65 </span>    <span class="comment">//annotationProcessor 'androidx.room:room-compiler:2.4.2'</span></pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:75</span>: <span class="message">A newer version of com.google.android.material:material than 1.7.0 is available: 1.12.0</span><br /><pre class="errorlines">
+<span class="lineno"> 72 </span>
+<span class="lineno"> 73 </span>    implementation <span class="string">"androidx.room:room-runtime:2.6.1"</span>
+<span class="lineno"> 74 </span>    annotationProcessor <span class="string">"androidx.room:room-compiler:2.6.1"</span> 
+<span class="caretline"><span class="lineno"> 75 </span>    implementation <span class="warning"><span class="string">'com.google.android.material:material:1.7.0'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 76 </span>    compileOnly <span class="string">'de.robv.android.xposed:api:82'</span>
+<span class="lineno"> 77 </span>
+<span class="lineno"> 78 </span>}
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationGradleDependency" style="display: none;">
+This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "GradleDependency" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">GradleDependency</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGradleDependencyLink" onclick="reveal('explanationGradleDependency');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GradleDependencyCardLink" onclick="hideid('GradleDependencyCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Performance"></a>
+<a name="ObsoleteSdkInt"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ObsoleteSdkIntCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete SDK_INT Version Check</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1296</span>: <span class="message">Unnecessary; SDK_INT is always >= 24</span><br /><pre class="errorlines">
+<span class="lineno"> 1293 </span><span class="keyword">protected</span> <span class="keyword">void</span> onPause() {
+<span class="lineno"> 1294 </span>    <span class="keyword">super</span>.onPause();
+<span class="lineno"> 1295 </span>    mapView.onPause();
+<span class="caretline"><span class="lineno"> 1296 </span>    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1297 </span>        <span class="keyword">if</span> (!Settings.canDrawOverlays(MainActivity.<span class="keyword">this</span>)) {
+<span class="lineno"> 1298 </span>            Intent oIntent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+<span class="lineno"> 1299 </span>        Uri.parse(<span class="string">"package:"</span> + getPackageName()));
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationObsoleteSdkInt" style="display: none;">
+This check flags version checks that are not necessary, because the <code>minSdkVersion</code> (or surrounding known API level) is already at least as high as the version checked for.<br/>
+<br/>
+Similarly, it also looks for resources in <code>-vNN</code> folders, such as <code>values-v14</code> where the version qualifier is less than or equal to the <code>minSdkVersion</code>, where the contents should be merged into the best folder.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ObsoleteSdkInt" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ObsoleteSdkInt</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationObsoleteSdkIntLink" onclick="reveal('explanationObsoleteSdkInt');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ObsoleteSdkIntCardLink" onclick="hideid('ObsoleteSdkIntCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="StaticFieldLeak"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="StaticFieldLeakCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Static Field Leaks</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:27</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  24 </span>    <span class="keyword">private</span> <span class="keyword">final</span> Context context;
+<span class="lineno">  25 </span>    <span class="keyword">private</span> <span class="keyword">final</span> Location location;
+<span class="lineno">  26 </span>    <span class="keyword">private</span> <span class="keyword">final</span> GoogleApiClient apiClient;
+<span class="caretline"><span class="lineno">  27 </span>    <span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Context xthis;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  28 </span>
+<span class="lineno">  29 </span>    <span class="keyword">public</span> FusedLocationsProvider(Context context) {
+<span class="lineno">  30 </span>        <span class="keyword">this</span>.context = context;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/Iniciar.java">../../src/main/java/com/carlex/drive/Iniciar.java</a>:16</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (anonymous android.os.AsyncTask)</span><br /><pre class="errorlines">
+<span class="lineno"> 13 </span>    <span class="keyword">public</span> <span class="keyword">void</span> iniciar() {
+<span class="lineno"> 14 </span>
+<span class="lineno"> 15 </span>        <span class="comment">// Iniciar Servico FakeLocationService</span>
+<span class="caretline"><span class="lineno"> 16 </span>        <span class="warning"><span class="keyword">new</span> AsyncTask&lt;Void, Void, Void>() {</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 17 </span>            <span class="annotation">@Override</span>
+<span class="lineno"> 18 </span>            <span class="keyword">protected</span> Void doInBackground(Void... voids) {
+<span class="lineno"> 19 </span>                <span class="keyword">try</span> {
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:100</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">   97 </span><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> REQUEST_CODE_POST_NOTIFICATIONS = <span class="number">1</span>;
+<span class="lineno">   98 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;LatLng> wPoints  = <span class="keyword">new</span> ArrayList&lt;>();    
+<span class="lineno">   99 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Float> wBearing  = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="caretline"><span class="lineno">  100 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> TextView tbear;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  101 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView tspeed;
+<span class="lineno">  102 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView talti;
+<span class="lineno">  103 </span><span class="keyword">public</span> <span class="keyword">static</span> String sspeed = <span class="string">""</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:101</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">   98 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;LatLng> wPoints  = <span class="keyword">new</span> ArrayList&lt;>();    
+<span class="lineno">   99 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Float> wBearing  = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="lineno">  100 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView tbear;
+<span class="caretline"><span class="lineno">  101 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> TextView tspeed;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  102 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView talti;
+<span class="lineno">  103 </span><span class="keyword">public</span> <span class="keyword">static</span> String sspeed = <span class="string">""</span>;
+<span class="lineno">  104 </span><span class="keyword">public</span> <span class="keyword">static</span> String salti = <span class="string">""</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:102</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">   99 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Float> wBearing  = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="lineno">  100 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView tbear;
+<span class="lineno">  101 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView tspeed;
+<span class="caretline"><span class="lineno">  102 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> TextView talti;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  103 </span><span class="keyword">public</span> <span class="keyword">static</span> String sspeed = <span class="string">""</span>;
+<span class="lineno">  104 </span><span class="keyword">public</span> <span class="keyword">static</span> String salti = <span class="string">""</span>;
+<span class="lineno">  105 </span><span class="keyword">public</span> <span class="keyword">static</span> String sbear = <span class="string">""</span>;
+</pre>
+
+<button class="mdl-button mdl-js-button mdl-button--primary" id="StaticFieldLeakDivLink" onclick="reveal('StaticFieldLeakDiv');" />+ 15 More Occurrences...</button>
+<div id="StaticFieldLeakDiv" style="display: none">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:118</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  115 </span><span class="keyword">public</span> <span class="keyword">static</span> MapView mapView;
+<span class="lineno">  116 </span><span class="keyword">public</span> <span class="keyword">static</span> GoogleMap googleMap;
+<span class="lineno">  117 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> intervaloMillisegundos;
+<span class="caretline"><span class="lineno">  118 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Switch checkloc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  119 </span><span class="keyword">public</span> <span class="keyword">static</span> Switch checkfake;
+<span class="lineno">  120 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> permissionRequestCode = <span class="number">1</span>;
+<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">true</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:119</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  116 </span><span class="keyword">public</span> <span class="keyword">static</span> GoogleMap googleMap;
+<span class="lineno">  117 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> intervaloMillisegundos;
+<span class="lineno">  118 </span><span class="keyword">public</span> <span class="keyword">static</span> Switch checkloc;
+<span class="caretline"><span class="lineno">  119 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Switch checkfake;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  120 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> permissionRequestCode = <span class="number">1</span>;
+<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">true</span>;
+<span class="lineno">  122 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> inicar  = <span class="keyword">false</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:134</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  131 </span><span class="keyword">public</span> <span class="keyword">static</span> BitmapDescriptor desIcon;
+<span class="lineno">  132 </span><span class="keyword">public</span> <span class="keyword">static</span> BitmapDescriptor carIcon;
+<span class="lineno">  133 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Object[]> rotaFake = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="caretline"><span class="lineno">  134 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Button gerarRotaButton;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  135 </span><span class="keyword">public</span> <span class="keyword">static</span> Button puloButton;
+<span class="lineno">  136 </span><span class="keyword">public</span> <span class="keyword">static</span> Runnable centralizeRunnable;
+<span class="lineno">  137 </span><span class="keyword">public</span> <span class="keyword">static</span> SeekBar turboSeekBar;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:135</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  132 </span><span class="keyword">public</span> <span class="keyword">static</span> BitmapDescriptor carIcon;
+<span class="lineno">  133 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Object[]> rotaFake = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="lineno">  134 </span><span class="keyword">public</span> <span class="keyword">static</span> Button gerarRotaButton;
+<span class="caretline"><span class="lineno">  135 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Button puloButton;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  136 </span><span class="keyword">public</span> <span class="keyword">static</span> Runnable centralizeRunnable;
+<span class="lineno">  137 </span><span class="keyword">public</span> <span class="keyword">static</span> SeekBar turboSeekBar;
+<span class="lineno">  138 </span><span class="keyword">public</span> <span class="keyword">static</span> BitmapDescriptor transparentIcon;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:137</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  134 </span><span class="keyword">public</span> <span class="keyword">static</span> Button gerarRotaButton;
+<span class="lineno">  135 </span><span class="keyword">public</span> <span class="keyword">static</span> Button puloButton;
+<span class="lineno">  136 </span><span class="keyword">public</span> <span class="keyword">static</span> Runnable centralizeRunnable;
+<span class="caretline"><span class="lineno">  137 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> SeekBar turboSeekBar;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  138 </span><span class="keyword">public</span> <span class="keyword">static</span> BitmapDescriptor transparentIcon;
+<span class="lineno">  139 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Long> timeValues = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="lineno">  140 </span><span class="keyword">public</span> <span class="keyword">static</span>  Handler centralizeHandler = <span class="keyword">new</span> Handler();
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:142</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  139 </span><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Long> timeValues = <span class="keyword">new</span> ArrayList&lt;>();
+<span class="lineno">  140 </span><span class="keyword">public</span> <span class="keyword">static</span>  Handler centralizeHandler = <span class="keyword">new</span> Handler();
+<span class="lineno">  141 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> tempoDecorrido = <span class="number">0</span>;
+<span class="caretline"><span class="lineno">  142 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> TextView textViewTempo;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  143 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> zoom = (<span class="keyword">float</span>) <span class="number">15</span>;
+<span class="lineno">  144 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView textViewveloMed;
+<span class="lineno">  145 </span><span class="keyword">public</span> <span class="keyword">static</span> LatLng latLngFakewaze;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:144</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  141 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> tempoDecorrido = <span class="number">0</span>;
+<span class="lineno">  142 </span><span class="keyword">public</span> <span class="keyword">static</span> TextView textViewTempo;
+<span class="lineno">  143 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> zoom = (<span class="keyword">float</span>) <span class="number">15</span>;
+<span class="caretline"><span class="lineno">  144 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> TextView textViewveloMed;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  145 </span><span class="keyword">public</span> <span class="keyword">static</span> LatLng latLngFakewaze;
+<span class="lineno">  146 </span><span class="keyword">public</span> <span class="keyword">static</span>  Polyline polyline;
+<span class="lineno">  147 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> desMarkerWidth = <span class="number">150</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:160</span>: <span class="message">Do not place Android context classes in static fields (static reference to <code>xLocationManager</code> which has field <code>context</code> pointing to <code>Context</code>); this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  157 </span><span class="keyword">public</span> <span class="keyword">static</span> LatLng latLng = <span class="keyword">new</span> LatLng(-<span class="number">23.5879554</span>, -<span class="number">46.63816059</span>);
+<span class="lineno">  158 </span><span class="keyword">public</span> <span class="keyword">static</span> LatLng latLngfake;
+<span class="lineno">  159 </span><span class="keyword">public</span> <span class="keyword">static</span> LocationListener locationListener;
+<span class="caretline"><span class="lineno">  160 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> xLocationManager locationManager;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  161 </span><span class="keyword">public</span> <span class="keyword">static</span> Toast toast;
+<span class="lineno">  162 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> mockspeed = (<span class="keyword">float</span>) <span class="number">0</span>;                   
+<span class="lineno">  163 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> mockbearing = (<span class="keyword">float</span>) <span class="number">45</span>;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:165</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  162 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> mockspeed = (<span class="keyword">float</span>) <span class="number">0</span>;                   
+<span class="lineno">  163 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> mockbearing = (<span class="keyword">float</span>) <span class="number">45</span>;
+<span class="lineno">  164 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> mockalt = <span class="number">0.0</span>;
+<span class="caretline"><span class="lineno">  165 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Context mainApp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  166 </span><span class="keyword">public</span> <span class="keyword">static</span> Context context;
+<span class="lineno">  167 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> serviceFakeRun = <span class="keyword">false</span>;
+<span class="lineno">  168 </span><span class="keyword">public</span> <span class="keyword">static</span> ProgressDialog progressDialog;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:166</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  163 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> mockbearing = (<span class="keyword">float</span>) <span class="number">45</span>;
+<span class="lineno">  164 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> mockalt = <span class="number">0.0</span>;
+<span class="lineno">  165 </span><span class="keyword">public</span> <span class="keyword">static</span> Context mainApp;
+<span class="caretline"><span class="lineno">  166 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Context context;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  167 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> serviceFakeRun = <span class="keyword">false</span>;
+<span class="lineno">  168 </span><span class="keyword">public</span> <span class="keyword">static</span> ProgressDialog progressDialog;
+<span class="lineno">  169 </span><span class="keyword">public</span> <span class="keyword">static</span> ProgressDialog progressDialog1;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:174</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  171 </span><span class="keyword">public</span> <span class="keyword">static</span> Bundle savedInstanceState1;
+<span class="lineno">  172 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> wClicked = <span class="keyword">false</span>;
+<span class="lineno">  173 </span><span class="keyword">public</span> <span class="keyword">static</span> Uri dWaze;
+<span class="caretline"><span class="lineno">  174 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> ImageView fundo;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  175 </span><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PREF_NAME = <span class="string">"MyPrefs"</span>;
+<span class="lineno">  176 </span><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_TURBO = <span class="string">"turbo"</span>;
+<span class="lineno">  177 </span><span class="keyword">public</span> SharedPreferences prefs;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:835</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (anonymous android.os.AsyncTask)</span><br /><pre class="errorlines">
+<span class="lineno">  832 </span>
+<span class="lineno">  833 </span>
+<span class="lineno">  834 </span><span class="keyword">private</span> <span class="keyword">void</span> salvarRotafakeEmArquivo() {
+<span class="caretline"><span class="lineno">  835 </span>    <span class="warning"><span class="keyword">new</span> AsyncTask&lt;Void, Void, String>() {</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  836 </span>        <span class="annotation">@Override</span>
+<span class="lineno">  837 </span>        <span class="keyword">protected</span> String doInBackground(Void... voids) {
+<span class="lineno">  838 </span>            <span class="keyword">try</span> {
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/VerifyLocationTask.java">../../src/main/java/com/carlex/drive/VerifyLocationTask.java</a>:9</span>: <span class="message">This field leaks a context object</span><br /><pre class="errorlines">
+<span class="lineno">  6 </span>
+<span class="lineno">  7 </span><span class="keyword">public</span> <span class="keyword">class</span> VerifyLocationTask <span class="keyword">extends</span> AsyncTask&lt;Void, Void, Boolean> {
+<span class="lineno">  8 </span>    <span class="keyword">private</span> <span class="keyword">int</span> t = <span class="number">0</span>;
+<span class="caretline"><span class="lineno">  9 </span>    <span class="warning"><span class="keyword">private</span> <span class="keyword">final</span> MainActivity mainActivity;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 10 </span>    <span class="keyword">private</span> <span class="keyword">final</span> xLocationManager locationManager;
+<span class="lineno"> 11 </span>
+<span class="lineno"> 12 </span>    <span class="keyword">public</span> VerifyLocationTask(MainActivity mainActivity, xLocationManager locationManager) {
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:33</span>: <span class="message">Do not place Android context classes in static fields (static reference to <code>xLocationManager</code> which has field <code>context</code> pointing to <code>Context</code>); this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>
+<span class="lineno">  31 </span><span class="keyword">public</span> <span class="keyword">class</span> xLocationManager {
+<span class="lineno">  32 </span>
+<span class="caretline"><span class="lineno">  33 </span>    <span class="keyword">private</span> <span class="warning"><span class="keyword">static</span></span> xLocationManager instance;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  34 </span>    <span class="keyword">private</span> <span class="keyword">static</span> LocationManager androidLocationManager;
+<span class="lineno">  35 </span>    <span class="keyword">private</span> Location currentLocation;
+<span class="lineno">  36 </span>    <span class="keyword">private</span> Context context;
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/xLocationManager.java">../../src/main/java/com/carlex/drive/xLocationManager.java</a>:37</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
+<span class="lineno">  34 </span>    <span class="keyword">private</span> <span class="keyword">static</span> LocationManager androidLocationManager;
+<span class="lineno">  35 </span>    <span class="keyword">private</span> Location currentLocation;
+<span class="lineno">  36 </span>    <span class="keyword">private</span> Context context;
+<span class="caretline"><span class="lineno">  37 </span>    <span class="keyword">private</span> <span class="warning"><span class="keyword">static</span></span> Context xthis;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  38 </span>
+<span class="lineno">  39 </span>    <span class="keyword">private</span> <span class="keyword">static</span> Location gpsLocation;      
+<span class="lineno">  40 </span>    <span class="keyword">private</span> <span class="keyword">static</span> Location networkLocation;         
+</pre>
+
+</div>
+</div>
+<div class="metadata"><div class="explanation" id="explanationStaticFieldLeak" style="display: none;">
+A static field will leak contexts.<br/>
+<br/>
+Non-static inner classes have an implicit reference to their outer class. If that outer class is for example a <code>Fragment</code> or <code>Activity</code>, then this reference means that the long-running handler/loader/task will hold a reference to the activity which prevents it from getting garbage collected.<br/>
+<br/>
+Similarly, direct field references to activities and fragments from these longer running instances can cause leaks.<br/>
+<br/>
+ViewModel classes should never point to Views or non-application Contexts.<br/>To suppress this error, use the issue id "StaticFieldLeak" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">StaticFieldLeak</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationStaticFieldLeakLink" onclick="reveal('explanationStaticFieldLeak');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="StaticFieldLeakCardLink" onclick="hideid('StaticFieldLeakCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Usability:Icons"></a>
+<a name="IconLocation"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="IconLocationCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Image defined in density-independent drawable folder</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/drawable/fundo.png">../../src/main/res/drawable/fundo.png</a></span>: <img class="embedimage" align="right" src="../../src/main/res/drawable/fundo.png" /><span class="message">Found bitmap drawable <code>res/drawable/fundo.png</code> in densityless folder</span><br clear="right"/>
+</div>
+<div class="metadata"><div class="explanation" id="explanationIconLocation" style="display: none;">
+The res/drawable folder is intended for density-independent graphics such as shapes defined in XML. For bitmaps, move it to <code>drawable-mdpi</code> and consider providing higher and lower resolution versions in <code>drawable-ldpi</code>, <code>drawable-hdpi</code> and <code>drawable-xhdpi</code>. If the icon <b>really</b> is density independent (for example a solid color) you can place it in <code>drawable-nodpi</code>.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/practices/screens_support.html">https://developer.android.com/guide/practices/screens_support.html</a>
+</div>To suppress this error, use the issue id "IconLocation" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">IconLocation</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Icons</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Usability</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationIconLocationLink" onclick="reveal('explanationIconLocation');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="IconLocationCardLink" onclick="hideid('IconLocationCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="IconDuplicates"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="IconDuplicatesCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Duplicated icons under different names</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/drawable/ico.png">../../src/main/res/drawable/ico.png</a></span>: <span class="message">The following unrelated icon files have identical contents: ico.png, ico.png, ico.png, ico.png, fundo.png, ico.png</span><br />
+<ul></ul><button id="Location1DivLink" onclick="reveal('Location1Div');" />+ 5 Additional Locations...</button>
+<div id="Location1Div" style="display: none">
+Additional locations: <ul>
+<li> <span class="location"><a href="../../src/main/res/drawable/fundo.png">../../src/main/res/drawable/fundo.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/drawable-xxhdpi/ico.png">../../src/main/res/drawable-xxhdpi/ico.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/drawable-xhdpi/ico.png">../../src/main/res/drawable-xhdpi/ico.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/ico.png">../../src/main/res/drawable-mdpi/ico.png</a></span>
+<li> <span class="location"><a href="../../src/main/res/drawable-hdpi/ico.png">../../src/main/res/drawable-hdpi/ico.png</a></span>
+</ul>
+</div><br/><br/>
+<table>
+<tr><td><a href="../../src/main/res/drawable/fundo.png"><img border="0" align="top" src="../../src/main/res/drawable/fundo.png" /></a>
+</td><td><a href="../../src/main/res/drawable/ico.png"><img border="0" align="top" src="../../src/main/res/drawable/ico.png" /></a>
+</td><td><a href="../../src/main/res/drawable-mdpi/ico.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/ico.png" /></a>
+</td><td><a href="../../src/main/res/drawable-hdpi/ico.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/ico.png" /></a>
+</td><td><a href="../../src/main/res/drawable-xhdpi/ico.png"><img border="0" align="top" src="../../src/main/res/drawable-xhdpi/ico.png" /></a>
+</td><td><a href="../../src/main/res/drawable-xxhdpi/ico.png"><img border="0" align="top" src="../../src/main/res/drawable-xxhdpi/ico.png" /></a>
+</td></tr><tr><th></th><th></th><th>mdpi</th><th>hdpi</th><th>xhdpi</th><th>xxhdpi</th></tr>
+</table>
+</div>
+<div class="metadata"><div class="explanation" id="explanationIconDuplicates" style="display: none;">
+If an icon is repeated under different names, you can consolidate and just use one of the icons and delete the others to make your application smaller. However, duplicated icons usually are not intentional and can sometimes point to icons that were accidentally overwritten or accidentally not updated.<br/>To suppress this error, use the issue id "IconDuplicates" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">IconDuplicates</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Icons</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Usability</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationIconDuplicatesLink" onclick="reveal('explanationIconDuplicates');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="IconDuplicatesCardLink" onclick="hideid('IconDuplicatesCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Accessibility"></a>
+<a name="ClickableViewAccessibility"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ClickableViewAccessibilityCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Accessibility in Custom Views</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:188</span>: <span class="message"><code>onTouch</code> should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
+<span class="lineno"> 185 </span>            <span class="keyword">private</span> <span class="keyword">float</span> initialTouchY;
+<span class="lineno"> 186 </span>
+<span class="lineno"> 187 </span>            <span class="annotation">@Override</span>
+<span class="caretline"><span class="lineno"> 188 </span>            <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="warning">onTouch</span>(View v, MotionEvent event) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 189 </span>                <span class="keyword">switch</span> (event.getAction()) {
+<span class="lineno"> 190 </span>                    <span class="keyword">case</span> MotionEvent.ACTION_DOWN:
+<span class="lineno"> 191 </span>                        initialX = params.x;
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationClickableViewAccessibility" style="display: none;">
+If a <code>View</code> that overrides <code>onTouchEvent</code> or uses an <code>OnTouchListener</code> does not also implement <code>performClick</code> and call it when clicks are detected, the <code>View</code> may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in <code>View#performClick</code> as some accessibility services invoke <code>performClick</code> when a click action should occur.<br/>To suppress this error, use the issue id "ClickableViewAccessibility" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ClickableViewAccessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Accessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationClickableViewAccessibilityLink" onclick="reveal('explanationClickableViewAccessibility');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ClickableViewAccessibilityCardLink" onclick="hideid('ClickableViewAccessibilityCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="ContentDescription"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ContentDescriptionCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Image without contentDescription</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/main.xml">../../src/main/res/layout/main.xml</a>:7</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   4 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">   5 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="lineno">   6 </span>
+<span class="caretline"><span class="lineno">   7 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   8 </span><span class="attribute">              </span><span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"250dp"</span>
+<span class="lineno">   9 </span>              <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/fundo"</span>
+<span class="lineno">  10 </span>              <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>                                              <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>                                             <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/fundo"</span> />
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationContentDescription" style="display: none;">
+Non-textual widgets like ImageViews and ImageButtons should use the <code>contentDescription</code> attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.<br/>
+<br/>
+Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to <code>@null</code>. If your app's minSdkVersion is 16 or higher, you can instead set these graphical elements' <code>android:importantForAccessibility</code> attributes to <code>no</code>.<br/>
+<br/>
+Note that for text fields, you should not set both the <code>hint</code> and the <code>contentDescription</code> attributes since the hint will never be shown. Just set the <code>hint</code>.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases">https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "ContentDescription" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ContentDescription</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Accessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationContentDescriptionLink" onclick="reveal('explanationContentDescription');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ContentDescriptionCardLink" onclick="hideid('ContentDescriptionCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Internationalization:Bidirectional Text"></a>
+<a name="RtlHardcoded"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RtlHardcodedCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Using left/right instead of start/end attributes</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:59</span>: <span class="message">Use "<code>Gravity.END</code>" instead of "<code>Gravity.RIGHT</code>" to ensure correct behavior in right-to-left locales</span><br /><pre class="errorlines">
+<span class="lineno">  56 </span>                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+<span class="lineno">  57 </span>                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+<span class="lineno">  58 </span>                PixelFormat.TRANSLUCENT);
+<span class="caretline"><span class="lineno">  59 </span>    params.gravity = Gravity.BOTTOM | Gravity.<span class="warning">RIGHT</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>        <span class="comment">//params.gravity = 0; // No specific gravity, allows moving freely</span>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/overlay_layout.xml">../../src/main/res/layout/overlay_layout.xml</a>:10</span>: <span class="message">Consider replacing <code>android:layout_marginLeft</code> with <code>android:layout_marginStart="5.0dp"</code> to better support right-to-left layouts</span><br /><pre class="errorlines">
+<span class="lineno">  7 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/mapView"</span>
+<span class="lineno">  8 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  9 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 10 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_marginLeft</span></span>=<span class="value">"5.0dp"</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 11 </span>        <span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"5.0dp"</span>   
+<span class="lineno"> 12 </span>    <span class="prefix">android:</span><span class="attribute">layout_alignParentBottom</span>=<span class="value">"true"</span>  
+<span class="lineno"> 13 </span>    <span class="prefix">android:</span><span class="attribute">layout_alignParentEnd</span>=<span class="value">"true"</span>   
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationRtlHardcoded" style="display: none;">
+Using <code>Gravity#LEFT</code> and <code>Gravity#RIGHT</code> can lead to problems when a layout is rendered in locales where text flows from right to left. Use <code>Gravity#START</code> and <code>Gravity#END</code> instead. Similarly, in XML <code>gravity</code> and <code>layout_gravity</code> attributes, use <code>start</code> rather than <code>left</code>.<br/>
+<br/>
+For XML attributes such as paddingLeft and <code>layout_marginLeft</code>, use <code>paddingStart</code> and <code>layout_marginStart</code>. <b>NOTE</b>: If your <code>minSdkVersion</code> is less than 17, you should add <b>both</b> the older left/right attributes <b>as well as</b> the new start/end attributes. On older platforms, where RTL is not supported and the start/end attributes are unknown and therefore ignored, you need the older left/right attributes. There is a separate lint check which catches that type of error.<br/>
+<br/>
+(Note: For <code>Gravity#LEFT</code> and <code>Gravity#START</code>, you can use these constants even when targeting older platforms, because the <code>start</code> bitmask is a superset of the <code>left</code> bitmask. Therefore, you can use <code>gravity="start"</code> rather than <code>gravity="left|start"</code>.)<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "RtlHardcoded" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">RtlHardcoded</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Bidirectional Text</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Internationalization</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRtlHardcodedLink" onclick="reveal('explanationRtlHardcoded');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RtlHardcodedCardLink" onclick="hideid('RtlHardcodedCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="ExtraIssues"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ExtraIssuesCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Included Additional Checks</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+This card lists all the extra checks run by lint, provided from libraries,
+build configuration and extra flags. This is included to help you verify
+whether a particular check is included in analysis when configuring builds.
+(Note that the list does not include the hundreds of built-in checks into lint,
+only additional ones.)
+<div id="IncludedIssues" style="display: none;"><br/><br/><div class="issue">
+<div class="id">EnsureInitializerMetadata<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+When a library defines a Initializer, it needs to be accompanied by a corresponding &lt;meta-data> entry in the AndroidManifest.xml file.<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.startup<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=823348">https://issuetracker.google.com/issues/new?component=823348</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">EnsureInitializerNoArgConstr<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Every <code>Initializer</code> must have a no argument constructor.<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.startup<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=823348">https://issuetracker.google.com/issues/new?component=823348</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ExperimentalAnnotationRetention<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Experimental annotations defined in Java source should use default (<code>CLASS</code>) retention, while Kotlin-sourced annotations should use <code>BINARY</code> retention.<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.annotation.experimental<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">FragmentBackPressedCallback<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+The Fragment lifecycle can result in a Fragment being active                 longer than its view. This can lead to unexpected behavior from lifecycle aware                 objects remaining active longer than the Fragment's view. To solve this issue,                 getViewLifecycleOwner() should be used as a LifecycleOwner rather than the                 Fragment instance once it is safe to access the view lifecycle in a                 Fragment's onCreateView, onViewCreated, onActivityCreated, or                 onViewStateRestored methods.<br/><div class="vendor">
+Vendor: Android Open Source Project (fragment-1.3.6)<br/>
+Identifier: fragment-1.3.6<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=192731">https://issuetracker.google.com/issues/new?component=192731</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">FragmentLiveDataObserve<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+When observing a LiveData object from a fragment's onCreateView,                 onViewCreated, onActivityCreated, or onViewStateRestored method                 getViewLifecycleOwner() should be used as the LifecycleOwner rather than the                 Fragment instance. The Fragment lifecycle can result in the Fragment being                 active longer than its view. This can lead to unexpected behavior from                 LiveData objects being observed longer than the Fragment's view is active.<br/><div class="vendor">
+Vendor: Android Open Source Project (fragment-1.3.6)<br/>
+Identifier: fragment-1.3.6<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=192731">https://issuetracker.google.com/issues/new?component=192731</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">FragmentTagUsage<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+FragmentContainerView replaces the &lt;fragment> tag as the preferred                 way of adding fragments via XML. Unlike the &lt;fragment> tag, FragmentContainerView                 uses a normal <code>FragmentTransaction</code> under the hood to add the initial fragment,                 allowing further FragmentTransaction operations on the FragmentContainerView                 and providing a consistent timing for lifecycle events.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html">https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html</a>
+</div><div class="vendor">
+Vendor: Android Open Source Project (fragment-1.3.6)<br/>
+Identifier: fragment-1.3.6<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=192731">https://issuetracker.google.com/issues/new?component=192731</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">InvalidFragmentVersionForActivityResult<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+In order to use the ActivityResult APIs you must upgrade your                 Fragment version to 1.3.0. Previous versions of FragmentActivity                 failed to call super.onRequestPermissionsResult() and used invalid request codes<br/><div class="moreinfo">More info: <a href="https://developer.android.com/training/permissions/requesting#make-the-request">https://developer.android.com/training/permissions/requesting#make-the-request</a>
+</div><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.activity<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=527362">https://issuetracker.google.com/issues/new?component=527362</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">PotentialBehaviorOverride<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+This lint warns for potential behavior override while using clustering, GeoJson, or<br/>
+KML since these features use this method in their internal implementations. As such,<br/>
+to achieve the desired behavior requires using an alternative API.<br/>
+<br/>
+For example, if you are using the clustering feature and want to set a custom info<br/>
+window, rather than invoking <code>GoogleMap#setInfoWindowAdapter(...)</code>, you would need<br/>
+to set the custom info window on the MarkerManager.Collection object instead.<br/>
+<br/>
+e.g.<br/>
+
+<pre>
+ClusterManager clusterManager = // ...
+MarkerManager.Collection collection = clusterManager.getMarkerCollection();
+collection.setInfoWindowAdapter(...);
+</pre>
+<br/>
+Refer to the migration guide for more info: <a href="https://bit.ly/3kTpQmY">https://bit.ly/3kTpQmY</a><br/><div class="vendor">
+Vendor: Google (android-maps-utils-3.8.2)<br/>
+Identifier: android-maps-utils-3.8.2<br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnsafeOptInUsageError<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+This API has been flagged as opt-in with error-level severity.<br/>
+<br/>
+Any declaration annotated with this marker is considered part of an unstable or<br/>
+otherwise non-standard API surface and its call sites should accept the opt-in<br/>
+aspect of it by using the <code>@OptIn</code> annotation, using the marker annotation --<br/>
+effectively causing further propagation of the opt-in aspect -- or configuring<br/>
+the <code>UnsafeOptInUsageError</code> check's options for project-wide opt-in.<br/>
+<br/>
+To configure project-wide opt-in, specify the <code>opt-in</code> option value in <code>lint.xml</code><br/>
+as a comma-delimited list of opted-in annotations:<br/>
+
+<pre>
+&lt;lint>
+    &lt;issue id="UnsafeOptInUsageError">
+        &lt;option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
+    &lt;/issue>
+&lt;/lint>
+</pre>
+<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.annotation.experimental<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnsafeOptInUsageWarning<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+This API has been flagged as opt-in with warning-level severity.<br/>
+<br/>
+Any declaration annotated with this marker is considered part of an unstable or<br/>
+otherwise non-standard API surface and its call sites should accept the opt-in<br/>
+aspect of it by using the <code>@OptIn</code> annotation, using the marker annotation --<br/>
+effectively causing further propagation of the opt-in aspect -- or configuring<br/>
+the <code>UnsafeOptInUsageWarning</code> check's options for project-wide opt-in.<br/>
+<br/>
+To configure project-wide opt-in, specify the <code>opt-in</code> option value in <code>lint.xml</code><br/>
+as a comma-delimited list of opted-in annotations:<br/>
+
+<pre>
+&lt;lint>
+    &lt;issue id="UnsafeOptInUsageWarning">
+        &lt;option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
+    &lt;/issue>
+&lt;/lint>
+</pre>
+<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.annotation.experimental<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseAndroidAlpha<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+<code>ColorStateList</code> uses app:alpha without <code>android:alpha</code><br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseAppTint<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+<code>ImageView</code> or <code>ImageButton</code> uses <code>android:tint</code> instead of <code>app:tint</code><br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseCompatLoadingForColorStateLists<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use Compat loading of color state lists<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseCompatLoadingForDrawables<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use Compat loading of drawables<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseCompatTextViewDrawableApis<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use Compat loading of compound text view drawables<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseCompatTextViewDrawableXml<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+<code>TextView</code> uses <code>android:</code> compound drawable attributes instead of <code>app:</code> ones<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseRequireInsteadOfGet<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+AndroidX added new "require____()" versions of common "get___()" APIs, such as getContext/getActivity/getArguments/etc. Rather than wrap these in something like requireNotNull(), using these APIs will allow the underlying component to try to tell you _why_ it was null, and thus yield a better error message.<br/><div class="vendor">
+Vendor: Android Open Source Project (fragment-1.3.6)<br/>
+Identifier: fragment-1.3.6<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=192731">https://issuetracker.google.com/issues/new?component=192731</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseSupportActionBar<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use <code>AppCompatActivity.setSupportActionBar</code><br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseSwitchCompatOrMaterialCode<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use <code>SwitchCompat</code> from AppCompat or <code>SwitchMaterial</code> from Material library<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UseSwitchCompatOrMaterialXml<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Use <code>SwitchCompat</code> from AppCompat or <code>SwitchMaterial</code> from Material library<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UsingOnClickInXml<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Old versions of the platform do not properly support resolving <code>android:onClick</code><br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.appcompat<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=460343">https://issuetracker.google.com/issues/new?component=460343</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">WrongRequiresOptIn<div class="issueSeparator"></div>
+</div>
+<div class="metadata"><div class="explanation">
+Experimental features defined in Kotlin source code must be annotated with the Kotlin<br/>
+<code>@RequiresOptIn</code> annotation. Using <code>androidx.annotation.RequiresOptIn</code> will prevent the<br/>
+Kotlin compiler from enforcing its opt-in policies.<br/><div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.annotation.experimental<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
+</div>
+<br/>
+<br/></div>
+</div>
+</div>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="IncludedIssuesLink" onclick="reveal('IncludedIssues');">
+List Issues</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ExtraIssuesCardLink" onclick="hideid('ExtraIssuesCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="MissingIssues"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="MissingIssuesCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Disabled Checks</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+One or more issues were not run by lint, either
+because the check is not enabled by default, or because
+it was disabled with a command line flag or via one or
+more <code>lint.xml</code> configuration files in the project directories.
+<div id="SuppressedIssues" style="display: none;"><br/><br/><div class="issue">
+<div class="id">AppCompatMethod<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+When using the appcompat library, there are some methods you should be calling instead of the normal ones; for example, <code>getSupportActionBar()</code> instead of <code>getActionBar()</code>. This lint check looks for calls to the wrong method.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/topic/libraries/support-library/">https://developer.android.com/topic/libraries/support-library/</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">AppLinksAutoVerify<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Ensures that app links are correctly set and associated with website.<br/><div class="moreinfo">More info: <a href="https://g.co/appindexing/applinks">https://g.co/appindexing/applinks</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">BackButton<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+According to the Android Design Guide,<br/>
+<br/>
+"Other platforms use an explicit back button with label to allow the user to navigate up the application's hierarchy. Instead, Android uses the main action bar's app icon for hierarchical navigation and the navigation bar's back button for temporal navigation."<br/>
+<br/>
+This check is not very sophisticated (it just looks for buttons with the label "Back"), so it is disabled by default to not trigger on common scenarios like pairs of Back/Next buttons to paginate through screens.<br/><div class="moreinfo">More info: <a href="https://d.android.com/r/studio-ui/designer/material/design">https://d.android.com/r/studio-ui/designer/material/design</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ConvertToWebp<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The WebP format is typically more compact than PNG and JPEG. As of Android 4.2.1 it supports transparency and lossless conversion as well. Note that there is a quickfix in the IDE which lets you perform conversion.<br/>
+<br/>
+Previously, launcher icons were required to be in the PNG format but that restriction is no longer there, so lint now flags these.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">DalvikOverride<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The Dalvik virtual machine will treat a package private method in one class as overriding a package private method in its super class, even if they are in separate packages.<br/>
+<br/>
+If you really did intend for this method to override the other, make the method <code>protected</code> instead.<br/>
+<br/>
+If you did <b>not</b> intend the override, consider making the method private, or changing its name or signature.<br/>
+<br/>
+Note that this check is disabled be default, because ART (the successor to Dalvik) no longer has this behavior.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">DefaultEncoding<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Some APIs will implicitly use the default system character encoding instead of UTF-8 when converting to or from bytes, such as when creating a default <code>FileReader</code>.<br/>
+<br/>
+This is <i>usually</i> not correct; you only want to do this if you need to read files created by other programs where they have deliberately written in the same encoding. The default encoding varies from platform to platform and can vary from locale to locale, so this makes it difficult to interpret files containing non-ASCII characters.<br/>
+<br/>
+We recommend using UTF-8 everywhere.<br/>
+<br/>
+Note that on Android, the default file encoding is always UTF-8 (see <a href="https://developer.android.com/reference/java/nio/charset/Charset#defaultCharset(">https://developer.android.com/reference/java/nio/charset/Charset#defaultCharset(</a>) for more), so this lint check deliberately does not flag any problems in Android code, since it is always safe to rely on the default character encoding there.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">DuplicateStrings<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Duplicate strings can make applications larger unnecessarily.<br/>
+<br/>
+This lint check looks for duplicate strings, including differences for strings where the only difference is in capitalization. Title casing and all uppercase can all be adjusted in the layout or in code.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType">https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">EasterEgg<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+An "easter egg" is code deliberately hidden in the code, both from potential users and even from other developers. This lint check looks for code which looks like it may be hidden from sight.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ExpensiveAssertion<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+In Kotlin, assertions are not handled the same way as from the Java programming language. In particular, they're just implemented as a library call, and inside the library call the error is only thrown if assertions are enabled.<br/>
+<br/>
+This means that the arguments to the <code>assert</code> call will <b>always</b> be evaluated. If you're doing any computation in the expression being asserted, that computation will unconditionally be performed whether or not assertions are turned on. This typically turns into wasted work in release builds.<br/>
+<br/>
+This check looks for cases where the assertion condition is nontrivial, e.g. it is performing method calls or doing more work than simple comparisons on local variables or fields.<br/>
+<br/>
+You can work around this by writing your own inline assert method instead:<br/>
+
+<pre>
+@Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+inline fun assert(condition: () -> Boolean) {
+    if (_Assertions.ENABLED &amp;&amp; !condition()) {
+        throw AssertionError()
+    }
+}
+</pre>
+<br/>
+In Android, because assertions are not enforced at runtime, instead use this:<br/>
+
+<pre>
+inline fun assert(condition: () -> Boolean) {
+    if (BuildConfig.DEBUG &amp;&amp; !condition()) {
+        throw AssertionError()
+    }
+}
+</pre>
+<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">IconExpectedSize<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+There are predefined sizes (for each density) for launcher icons. You should follow these conventions to make sure your icons fit in with the overall look of the platform.<br/><div class="moreinfo">More info: <a href="https://d.android.com/r/studio-ui/designer/material/iconography">https://d.android.com/r/studio-ui/designer/material/iconography</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ImplicitSamInstance<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Kotlin's support for SAM (single accessor method) interfaces lets you pass a lambda to the interface. This will create a new instance on the fly even though there is no explicit constructor call. If you pass one of these lambdas or method references into a method which (for example) stores or compares the object identity, unexpected results may happen.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">InvalidPackage<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This check scans through libraries looking for calls to APIs that are not included in Android.<br/>
+<br/>
+When you create Android projects, the classpath is set up such that you can only access classes in the API packages that are included in Android. However, if you add other projects to your libs/ folder, there is no guarantee that those .jar files were built with an Android specific classpath, and in particular, they could be accessing unsupported APIs such as java.applet.<br/>
+<br/>
+This check scans through library jars and looks for references to API packages that are not included in Android and flags these. This is only an error if your code calls one of the library classes which wind up referencing the unsupported package.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">KotlinPropertyAccess<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+For a method to be represented as a property in Kotlin, strict &#8220;bean&#8221;-style prefixing must be used.<br/>
+<br/>
+Accessor methods require a <code>get</code> prefix or for boolean-returning methods an <code>is</code> prefix can be used.<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#property-prefixes">https://android.github.io/kotlin-guides/interop.html#property-prefixes</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">KotlincFE10<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+K2, the new version of Kotlin compiler, which encompasses the new frontend, is coming. Try to avoid using internal APIs from the old frontend if possible.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LambdaLast<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+To improve calling this code from Kotlin, parameter types eligible for SAM conversion should be last.<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#lambda-parameters-last">https://android.github.io/kotlin-guides/interop.html#lambda-parameters-last</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LintDocExample<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Lint's tool for generating documentation for each issue has special support for including a code example which shows how to trigger the report. It will pick the first unit test it can find and pick out the source file referenced from the error message, but you can instead designate a unit test to be the documentation example, and in that case, all the files are included.<br/>
+<br/>
+To designate a unit test as the documentation example for an issue, name the test <code>testDocumentationExample</code>, or if your detector reports multiple issues, <code>testDocumentationExample</code>&lt;Id>, such as <code>testDocumentationExampleMyId</code>.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LintImplPsiEquals<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+You should never compare two PSI elements for equality with <code>equals</code>; use <code>isEquivalentTo(PsiElement)</code> instead.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LintImplUnexpectedDomain<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This checks flags URLs to domains that have not been explicitly allowed for use as a documentation source.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">LogConditional<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The <code>BuildConfig</code> class provides a constant, <code>DEBUG</code>, which indicates whether the code is being built in release mode or in debug mode. In release mode, you typically want to strip out all the logging calls. Since the compiler will automatically remove all code which is inside a <code>if (false)</code> check, surrounding your logging calls with a check for <code>BuildConfig.DEBUG</code> is a good idea.<br/>
+<br/>
+If you <b>really</b> intend for the logging to be present in release mode, you can suppress this warning with a <code>@SuppressLint</code> annotation for the intentional logging calls.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">MangledCRLF<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+On Windows, line endings are typically recorded as carriage return plus newline: \r\n.<br/>
+<br/>
+This detector looks for invalid line endings with repeated carriage return characters (without newlines). Previous versions of the ADT plugin could accidentally introduce these into the file, and when editing the file, the editor could produce confusing visual artifacts.<br/><div class="moreinfo">More info: <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=375421">https://bugs.eclipse.org/bugs/show_bug.cgi?id=375421</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">MinSdkTooLow<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The value of the <code>minSdkVersion</code> property is too low and can be incremented without noticeably reducing the number of supported devices.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NegativeMargin<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Margin values should be positive. Negative values are generally a sign that you are making assumptions about views surrounding the current one, or may be tempted to turn off child clipping to allow a view to escape its parent. Turning off child clipping to do this not only leads to poor graphical performance, it also results in wrong touch event handling since touch events are based strictly on a chain of parent-rect hit tests. Finally, making assumptions about the size of strings can lead to localization problems.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NewerVersionAvailable<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the <code>GradleDependency</code> check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also <b>much</b> slower.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NoHardKeywords<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Do not use Kotlin&#8217;s hard keywords as the name of methods or fields. These require the use of backticks to escape when calling from Kotlin. Soft keywords, modifier keywords, and special identifiers are allowed.<br/>
+<br/>
+For example, ActionEvent's <code>getWhen()</code> method requires backticks when used from Kotlin:
+<pre>
+val timestamp = event.`when`
+</pre>
+<br/><div class="moreinfo">More info: <a href="https://android.github.io/kotlin-guides/interop.html#no-hard-keywords">https://android.github.io/kotlin-guides/interop.html#no-hard-keywords</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">NoOp<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This check looks for code which looks like it's a no-op -- usually leftover expressions from interactive debugging, but in some cases bugs where you had intended to do something with the expression such as assign it to a field.<br/><br/>
+This check can be configured via the following options:<br/><br/>
+<div class="options">
+<b>pure-getters</b> (default is false):<br/>
+Whether to assume methods with getter-names have no side effects.<br/>
+<br/>
+Getter methods (where names start with <code>get</code> or <code>is</code>, and have non-void return types, and no arguments) should not have side effects. With this option turned on, lint will assume that is the case and will list any getter calls whose results are ignored as suspicious code.<br/>
+<br/>
+To configure this option, use a `lint.xml` file in the project or source folder using an <code>&lt;option&gt;</code> block like the following:
+<pre class="errorlines">
+<span class="lineno"> 1 </span><span class="tag">&lt;lint></span>
+<span class="lineno"> 2 </span>    <span class="tag">&lt;issue</span><span class="attribute"> id</span>=<span class="value">"NoOp"</span>>
+<span class="caretline"><span class="lineno"> 3 </span>        <span class="tag">&lt;option</span><span class="attribute"> name</span>=<span class="warning"><span class="value">"pure-getters"</span> <span class="attribute">value</span>=<span class="value">"false"</span></span> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 4 </span>    <span class="tag">&lt;/issue></span>
+<span class="lineno"> 5 </span><span class="tag">&lt;/lint></span>
+</pre>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">PermissionNamingConvention<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Permissions should be prefixed with an app's package name, using reverse-domain-style naming. This prefix should be followed by <code>.permission.</code>, and then a description of the capability that the permission represents, in upper SNAKE_CASE. For example, <code>com.example.myapp.permission.ENGAGE_HYPERSPACE</code>.<br/>
+<br/>
+Following this recommendation avoids naming collisions, and helps clearly identify the owner and intention of a custom permission.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">Registered<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Activities, services and content providers should be registered in the <code>AndroidManifest.xml</code> file using <code>&lt;activity></code>, <code>&lt;service></code> and <code>&lt;provider></code> tags.<br/>
+<br/>
+If your activity is simply a parent class intended to be subclassed by other "real" activities, make it an abstract class.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/topics/manifest/manifest-intro.html">https://developer.android.com/guide/topics/manifest/manifest-intro.html</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">RequiredSize<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+All views must specify an explicit <code>layout_width</code> and <code>layout_height</code> attribute. There is a runtime check for this, so if you fail to specify a size, an exception is thrown at runtime.<br/>
+<br/>
+It's possible to specify these widths via styles as well. GridLayout, as a special case, does not require you to specify a size.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">SelectableText<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+If a <code>&lt;TextView></code> is used to display data, the user might want to copy that data and paste it elsewhere. To allow this, the <code>&lt;TextView></code> should specify <code>android:textIsSelectable="true"</code>.<br/>
+<br/>
+This lint check looks for TextViews which are likely to be displaying data: views whose text is set dynamically.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">StopShip<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Using the comment <code>// STOPSHIP</code> can be used to flag code that is incomplete but checked in. This comment marker can be used to indicate that the code should not be shipped until the issue is addressed, and lint will look for these. In Gradle projects, this is only checked for non-debug (release) builds.<br/>
+<br/>
+In Kotlin, the <code>TODO()</code> method is also treated as a stop ship marker; you can use it to make incomplete code compile, but it will throw an exception at runtime and therefore should be fixed before shipping releases.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">StringFormatTrivial<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Every call to <code>String.format</code> creates a new <code>Formatter</code> instance, which will decrease the performance of your app. <code>String.format</code> should only be used when necessary--if the formatted string contains only trivial conversions (e.g. <code>b</code>, <code>s</code>, <code>c</code>) and there are no translation concerns, it will be more efficient to replace them and concatenate with <code>+</code>.<br/><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">SyntheticAccessor<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+A private inner class which is accessed from the outer class will force the compiler to insert a synthetic accessor; this means that you are causing extra overhead. This is not important in small projects, but is important for large apps running up against the 64K method handle limit, and especially for <b>libraries</b> where you want to make sure your library is as small as possible for the cases where your library is used in an app running up against the 64K limit.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">TypographyQuotes<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Straight single quotes and double quotes, when used as a pair, can be replaced by "curvy quotes" (or directional quotes). Use the right single quotation mark for apostrophes. Never use generic quotes ", ' or free-standing accents `, ´ for quotation marks, apostrophes, or primes. This can make the text more readable.<br/><div class="moreinfo">More info: <a href="https://en.wikipedia.org/wiki/Quotation_mark">https://en.wikipedia.org/wiki/Quotation_mark</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnknownNullness<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+To improve referencing this code from Kotlin, consider adding explicit nullness information here with either <code>@NonNull</code> or <code>@Nullable</code>.<br/><br/>
+This check can be configured via the following options:<br/><br/>
+<div class="options">
+<b>ignore-deprecated</b> (default is false):<br/>
+Whether to ignore classes and members that have been annotated with <code>@Deprecated</code>.<br/>
+<br/>
+Normally this lint check will flag all unannotated elements, but by setting this option to <code>true</code> it will skip any deprecated elements.<br/>
+<br/>
+To configure this option, use a `lint.xml` file in the project or source folder using an <code>&lt;option&gt;</code> block like the following:
+<pre class="errorlines">
+<span class="lineno"> 1 </span><span class="tag">&lt;lint></span>
+<span class="lineno"> 2 </span>    <span class="tag">&lt;issue</span><span class="attribute"> id</span>=<span class="value">"UnknownNullness"</span>>
+<span class="caretline"><span class="lineno"> 3 </span>        <span class="tag">&lt;option</span><span class="attribute"> name</span>=<span class="warning"><span class="value">"ignore-deprecated"</span> <span class="attribute">value</span>=<span class="value">"false"</span></span> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 4 </span>    <span class="tag">&lt;/issue></span>
+<span class="lineno"> 5 </span><span class="tag">&lt;/lint></span>
+</pre>
+</div><div class="moreinfo">More info: <a href="https://developer.android.com/kotlin/interop#nullability_annotations">https://developer.android.com/kotlin/interop#nullability_annotations</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnsupportedChromeOsHardware<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The <code>&lt;uses-feature></code> element should not require this unsupported large screen hardware feature. Any &lt;uses-feature> not explicitly marked with <code>required="false"</code> is necessary on the device to be installed on. Ensure that any features that might prevent it from being installed on a ChromeOS, large screen, or foldable device are reviewed and marked as not required in the manifest.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/topic/arc/manifest.html#incompat-entries">https://developer.android.com/topic/arc/manifest.html#incompat-entries</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">UnusedIds<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+This resource id definition appears not to be needed since it is not referenced from anywhere. Having id definitions, even if unused, is not necessarily a bad idea since they make working on layouts and menus easier, so there is not a strong reason to delete these.<br/>
+<br/>
+<br/>
+The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.<br/>
+<br/>
+You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.<br/>
+<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">ValidActionsXml<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Ensures that an actions XML file is properly formed<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">VulnerableCordovaVersion<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+The version of Cordova used in the app is vulnerable to security issues. Please update to the latest Apache Cordova version.<br/><div class="moreinfo">More info: <a href="https://cordova.apache.org/announcements/2015/11/20/security.html">https://cordova.apache.org/announcements/2015/11/20/security.html</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">WrongThreadInterprocedural<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+<div class="explanation">
+Searches for interprocedural call paths that violate thread annotations in the program. Tracks the flow of instantiated types and lambda expressions to increase accuracy across method boundaries.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
+</div><br/>
+<br/></div>
+</div>
+</div>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SuppressedIssuesLink" onclick="reveal('SuppressedIssues');">
+List Missing Issues</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="MissingIssuesCardLink" onclick="hideid('MissingIssuesCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="SuppressInfo"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SuppressCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Suppressing Warnings and Errors</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+Lint errors can be suppressed in a variety of ways:<br/>
+<br/>
+1. With a <code>@SuppressLint</code> annotation in the Java code<br/>
+2. With a <code>tools:ignore</code> attribute in the XML file<br/>
+3. With a //noinspection comment in the source code<br/>
+4. With ignore flags specified in the <code>build.gradle</code> file, as explained below<br/>
+5. With a <code>lint.xml</code> configuration file in the project<br/>
+6. With a <code>lint.xml</code> configuration file passed to lint via the --config flag<br/>
+7. With the --ignore flag passed to lint.<br/>
+<br/>
+To suppress a lint warning with an annotation, add a <code>@SuppressLint("id")</code> annotation on the class, method or variable declaration closest to the warning instance you want to disable. The id can be one or more issue id's, such as <code>"UnusedResources"</code> or <code>{"UnusedResources","UnusedIds"}</code>, or it can be <code>"all"</code> to suppress all lint warnings in the given scope.<br/>
+<br/>
+To suppress a lint warning with a comment, add a <code>//noinspection id</code> comment on the line before the statement with the error.<br/>
+<br/>
+To suppress a lint warning in an XML file, add a <code>tools:ignore="id"</code> attribute on the element containing the error, or one of its surrounding elements. You also need to define the namespace for the tools prefix on the root element in your document, next to the <code>xmlns:android</code> declaration:<br/>
+<code>xmlns:tools="http://schemas.android.com/tools"</code><br/>
+<br/>
+To suppress a lint warning in a <code>build.gradle</code> file, add a section like this:<br/>
+
+<pre>
+android {
+    lintOptions {
+        disable 'TypographyFractions','TypographyQuotes'
+    }
+}
+</pre>
+<br/>
+Here we specify a comma separated list of issue id's after the disable command. You can also use <code>warning</code> or <code>error</code> instead of <code>disable</code> to change the severity of issues.<br/>
+<br/>
+To suppress lint warnings with a configuration XML file, create a file named <code>lint.xml</code> and place it at the root directory of the module in which it applies.<br/>
+<br/>
+The format of the <code>lint.xml</code> file is something like the following:<br/>
+
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;lint>
+    &lt;!-- Ignore everything in the test source set -->
+    &lt;issue id="all">
+        &lt;ignore path="\*/test/\*" />
+    &lt;/issue>
+
+    &lt;!-- Disable this given check in this project -->
+    &lt;issue id="IconMissingDensityFolder" severity="ignore" />
+
+    &lt;!-- Ignore the ObsoleteLayoutParam issue in the given files -->
+    &lt;issue id="ObsoleteLayoutParam">
+        &lt;ignore path="res/layout/activation.xml" />
+        &lt;ignore path="res/layout-xlarge/activation.xml" />
+        &lt;ignore regexp="(foo|bar)\.java" />
+    &lt;/issue>
+
+    &lt;!-- Ignore the UselessLeaf issue in the given file -->
+    &lt;issue id="UselessLeaf">
+        &lt;ignore path="res/layout/main.xml" />
+    &lt;/issue>
+
+    &lt;!-- Change the severity of hardcoded strings to "error" -->
+    &lt;issue id="HardcodedText" severity="error" />
+&lt;/lint>
+</pre>
+<br/>
+To suppress lint checks from the command line, pass the --ignore flag with a comma separated list of ids to be suppressed, such as:<br/>
+<code>$ lint --ignore UnusedResources,UselessLeaf /my/project/path</code><br/>
+<br/>
+For more information, see <a href="https://developer.android.com/studio/write/lint.html#config">https://developer.android.com/studio/write/lint.html#config</a><br/>
+
+            </div>
+            </div>
+          </section>    </div>
+  </main>
+</div>
+</body>
+</html>

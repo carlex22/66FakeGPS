@@ -1,0 +1,339 @@
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/lint-baseline.xml: Information: 42 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml [LintBaseline]
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/lint-baseline.xml: Information: 14 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with android.lintOptions.checkDependencies=true. Unmatched issue types: DefaultLocale (6), GradleDependency, IconDuplicatesConfig (5), InlinedApi (4), SetTextI18n, SuspiciousIndentation (2) [LintBaselineFixed]
+
+   Explanation for issues of type "LintBaselineFixed":
+   If a lint baseline describes a problem which is no longer reported, then
+   the problem has either been fixed, or perhaps the issue type has been
+   disabled. In any case, the entry can be removed from the baseline (such
+   that if the issue is reintroduced at some point, lint will complain rather
+   than just silently starting to match the old baseline entry again.)
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:56: Warning: Field requires API level 26 (current min is 24): android.view.WindowManager.LayoutParams#TYPE_APPLICATION_OVERLAY [InlinedApi]
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:154: Warning: Field requires API level 31 (current min is 24): android.location.provider.ProviderProperties#ACCURACY_FINE [InlinedApi]
+     androidLocationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+                                                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:154: Warning: Field requires API level 31 (current min is 24): android.location.provider.ProviderProperties#POWER_USAGE_LOW [InlinedApi]
+     androidLocationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:157: Warning: Field requires API level 31 (current min is 24): android.location.provider.ProviderProperties#ACCURACY_COARSE [InlinedApi]
+     androidLocationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
+                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:157: Warning: Field requires API level 31 (current min is 24): android.location.provider.ProviderProperties#POWER_USAGE_LOW [InlinedApi]
+     androidLocationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "InlinedApi":
+   This check scans through all the Android API field references in the
+   application and flags certain constants, such as static final integers and
+   Strings, which were introduced in later versions. These will actually be
+   copied into the class files rather than being referenced, which means that
+   the value is available even when running on older devices. In some cases
+   that's fine, and in other cases it can result in a runtime crash or
+   incorrect behavior. It depends on the context, so consider the code
+   carefully and decide whether it's safe and can be suppressed or whether the
+   code needs to be guarded.
+
+   If you really want to use this API and don't need to support older devices
+   just set the minSdkVersion in your build.gradle or AndroidManifest.xml
+   files.
+
+   If your code is deliberately accessing newer APIs, and you have ensured
+   (e.g. with conditional execution) that this code will only ever be called
+   on a supported platform, then you can annotate your class or method with
+   the @TargetApi annotation specifying the local minimum SDK to apply, such
+   as @TargetApi(11), such that this check considers 11 rather than your
+   manifest file's minimum SDK as the required API level.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:47: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ fusedLocationsProvider = new FusedLocationsProvider(this);
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:45: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:144: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+     fusedLocationsProvider.spoof(gpsLocation);
+~~~~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:141: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:48: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ isRunning = true;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:46: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:113: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+      gpsLocation.setAccuracy((float) (ThreadLocalRandom.current().nextDouble(0, 20)/10));
+~~~~~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:112: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:133: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+   fusedLocationsProvider.spoof(gpsLocation);
+~~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:131: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:161: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+      try {                   
+~~~~~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:151: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:169: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+  MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis()); 
+~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:89: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:180: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ isRunning = false;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java:179: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java:31: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ xthis = context;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java:30: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java:105: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+     sToast("FALHA AO AUTORIZAR FAKE FUSED");
+~~~~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java:104: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:1335: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ saveTurboValue(turbo);
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:1334: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:59: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:53: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java:27: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+  return true;
+~~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java:25: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:48: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ xthis = context;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:47: Previous line indentation here
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:150: Warning: The indentation string here is different from on the previous line (" " vs \t) [SuspiciousIndentation]
+ isMockLocationsEnabled=true;
+~
+    /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:149: Previous line indentation here
+
+   Explanation for issues of type "SuspiciousIndentation":
+   This check looks for cases where the indentation suggests a grouping that
+   isn't actually there in the code. A common example of this would be
+   something like
+   if (column > width)
+       line++
+       column = 0
+   Here, the column = 0 line will be executed every single time, not just if
+   the condition is true.
+
+   Available options:
+
+   **always-run** (default is false):
+   Whether this check should be included while editing.
+
+   While you're editing, it's common to have a temporary situation where you have suspicious indentation scenarios -- e.g. you start typing an `if` statement on the line above something you want to make conditional, and you haven't indented it yet. It can be distracting and misleading to suddenly have both statements light up as errors. Therefore, lint will avoid including this check when running on the fly in the editor, unless it looks like the file has not been recently edited. With this option, you can turn it on in all cases.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="SuspiciousIndentation">
+           <option name="always-run" value="false" />
+       </issue>
+   </lint>
+   ```
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:46: Warning: Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element) [InflateParams]
+        overlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);
+                                                                                 ~~~~
+
+   Explanation for issues of type "InflateParams":
+   When inflating a layout, avoid passing in null as the parent view, since
+   otherwise any layout parameters on the root of the inflated layout will be
+   ignored.
+
+   https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle:50: Warning: A newer version of com.google.android.gms:play-services-location than 21.2.0 is available: 21.3.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-location:21.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle:54: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle:59: Warning: A newer version of androidx.annotation:annotation-experimental than 1.4.0 is available: 1.4.1 [GradleDependency]
+    implementation 'androidx.annotation:annotation-experimental:1.4.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle:62: Warning: A newer version of androidx.appcompat:appcompat than 1.4.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle:75: Warning: A newer version of com.google.android.material:material than 1.7.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.7.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:1296: Warning: Unnecessary; SDK_INT is always >= 24 [ObsoleteSdkInt]
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java:27: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    public static Context xthis;
+           ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/Iniciar.java:16: Warning: This AsyncTask class should be static or leaks might occur (anonymous android.os.AsyncTask) [StaticFieldLeak]
+        new AsyncTask<Void, Void, Void>() {
+        ^
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:100: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static TextView tbear;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:101: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static TextView tspeed;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:102: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static TextView talti;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:118: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Switch checkloc;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:119: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Switch checkfake;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:134: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Button gerarRotaButton;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:135: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Button puloButton;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:137: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static SeekBar turboSeekBar;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:142: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static TextView textViewTempo;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:144: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static TextView textViewveloMed;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:160: Warning: Do not place Android context classes in static fields (static reference to xLocationManager which has field context pointing to Context); this is a memory leak [StaticFieldLeak]
+public static xLocationManager locationManager;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:165: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Context mainApp;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:166: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static Context context;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:174: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+public static ImageView fundo;
+       ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:835: Warning: This AsyncTask class should be static or leaks might occur (anonymous android.os.AsyncTask) [StaticFieldLeak]
+    new AsyncTask<Void, Void, String>() {
+    ^
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java:9: Warning: This field leaks a context object [StaticFieldLeak]
+    private final MainActivity mainActivity;
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:33: Warning: Do not place Android context classes in static fields (static reference to xLocationManager which has field context pointing to Context); this is a memory leak [StaticFieldLeak]
+    private static xLocationManager instance;
+            ~~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java:37: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+    private static Context xthis;
+            ~~~~~~
+
+   Explanation for issues of type "StaticFieldLeak":
+   A static field will leak contexts.
+
+   Non-static inner classes have an implicit reference to their outer class.
+   If that outer class is for example a Fragment or Activity, then this
+   reference means that the long-running handler/loader/task will hold a
+   reference to the activity which prevents it from getting garbage
+   collected.
+
+   Similarly, direct field references to activities and fragments from these
+   longer running instances can cause leaks.
+
+   ViewModel classes should never point to Views or non-application Contexts.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable/fundo.png: Warning: Found bitmap drawable res/drawable/fundo.png in densityless folder [IconLocation]
+
+   Explanation for issues of type "IconLocation":
+   The res/drawable folder is intended for density-independent graphics such
+   as shapes defined in XML. For bitmaps, move it to drawable-mdpi and
+   consider providing higher and lower resolution versions in drawable-ldpi,
+   drawable-hdpi and drawable-xhdpi. If the icon really is density independent
+   (for example a solid color) you can place it in drawable-nodpi.
+
+   https://developer.android.com/guide/practices/screens_support.html
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable/ico.png: Warning: The following unrelated icon files have identical contents: ico.png, ico.png, ico.png, ico.png, fundo.png, ico.png [IconDuplicates]
+
+   Explanation for issues of type "IconDuplicates":
+   If an icon is repeated under different names, you can consolidate and just
+   use one of the icons and delete the others to make your application
+   smaller. However, duplicated icons usually are not intentional and can
+   sometimes point to icons that were accidentally overwritten or accidentally
+   not updated.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:188: Warning: onTouch should call View#performClick when a click is detected [ClickableViewAccessibility]
+            public boolean onTouch(View v, MotionEvent event) {
+                           ~~~~~~~
+
+   Explanation for issues of type "ClickableViewAccessibility":
+   If a View that overrides onTouchEvent or uses an OnTouchListener does not
+   also implement performClick and call it when clicks are detected, the View
+   may not handle accessibility actions properly. Logic handling the click
+   actions should ideally be placed in View#performClick as some accessibility
+   services invoke performClick when a click action should occur.
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/layout/main.xml:7: Warning: Missing contentDescription attribute on image [ContentDescription]
+ <ImageView
+  ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:59: Warning: Use "Gravity.END" instead of "Gravity.RIGHT" to ensure correct behavior in right-to-left locales [RtlHardcoded]
+ params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+                                           ~~~~~
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/layout/overlay_layout.xml:10: Warning: Consider replacing android:layout_marginLeft with android:layout_marginStart="5.0dp" to better support right-to-left layouts [RtlHardcoded]
+ android:layout_marginLeft="5.0dp"  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlHardcoded":
+   Using Gravity#LEFT and Gravity#RIGHT can lead to problems when a layout is
+   rendered in locales where text flows from right to left. Use Gravity#START
+   and Gravity#END instead. Similarly, in XML gravity and layout_gravity
+   attributes, use start rather than left.
+
+   For XML attributes such as paddingLeft and layout_marginLeft, use
+   paddingStart and layout_marginStart. NOTE: If your minSdkVersion is less
+   than 17, you should add both the older left/right attributes as well as the
+   new start/end attributes. On older platforms, where RTL is not supported
+   and the start/end attributes are unknown and therefore ignored, you need
+   the older left/right attributes. There is a separate lint check which
+   catches that type of error.
+
+   (Note: For Gravity#LEFT and Gravity#START, you can use these constants even
+   when targeting older platforms, because the start bitmask is a superset of
+   the left bitmask. Therefore, you can use gravity="start" rather than
+   gravity="left|start".)
+
+0 errors, 53 warnings (42 warnings filtered by baseline lint-baseline.xml)

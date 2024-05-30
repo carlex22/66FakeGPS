@@ -1,0 +1,130 @@
+Starting a Gradle Daemon, 2 busy Daemons could not be reused, use --status for details
+
+> Configure project :app
+WARNING: The option setting 'android.aapt2FromMavenOverride=/data/data/com.termux/files/home/Android/sdk/build-tools/latest/aapt2' is experimental.
+WARNING: The specified Android SDK Build Tools version (29.0.2) is ignored, as it is below the minimum supported version (34.0.0) for Android Gradle Plugin 8.4.0.
+Android SDK Build Tools 34.0.0 will be used.
+To suppress this warning, remove "buildToolsVersion '29.0.2'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools.
+WARNING: The specified Android SDK Build Tools version (29.0.2) is ignored, as it is below the minimum supported version (34.0.0) for Android Gradle Plugin 8.4.0.
+Android SDK Build Tools 34.0.0 will be used.
+To suppress this warning, remove "buildToolsVersion '29.0.2'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools.
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/29.0.2' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/30.0.2' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/29.0.2'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/30.0.2'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/33.0.0' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/29.0.2'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/33.0.0'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/latest' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/latest'
+Observed package id 'build-tools;34.0.0' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/x34' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.0')
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/29.0.2' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/29.0.2'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/30.0.2' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/30.0.2'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/33.0.0' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/33.0.0'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/34.0.3' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/34.0.3'
+Observed package id 'build-tools;34.0.3' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/latest' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3')
+Already observed package id 'build-tools;34.0.3' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.3'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/latest'
+Observed package id 'build-tools;34.0.0' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/x34' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/34.0.0')
+Already observed package id 'build-tools;34.0.0' in '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/x34'. Skipping duplicate at '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/build-tools/x34'
+Observed package id 'platform-tools' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platform-tools' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platform-tools')
+Observed package id 'platforms;android-29' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platforms/android-29' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-29')
+Observed package id 'platforms;android-30' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platforms/android-30' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-30')
+Observed package id 'platforms;android-31' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platforms/android-31' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-31')
+Observed package id 'platforms;android-33' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platforms/android-33' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-33')
+Observed package id 'platforms;android-34' in inconsistent location '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/ls/platforms/android-34' (Expected '/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-34')
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugResources
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:compileDebugJavaWithJavac
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:32: error: cannot find symbol
+import com.carlex.drive.OverlayService;
+                       ^
+  symbol:   class OverlayService
+  location: package com.carlex.drive
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java:362: error: cannot find symbol
+    Intent intent = new Intent(this, OverlayService.class);
+                                     ^
+  symbol:   class OverlayService
+  location: class MainActivity
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:60: error: cannot find symbol
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "66 Fake Location Service Start", NotificationManager.IMPORTANCE_DEFAULT);
+            ^
+  symbol:   class NotificationChannel
+  location: class FakeLocationService
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:60: error: cannot find symbol
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "66 Fake Location Service Start", NotificationManager.IMPORTANCE_DEFAULT);
+                                              ^
+  symbol:   class NotificationChannel
+  location: class FakeLocationService
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:60: error: cannot find symbol
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "66 Fake Location Service Start", NotificationManager.IMPORTANCE_DEFAULT);
+                                                                                                                ^
+  symbol:   variable NotificationManager
+  location: class FakeLocationService
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:61: error: cannot find symbol
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            ^
+  symbol:   class NotificationManager
+  location: class FakeLocationService
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:61: error: cannot find symbol
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                                                                       ^
+  symbol:   class NotificationManager
+  location: class FakeLocationService
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:67: error: package NotificationCompat does not exist
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                          ^
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:70: error: cannot find symbol
+                .setSmallIcon(R.mipmap.ic_launcher);
+                               ^
+  symbol:   variable mipmap
+  location: class R
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java:67: error: package NotificationCompat does not exist
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                                                                   ^
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:39: error: package R does not exist
+        overlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);
+                                                         ^
+/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java:43: error: package R does not exist
+        mapView = overlayView.findViewById(R.id.mapView);
+                                            ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+12 errors
+
+> Task :app:compileDebugJavaWithJavac FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugJavaWithJavac'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+BUILD FAILED in 1m 4s
+17 actionable tasks: 5 executed, 12 up-to-date

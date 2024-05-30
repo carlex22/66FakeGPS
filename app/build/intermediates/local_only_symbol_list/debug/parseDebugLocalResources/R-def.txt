@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+drawable fim
+drawable fundo
+drawable ic_launcher
+drawable ico
+drawable ini
+drawable xar
+id bpulo
+id brota
+id btnCarregarDados
+id checkfake
+id checkloc
+id dadosrota
+id data
+id databottom
+id datagps
+id datatop
+id fundo
+id mapView
+id tTempo
+id tVmed
+id talti
+id tbear
+id tspeed
+id turboSeekBar
+id turboTextView
+layout activity_test_rota
+layout main
+layout overlay_layout
+string app_name
+string hello_world
+style AppTheme
