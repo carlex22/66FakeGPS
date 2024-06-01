@@ -1554,6 +1554,11 @@ repositories {
 }
 repositories {
   maven_repo {
+    url: "https://api.xposed.info/"
+  }
+}
+repositories {
+  maven_repo {
     url: "https://repo1.maven.org/mave2/"
   }
 }

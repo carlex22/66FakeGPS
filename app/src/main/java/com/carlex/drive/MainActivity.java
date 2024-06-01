@@ -118,10 +118,10 @@ public static long intervaloMillisegundos;
 public static Switch checkloc;
 public static Switch checkfake;
 public static final int permissionRequestCode = 1;
-public static boolean mapaCentralizar = true;
+public static boolean mapaCentralizar = false;
 public static boolean inicar  = false;
 public static boolean iniciarFake  = false;
-public static TaskExecutor taskExecutor;
+//pu6blic static TaskExecutor taskExecutor;
 public static Marker carMarker;
 public static Marker xMarker;
 public static Marker oriMarker;
@@ -290,7 +290,7 @@ protected void onCreate(Bundle savedInstanceState) {
     						polyline = null; 
 				}
 				stopFakeLoc();
-				mapaCentralizar = true;
+				//mapaCentralizar = true;
 			} else {
 			}
 		    //}
@@ -308,7 +308,8 @@ protected void onCreate(Bundle savedInstanceState) {
 		    //if (inicar){
 			mapaCentralizar = isChecked;
 			checkloc.setClickable(!mapaCentralizar);  
-			checkloc.setChecked(mapaCentralizar);
+			checkloc.setChecked(
+					mapaCentralizar);
 			xMarker.setVisible(!mapaCentralizar);
 			gerarRotaButton.setEnabled(!mapaCentralizar);       
 			gerarRotaButton.setClickable(!mapaCentralizar);
@@ -343,6 +344,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
 	});
 
+	//mapView.setVisibility(View.VISIBLE);
+
 }
 
 
@@ -359,7 +362,7 @@ protected void onStart() {
         super.onStart();
 	new VerifyLocationTask(this, locationManager).execute();
 	if (!FakeLocationService1.isServiceRunning()) {     
-		checkloc.setChecked(true);       
+		//checkloc.setChecked(true);       
 		iniciarFake=true;          
 		checkfake.setChecked(true);
 	}
@@ -370,10 +373,11 @@ protected void onStart() {
 protected void onResume() {                     
     super.onResume();                         
     mapView.onResume();            
-    mapaCentralizar = true;
+    //mapaCentralizar = true;
     mapView.setVisibility(View.VISIBLE);
     inicar=true;
-    if (!FakeLocationService1.isServiceRunning()) {                    checkloc.setChecked(true);         
+    if (!FakeLocationService1.isServiceRunning()) {                 
+        //checkloc.setChecked(true);         
 	checkfake.setChecked(true);
 	iniciarFake=true;                                   
     }
@@ -471,10 +475,10 @@ public void onGerarotaClick() {
 		startFakeLoc(); 
 	}
 
-        mapaCentralizar = true;
+        //mapaCentralizar = true;
         iniciarFake = true;
         checkfake.setChecked(true);
-        checkloc.setChecked(true);
+        ///checkloc.setChecked(true);
 
         // Limpar rota antiga
         if (polyline != null) {
@@ -512,13 +516,15 @@ public void onSaltoClick(){
 
 
 
-	if (!FakeLocationService1.isServiceRunning()) {                       startFakeLoc();                                       }
+	if (!FakeLocationService1.isServiceRunning()) {      
+		startFakeLoc();            
+	}
 
 	//iniciar fake                       
-	mapaCentralizar = true;             
+	//mapaCentralizar = true;             
 	iniciarFake = true;                  
 	checkfake.setChecked(true);                                        
-	checkloc.setChecked(true);
+	//checkloc.setChecked(true);
 
 	//limpar rota antiga          
 	if (polyline != null) {           
@@ -809,7 +815,7 @@ private void salvarRotafakeEmArquivo() {
                             ", Velocidade: " + String.format("%.2f",velocidade) +
                             ", Tempo: " + formattedTime  + "\n";
 
-                    fileOutputStream.write(linha.getBytes());
+                    fileOutputStream.write(linha.get0Bytes());
 
                     RotaFake rotaFakeEntry = new RotaFake(pontoAtual.latitude, pontoAtual.longitude, bearing, velocidade, (long) cTime);
                     MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
@@ -838,16 +844,17 @@ private void salvarRotafakeEmArquivo() {
             try {
                 long cTime = System.currentTimeMillis() + 5000;
 
-                // Remover todos os registros exceto os quatro primeiros
-                MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
+                // Remover todos os registros exceto
+
+                MyApp.getDatabase().rotaFakeDao().deleteAll();
 
                 for (Object[] dadosSegmento : rotaFake) {
                     int indiceSegmento = (int) dadosSegmento[0];
                     LatLng pontoAtual = (LatLng) dadosSegmento[1];
                     float bearing = (float) dadosSegmento[2];
-                    double velocidade = (double) dadosSegmento[3];
+                    double velocidade = (double) dadosSegmento[3]*(turbo+1);
                     double tempoo = (double) dadosSegmento[4];
-                    long tempo1 = (long) tempoo;
+                    long tempo1 = (long) tempoo/(turbo+1);
 
                     cTime += tempo1;
 
@@ -855,7 +862,7 @@ private void salvarRotafakeEmArquivo() {
                     MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
                 }
 
-                return "Dados salvos no banco de dados com sucesso.";
+                return "Dados salvos no banco de dados com sucesso. turbo:" + turbo;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -873,22 +880,74 @@ private void salvarRotafakeEmArquivo() {
 
 
 
-//procesao etapa final geracao  rotafake
-private void procesarrMovimento() {   
+//pre processo final rota fake
+private void procesarrMovimento() {
+    if (rotaFake == null || rotaFake.isEmpty()) {
+        Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");
+        return;
+    }
+
+    int indiceSegmento = 0;
+    double tempototal = 100; // tempo total fixo para distribuição
+    int numerosegmentos = 0;
+    double sumntempo = 0.0;
+    int ii = 0; // índice inicial para o loop
+
+    // Iterar sobre a lista rotaFake
+    for (int i = ii; i < rotaFake.size(); i++) {
+        // Contar número de segmentos com o mesmo índice
+        Object[] dadosSegmento = rotaFake.get(i);
+        double ntempo = (double) dadosSegmento[4];
+        numerosegmentos++;
+
+        // Atualizar o tempo total
+        sumntempo += ntempo;
+
+        // Verificar início de um novo índice de segmento
+        if (indiceSegmento < (int) dadosSegmento[0]) {
+            // Iterar novamente sobre rotaFake de ii até i-1
+            for (int j = ii; j < i; j++) {
+                Object[] NdadosSegmento = rotaFake.get(j);
+                ntempo = (double) NdadosSegmento[4];
+
+                // Distribuir ponderadamente o valor de tempototal
+                double peso = (ntempo / sumntempo) * numerosegmentos;
+                ntempo = (tempototal / numerosegmentos) * peso;
+
+                NdadosSegmento[4] = ntempo;
+                rotaFake.set(j, NdadosSegmento);
+            }
+            // Resetar variáveis para o próximo segmento
+            numerosegmentos = 0;
+            sumntempo = 0.0;
+            ii = i;
+        }
+
+        // Atualizar o índice do segmento
+	long tempotlong = (long) dadosSegmento[6];
+	tempototal = (double) (tempotlong*1000);
+        indiceSegmento = (int) dadosSegmento[0];
+    }	
+
+    procesarrMovimentofim();
+
+}
+
+
+//proceso etapa final geracao  rotafake
+private void procesarrMovimentofim() {   
 	if (rotaFake == null || rotaFake.isEmpty()) {     
 		Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");   
 		return;             
 	}                                                    
 	// Recalcular os valores de tempo e velocidade 
-	for (int i = 1; i < (rotaFake.size()-1); i++) {   
+	for (int i = 0; i < (rotaFake.size()-1); i++) {   
 		Object[] dadosSegmento = rotaFake.get(i);    
 		double velocidade = (double) dadosSegmento[3];
 		double freio  = (double) dadosSegmento[8]; 
 		//double ntempo = (double) dadosSegmento[4]; 
 		velocidade *= (1 - freio);
-
-		//velocidade minima 1m/s ponto 
-		velocidade = Math.max(5/turbo, Math.min(velocidade*turbo, 150));
+		velocidade = Math.max(0.1, Math.min(velocidade, 250));
 		double distancia = (double) dadosSegmento[5]; 
 		double ntempo = (distancia / velocidade) * 1000;
 		dadosSegmento[3] = (double) velocidade;
@@ -968,7 +1027,7 @@ private void simularMovimento() {
         //float diffBearing = 0;
 	//double diffSpeed = 0;
 	//double parteSeed = 0;
-	int turboo = 10+turbo;
+	int turboo = 10;
         
 	Object[] dadosSegmento = rotaFake.get(i);
         double bearingAtual = (float) dadosSegmento[2];
@@ -1082,6 +1141,27 @@ public void drawRoute(List<LatLng> routePoints) {
 		polylineOptions.add(point);
 	}
 	polyline = googleMap.addPolyline(polylineOptions);
+
+
+	LatLng center = latLng;
+
+	if (polyline != null) {                                 
+		LatLngBounds.Builder builder = new LatLngBounds.Builder();         
+		for (LatLng point : polyline.getPoints()) { builder.include(point); }         
+		builder.include(latLng);
+
+                bounds = builder.build();                       
+		int padding = 50;           
+
+                zoom = calculateZoomfrom(latLng, polyline);   
+		//zoom = (float) 15;         
+		center = bounds.getCenter();
+
+	} else { zoom = (float) 15;}
+
+                // mover camera atualizar marcadorez      
+		CameraPosition cameraPosition = new CameraPosition.Builder().target(center).zoom(zoom).build();      
+		googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));                 
 }
 
 
@@ -1093,11 +1173,34 @@ public void centralizar(){
 		return;
 	}
 
-	//if (!inicar) {
-	//	return;          
-	//	}
 
+	String schro = "00:00:00";
 
+        new AsyncTask<Void, Void, RotaFake>() {
+        @Override
+        protected RotaFake doInBackground(Void... voids) {
+            AppDatabase db = MyApp.getDatabase();
+            if (db != null) {
+                return db.rotaFakeDao().getLastRotaFakeByTime();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(RotaFake lastRotaFake) {
+            if (lastRotaFake != null) {
+                long chegada = lastRotaFake.getTempo();
+		if (chegada > System.currentTimeMillis()+200) {       
+			long chronometrodecresivo = chegada - System.currentTimeMillis();                                      
+			long hours = TimeUnit.MILLISECONDS.toHours(chronometrodecresivo);
+			long minutes = TimeUnit.MILLISECONDS.toMinutes(chronometrodecresivo) - TimeUnit.HOURS.toMinutes(hours);
+			long seconds = TimeUnit.MILLISECONDS.toSeconds(chronometrodecresivo) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(chronometrodecresivo));
+			textViewTempo.setText("🏁 " + String.format("%02d:%02d:%02d", hours, minutes, seconds));            
+		}
+		else 
+			textViewTempo.setText("🏁 00:00:00");
+            }
+        }}.execute();
 
 
 	if (polyline != null) {      
@@ -1108,13 +1211,14 @@ public void centralizar(){
 		oriMarker.setVisible(false);
 	}
 
+
 	//atualizar textview
 	sspeed = String.format("⏱️ %.1f", currentSpeed*3.6*4)+ " km/h";
-	salti = String.format("📏 %.2f",(odometro/1000))+ " km";  
-	sbear = String.format("🧭 %.1f",currentBearing)+ "°";
+	salti = String.format("🏔️%.1f", currentAlt)+ "m";
+
 	tspeed.setText(sspeed);    
 	talti.setText(salti);            
-	tbear.setText(sbear);
+
 
 
 	//posicao marcador localizacao
@@ -1219,7 +1323,7 @@ public void onMapReady(GoogleMap googleMap) {
         public void onCameraMoveStarted(int reason) {
             if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
                 //mapaCentralizar = false;
-		checkloc.setChecked(false);
+		//checkloc.setChecked(false);
             }
         }
     });
@@ -1247,6 +1351,8 @@ public void onMapReady(GoogleMap googleMap) {
 
     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+   // cameraPosition = new CameraPosition.Builder().target(latLng).zoom(15).build();
+
     // Bloquear a rotação do mapa
     googleMap.getUiSettings().setRotateGesturesEnabled(false);
 
@@ -1271,7 +1377,7 @@ public void onMapReady(GoogleMap googleMap) {
     googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
         public void onCameraMoveStarted(int reason) {
             if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
-                //mapaCentralizar = false;
+                mapaCentralizar = false;
 		checkloc.setChecked(false);
             }
         }

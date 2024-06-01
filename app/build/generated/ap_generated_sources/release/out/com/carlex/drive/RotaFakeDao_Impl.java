@@ -30,6 +30,8 @@ public final class RotaFakeDao_Impl implements RotaFakeDao {
 
   private final SharedSQLiteStatement __preparedStmtOfDeleteAllExceptFirstFour;
 
+  private final SharedSQLiteStatement __preparedStmtOfDeleteAll;
+
   private final SharedSQLiteStatement __preparedStmtOfDeleteRotaFakeWithTimeGreaterThan;
 
   public RotaFakeDao_Impl(@NonNull final RoomDatabase __db) {
@@ -86,6 +88,14 @@ public final class RotaFakeDao_Impl implements RotaFakeDao {
       @NonNull
       public String createQuery() {
         final String _query = "DELETE FROM rota_fake WHERE id NOT IN (SELECT id FROM rota_fake ORDER BY id LIMIT 2)";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM rota_fake WHERE id >= 0";
         return _query;
       }
     };
@@ -153,6 +163,23 @@ public final class RotaFakeDao_Impl implements RotaFakeDao {
   }
 
   @Override
+  public void deleteAll() {
+    __db.assertNotSuspendingTransaction();
+    final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteAll.acquire();
+    try {
+      __db.beginTransaction();
+      try {
+        _stmt.executeUpdateDelete();
+        __db.setTransactionSuccessful();
+      } finally {
+        __db.endTransaction();
+      }
+    } finally {
+      __preparedStmtOfDeleteAll.release(_stmt);
+    }
+  }
+
+  @Override
   public void deleteRotaFakeWithTimeGreaterThan(final long currentTimeMillis) {
     __db.assertNotSuspendingTransaction();
     final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteRotaFakeWithTimeGreaterThan.acquire();
@@ -214,6 +241,43 @@ public final class RotaFakeDao_Impl implements RotaFakeDao {
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, currentTimeMillis);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final int _cursorIndexOfLatitude = CursorUtil.getColumnIndexOrThrow(_cursor, "latitude");
+      final int _cursorIndexOfLongitude = CursorUtil.getColumnIndexOrThrow(_cursor, "longitude");
+      final int _cursorIndexOfBearing = CursorUtil.getColumnIndexOrThrow(_cursor, "bearing");
+      final int _cursorIndexOfVelocidade = CursorUtil.getColumnIndexOrThrow(_cursor, "velocidade");
+      final int _cursorIndexOfTempo = CursorUtil.getColumnIndexOrThrow(_cursor, "tempo");
+      final RotaFake _result;
+      if (_cursor.moveToFirst()) {
+        final double _tmpLatitude;
+        _tmpLatitude = _cursor.getDouble(_cursorIndexOfLatitude);
+        final double _tmpLongitude;
+        _tmpLongitude = _cursor.getDouble(_cursorIndexOfLongitude);
+        final float _tmpBearing;
+        _tmpBearing = _cursor.getFloat(_cursorIndexOfBearing);
+        final double _tmpVelocidade;
+        _tmpVelocidade = _cursor.getDouble(_cursorIndexOfVelocidade);
+        final long _tmpTempo;
+        _tmpTempo = _cursor.getLong(_cursorIndexOfTempo);
+        _result = new RotaFake(_tmpLatitude,_tmpLongitude,_tmpBearing,_tmpVelocidade,_tmpTempo);
+        _result.id = _cursor.getInt(_cursorIndexOfId);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public RotaFake getLastRotaFakeByTime() {
+    final String _sql = "SELECT * FROM rota_fake ORDER BY tempo DESC LIMIT 1";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {

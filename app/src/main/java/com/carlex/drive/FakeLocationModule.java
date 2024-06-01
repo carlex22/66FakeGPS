@@ -1,88 +1,265 @@
-/*package com.carlex.drive;
-
-
+package com.carlex.drive;
 
 import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.util.Log;
-import java.util.concurrent.ThreadLocalRandom;
-import android.location.LocationManager;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import android.location.provider.ProviderProperties;
+import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
+
+
 
 public class FakeLocationModule implements IXposedHookLoadPackage {
 
-
-
-/*
-    private static final String LOG_TAG = "FakeLocationModule";
-    private static final int LOG_ID = 1234;
-
-    private Handler handler = new Handler();
-    private LocationManager locationManager;
     private Context context;
+    private Location interceptedLocation;
+    private Location interceptedLocationNetwork;
 
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            startFakeLocation();
-            handler.postDelayed(this, 1000); // Continua a mudança de localização falsa a cada 1 segundo
-        }
-    };
+
 
     @Override
-    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        context = MainActivity.mainApp;
-        locationManager = xLocationManager.getInstance(MainActivity.mainApp);
+public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 
-        handler.postDelayed(runnable, 1000); // Inicia a mudança de localização falsa a cada 1 segundo
-    }
+    // Obter contexto da aplicação principal
+    context = MainActivity.mainApp;
 
-    private void startFakeLocation() {
-        sendLogMessage("Início da mudança de localização");
-        Location newLocation = createRandomLocationInSaoPaulo();
-        setLocationProvider(LocationManager.GPS_PROVIDER, newLocation); // Substitui as atualizações de localização do provedor GPS pelo provedor falso
-    }
+    // Lista dos pacotes desejados
+    String[] desiredPackages = new String[]{
+            "com.carlex.drive",
+            "com.app99.drive",
+            "flar2.devcheck",
+            "com.google.android.apps.location.gps.gnsslogger",
+            "fr.dvilleneuve.lockito"
+    };
 
-    private void stopFakeLocation() {
-        locationManager.removeTestProvider(LocationManager.GPS_PROVIDER);
-    }
+    //inicio do loop 
+    // Verificar se o pacote atual está na lista dos pacotes desejados
+    for (String packageName : desiredPackages) {
+        if (lpparam.packageName.equals(packageName)) {
 
-    private void setLocationProvider(String provider, Location location) {
-        try {
-            if (locationManager.getProvider(provider) == null) {
-                locationManager.addTestProvider(provider, false, false, false, false, true, true, true,
-                        ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+	  //inicio gps provider
+            // Hookar o método setGpsProvider na classe xLocationManager
+            XposedHelpers.findAndHookMethod(
+                "com.carlex.drive.xLocationManager",
+                // Nome completo da classe onde o método está localizado
+                lpparam.classLoader,
+                // ClassLoader do pacote sendo hookado
+                "setGpsProvider",
+                // Nome do método a ser hookado
+                Location.class,
+                // Tipo do parâmetro do método
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(
+		    MethodHookParam param) throws Throwable {
+                        interceptedLocation = (Location) param.args[0];
+                        if (LocationManager.GPS_PROVIDER
+			.equals(interceptedLocation.getProvider())) {
+                            Log.d("FakeLocationModule", 
+			    "Intercepted GPS Location: " +
+			    interceptedLocation.toString());
+                        }
+                    }
+                }
+            );
+
+            // Hook nos métodos do LocationManager gps provider
+            for (Method method : 
+		LocationManager.class.getDeclaredMethods()) {
+                if (method.getName().equals("requestLocationUpdates")
+                        && !Modifier.isAbstract(method.getModifiers())
+                        && Modifier.isPublic(method.getModifiers())) {
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod
+			(MethodHookParam param) throws Throwable {
+                            log("requestLocationUpdates called");
+                            if (param.args.length >= 4 
+				&& (param.args[3] instanceof
+				LocationListener)) {
+                                replaceInstanceMethod(param.args[3], 
+				"onLocationChanged", new XC_MethodHook() {
+                                    @Override
+                                    protected void 
+				    beforeHookedMethod(MethodHookParam 
+				    param) throws Throwable {
+                                        log("onLocationChanged called");
+                                        if (interceptedLocation != null) {
+                                            param.args[0] = interceptedLocation;
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else if (method.getName().equals("requestSingleUpdate")
+                        && !Modifier.isAbstract(method.getModifiers())
+                        && Modifier.isPublic(method.getModifiers())) {
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(
+			MethodHookParam param) throws Throwable {
+                            log("requestSingleUpdate called");
+                            if (param.args.length >= 3 && (
+			    param.args[1] instanceof LocationListener)) {
+                                replaceInstanceMethod(param.args[1], 
+				"onLocationChanged", new XC_MethodHook() {
+                                    @Override
+                                    protected void beforeHookedMethod
+				    (MethodHookParam param) throws 
+				    Throwable {
+                                        log("onLocationChanged called");
+                                        if (interceptedLocation != null) {
+                                            param.args[0] = interceptedLocation;
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else if (method.getName().equals("getLastKnownLocation")
+                        && !Modifier.isAbstract(method.getModifiers())
+                        && Modifier.isPublic(method.getModifiers())) {
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam 
+			param) throws Throwable {
+                            log("getLastKnownLocation called");
+                            if (interceptedLocation != null) {
+                                param.setResult(interceptedLocation);
+                            }
+                        }
+                    });
+		}
             }
-            locationManager.setTestProviderEnabled(provider, true);
-            locationManager.setTestProviderLocation(provider, location);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
+	    //fim gps provider
+
+	    //inicio network provider
+	    // Hookar o método setNetworkProvider na classe xLocationManager
+	    XposedHelpers.findAndHookMethod(
+		"com.carlex.drive.xLocationManager",
+		// Nome completo da classe onde o método está localizado
+		lpparam.classLoader,
+		// ClassLoader do pacote sendo hookado
+		"setNetworkProvider",
+		// Nome do método a ser hookado
+		Location.class,
+		// Tipo do parâmetro do método
+		new XC_MethodHook() {
+		    @Override
+		    protected void beforeHookedMethod(
+		    MethodHookParam param) throws Throwable {
+			interceptedLocationNetwork = (Location) param.args[0];		
+			if (LocationManager.NETWORK_PROVIDER		
+			.equals(interceptedLocationNetwork.getProvider())) {
+			    Log.d("FakeLocationModule", 
+			    "Intercepted Network Location: " +
+			    interceptedLocationNetwork.toString());
+
+			}
+		    }
+		}	
+	    );
+
+	    // Hook nos métodos do LocationManager network provider
+	    for (Method method :
+		LocationManager.class.getDeclaredMethods()) {
+		    if (method.getName().equals("requestLocationUpdates")
+			    && !Modifier.isAbstract(method.getModifiers())
+			    && Modifier.isPublic(method.getModifiers())) {
+			XposedBridge.hookMethod(method, new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod
+				(MethodHookParam param) throws Throwable {
+				    log("requestLocationUpdates called");
+				    if (param.args.length >= 4
+				    && (param.args[3] instanceof
+				    LocationListener)) {
+					replaceInstanceMethod(param.args[3],
+					"onLocationChanged", new XC_MethodHook() {
+					    @Override
+					    protected void
+					    beforeHookedMethod(MethodHookParam
+					    param) throws Throwable {
+						log("onLocationChanged called");
+						if (interceptedLocationNetwork != null) {
+						    param.args[0] = interceptedLocationNetwork;
+						}
+					    }
+					});
+				    }
+				}
+			});
+		    } else if (method.getName().equals("requestSingleUpdate")
+			    && !Modifier.isAbstract(method.getModifiers())
+			    && Modifier.isPublic(method.getModifiers())) {
+			XposedBridge.hookMethod(method, new XC_MethodHook() {
+				@Override
+				protected void beforeHookedMethod(
+				MethodHookParam param) throws Throwable {
+				    log("requestSingleUpdate called");
+				    if (param.args.length >= 3 && (
+				    param.args[1] instanceof LocationListener)) {
+					replaceInstanceMethod(param.args[1],
+					"onLocationChanged", new XC_MethodHook() {
+					    @Override
+					    protected void beforeHookedMethod
+					    (MethodHookParam param) throws
+					    Throwable {
+						log("onLocationChanged called");
+						if (interceptedLocationNetwork != null) {
+						    param.args[0] = interceptedLocationNetwork;
+						}
+					    }
+					});
+				    }
+				}
+			});
+		    } else if (method.getName().equals("getLastKnownLocation")
+			    && !Modifier.isAbstract(method.getModifiers())
+			    && Modifier.isPublic(method.getModifiers())) {
+			XposedBridge.hookMethod(method, new XC_MethodHook() {
+				@Override
+				protected void afterHookedMethod(MethodHookParam
+				param) throws Throwable {
+				    log("getLastKnownLocation called");
+				    if (interceptedLocationNetwork != null) {
+					param.setResult(interceptedLocationNetwork);
+				    }
+				}
+			});
+		    }
+		}
+	    }
+	    //fim network provider
+	}
     }
 
-    private Location createRandomLocationInSaoPaulo() {
-        double minLat = -23.782;
-        double maxLat = -23.438;
-        double minLng = -46.819;
-        double maxLng = -46.365;
+    //log
+    private void log(String message) {                                        Log.d("FakeLocationModule", message);                             }                                        
 
-        double lat = ThreadLocalRandom.current().nextDouble(minLat, maxLat);
-        double lng = ThreadLocalRandom.current().nextDouble(minLng, maxLng);
 
-        Location location = new Location(LocationManager.GPS_PROVIDER);
-        location.setLatitude(lat);
-        location.setLongitude(lng);
-        location.setAccuracy(Location.ACCURACY_FINE);
-        return location;
-    }
+    //replaceInstanceMethod            
+    private void replaceInstanceMethod(Object instance, String methodName, XC_MethodHook hook) {        
+	for (Method method : instance.getClass().
+	getDeclaredMethods()) {                                   
+		if (method.getName().equals(methodName) && !Modifier.isAbstract(method.getModifiers()) && Modifier.isPublic(method.getModifiers())) {                   
+			XposedBridge.hookMethod(method, hook);     
+	    	}                             
+	}                                                      
+    }                                                                                                                                           //end      
+}
 
-    private void sendLogMessage(String message) {
-        Log.i(LOG_TAG, message);
-    }
 
-    */
-//}
 

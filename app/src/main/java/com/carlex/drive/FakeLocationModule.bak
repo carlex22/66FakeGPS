@@ -1,0 +1,417 @@
+package com.carlex.drive;
+
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.location.*;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.Handler;
+import android.telephony.PhoneStateListener;
+import android.util.*;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import de.robv.android.xposed.*;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
+public class FakeLocationModule implements IXposedHookLoadPackage {
+    private static final String TAG = "CloudRunnerHook";
+    private final double METER_PER_STEP = 0.9;
+
+    private Handler tmrHandler;
+    private Map<SensorEventListener,List<Sensor>> stepListener;
+    private ContentResolver resolver;
+    private ArrayList<CurveGenerator> gen;
+    private Timer prefUpdateTimer;
+    private CurveGenerator speedGen;
+
+    private long curStep,startTime,prevTime,updateTime;
+    private double curDist,lastBearing;
+
+    private List<LatLng> route;
+    private boolean dropLocData,loop,stepAutoStop;
+    private double speedCent,speedDelta,cycleMin,cycleMax;
+
+    private boolean enabled, location_enabled, step_enabled;
+    private String target;
+
+    public class AcceloProvider implements CurveGenerator.ValueProvider {
+        CurveGenerator speed;
+        public AcceloProvider(CurveGenerator _speed) {
+            speed = _speed;
+        }
+        public double val(double x) {
+            double s = speed.get() + rand(-0.3,0.3);
+            return (METER_PER_STEP / s) * 1e9;
+        }
+    }
+
+
+
+    private void generateRandomRoute() {
+        double minLat = -23.782616; // Latitude mínima da cidade de São Paulo
+        double maxLat = -23.473077; // Latitude máxima da cidade de São Paulo
+        double minLng = -46.825778; // Longitude mínima da cidade de São Paulo
+        double maxLng = -46.365137; // Longitude máxima da cidade de São Paulo
+
+        Random random = new Random();
+
+        for (int i = 0; i < 60; i++) {
+            double lat = minLat + (maxLat - minLat) * random.nextDouble();
+            double lng = minLng + (maxLng - minLng) * random.nextDouble();
+            LatLng point = new LatLng(lat, lng);
+            route.add(point);
+        }
+
+        // Agora a lista "route" contém 60 pontos LatLng aleatórios na cidade de São Paulo
+    }
+
+
+    public static void log(String s){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        s = simpleDateFormat.format(date) + " " + s;
+
+        File logFile = new File(Environment.getExternalStorageDirectory() + "/mylog.txt");
+        if (!logFile.exists())
+        {
+            try
+            {
+                logFile.createNewFile();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
+        try
+        {
+            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+            buf.append(s);
+            buf.newLine();
+            buf.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+    }
+
+    public void updatePref()
+    {
+        log("Pref Updated");
+        // Simulando preferências fictícias
+        loop = true;
+        dropLocData = false;
+        stepAutoStop = false;
+        speedCent = 1;
+        speedDelta = 1;
+        cycleMin = 20;
+        cycleMax = 20;
+        startTime = prevTime = System.nanoTime();
+        curStep = 0;
+        curDist = 0;
+        lastBearing = 0;
+        log("starttime = " + startTime);
+
+        speedGen = new CurveGenerator(new CurveGenerator.Range(Math.max(0, speedCent - speedDelta),speedCent),
+                new CurveGenerator.Range(speedCent,speedCent + speedDelta),
+                new CurveGenerator.Range(cycleMin * 1e9,cycleMax * 1e9), new CurveGenerator.Range(speedDelta * 0.1,speedDelta * 0.3),startTime);
+
+        // Simulando rota fictícia
+        //route = new LinkedList<>();
+        //route.add(new LatLng(37.4219999, -122.0840575));
+        //route.add(new LatLng(37.422, -122.084));
+
+
+        route = new ArrayList<>();
+        generateRandomRoute();
+
+
+        log("New route size = " + route.size());
+
+        ArrayList<CurveGenerator> newGen = new ArrayList<>();
+        AcceloProvider acc = new AcceloProvider(speedGen);
+        newGen.add(new CurveGenerator(new CurveGenerator.Range(-3, -1) ,new CurveGenerator.Range(1,3), acc,new CurveGenerator.Static(0.2),startTime));
+        newGen.add(new CurveGenerator(new CurveGenerator.Range(-7 + SensorManager.STANDARD_GRAVITY, -1 + SensorManager.STANDARD_GRAVITY) ,
+                new CurveGenerator.Range(1 + SensorManager.STANDARD_GRAVITY,7 + SensorManager.STANDARD_GRAVITY),acc,new CurveGenerator.Static(0.8),startTime));
+        newGen.add(new CurveGenerator(new CurveGenerator.Range(-3, -1) ,new CurveGenerator.Range(1,3), acc,new CurveGenerator.Static(0.2),startTime));
+        gen = newGen;
+
+        if(route.size() == 0) {
+            dropLocData = true;
+        }
+        updateTime = System.nanoTime();
+    }
+
+    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
+        //log("Loaded app: " + (lpparam != null ? lpparam.packageName : "none"));
+        try {
+            //route = new ArrayList<>();
+            //generateRandomRoute();
+
+            Context context = (Context) XposedHelpers.callMethod(XposedHelpers.callStaticMethod(XposedHelpers.findClass("android.app.ActivityThread", lpparam.classLoader), "currentActivityThread"), "getSystemContext");
+            resolver = context.getContentResolver();
+            target = "com.carlex.driver";
+            enabled = true;
+            location_enabled = true;
+            step_enabled = true;
+
+            tmrHandler = new Handler();
+            stepListener = new HashMap<>();
+            prefUpdateTimer = new Timer();
+
+            prefUpdateTimer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    updatePref();
+                }
+            }, 1000, 1000);
+            updatePref();
+
+            if (step_enabled) {
+                tmrHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        invokeListener();
+                        if (!stopped()) {
+                            ++curStep;
+                        }
+                        tmrHandler.postDelayed(this, (long) (METER_PER_STEP / speedGen.get() * 1e3));
+                    }
+                }, 2500);
+            }
+        } catch (Exception e) {
+            XposedBridge.log(e);
+        }
+    }
+
+    private static float[] computeDistanceAndBearing(double lat1, double lon1,
+                                                  double lat2, double lon2) {
+        int MAXITERS = 20;
+        lat1 *= Math.PI / 180.0;
+        lat2 *= Math.PI / 180.0;
+        lon1 *= Math.PI / 180.0;
+        lon2 *= Math.PI / 180.0;
+
+        double a = 6378137.0;
+        double b = 6356752.3142;
+        double f = (a - b) / a;
+        double aSqMinusBSqOverBSq = (a * a - b * b) / (b * b);
+
+        double L = lon2 - lon1;
+        double A = 0.0;
+        double U1 = Math.atan((1.0 - f) * Math.tan(lat1));
+        double U2 = Math.atan((1.0 - f) * Math.tan(lat2));
+
+        double cosU1 = Math.cos(U1);
+        double cosU2 = Math.cos(U2);
+        double sinU1 = Math.sin(U1);
+        double sinU2 = Math.sin(U2);
+        double cosU1cosU2 = cosU1 * cosU2;
+        double sinU1sinU2 = sinU1 * sinU2;
+
+        double sigma = 0.0;
+        double deltaSigma = 0.0;
+        double cosSqAlpha = 0.0;
+        double cos2SM = 0.0;
+        double cosSigma = 0.0;
+        double sinSigma = 0.0;
+        double cosLambda = 0.0;
+        double sinLambda = 0.0;
+
+        double lambda = L;
+        for (int iter = 0; iter < MAXITERS; iter++) {
+            double lambdaOrig = lambda;
+            cosLambda = Math.cos(lambda);
+            sinLambda = Math.sin(lambda);
+            double t1 = cosU2 * sinLambda;
+            double t2 = cosU1 * sinU2 - sinU1 * cosU2 * cosLambda;
+            double sinSqSigma = t1 * t1 + t2 * t2;
+            sinSigma = Math.sqrt(sinSqSigma);
+            cosSigma = sinU1sinU2 + cosU1cosU2 * cosLambda;
+            sigma = Math.atan2(sinSigma, cosSigma);
+            double sinAlpha = (sinSigma == 0) ? 0.0 :
+                    cosU1cosU2 * sinLambda / sinSigma;
+            cosSqAlpha = 1.0 - sinAlpha * sinAlpha;
+            cos2SM = (cosSqAlpha == 0) ? 0.0 :
+                    cosSigma - 2.0 * sinU1sinU2 / cosSqAlpha;
+
+            double uSquared = cosSqAlpha * aSqMinusBSqOverBSq;
+            A = 1 + (uSquared / 16384.0) *
+                    (4096.0 + uSquared *
+                            (-768 + uSquared * (320.0 - 175.0 * uSquared)));
+            double B = (uSquared / 1024.0) *
+                    (256.0 + uSquared *
+                            (-128.0 + uSquared * (74.0 - 47.0 * uSquared)));
+            double C = (f / 16.0) *
+                    cosSqAlpha *
+                    (4.0 + f * (4.0 - 3.0 * cosSqAlpha));
+            double cos2SMSq = cos2SM * cos2SM;
+            deltaSigma = B * sinSigma *
+                    (cos2SM + (B / 4.0) *
+                            (cosSigma * (-1.0 + 2.0 * cos2SMSq) -
+                                    (B / 6.0) * cos2SM *
+                                            (-3.0 + 4.0 * sinSigma * sinSigma) *
+                                            (-3.0 + 4.0 * cos2SMSq)));
+
+            lambda = L +
+                    (1.0 - C) * f * sinAlpha *
+                            (sigma + C * sinSigma *
+                                    (cos2SM + C * cosSigma *
+                                            (-1.0 + 2.0 * cos2SM * cos2SM)));
+
+            double delta = (lambda - lambdaOrig) / lambda;
+            if (Math.abs(delta) < 1.0e-12) {
+                break;
+            }
+        }
+
+        float distance = (float) (b * A * (sigma - deltaSigma));
+        float initialBearing = (float) Math.atan2(cosU2 * sinLambda,
+                cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
+        initialBearing *= 180.0 / Math.PI;
+        float finalBearing = (float) Math.atan2(cosU1 * sinLambda,
+                -sinU1 * cosU2 + cosU1 * sinU2 * cosLambda);
+        finalBearing *= 180.0 / Math.PI;
+        
+        return new float[]{distance,initialBearing,finalBearing};
+    }
+    
+    public synchronized void fakeLocation(Location location) {
+        long time = System.nanoTime();
+        double timeElapsed = (time - prevTime) / 1e9,speed = speedGen.get() + rand(-0.3,0.3);
+        curDist += timeElapsed * speed;
+        log("Time = " + time + ",Prevtime = " + prevTime);
+        
+        float[] res = null;
+        while (route.size() > 1) {
+            LatLng p0 = route.get(0),p1 = route.get(1);
+            res = computeDistanceAndBearing(p0.latitude,p0.longitude,p1.latitude,p1.longitude);
+            if(Double.isNaN(res[0]) || res[0] < 1e-5) {
+                route.remove(0);
+                continue;
+            }
+            if(res[0] > curDist) {
+                break;
+            }
+            route.remove(0);
+            curDist -= res[0];
+        }
+        
+        double lat,lot;
+        log("Route size = " + route.size());
+        if(route.size() > 1) {
+            LatLng p0 = route.get(0),p1 = route.get(1);
+            lat = p0.latitude + (p1.latitude - p0.latitude) * (curDist / res[0]);
+            lot = p0.longitude + (p1.longitude - p0.longitude) * (curDist / res[0]);
+            lastBearing = res[1] + (res[2] - res[1]) * (curDist / res[0]);
+        } else {
+            lat = route.get(0).latitude;
+            lot = route.get(0).longitude;
+        }
+
+        double accuracy = 5.0 + rand(-0.01, 0.01);
+        location.setLatitude(lat + rand(-0.000001,0.000001));
+        location.setLongitude(lot + rand(-0.000001,0.000001));
+        location.setAccuracy((float) accuracy);
+        location.setSpeed((float) speed);
+        location.setBearing((float) (lastBearing + rand(-0.01,0.01)));
+
+        prevTime = time;
+        log("Fake latitude " + location.getLatitude() + " longitude " + location.getLongitude() + " speed " + location.getSpeed());
+    }
+
+    public void fakeAccel(SensorEvent event) {
+        event.timestamp = System.nanoTime();
+        for(int i = 0;i < 3;++i) {
+            if(!stopped()) {
+                event.values[i] = (float) (gen.get(i).get());
+            } else {
+                event.values[i] = (float) (rand(-0.1,0.1) + (i == 1 ? SensorManager.STANDARD_GRAVITY : 0));
+            }
+        }
+    }
+
+    public void invokeListener() {
+        SensorEvent event;
+        try {
+            Constructor<?> construct = SensorEvent.class.getDeclaredConstructor(int.class);
+            construct.setAccessible(true);
+            event = (SensorEvent) construct.newInstance(1);
+        } catch (Exception e) {
+            XposedBridge.log(e);
+            return;
+        }
+        for (Map.Entry<SensorEventListener,List<Sensor>> entry : stepListener.entrySet()) {
+            SensorEventListener listener = entry.getKey();
+            List<Sensor> sensorList = entry.getValue();
+            for(Sensor sensor : sensorList) {
+                event.timestamp = System.nanoTime();
+                event.values[0] = curStep;
+                event.accuracy = 3;
+                event.sensor = sensor;
+                XposedHelpers.callMethod(listener, "onSensorChanged", event);
+            }
+        }
+    }
+
+    private void replaceInstanceMethod(Object obj,String name,XC_MethodReplacement hook) {
+        Class<?> clazz = obj.getClass();
+        Method m = null;
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.getName().equals(name)) {
+                m = method;
+                break;
+            }
+        }
+        if(m == null) {
+            return;
+        }
+        m.setAccessible(true);
+
+        XposedBridge.hookMethod(m, hook);
+    }
+
+    private void hookInstanceMethod(Object obj,String name,XC_MethodHook hook) {
+        Class<?> clazz = obj.getClass();
+        Method m = null;
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.getName().equals(name)) {
+                m = method;
+                break;
+            }
+        }
+        if(m == null) {
+            return;
+        }
+        m.setAccessible(true);
+
+        XposedBridge.hookMethod(m, hook);
+    }
+
+    private double rand(double lower,double upper) {
+        return Math.random() * (upper - lower) + lower;
+    }
+
+    private boolean stopped() {
+        return location_enabled && stepAutoStop && route.size() < 2;
+    }
+}
+

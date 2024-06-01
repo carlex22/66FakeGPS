@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.carlex.drive"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="24"
@@ -72,10 +72,32 @@
             android:value="Fake Gps, and auto drive, simulate gnss and wls locatin, very realistic" />
         <meta-data
             android:name="xposedminversion"
-            android:value="53" />
+            android:value="53" >
+        </meta-data>
+        <meta-data
+            android:name="xposedname"
+            android:value="Drive" />
+        <meta-data
+            android:name="xposedpackage"
+            android:value="com.carlex.drive" />
+        <meta-data
+            android:name="xposedversion"
+            android:value="1.0" />
+        <meta-data
+            android:name="xposedauthor"
+            android:value="Carlex" />
+        <meta-data
+            android:name="xposeddonate"
+            android:value="https://www.paypal.me/carlex" />
+        <meta-data
+            android:name="xposedhomepage"
+            android:value="http://www.github.com/carlex22" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI" />
+            android:value="AIzaSyC4UVRx10NmwhLT8ve0HnOedFbXGxk4piI" />
+
+        <!-- AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI" / -->
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

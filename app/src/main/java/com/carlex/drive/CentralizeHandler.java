@@ -44,6 +44,8 @@ public class CentralizeHandler {
             	mainActivity.centralizar();
 	    });
             // Atualizar com dados GPS
+	    
+
             mainActivity.latLng = locationManager.getLatLngFromLocation();
             mainActivity.currentSpeed = locationManager.getSpeed();
             mainActivity.currentBearing = locationManager.getBearing();
