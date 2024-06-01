@@ -4,25 +4,25 @@
     <issue
         id="LintBaseline"
         severity="Information"
-        message="42 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml"
+        message="41 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml"
         category="Lint"
         priority="10"
         summary="Baseline Applied"
         explanation="Lint can be configured with a &quot;baseline&quot;; a set of current issues found in a codebase, which future runs of lint will silently ignore. Only new issues not found in the baseline are reported.&#xA;&#xA;Note that while opening files in the IDE, baseline issues are not filtered out; the purpose of baselines is to allow you to get started using lint and break the build on all newly introduced errors, without having to go back and fix the entire codebase up front. However, when you open up existing files you still want to be aware of and fix issues as you come across them.&#xA;&#xA;This issue type is used to emit an informational-only warning if any issues were filtered out due to baseline matching. That way, you don&apos;t have a false sense of security if you forgot that you&apos;ve checked in a baseline file.">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/lint-baseline.xml"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/lint-baseline.xml"/>
     </issue>
 
     <issue
         id="LintBaselineFixed"
         severity="Information"
-        message="14 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with `android.lintOptions.checkDependencies=true`. Unmatched issue types: DefaultLocale (6), GradleDependency, IconDuplicatesConfig (5), InlinedApi (4), SetTextI18n, SuspiciousIndentation (2)"
+        message="15 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with `android.lintOptions.checkDependencies=true`. Unmatched issue types: DefaultLocale (6), GradleDependency, HardcodedText (2), IconDuplicatesConfig (5), InlinedApi (4), SuspiciousIndentation (2)"
         category="Lint"
         priority="10"
         summary="Baselined Issues Fixed"
         explanation="If a lint baseline describes a problem which is no longer reported, then the problem has either been fixed, or perhaps the issue type has been disabled. In any case, the entry can be removed from the baseline (such that if the issue is reintroduced at some point, lint will complain rather than just silently starting to match the old baseline entry again.)">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/lint-baseline.xml"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/lint-baseline.xml"/>
     </issue>
 
     <issue
@@ -36,7 +36,7 @@
         errorLine1="                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="56"
             column="17"/>
     </issue>
@@ -52,7 +52,7 @@
         errorLine1="     androidLocationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);"
         errorLine2="                                                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="154"
             column="140"/>
     </issue>
@@ -68,7 +68,7 @@
         errorLine1="     androidLocationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);"
         errorLine2="                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="154"
             column="104"/>
     </issue>
@@ -84,7 +84,7 @@
         errorLine1="     androidLocationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);"
         errorLine2="                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="157"
             column="144"/>
     </issue>
@@ -100,7 +100,7 @@
         errorLine1="     androidLocationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);"
         errorLine2="                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="157"
             column="108"/>
     </issue>
@@ -113,36 +113,15 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1=" fusedLocationsProvider = new FusedLocationsProvider(this);"
-        errorLine2="~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java"
-            line="47"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java"
-            line="45"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="     fusedLocationsProvider.spoof(gpsLocation);"
+        errorLine1="     XposedHelpers.findAndHookMethod("
         errorLine2="~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java"
-            line="144"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationModule.java"
+            line="150"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService.java"
-            line="141"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationModule.java"
+            line="78"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -158,12 +137,12 @@
         errorLine1=" isRunning = true;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="48"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="45"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="46"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="43"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -176,36 +155,15 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="      gpsLocation.setAccuracy((float) (ThreadLocalRandom.current().nextDouble(0, 20)/10));"
-        errorLine2="~~~~~~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="113"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="112"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="   fusedLocationsProvider.spoof(gpsLocation);"
+        errorLine1="   fusedLocationsProvider.spoof(fusedLocation);"
         errorLine2="~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="133"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="93"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="131"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="92"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -218,36 +176,15 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="      try {                   "
-        errorLine2="~~~~~~">
+        errorLine1=" return START_NOT_STICKY;"
+        errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="161"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="126"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="151"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="  MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis()); "
-        errorLine2="~~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="169"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="89"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="64"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -263,12 +200,12 @@
         errorLine1=" isRunning = false;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="180"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="159"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="179"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="158"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -284,11 +221,11 @@
         errorLine1=" xthis = context;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
             line="31"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
             line="30"
             column="1"
             message="Previous line indentation here"/>
@@ -305,12 +242,75 @@
         errorLine1="     sToast(&quot;FALHA AO AUTORIZAR FAKE FUSED&quot;);"
         errorLine2="~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
             line="105"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
             line="104"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        severity="Warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        category="Correctness"
+        priority="6"
+        summary="Suspicious indentation"
+        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
+        errorLine1="  center = bounds.getCenter();"
+        errorLine2="~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1158"
+            column="1"/>
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1156"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        severity="Warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        category="Correctness"
+        priority="6"
+        summary="Suspicious indentation"
+        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
+        errorLine1=" if (polyline != null) {      "
+        errorLine2="~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1206"
+            column="1"/>
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1179"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        severity="Warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        category="Correctness"
+        priority="6"
+        summary="Suspicious indentation"
+        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
+        errorLine1="  checkloc.setChecked(false);"
+        errorLine2="~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1381"
+            column="1"/>
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1380"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -326,12 +326,12 @@
         errorLine1=" saveTurboValue(turbo);"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1335"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1441"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1334"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1440"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -347,11 +347,11 @@
         errorLine1=" params.gravity = Gravity.BOTTOM | Gravity.RIGHT;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="59"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="53"
             column="1"
             message="Previous line indentation here"/>
@@ -368,11 +368,11 @@
         errorLine1="  return true;"
         errorLine2="~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
             line="27"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
             line="25"
             column="1"
             message="Previous line indentation here"/>
@@ -389,11 +389,11 @@
         errorLine1=" xthis = context;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="48"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="47"
             column="1"
             message="Previous line indentation here"/>
@@ -410,11 +410,11 @@
         errorLine1=" isMockLocationsEnabled=true;"
         errorLine2="~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="150"
             column="1"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="149"
             column="1"
             message="Previous line indentation here"/>
@@ -433,7 +433,7 @@
         errorLine1="        overlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);"
         errorLine2="                                                                                 ~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="46"
             column="82"/>
     </issue>
@@ -449,7 +449,7 @@
         errorLine1="    implementation &apos;com.google.android.gms:play-services-location:21.2.0&apos;"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
             line="50"
             column="20"/>
     </issue>
@@ -465,7 +465,7 @@
         errorLine1="    implementation &apos;androidx.appcompat:appcompat:1.6.1&apos;"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
             line="54"
             column="20"/>
     </issue>
@@ -481,7 +481,7 @@
         errorLine1="    implementation &apos;androidx.annotation:annotation-experimental:1.4.0&apos;"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
             line="59"
             column="20"/>
     </issue>
@@ -497,7 +497,7 @@
         errorLine1="    implementation &apos;androidx.appcompat:appcompat:1.4.1&apos;"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
             line="62"
             column="20"/>
     </issue>
@@ -513,7 +513,7 @@
         errorLine1="    implementation &apos;com.google.android.material:material:1.7.0&apos;"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build.gradle"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
             line="75"
             column="20"/>
     </issue>
@@ -529,8 +529,8 @@
         errorLine1="    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1296"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1402"
             column="9"/>
     </issue>
 
@@ -545,7 +545,7 @@
         errorLine1="    public static Context xthis;"
         errorLine2="           ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
             line="27"
             column="12"/>
     </issue>
@@ -561,7 +561,7 @@
         errorLine1="        new AsyncTask&lt;Void, Void, Void>() {"
         errorLine2="        ^">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/Iniciar.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/Iniciar.java"
             line="16"
             column="9"/>
     </issue>
@@ -577,7 +577,7 @@
         errorLine1="public static TextView tbear;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="100"
             column="8"/>
     </issue>
@@ -593,7 +593,7 @@
         errorLine1="public static TextView tspeed;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="101"
             column="8"/>
     </issue>
@@ -609,7 +609,7 @@
         errorLine1="public static TextView talti;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="102"
             column="8"/>
     </issue>
@@ -625,7 +625,7 @@
         errorLine1="public static Switch checkloc;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="118"
             column="8"/>
     </issue>
@@ -641,7 +641,7 @@
         errorLine1="public static Switch checkfake;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="119"
             column="8"/>
     </issue>
@@ -657,7 +657,7 @@
         errorLine1="public static Button gerarRotaButton;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="134"
             column="8"/>
     </issue>
@@ -673,7 +673,7 @@
         errorLine1="public static Button puloButton;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="135"
             column="8"/>
     </issue>
@@ -689,7 +689,7 @@
         errorLine1="public static SeekBar turboSeekBar;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="137"
             column="8"/>
     </issue>
@@ -705,7 +705,7 @@
         errorLine1="public static TextView textViewTempo;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="142"
             column="8"/>
     </issue>
@@ -721,7 +721,7 @@
         errorLine1="public static TextView textViewveloMed;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="144"
             column="8"/>
     </issue>
@@ -737,7 +737,7 @@
         errorLine1="public static xLocationManager locationManager;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="160"
             column="8"/>
     </issue>
@@ -753,7 +753,7 @@
         errorLine1="public static Context mainApp;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="165"
             column="8"/>
     </issue>
@@ -769,7 +769,7 @@
         errorLine1="public static Context context;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="166"
             column="8"/>
     </issue>
@@ -785,7 +785,7 @@
         errorLine1="public static ImageView fundo;"
         errorLine2="       ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
             line="174"
             column="8"/>
     </issue>
@@ -801,9 +801,25 @@
         errorLine1="    new AsyncTask&lt;Void, Void, String>() {"
         errorLine2="    ^">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="835"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="841"
             column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        severity="Warning"
+        message="This `AsyncTask` class should be static or leaks might occur (anonymous android.os.AsyncTask)"
+        category="Performance"
+        priority="6"
+        summary="Static Field Leaks"
+        explanation="A static field will leak contexts.&#xA;&#xA;Non-static inner classes have an implicit reference to their outer class. If that outer class is for example a `Fragment` or `Activity`, then this reference means that the long-running handler/loader/task will hold a reference to the activity which prevents it from getting garbage collected.&#xA;&#xA;Similarly, direct field references to activities and fragments from these longer running instances can cause leaks.&#xA;&#xA;ViewModel classes should never point to Views or non-application Contexts."
+        errorLine1="        new AsyncTask&lt;Void, Void, RotaFake>() {"
+        errorLine2="        ^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1179"
+            column="9"/>
     </issue>
 
     <issue
@@ -817,7 +833,7 @@
         errorLine1="    private final MainActivity mainActivity;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/VerifyLocationTask.java"
             line="9"
             column="5"/>
     </issue>
@@ -833,7 +849,7 @@
         errorLine1="    private static xLocationManager instance;"
         errorLine2="            ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="33"
             column="13"/>
     </issue>
@@ -849,7 +865,7 @@
         errorLine1="    private static Context xthis;"
         errorLine2="            ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/xLocationManager.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
             line="37"
             column="13"/>
     </issue>
@@ -865,7 +881,7 @@
         url="https://developer.android.com/guide/practices/screens_support.html"
         urls="https://developer.android.com/guide/practices/screens_support.html">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable/fundo.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable/fundo.png"/>
     </issue>
 
     <issue
@@ -877,17 +893,17 @@
         summary="Duplicated icons under different names"
         explanation="If an icon is repeated under different names, you can consolidate and just use one of the icons and delete the others to make your application smaller. However, duplicated icons usually are not intentional and can sometimes point to icons that were accidentally overwritten or accidentally not updated.">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable/ico.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable/ico.png"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable/fundo.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable/fundo.png"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable-xxhdpi/ico.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable-xxhdpi/ico.png"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable-xhdpi/ico.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable-xhdpi/ico.png"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable-mdpi/ico.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable-mdpi/ico.png"/>
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/drawable-hdpi/ico.png"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/drawable-hdpi/ico.png"/>
     </issue>
 
     <issue
@@ -901,7 +917,7 @@
         errorLine1="            public boolean onTouch(View v, MotionEvent event) {"
         errorLine2="                           ~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="188"
             column="28"/>
     </issue>
@@ -919,9 +935,59 @@
         errorLine1=" &lt;ImageView"
         errorLine2="  ~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/layout/main.xml"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
             line="7"
             column="3"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="   textViewTempo.setText(&quot;🏁 00:00:00&quot;);"
+        errorLine2="                         ~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1201"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;bear&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="    android:text=&quot;bear&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="48"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;🏁 00:00:00&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                                android:text=&quot;🏁 00:00:00&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="94"
+            column="33"/>
     </issue>
 
     <issue
@@ -935,7 +1001,7 @@
         errorLine1=" params.gravity = Gravity.BOTTOM | Gravity.RIGHT;"
         errorLine2="                                           ~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/java/com/carlex/drive/OverlayService.java"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
             line="59"
             column="44"/>
     </issue>
@@ -951,7 +1017,7 @@
         errorLine1=" android:layout_marginLeft=&quot;5.0dp&quot;  "
         errorLine2=" ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res/layout/overlay_layout.xml"
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/overlay_layout.xml"
             line="10"
             column="2"/>
     </issue>

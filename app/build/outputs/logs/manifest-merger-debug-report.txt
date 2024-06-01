@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:1:1-88:12
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:1:1-88:12
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:1:1-88:12
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:1:1-88:12
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-109:12
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-109:12
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-109:12
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-109:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/594a62cf20026331415caf824453c94d/transformed/play-services-location-21.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c3766f6c32f375ba976730dbd92a0562/transformed/android-maps-utils-3.8.2/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:17:1-44:12
@@ -55,66 +55,66 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /data/d
 MERGED from [androidx.print:print:1.0.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/d015a5608d73bf23cd9c995fe5cc6155/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/fda2f86d1f242bb25b10356ff977fba0/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
 	package
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:2:5-51
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:2:5-51
 	android:versionCode
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:4:5-79
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:4:5-79
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:4:22-76
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:4:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:5:5-81
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:5:5-81
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:5:22-78
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:5:22-78
 uses-permission#android.permission.INTERNET
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:6:5-67
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:6:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:6:22-64
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:6:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:7:5-79
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:7:22-76
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:7:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:8:5-81
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:8:22-78
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:8:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:9:5-80
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:9:5-80
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:9:22-77
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:9:22-77
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:10:5-77
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:10:5-77
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:10:22-74
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:10:22-74
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:11:5-78
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:11:5-78
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:11:22-75
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:11:22-75
 uses-permission#android.permission.FOREGROUND_SERVICE_LOCATION
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:12:5-86
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:12:5-86
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:12:22-83
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:12:22-83
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:13:5-77
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:13:5-77
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:13:22-74
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:13:22-74
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:14:5-84
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:14:5-84
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:14:22-82
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:14:22-82
 application
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:17:5-87:19
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:17:5-87:19
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:17:5-108:19
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:17:5-108:19
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/594a62cf20026331415caf824453c94d/transformed/play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/594a62cf20026331415caf824453c94d/transformed/play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c3766f6c32f375ba976730dbd92a0562/transformed/android-maps-utils-3.8.2/AndroidManifest.xml:7:5-11:19
@@ -146,134 +146,170 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.te
 MERGED from [androidx.startup:startup-runtime:1.1.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/249b1888a1f3f63770e2511a38a0ada7/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/249b1888a1f3f63770e2511a38a0ada7/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 	android:extractNativeLibs
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 	android:label
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:20:9-41
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:20:9-41
 	android:appComponentFactory
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:25:6-74
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:25:6-74
 		REJECTED from [androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:resizeableActivity
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:23:9-42
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:23:9-42
 	android:icon
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:19:9-37
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:19:9-37
 	android:allowBackup
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:18:9-35
 	android:theme
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:21:6-37
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:21:6-37
 	tools:replace
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:24:9-52
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:24:9-52
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:22:6-27
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:22:6-27
 activity#com.carlex.drive.MainActivity
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:27:2-40:20
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:27:2-40:20
 	android:exported
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:29:4-27
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:29:4-27
 	android:theme
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:28:3-41
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:28:3-41
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:27:12-40
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:27:12-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:30:3-33:19
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:30:3-33:19
 action#android.intent.action.MAIN
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:31:4-56
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:31:4-56
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:31:12-53
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:31:12-53
 category#android.intent.category.LAUNCHER
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:32:4-64
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:32:4-64
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:32:14-61
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:32:14-61
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:waze
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:34:3-39:19
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:34:3-39:19
 action#android.intent.action.VIEW
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:35:4-56
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:35:4-56
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:35:12-53
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:35:12-53
 category#android.intent.category.DEFAULT
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:36:25-84
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:25-84
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:36:35-81
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:35-81
 category#android.intent.category.BROWSABLE
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:37:4-65
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:4-65
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:37:14-62
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:14-62
 data
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:38:4-34
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:38:4-34
 	android:scheme
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:38:10-31
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:38:10-31
 meta-data#xposedmodule
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:42:2-44:36
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:42:2-44:36
 	android:value
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:44:13-33
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:44:13-33
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:43:13-40
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:43:13-40
 meta-data#xposeddescription
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:45:9-47:103
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:45:9-47:103
 	android:value
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:47:13-100
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:47:13-100
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:46:13-45
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:46:13-45
 meta-data#xposedminversion
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:48:9-50:34
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:48:9-51:14
 	android:value
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:50:13-31
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:50:3-21
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:49:13-44
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:49:13-44
+meta-data#xposedname
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:52:2-54:30
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:54:6-27
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:53:6-31
+meta-data#xposedpackage
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:55:2-57:41
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:57:6-38
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:56:6-34
+meta-data#xposedversion
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:58:2-60:28
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:60:6-25
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:59:6-34
+meta-data#xposedauthor
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:61:2-63:31
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:63:6-28
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:62:6-33
+meta-data#xposeddonate
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:64:2-66:53
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:66:6-50
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:65:6-33
+meta-data#xposedhomepage
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:67:2-69:52
+	android:value
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:69:3-49
+	android:name
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:68:3-32
 meta-data#com.google.android.geo.API_KEY
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:54:2-56:61
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:73:2-75:61
 	android:value
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:56:3-58
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:75:3-58
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:55:3-48
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:74:3-48
 meta-data#com.google.android.gms.version
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:58:2-60:58
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:79:2-81:58
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c3766f6c32f375ba976730dbd92a0562/transformed/android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c3766f6c32f375ba976730dbd92a0562/transformed/android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5395cf746a714c52c7c4e621ceb262aa/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5395cf746a714c52c7c4e621ceb262aa/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:60:3-56
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:81:3-56
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:59:3-48
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:80:3-48
 service#com.carlex.drive.FakeLocationService1
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:65:2-74:12
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:86:2-95:12
 	android:enabled
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:67:6-28
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:88:6-28
 	android:exported
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:68:6-29
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:89:6-29
 	android:permission
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:70:6-64
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:91:6-64
 	android:foregroundServiceType
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:69:2-42
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:90:2-42
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:66:6-42
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:87:6-42
 intent-filter#action:name:com.carlex.drive.FakeLocationService1
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:71:6-73:22
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:92:6-94:22
 action#com.carlex.drive.FakeLocationService1
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:72:10-72
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:93:10-72
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:72:18-70
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:93:18-70
 service#com.carlex.drive.OverlayService
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:76:2-85:12
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:97:2-106:12
 	android:enabled
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:78:6-28
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:99:6-28
 	android:exported
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:79:6-29
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:100:6-29
 	android:permission
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:81:6-64
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:102:6-64
 	android:foregroundServiceType
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:80:6-46
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:101:6-46
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:77:6-36
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:98:6-36
 intent-filter#action:name:com.carlex.drive.OverlayService
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:82:6-84:23
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:103:6-105:23
 action#com.carlex.drive.OverlayService
-ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:83:10-66
+ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:104:10-66
 	android:name
-		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml:83:18-64
+		ADDED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:104:18-64
 uses-sdk
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
-INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
+INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/594a62cf20026331415caf824453c94d/transformed/play-services-location-21.2.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/594a62cf20026331415caf824453c94d/transformed/play-services-location-21.2.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c3766f6c32f375ba976730dbd92a0562/transformed/android-maps-utils-3.8.2/AndroidManifest.xml:5:5-44
@@ -375,9 +411,9 @@ MERGED from [androidx.print:print:1.0.0] /data/data/com.termux/files/home/.gradl
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/fda2f86d1f242bb25b10356ff977fba0/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/fda2f86d1f242bb25b10356ff977fba0/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/AndroidManifest.xml
+		INJECTED from /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
 	android:glEsVersion

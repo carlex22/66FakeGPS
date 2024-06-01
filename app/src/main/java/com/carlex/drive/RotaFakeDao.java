@@ -27,6 +27,9 @@ public interface RotaFakeDao {
     @Query("DELETE FROM rota_fake WHERE id NOT IN (SELECT id FROM rota_fake ORDER BY id LIMIT 2)")
     void deleteAllExceptFirstFour();
 
+    @Query("DELETE FROM rota_fake WHERE id >= 0")   
+    void deleteAll();
+
 
     @Query("DELETE FROM rota_fake WHERE tempo < :currentTimeMillis")
     void deleteRotaFakeWithTimeGreaterThan(long currentTimeMillis);
@@ -34,5 +37,9 @@ public interface RotaFakeDao {
 
     @Query("SELECT * FROM rota_fake WHERE tempo >= :currentTimeMillis ORDER BY tempo ASC LIMIT 1")
     RotaFake getRotaFakeWithMinTime(long currentTimeMillis);
+
+    @Query("SELECT * FROM rota_fake ORDER BY tempo DESC LIMIT 1")
+    RotaFake getLastRotaFakeByTime();
+
 
 }

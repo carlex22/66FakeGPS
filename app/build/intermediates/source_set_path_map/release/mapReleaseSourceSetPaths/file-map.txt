@@ -32,10 +32,10 @@ com.carlex.drive.app-sqlite-2.4.0-30 /data/data/com.termux/files/home/.gradle/ca
 com.carlex.drive.app-room-runtime-2.6.1-31 /data/data/com.termux/files/home/.gradle/caches/transforms-4/e3f7d45728254cae1fbeb827d6138a1c/transformed/room-runtime-2.6.1/res
 com.carlex.drive.app-profileinstaller-1.3.0-32 /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/res
 com.carlex.drive.app-annotation-experimental-1.4.0-33 /data/data/com.termux/files/home/.gradle/caches/transforms-4/fda2f86d1f242bb25b10356ff977fba0/transformed/annotation-experimental-1.4.0/res
-com.carlex.drive.app-pngs-34 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build/generated/res/pngs/release
-com.carlex.drive.app-resValues-35 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build/generated/res/resValues/release
-com.carlex.drive.app-packageReleaseResources-36 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
-com.carlex.drive.app-packageReleaseResources-37 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
-com.carlex.drive.app-release-38 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/build/intermediates/merged_res/release/mergeReleaseResources
-com.carlex.drive.app-main-39 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/main/res
-com.carlex.drive.app-release-40 /data/data/com.termux/files/home/sdcard/TERMUX/myapp4/app/src/release/res
+com.carlex.drive.app-pngs-34 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build/generated/res/pngs/release
+com.carlex.drive.app-resValues-35 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build/generated/res/resValues/release
+com.carlex.drive.app-packageReleaseResources-36 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.carlex.drive.app-packageReleaseResources-37 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.carlex.drive.app-release-38 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build/intermediates/merged_res/release/mergeReleaseResources
+com.carlex.drive.app-main-39 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res
+com.carlex.drive.app-release-40 /data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/release/res

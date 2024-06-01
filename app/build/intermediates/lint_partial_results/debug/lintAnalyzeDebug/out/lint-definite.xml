@@ -60,15 +60,15 @@
     <incident
         id="HardcodedText"
         severity="warning"
-        message="Hardcoded string &quot;Chronometro&quot;, should use `@string` resource">
+        message="Hardcoded string &quot;bear&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="44"
+            line="48"
             column="5"
-            startOffset="1397"
-            endLine="44"
-            endColumn="31"
-            endOffset="1423"/>
+            startOffset="1398"
+            endLine="48"
+            endColumn="24"
+            endOffset="1417"/>
     </incident>
 
     <incident
@@ -77,12 +77,26 @@
         message="Hardcoded string &quot;velocida med&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="55"
+            line="59"
             column="5"
-            startOffset="1695"
-            endLine="55"
+            startOffset="1689"
+            endLine="59"
             endColumn="32"
-            endOffset="1722"/>
+            endOffset="1716"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;🏁 00:00:00&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
+            line="94"
+            column="33"
+            startOffset="2826"
+            endLine="94"
+            endColumn="59"
+            endOffset="2852"/>
     </incident>
 
     <incident
@@ -91,12 +105,12 @@
         message="Hardcoded string &quot;Velocidade&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="91"
+            line="111"
             column="5"
-            startOffset="2615"
-            endLine="91"
+            startOffset="3364"
+            endLine="111"
             endColumn="30"
-            endOffset="2640"/>
+            endOffset="3389"/>
     </incident>
 
     <incident
@@ -105,12 +119,12 @@
         message="Hardcoded string &quot;Speed&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="127"
+            line="147"
             column="5"
-            startOffset="3545"
-            endLine="127"
+            startOffset="4294"
+            endLine="147"
             endColumn="25"
-            endOffset="3565"/>
+            endOffset="4314"/>
     </incident>
 
     <incident
@@ -119,26 +133,12 @@
         message="Hardcoded string &quot;Altitude&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="138"
+            line="158"
             column="5"
-            startOffset="3837"
-            endLine="138"
+            startOffset="4586"
+            endLine="158"
             endColumn="28"
-            endOffset="3860"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;Bearing&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="150"
-            column="5"
-            startOffset="4165"
-            endLine="150"
-            endColumn="27"
-            endOffset="4187"/>
+            endOffset="4609"/>
     </incident>
 
     <incident
@@ -147,12 +147,12 @@
         message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="167"
+            line="176"
             column="4"
-            startOffset="4587"
-            endLine="177"
+            startOffset="5010"
+            endLine="186"
             endColumn="37"
-            endOffset="4930"/>
+            endOffset="5353"/>
     </incident>
 
     <incident
@@ -161,12 +161,12 @@
         message="Hardcoded string &quot;Fake gps&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="168"
+            line="177"
             column="5"
-            startOffset="4599"
-            endLine="168"
+            startOffset="5022"
+            endLine="177"
             endColumn="28"
-            endOffset="4622"/>
+            endOffset="5045"/>
     </incident>
 
     <incident
@@ -175,12 +175,12 @@
         message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="179"
+            line="188"
             column="4"
-            startOffset="4935"
-            endLine="189"
+            startOffset="5358"
+            endLine="198"
             endColumn="37"
-            endOffset="5284"/>
+            endOffset="5707"/>
     </incident>
 
     <incident
@@ -189,12 +189,12 @@
         message="Hardcoded string &quot;Centralizar mapa&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="180"
+            line="189"
             column="5"
-            startOffset="4947"
-            endLine="180"
+            startOffset="5370"
+            endLine="189"
             endColumn="36"
-            endOffset="4978"/>
+            endOffset="5401"/>
     </incident>
 
     <incident
@@ -209,8 +209,8 @@
                 value="?android:attr/buttonBarStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5307"
-                    endOffset="6219"/>
+                    startOffset="5730"
+                    endOffset="6642"/>
             </fix-attribute>
             <fix-attribute
                 description="Set style=&quot;?android:attr/buttonBarButtonStyle&quot;"
@@ -218,8 +218,8 @@
                 value="?android:attr/buttonBarButtonStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5527"
-                    endOffset="5889"/>
+                    startOffset="5950"
+                    endOffset="6312"/>
             </fix-attribute>
             <fix-attribute
                 description="Set style=&quot;?android:attr/buttonBarButtonStyle&quot;"
@@ -227,18 +227,18 @@
                 value="?android:attr/buttonBarButtonStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5894"
-                    endOffset="6200"/>
+                    startOffset="6317"
+                    endOffset="6623"/>
             </fix-attribute>
         </fix-composite>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="201"
+            line="210"
             column="5"
-            startOffset="5528"
-            endLine="201"
+            startOffset="5951"
+            endLine="210"
             endColumn="11"
-            endOffset="5534"/>
+            endOffset="5957"/>
     </incident>
 
     <incident
@@ -247,12 +247,12 @@
         message="Hardcoded string &quot;🛣️ gerar rota&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="202"
+            line="211"
             column="5"
-            startOffset="5539"
-            endLine="202"
+            startOffset="5962"
+            endLine="211"
             endColumn="34"
-            endOffset="5568"/>
+            endOffset="5991"/>
     </incident>
 
     <incident
@@ -267,8 +267,8 @@
                 value="?android:attr/buttonBarStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5307"
-                    endOffset="6219"/>
+                    startOffset="5730"
+                    endOffset="6642"/>
             </fix-attribute>
             <fix-attribute
                 description="Set style=&quot;?android:attr/buttonBarButtonStyle&quot;"
@@ -276,8 +276,8 @@
                 value="?android:attr/buttonBarButtonStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5527"
-                    endOffset="5889"/>
+                    startOffset="5950"
+                    endOffset="6312"/>
             </fix-attribute>
             <fix-attribute
                 description="Set style=&quot;?android:attr/buttonBarButtonStyle&quot;"
@@ -285,18 +285,18 @@
                 value="?android:attr/buttonBarButtonStyle">
                 <range
                     file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-                    startOffset="5894"
-                    endOffset="6200"/>
+                    startOffset="6317"
+                    endOffset="6623"/>
             </fix-attribute>
         </fix-composite>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="214"
+            line="223"
             column="5"
-            startOffset="5895"
-            endLine="214"
+            startOffset="6318"
+            endLine="223"
             endColumn="11"
-            endOffset="5901"/>
+            endOffset="6324"/>
     </incident>
 
     <incident
@@ -305,12 +305,12 @@
         message="Hardcoded string &quot;🛸 Salto&quot;, should use `@string` resource">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
-            line="217"
+            line="226"
             column="5"
-            startOffset="5987"
-            endLine="217"
+            startOffset="6410"
+            endLine="226"
             endColumn="28"
-            endOffset="6010"/>
+            endOffset="6433"/>
     </incident>
 
     <incident
@@ -327,67 +327,67 @@
         severity="warning"
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService.java"
-            line="47"
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationModule.java"
+            line="150"
             column="1"
-            startOffset="1398"
-            endLine="47"
-            endColumn="2"
-            endOffset="1399"/>
+            startOffset="6284"
+            endLine="150"
+            endColumn="6"
+            endOffset="6289"/>
         <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService.java"
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationModule.java"
+            line="78"
+            column="1"
+            startOffset="2709"
+            endLine="78"
+            endColumn="6"
+            endOffset="2714"
+            message="Previous line indentation here"/>
+    </incident>
+
+    <incident
+        id="SuspiciousIndentation"
+        severity="warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
             line="45"
             column="1"
-            startOffset="1349"
+            startOffset="1555"
             endLine="45"
             endColumn="2"
-            endOffset="1350"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService.java"
-            line="144"
-            column="1"
-            startOffset="5123"
-            endLine="144"
-            endColumn="6"
-            endOffset="5128"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService.java"
-            line="141"
-            column="1"
-            startOffset="5036"
-            endLine="141"
-            endColumn="6"
-            endOffset="5041"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+            endOffset="1556"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="48"
+            line="43"
             column="1"
-            startOffset="1569"
-            endLine="48"
+            startOffset="1479"
+            endLine="43"
             endColumn="2"
-            endOffset="1570"/>
+            endOffset="1480"
+            message="Previous line indentation here"/>
+    </incident>
+
+    <incident
+        id="SuspiciousIndentation"
+        severity="warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="46"
+            line="126"
             column="1"
-            startOffset="1482"
-            endLine="46"
+            startOffset="4797"
+            endLine="126"
             endColumn="2"
-            endOffset="1483"
+            endOffset="4798"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="64"
+            column="1"
+            startOffset="2170"
+            endLine="64"
+            endColumn="2"
+            endOffset="2171"
             message="Previous line indentation here"/>
     </incident>
 
@@ -397,66 +397,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="169"
+            line="93"
             column="1"
-            startOffset="7622"
-            endLine="169"
-            endColumn="3"
-            endOffset="7624"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="89"
-            column="1"
-            startOffset="2980"
-            endLine="89"
-            endColumn="3"
-            endOffset="2982"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="113"
-            column="1"
-            startOffset="4810"
-            endLine="113"
-            endColumn="7"
-            endOffset="4816"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="112"
-            column="1"
-            startOffset="4720"
-            endLine="112"
-            endColumn="7"
-            endOffset="4726"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="133"
-            column="1"
-            startOffset="5954"
-            endLine="133"
+            startOffset="3695"
+            endLine="93"
             endColumn="4"
-            endOffset="5957"/>
+            endOffset="3698"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="131"
+            line="92"
             column="1"
-            startOffset="5820"
-            endLine="131"
+            startOffset="3626"
+            endLine="92"
             endColumn="4"
-            endOffset="5823"
+            endOffset="3629"
             message="Previous line indentation here"/>
     </incident>
 
@@ -466,43 +420,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="161"
+            line="159"
             column="1"
-            startOffset="7290"
-            endLine="161"
-            endColumn="7"
-            endOffset="7296"/>
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="151"
-            column="1"
-            startOffset="6697"
-            endLine="151"
-            endColumn="7"
-            endOffset="6703"
-            message="Previous line indentation here"/>
-    </incident>
-
-    <incident
-        id="SuspiciousIndentation"
-        severity="warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="180"
-            column="1"
-            startOffset="7869"
-            endLine="180"
+            startOffset="6393"
+            endLine="159"
             endColumn="2"
-            endOffset="7870"/>
+            endOffset="6394"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="179"
+            line="158"
             column="1"
-            startOffset="7842"
-            endLine="179"
+            startOffset="6366"
+            endLine="158"
             endColumn="2"
-            endOffset="7843"
+            endOffset="6367"
             message="Previous line indentation here"/>
     </incident>
 
@@ -577,7 +508,7 @@
             startOffset="350"
             endLine="59"
             endColumn="3"
-            endOffset="2027"/>
+            endOffset="2029"/>
     </incident>
 
     <incident
@@ -586,12 +517,26 @@
         message="This `AsyncTask` class should be static or leaks might occur (anonymous android.os.AsyncTask)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="835"
+            line="841"
             column="5"
-            startOffset="27071"
-            endLine="871"
+            startOffset="27107"
+            endLine="878"
             endColumn="6"
-            endOffset="28494"/>
+            endOffset="28531"/>
+    </incident>
+
+    <incident
+        id="StaticFieldLeak"
+        severity="warning"
+        message="This `AsyncTask` class should be static or leaks might occur (anonymous android.os.AsyncTask)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1179"
+            column="9"
+            startOffset="37552"
+            endLine="1203"
+            endColumn="11"
+            endOffset="38718"/>
     </incident>
 
     <incident
@@ -700,10 +645,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="134"
             column="8"
-            startOffset="4446"
+            startOffset="4450"
             endLine="134"
             endColumn="14"
-            endOffset="4452"/>
+            endOffset="4456"/>
     </incident>
 
     <incident
@@ -714,10 +659,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="135"
             column="8"
-            startOffset="4484"
+            startOffset="4488"
             endLine="135"
             endColumn="14"
-            endOffset="4490"/>
+            endOffset="4494"/>
     </incident>
 
     <incident
@@ -728,10 +673,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="137"
             column="8"
-            startOffset="4560"
+            startOffset="4564"
             endLine="137"
             endColumn="14"
-            endOffset="4566"/>
+            endOffset="4570"/>
     </incident>
 
     <incident
@@ -742,10 +687,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="142"
             column="8"
-            startOffset="4798"
+            startOffset="4802"
             endLine="142"
             endColumn="14"
-            endOffset="4804"/>
+            endOffset="4808"/>
     </incident>
 
     <incident
@@ -756,10 +701,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="144"
             column="8"
-            startOffset="4875"
+            startOffset="4879"
             endLine="144"
             endColumn="14"
-            endOffset="4881"/>
+            endOffset="4885"/>
     </incident>
 
     <incident
@@ -770,10 +715,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="160"
             column="8"
-            startOffset="5522"
+            startOffset="5526"
             endLine="160"
             endColumn="14"
-            endOffset="5528"/>
+            endOffset="5532"/>
     </incident>
 
     <incident
@@ -784,10 +729,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="165"
             column="8"
-            startOffset="5741"
+            startOffset="5745"
             endLine="165"
             endColumn="14"
-            endOffset="5747"/>
+            endOffset="5751"/>
     </incident>
 
     <incident
@@ -798,10 +743,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="166"
             column="8"
-            startOffset="5772"
+            startOffset="5776"
             endLine="166"
             endColumn="14"
-            endOffset="5778"/>
+            endOffset="5782"/>
     </incident>
 
     <incident
@@ -812,10 +757,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="174"
             column="8"
-            startOffset="6093"
+            startOffset="6097"
             endLine="174"
             endColumn="14"
-            endOffset="6099"/>
+            endOffset="6103"/>
     </incident>
 
     <incident
@@ -826,18 +771,18 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="190"
             column="1"
-            startOffset="6554"
+            startOffset="6558"
             endLine="190"
             endColumn="2"
-            endOffset="6555"/>
+            endOffset="6559"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
             line="187"
             column="1"
-            startOffset="6497"
+            startOffset="6501"
             endLine="187"
             endColumn="2"
-            endOffset="6498"
+            endOffset="6502"
             message="Previous line indentation here"/>
     </incident>
 
@@ -847,20 +792,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="360"
+            line="363"
             column="1"
-            startOffset="11356"
-            endLine="360"
+            startOffset="11409"
+            endLine="363"
             endColumn="2"
-            endOffset="11357"/>
+            endOffset="11410"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="359"
+            line="362"
             column="1"
-            startOffset="11331"
-            endLine="359"
+            startOffset="11384"
+            endLine="362"
             endColumn="2"
-            endOffset="11332"
+            endOffset="11385"
             message="Previous line indentation here"/>
     </incident>
 
@@ -870,20 +815,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="467"
+            line="471"
             column="1"
-            startOffset="14329"
-            endLine="467"
+            startOffset="14394"
+            endLine="471"
             endColumn="2"
-            endOffset="14330"/>
+            endOffset="14395"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="466"
+            line="470"
             column="1"
-            startOffset="14292"
-            endLine="466"
+            startOffset="14357"
+            endLine="470"
             endColumn="2"
-            endOffset="14293"
+            endOffset="14358"
             message="Previous line indentation here"/>
     </incident>
 
@@ -893,20 +838,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="505"
+            line="509"
             column="1"
-            startOffset="15267"
-            endLine="505"
+            startOffset="15337"
+            endLine="509"
             endColumn="2"
-            endOffset="15268"/>
+            endOffset="15338"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="499"
+            line="503"
             column="1"
-            startOffset="15143"
-            endLine="499"
+            startOffset="15213"
+            endLine="503"
             endColumn="2"
-            endOffset="15144"
+            endOffset="15214"
             message="Previous line indentation here"/>
     </incident>
 
@@ -916,12 +861,12 @@
         message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="561"
+            line="567"
             column="12"
-            startOffset="17006"
-            endLine="561"
+            startOffset="17041"
+            endLine="567"
             endColumn="74"
-            endOffset="17068"/>
+            endOffset="17103"/>
     </incident>
 
     <incident
@@ -930,20 +875,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="594"
+            line="600"
             column="1"
-            startOffset="18179"
-            endLine="594"
+            startOffset="18214"
+            endLine="600"
             endColumn="6"
-            endOffset="18184"/>
+            endOffset="18219"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="593"
+            line="599"
             column="1"
-            startOffset="18117"
-            endLine="593"
+            startOffset="18152"
+            endLine="599"
             endColumn="6"
-            endOffset="18122"
+            endOffset="18157"
             message="Previous line indentation here"/>
     </incident>
 
@@ -953,20 +898,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="724"
+            line="730"
             column="1"
-            startOffset="23226"
-            endLine="724"
+            startOffset="23261"
+            endLine="730"
             endColumn="6"
-            endOffset="23231"/>
+            endOffset="23266"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="721"
+            line="727"
             column="1"
-            startOffset="23146"
-            endLine="721"
+            startOffset="23181"
+            endLine="727"
             endColumn="6"
-            endOffset="23151"
+            endOffset="23186"
             message="Previous line indentation here"/>
     </incident>
 
@@ -976,21 +921,81 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="922"
+            line="981"
             column="1"
-            startOffset="29978"
-            endLine="922"
+            startOffset="31743"
+            endLine="981"
             endColumn="2"
-            endOffset="29979"/>
+            endOffset="31744"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="921"
+            line="980"
             column="1"
-            startOffset="29938"
-            endLine="921"
+            startOffset="31703"
+            endLine="980"
             endColumn="2"
-            endOffset="29939"
+            endOffset="31704"
             message="Previous line indentation here"/>
+    </incident>
+
+    <incident
+        id="SuspiciousIndentation"
+        severity="warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1158"
+            column="1"
+            startOffset="37087"
+            endLine="1158"
+            endColumn="3"
+            endOffset="37089"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1156"
+            column="1"
+            startOffset="36992"
+            endLine="1156"
+            endColumn="3"
+            endOffset="36994"
+            message="Previous line indentation here"/>
+    </incident>
+
+    <incident
+        id="SuspiciousIndentation"
+        severity="warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1206"
+            column="1"
+            startOffset="38732"
+            endLine="1206"
+            endColumn="2"
+            endOffset="38733"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1179"
+            column="1"
+            startOffset="37544"
+            endLine="1179"
+            endColumn="2"
+            endOffset="37545"
+            message="Previous line indentation here"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1198"
+            column="26"
+            startOffset="38562"
+            endLine="1198"
+            endColumn="90"
+            endOffset="38626"/>
     </incident>
 
     <incident
@@ -999,12 +1004,40 @@
         message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1112"
+            line="1198"
+            column="34"
+            startOffset="38570"
+            endLine="1198"
+            endColumn="90"
+            endOffset="38626"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1201"
+            column="26"
+            startOffset="38678"
+            endLine="1201"
+            endColumn="39"
+            endOffset="38691"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1216"
             column="11"
-            startOffset="35230"
-            endLine="1112"
+            startOffset="38940"
+            endLine="1216"
             endColumn="55"
-            endOffset="35274"/>
+            endOffset="38984"/>
     </incident>
 
     <incident
@@ -1013,26 +1046,35 @@
         message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1113"
+            line="1217"
             column="10"
-            startOffset="35294"
-            endLine="1113"
-            endColumn="50"
-            endOffset="35334"/>
+            startOffset="39004"
+            endLine="1217"
+            endColumn="46"
+            endOffset="39040"/>
     </incident>
 
     <incident
-        id="DefaultLocale"
+        id="SuspiciousIndentation"
         severity="warning"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1114"
-            column="10"
-            startOffset="35354"
-            endLine="1114"
-            endColumn="49"
-            endOffset="35393"/>
+            line="1381"
+            column="1"
+            startOffset="45086"
+            endLine="1381"
+            endColumn="3"
+            endOffset="45088"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
+            line="1380"
+            column="1"
+            startOffset="45045"
+            endLine="1380"
+            endColumn="3"
+            endOffset="45047"
+            message="Previous line indentation here"/>
     </incident>
 
     <incident
@@ -1042,12 +1084,12 @@
         <fix-data conditional="true"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1296"
+            line="1402"
             column="9"
-            startOffset="41807"
-            endLine="1296"
+            startOffset="45519"
+            endLine="1402"
             endColumn="55"
-            endOffset="41853"/>
+            endOffset="45565"/>
     </incident>
 
     <incident
@@ -1056,20 +1098,20 @@
         message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1335"
+            line="1441"
             column="1"
-            startOffset="42756"
-            endLine="1335"
+            startOffset="46468"
+            endLine="1441"
             endColumn="2"
-            endOffset="42757"/>
+            endOffset="46469"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/MainActivity.java"
-            line="1334"
+            line="1440"
             column="1"
-            startOffset="42732"
-            endLine="1334"
+            startOffset="46444"
+            endLine="1440"
             endColumn="2"
-            endOffset="42733"
+            endOffset="46445"
             message="Previous line indentation here"/>
     </incident>
 

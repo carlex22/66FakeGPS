@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 53 warnings</span>
+      <span class="mdl-layout-title">Lint Report: 57 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu May 30 16:39:19 GMT 2024 by AGP (8.4.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Jun 01 10:08:10 GMT 2024 by AGP (8.4.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -193,11 +193,13 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#InflateParams"><i class="material-icons warning-icon">warning</i>Layout Inflation without a Parent (1)</a>
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
       <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (1)</a>
-      <a class="mdl-navigation__link" href="#StaticFieldLeak"><i class="material-icons warning-icon">warning</i>Static Field Leaks (20)</a>
+      <a class="mdl-navigation__link" href="#StaticFieldLeak"><i class="material-icons warning-icon">warning</i>Static Field Leaks (21)</a>
       <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (1)</a>
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (1)</a>
       <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (1)</a>
       <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (1)</a>
+      <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (1)</a>
+      <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (2)</a>
       <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (2)</a>
     </nav>
   </div>
@@ -239,7 +241,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ObsoleteSdkInt">ObsoleteSdkInt</a>: Obsolete SDK_INT Version Check</td></tr>
 <tr>
-<td class="countColumn">20</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">21</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#StaticFieldLeak">StaticFieldLeak</a>: Static Field Leaks</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Usability:Icons">Usability:Icons</a>
 </td></tr>
@@ -257,6 +259,14 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ContentDescription">ContentDescription</a>: Image without <code>contentDescription</code></td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#SetTextI18n">SetTextI18n</a>: TextView Internationalization</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#HardcodedText">HardcodedText</a>: Hardcoded text</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization:Bidirectional Text">Internationalization:Bidirectional Text</a>
 </td></tr>
 <tr>
@@ -283,7 +293,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">42 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml</span><br />
+<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">41 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml</span><br />
 </div>
 <div class="metadata"><div class="explanation" id="explanationLintBaseline" style="display: none;">
 Lint can be configured with a "baseline"; a set of current issues found in a codebase, which future runs of lint will silently ignore. Only new issues not found in the baseline are reported.<br/>
@@ -320,7 +330,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">14 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with <code>android.lintOptions.checkDependencies=true</code>. Unmatched issue types: DefaultLocale (6), GradleDependency, IconDuplicatesConfig (5), InlinedApi (4), SetTextI18n, SuspiciousIndentation (2)</span><br />
+<span class="location"><a href="../../lint-baseline.xml">../../lint-baseline.xml</a></span>: <span class="message">15 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with <code>android.lintOptions.checkDependencies=true</code>. Unmatched issue types: DefaultLocale (6), GradleDependency, HardcodedText (2), IconDuplicatesConfig (5), InlinedApi (4), SuspiciousIndentation (2)</span><br />
 </div>
 <div class="metadata"><div class="explanation" id="explanationLintBaselineFixed" style="display: none;">
 If a lint baseline describes a problem which is no longer reported, then the problem has either been fixed, or perhaps the issue type has been disabled. In any case, the entry can be removed from the baseline (such that if the issue is reintroduced at some point, lint will complain rather than just silently starting to match the old baseline entry again.)<br/>To suppress this error, use the issue id "LintBaselineFixed" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
@@ -437,156 +447,102 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:47</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno">  44 </span>        <span class="keyword">super</span>.onCreate();
-<span class="lineno">  45 </span>        <span class="keyword">this</span>.context = getApplicationContext();
-<span class="lineno">  46 </span>
-<span class="caretline"><span class="lineno">  47 </span><span class="warning">    </span>fusedLocationsProvider = <span class="keyword">new</span> FusedLocationsProvider(<span class="keyword">this</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  48 </span>        xLocationManager.initTestProvider(<span class="keyword">this</span>);
-<span class="lineno">  49 </span>        locationManager = xLocationManager.getInstance(<span class="keyword">this</span>);
-<span class="lineno">  50 </span>    }
+<span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationModule.java">../../src/main/java/com/carlex/drive/FakeLocationModule.java</a>:150</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 147 </span>
+<span class="lineno"> 148 </span>        <span class="comment">//inicio network provider</span>
+<span class="lineno"> 149 </span>        <span class="comment">// Hookar o método setNetworkProvider na classe xLocationManager</span>
+<span class="caretline"><span class="lineno"> 150 </span><span class="warning">        </span>XposedHelpers.findAndHookMethod(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 151 </span>        <span class="string">"com.carlex.drive.xLocationManager"</span>,
+<span class="lineno"> 152 </span>        <span class="comment">// Nome completo da classe onde o método está localizado</span>
+<span class="lineno"> 153 </span>        lpparam.classLoader,
 </pre>
 
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:45</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno">  42 </span>    <span class="annotation">@Override</span>
-<span class="lineno">  43 </span>    <span class="keyword">public</span> <span class="keyword">void</span> onCreate() {
-<span class="lineno">  44 </span>        <span class="keyword">super</span>.onCreate();
-<span class="caretline"><span class="lineno">  45 </span><span class="warning"> </span>       <span class="keyword">this</span>.context = getApplicationContext();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    fusedLocationsProvider = <span class="keyword">new</span> FusedLocationsProvider(<span class="keyword">this</span>);
-<span class="lineno">  48 </span>        xLocationManager.initTestProvider(<span class="keyword">this</span>);
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationModule.java">../../src/main/java/com/carlex/drive/FakeLocationModule.java</a>:78</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  75 </span>            );
+<span class="lineno">  76 </span>
+<span class="lineno">  77 </span>            <span class="comment">// Hook nos métodos do LocationManager gps provider</span>
+<span class="caretline"><span class="lineno">  78 </span><span class="warning">     </span>       <span class="keyword">for</span> (Method method : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  79 </span>        LocationManager.<span class="keyword">class</span>.getDeclaredMethods()) {
+<span class="lineno">  80 </span>                <span class="keyword">if</span> (method.getName().equals(<span class="string">"requestLocationUpdates"</span>)
+<span class="lineno">  81 </span>                        &amp;&amp; !Modifier.isAbstract(method.getModifiers())
 </pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:144</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 141 </span>            gpsLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
-<span class="lineno"> 142 </span>
-<span class="lineno"> 143 </span>
-<span class="caretline"><span class="lineno"> 144 </span><span class="warning">        </span>fusedLocationsProvider.spoof(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 145 </span>        locationManager.setGpsProvider(gpsLocation);
-<span class="lineno"> 146 </span>
-<span class="lineno"> 147 </span>        <span class="comment">//Log.d("FakeLocationService", "Fake location set: " + location.toString());</span></pre>
-
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService.java">../../src/main/java/com/carlex/drive/FakeLocationService.java</a>:141</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 138 </span>                gpsLocation.setBearingAccuracyDegrees(<span class="number">10.0f</span>);
-<span class="lineno"> 139 </span>            }
-<span class="lineno"> 140 </span>
-<span class="caretline"><span class="lineno"> 141 </span><span class="warning">     </span>       gpsLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 142 </span>
-<span class="lineno"> 143 </span>
-<span class="lineno"> 144 </span>        fusedLocationsProvider.spoof(gpsLocation);
-</pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:48</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno">  45 </span>        createNotificationChannel();
-<span class="lineno">  46 </span>        startForeground(<span class="number">1</span>, getNotification(<span class="string">"Fake Location Service Started"</span>).build());
-<span class="lineno">  47 </span>
-<span class="caretline"><span class="lineno">  48 </span><span class="warning">    </span>isRunning = <span class="keyword">true</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  49 </span>
-<span class="lineno">  50 </span>        <span class="comment">// Obter a última posição conhecida</span>
-</pre>
-
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:46</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno">  43 </span>        locationManager = xLocationManager.getInstance(MainActivity.mainApp);
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:45</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  42 </span>        createNotificationChannel();
+<span class="lineno">  43 </span>        startForeground(<span class="number">1</span>, getNotification(<span class="string">"66 Fake Gps Ligado"</span>).build());
 <span class="lineno">  44 </span>
-<span class="lineno">  45 </span>        createNotificationChannel();
-<span class="caretline"><span class="lineno">  46 </span><span class="warning"> </span>       startForeground(<span class="number">1</span>, getNotification(<span class="string">"Fake Location Service Started"</span>).build());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  47 </span>
-<span class="lineno">  48 </span>    isRunning = <span class="keyword">true</span>;
-</pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:113</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 110 </span>          gpsLocation.setSpeed((<span class="keyword">float</span>) ((velocidade+noise)/<span class="number">4</span>));
-<span class="lineno"> 111 </span>          gpsLocation.setTime(Timef);
-<span class="lineno"> 112 </span>          gpsLocation.setAltitude((<span class="keyword">double</span>) ((<span class="number">700</span> + Math.random() * <span class="number">50</span>)+noise));
-<span class="caretline"><span class="lineno"> 113 </span><span class="warning">  </span>gpsLocation.setAccuracy((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 114 </span>
-<span class="lineno"> 115 </span>          <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-<span class="lineno"> 116 </span>              gpsLocation.setVerticalAccuracyMeters((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));
+<span class="caretline"><span class="lineno">  45 </span><span class="warning">    </span>isRunning = <span class="keyword">true</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>        <span class="comment">// Obter a última posição conhecida</span>
+<span class="lineno">  48 </span>        latitude = locationManager.getLatitude();
 </pre>
 
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:112</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 109 </span>          gpsLocation.setBearing(bearing+(noise/<span class="number">2</span>));
-<span class="lineno"> 110 </span>          gpsLocation.setSpeed((<span class="keyword">float</span>) ((velocidade+noise)/<span class="number">4</span>));
-<span class="lineno"> 111 </span>          gpsLocation.setTime(Timef);
-<span class="caretline"><span class="lineno"> 112 </span><span class="warning"></span>          gpsLocation.setAltitude((<span class="keyword">double</span>) ((<span class="number">700</span> + Math.random() * <span class="number">50</span>)+noise));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 113 </span>  gpsLocation.setAccuracy((<span class="keyword">float</span>) (ThreadLocalRandom.current().nextDouble(<span class="number">0</span>, <span class="number">20</span>)/<span class="number">10</span>));
-<span class="lineno"> 114 </span>
-<span class="lineno"> 115 </span>          <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:43</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  40 </span>        locationManager = xLocationManager.getInstance(MainActivity.mainApp);
+<span class="lineno">  41 </span>
+<span class="lineno">  42 </span>        createNotificationChannel();
+<span class="caretline"><span class="lineno">  43 </span><span class="warning"> </span>       startForeground(<span class="number">1</span>, getNotification(<span class="string">"66 Fake Gps Ligado"</span>).build());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  44 </span>
+<span class="lineno">  45 </span>    isRunning = <span class="keyword">true</span>;
 </pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:133</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 130 </span>                    <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
-<span class="lineno"> 131 </span>                        locationManager.setGpsProvider(gpsLocation);
-<span class="lineno"> 132 </span>            <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Fused");</span>
-<span class="caretline"><span class="lineno"> 133 </span><span class="warning">            </span>fusedLocationsProvider.spoof(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 134 </span>                <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Network"); </span>
-<span class="lineno"> 135 </span>            locationManager.setNetworkProvider(gpsLocation);
-<span class="lineno"> 136 </span>                    }
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:93</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno">  90 </span>                    <span class="comment">//simular provedores localizacao</span>
+<span class="lineno">  91 </span>            <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
+<span class="lineno">  92 </span>                        locationManager.setGpsProvider(gpsLocation);
+<span class="caretline"><span class="lineno">  93 </span><span class="warning">            </span>fusedLocationsProvider.spoof(fusedLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  94 </span>            locationManager.setNetworkProvider(networkLocation);
+<span class="lineno">  95 </span>                    }
 </pre>
 
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:131</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 128 </span>                            <span class="string">", altitude="</span> + gpsLocation.getAltitude());
-<span class="lineno"> 129 </span>
-<span class="lineno"> 130 </span>                    <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
-<span class="caretline"><span class="lineno"> 131 </span><span class="warning">   </span>                     locationManager.setGpsProvider(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 132 </span>            <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Fused");</span>
-<span class="lineno"> 133 </span>            fusedLocationsProvider.spoof(gpsLocation);
-<span class="lineno"> 134 </span>                <span class="comment">//gpsLocation = setProviderForLocation(gpsLocation, "Network"); </span></pre>
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:92</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  89 </span>
+<span class="lineno">  90 </span>                    <span class="comment">//simular provedores localizacao</span>
+<span class="lineno">  91 </span>            <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>) {
+<span class="caretline"><span class="lineno">  92 </span><span class="warning">   </span>                     locationManager.setGpsProvider(gpsLocation);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  93 </span>            fusedLocationsProvider.spoof(fusedLocation);
+<span class="lineno">  94 </span>            locationManager.setNetworkProvider(networkLocation);
+<span class="lineno">  95 </span>                    }
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:126</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 123 </span>    }).start();
+<span class="lineno"> 124 </span>
+<span class="lineno"> 125 </span>    <span class="comment">//nao reiniciar </span>
+<span class="caretline"><span class="lineno"> 126 </span><span class="warning">    </span><span class="keyword">return</span> START_NOT_STICKY;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 127 </span>    }
+<span class="lineno"> 128 </span>
+<span class="lineno"> 129 </span>    
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:64</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno">  61 </span>
+<span class="lineno">  62 </span>    <span class="annotation">@Override</span>
+<span class="lineno">  63 </span>    <span class="keyword">public</span> <span class="keyword">int</span> onStartCommand(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId) {
+<span class="caretline"><span class="lineno">  64 </span><span class="warning"> </span>       <span class="keyword">new</span> Thread(() -> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  65 </span>
+<span class="lineno">  66 </span>        <span class="comment">//iniciar servico loop infinito</span>
+<span class="lineno">  67 </span>            <span class="keyword">while</span> (<span class="keyword">true</span>) {
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:159</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 156 </span>  <span class="annotation">@Override</span>
+<span class="lineno"> 157 </span>  <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
+<span class="lineno"> 158 </span>      <span class="keyword">super</span>.onDestroy();
+<span class="caretline"><span class="lineno"> 159 </span><span class="warning">    </span>isRunning = <span class="keyword">false</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 160 </span>      stopForeground(<span class="keyword">true</span>);
+<span class="lineno"> 161 </span>      <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+<span class="lineno"> 162 </span>          NotificationManagerCompat.from(<span class="keyword">this</span>).notify(<span class="number">2</span>, getNotification(<span class="string">"Fake Location Service Stopped"</span>).build());
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:158</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 155 </span>
+<span class="lineno"> 156 </span>  <span class="annotation">@Override</span>
+<span class="lineno"> 157 </span>  <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
+<span class="caretline"><span class="lineno"> 158 </span><span class="warning"></span>      <span class="keyword">super</span>.onDestroy();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 159 </span>    isRunning = <span class="keyword">false</span>;
+<span class="lineno"> 160 </span>      stopForeground(<span class="keyword">true</span>);
+<span class="lineno"> 161 </span>      <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+</pre>
 </ul><button class="mdl-button mdl-js-button mdl-button--primary" id="SuspiciousIndentationDivLink" onclick="reveal('SuspiciousIndentationDiv');" />+ 10 More Occurrences...</button>
 <div id="SuspiciousIndentationDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:161</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 158 </span>    RotaFake rotaFakeEntry = <span class="keyword">new</span> RotaFake(latitude, longitude, bearing, velocidade, (<span class="keyword">long</span>) (System.currentTimeMillis() + <span class="number">1000</span>));
-<span class="lineno"> 159 </span>    MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
-<span class="lineno"> 160 </span>  } 
-<span class="caretline"><span class="lineno"> 161 </span><span class="warning">  </span><span class="keyword">try</span> {                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 162 </span>    Log.i(TAG, <span class="string">"Sleeping for 500 ms"</span>);      
-<span class="lineno"> 163 </span>    Thread.sleep(<span class="number">500</span>);                  
-<span class="lineno"> 164 </span>  } <span class="keyword">catch</span> (InterruptedException e) {          
-</pre>
-
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:151</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 148 </span>      }
-<span class="lineno"> 149 </span>  } <span class="keyword">else</span> {
-<span class="lineno"> 150 </span>
-<span class="caretline"><span class="lineno"> 151 </span><span class="warning"></span>      <span class="keyword">if</span> (latitude &lt; -<span class="number">10.0</span>){             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 152 </span>  <span class="comment">/*if (rotaFake1.getVelocidade()&lt;1.0){
-</span><span class="lineno"> 153 </span><span class="comment">    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-</span><span class="lineno"> 154 </span><span class="comment">    NotificationManagerCompat.from(this).notify(2, getNotification("Fake Location Estacionado").build()); 
-</span></pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:169</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 166 </span>    }                                                    
-<span class="lineno"> 167 </span>        }                                          
-<span class="lineno"> 168 </span>
-<span class="caretline"><span class="lineno"> 169 </span><span class="warning">        </span>MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis()); &nbsp;</span>
-<span class="lineno"> 170 </span>
-<span class="lineno"> 171 </span>      }
-<span class="lineno"> 172 </span>  }).start();
-</pre>
-
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:89</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno">  86 </span>        <span class="comment">//MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());</span>
-<span class="lineno">  87 </span>
-<span class="lineno">  88 </span>          RotaFake rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-<span class="caretline"><span class="lineno">  89 </span><span class="warning"></span>          <span class="keyword">if</span> (rotaFake1 != <span class="keyword">null</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  90 </span>            <span class="comment">/*if (rotaFake1.getVelocidade()>=1.0){                                                              if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {                                                                           NotificationManagerCompat.from(this).notify(2, getNotification("Fake Location Em Rota").build());                                   }                                                                 parado = false;                                           }*/</span>
-<span class="lineno">  91 </span>              latitude = rotaFake1.getLatitude();
-<span class="lineno">  92 </span>              longitude = rotaFake1.getLongitude();
-</pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:180</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 177 </span>  <span class="annotation">@Override</span>
-<span class="lineno"> 178 </span>  <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
-<span class="lineno"> 179 </span>      <span class="keyword">super</span>.onDestroy();
-<span class="caretline"><span class="lineno"> 180 </span><span class="warning">    </span>isRunning = <span class="keyword">false</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 181 </span>      stopForeground(<span class="keyword">true</span>);
-<span class="lineno"> 182 </span>
-<span class="lineno"> 183 </span>      <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-</pre>
-
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FakeLocationService1.java">../../src/main/java/com/carlex/drive/FakeLocationService1.java</a>:179</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 176 </span>
-<span class="lineno"> 177 </span>    <span class="annotation">@Override</span>
-<span class="lineno"> 178 </span>    <span class="keyword">public</span> <span class="keyword">void</span> onDestroy() {
-<span class="caretline"><span class="lineno"> 179 </span><span class="warning"> </span>       <span class="keyword">super</span>.onDestroy();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 180 </span>    isRunning = <span class="keyword">false</span>;
-<span class="lineno"> 181 </span>        stopForeground(<span class="keyword">true</span>);
-</pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:31</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/FusedLocationsProvider.java">../../src/main/java/com/carlex/drive/FusedLocationsProvider.java</a>:31</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
 <span class="lineno">  28 </span>
 <span class="lineno">  29 </span>    <span class="keyword">public</span> FusedLocationsProvider(Context context) {
 <span class="lineno">  30 </span>        <span class="keyword">this</span>.context = context;
@@ -623,22 +579,77 @@ Dismiss</button>            </div>
 <span class="lineno"> 106 </span>      <span class="keyword">return</span> <span class="keyword">false</span>;
 <span class="lineno"> 107 </span>  }
 </pre>
-</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1335</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
-<span class="lineno"> 1332 </span><span class="annotation">@Override</span>
-<span class="lineno"> 1333 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
-<span class="lineno"> 1334 </span>        <span class="keyword">super</span>.onStop();
-<span class="caretline"><span class="lineno"> 1335 </span><span class="warning">    </span>saveTurboValue(turbo);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1336 </span>    }
-<span class="lineno"> 1337 </span>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1158</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 1155 </span>
+<span class="lineno"> 1156 </span>                zoom = calculateZoomfrom(latLng, polyline);   
+<span class="lineno"> 1157 </span>        <span class="comment">//zoom = (float) 15;         </span>
+<span class="caretline"><span class="lineno"> 1158 </span><span class="warning">        </span>center = bounds.getCenter();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1159 </span>
+<span class="lineno"> 1160 </span>    } <span class="keyword">else</span> { zoom = (<span class="keyword">float</span>) <span class="number">15</span>;}
 </pre>
 
-<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1334</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
-<span class="lineno"> 1331 </span>
-<span class="lineno"> 1332 </span><span class="annotation">@Override</span>
-<span class="lineno"> 1333 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
-<span class="caretline"><span class="lineno"> 1334 </span><span class="warning"> </span>       <span class="keyword">super</span>.onStop();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1335 </span>    saveTurboValue(turbo);
-<span class="lineno"> 1336 </span>    }
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1156</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 1153 </span>                bounds = builder.build();                       
+<span class="lineno"> 1154 </span>        <span class="keyword">int</span> padding = <span class="number">50</span>;           
+<span class="lineno"> 1155 </span>
+<span class="caretline"><span class="lineno"> 1156 </span><span class="warning">  </span>              zoom = calculateZoomfrom(latLng, polyline);   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1157 </span>        <span class="comment">//zoom = (float) 15;         </span>
+<span class="lineno"> 1158 </span>        center = bounds.getCenter();
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1206</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 1203 </span>        }}.execute();
+<span class="lineno"> 1204 </span>
+<span class="lineno"> 1205 </span>
+<span class="caretline"><span class="lineno"> 1206 </span><span class="warning">    </span><span class="keyword">if</span> (polyline != <span class="keyword">null</span>) {      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1207 </span>        desMarker.setVisible(<span class="keyword">true</span>);  
+<span class="lineno"> 1208 </span>        oriMarker.setVisible(<span class="keyword">true</span>);
+<span class="lineno"> 1209 </span>    } <span class="keyword">else</span> {
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1179</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 1176 </span>
+<span class="lineno"> 1177 </span>    String schro = <span class="string">"00:00:00"</span>;
+<span class="lineno"> 1178 </span>
+<span class="caretline"><span class="lineno"> 1179 </span><span class="warning"> </span>       <span class="keyword">new</span> AsyncTask&lt;Void, Void, RotaFake>() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1180 </span>        <span class="annotation">@Override</span>
+<span class="lineno"> 1181 </span>        <span class="keyword">protected</span> RotaFake doInBackground(Void... voids) {
+<span class="lineno"> 1182 </span>            AppDatabase db = MyApp.getDatabase();
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1381</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 1378 </span>        <span class="keyword">public</span> <span class="keyword">void</span> onCameraMoveStarted(<span class="keyword">int</span> reason) {
+<span class="lineno"> 1379 </span>            <span class="keyword">if</span> (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
+<span class="lineno"> 1380 </span>                mapaCentralizar = <span class="keyword">false</span>;
+<span class="caretline"><span class="lineno"> 1381 </span><span class="warning">        </span>checkloc.setChecked(<span class="keyword">false</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1382 </span>            }
+<span class="lineno"> 1383 </span>        }
+<span class="lineno"> 1384 </span>    });
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1380</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 1377 </span>    googleMap.setOnCameraMoveStartedListener(<span class="keyword">new</span> GoogleMap.OnCameraMoveStartedListener() {
+<span class="lineno"> 1378 </span>        <span class="keyword">public</span> <span class="keyword">void</span> onCameraMoveStarted(<span class="keyword">int</span> reason) {
+<span class="lineno"> 1379 </span>            <span class="keyword">if</span> (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
+<span class="caretline"><span class="lineno"> 1380 </span><span class="warning">  </span>              mapaCentralizar = <span class="keyword">false</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1381 </span>        checkloc.setChecked(<span class="keyword">false</span>);
+<span class="lineno"> 1382 </span>            }
+<span class="lineno"> 1383 </span>        }
+</pre>
+</ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1441</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
+<span class="lineno"> 1438 </span><span class="annotation">@Override</span>
+<span class="lineno"> 1439 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
+<span class="lineno"> 1440 </span>        <span class="keyword">super</span>.onStop();
+<span class="caretline"><span class="lineno"> 1441 </span><span class="warning">    </span>saveTurboValue(turbo);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1442 </span>    }
+<span class="lineno"> 1443 </span>
+</pre>
+
+<ul><span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1440</span>: <span class="message">Previous line indentation here</span><br /><pre class="errorlines">
+<span class="lineno"> 1437 </span>
+<span class="lineno"> 1438 </span><span class="annotation">@Override</span>
+<span class="lineno"> 1439 </span>    <span class="keyword">protected</span> <span class="keyword">void</span> onStop() {
+<span class="caretline"><span class="lineno"> 1440 </span><span class="warning"> </span>       <span class="keyword">super</span>.onStop();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1441 </span>    saveTurboValue(turbo);
+<span class="lineno"> 1442 </span>    }
 </pre>
 </ul><span class="location"><a href="../../src/main/java/com/carlex/drive/OverlayService.java">../../src/main/java/com/carlex/drive/OverlayService.java</a>:59</span>: <span class="message">The indentation string here is different from on the previous line (<code>" "</code> vs <code>\t</code>)</span><br /><pre class="errorlines">
 <span class="lineno">  56 </span>                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
@@ -859,9 +870,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 74 </span>    annotationProcessor <span class="string">"androidx.room:room-compiler:2.6.1"</span> 
 <span class="caretline"><span class="lineno"> 75 </span>    implementation <span class="warning"><span class="string">'com.google.android.material:material:1.7.0'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno"> 76 </span>    compileOnly <span class="string">'de.robv.android.xposed:api:82'</span>
-<span class="lineno"> 77 </span>
-<span class="lineno"> 78 </span>}
-</pre>
+<span class="lineno"> 77 </span>    <span class="comment">//compileOnly 'de.robv.android.xposed:api:82:sources'</span>
+<span class="lineno"> 78 </span>    <span class="comment">//compileOnly 'de.robv.android.xposed:XposedBridgeApi:82'</span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationGradleDependency" style="display: none;">
@@ -901,14 +911,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1296</span>: <span class="message">Unnecessary; SDK_INT is always >= 24</span><br /><pre class="errorlines">
-<span class="lineno"> 1293 </span><span class="keyword">protected</span> <span class="keyword">void</span> onPause() {
-<span class="lineno"> 1294 </span>    <span class="keyword">super</span>.onPause();
-<span class="lineno"> 1295 </span>    mapView.onPause();
-<span class="caretline"><span class="lineno"> 1296 </span>    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1297 </span>        <span class="keyword">if</span> (!Settings.canDrawOverlays(MainActivity.<span class="keyword">this</span>)) {
-<span class="lineno"> 1298 </span>            Intent oIntent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-<span class="lineno"> 1299 </span>        Uri.parse(<span class="string">"package:"</span> + getPackageName()));
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1402</span>: <span class="message">Unnecessary; SDK_INT is always >= 24</span><br /><pre class="errorlines">
+<span class="lineno"> 1399 </span><span class="keyword">protected</span> <span class="keyword">void</span> onPause() {
+<span class="lineno"> 1400 </span>    <span class="keyword">super</span>.onPause();
+<span class="lineno"> 1401 </span>    mapView.onPause();
+<span class="caretline"><span class="lineno"> 1402 </span>    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1403 </span>        <span class="keyword">if</span> (!Settings.canDrawOverlays(MainActivity.<span class="keyword">this</span>)) {
+<span class="lineno"> 1404 </span>            Intent oIntent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+<span class="lineno"> 1405 </span>        Uri.parse(<span class="string">"package:"</span> + getPackageName()));
 </pre>
 
 </div>
@@ -999,7 +1009,7 @@ Dismiss</button>            </div>
 <span class="lineno">  105 </span><span class="keyword">public</span> <span class="keyword">static</span> String sbear = <span class="string">""</span>;
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="StaticFieldLeakDivLink" onclick="reveal('StaticFieldLeakDiv');" />+ 15 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="StaticFieldLeakDivLink" onclick="reveal('StaticFieldLeakDiv');" />+ 16 More Occurrences...</button>
 <div id="StaticFieldLeakDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:118</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
 <span class="lineno">  115 </span><span class="keyword">public</span> <span class="keyword">static</span> MapView mapView;
@@ -1008,7 +1018,7 @@ Dismiss</button>            </div>
 <span class="caretline"><span class="lineno">  118 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Switch checkloc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  119 </span><span class="keyword">public</span> <span class="keyword">static</span> Switch checkfake;
 <span class="lineno">  120 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> permissionRequestCode = <span class="number">1</span>;
-<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">true</span>;
+<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">false</span>;
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:119</span>: <span class="message">Do not place Android context classes in static fields; this is a memory leak</span><br /><pre class="errorlines">
@@ -1017,7 +1027,7 @@ Dismiss</button>            </div>
 <span class="lineno">  118 </span><span class="keyword">public</span> <span class="keyword">static</span> Switch checkloc;
 <span class="caretline"><span class="lineno">  119 </span><span class="keyword">public</span> <span class="warning"><span class="keyword">static</span></span> Switch checkfake;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  120 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> permissionRequestCode = <span class="number">1</span>;
-<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">true</span>;
+<span class="lineno">  121 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> mapaCentralizar = <span class="keyword">false</span>;
 <span class="lineno">  122 </span><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> inicar  = <span class="keyword">false</span>;
 </pre>
 
@@ -1111,14 +1121,24 @@ Dismiss</button>            </div>
 <span class="lineno">  177 </span><span class="keyword">public</span> SharedPreferences prefs;
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:835</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (anonymous android.os.AsyncTask)</span><br /><pre class="errorlines">
-<span class="lineno">  832 </span>
-<span class="lineno">  833 </span>
-<span class="lineno">  834 </span><span class="keyword">private</span> <span class="keyword">void</span> salvarRotafakeEmArquivo() {
-<span class="caretline"><span class="lineno">  835 </span>    <span class="warning"><span class="keyword">new</span> AsyncTask&lt;Void, Void, String>() {</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  836 </span>        <span class="annotation">@Override</span>
-<span class="lineno">  837 </span>        <span class="keyword">protected</span> String doInBackground(Void... voids) {
-<span class="lineno">  838 </span>            <span class="keyword">try</span> {
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:841</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (anonymous android.os.AsyncTask)</span><br /><pre class="errorlines">
+<span class="lineno">  838 </span>
+<span class="lineno">  839 </span>
+<span class="lineno">  840 </span><span class="keyword">private</span> <span class="keyword">void</span> salvarRotafakeEmArquivo() {
+<span class="caretline"><span class="lineno">  841 </span>    <span class="warning"><span class="keyword">new</span> AsyncTask&lt;Void, Void, String>() {</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  842 </span>        <span class="annotation">@Override</span>
+<span class="lineno">  843 </span>        <span class="keyword">protected</span> String doInBackground(Void... voids) {
+<span class="lineno">  844 </span>            <span class="keyword">try</span> {
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1179</span>: <span class="message">This <code>AsyncTask</code> class should be static or leaks might occur (anonymous android.os.AsyncTask)</span><br /><pre class="errorlines">
+<span class="lineno"> 1176 </span>
+<span class="lineno"> 1177 </span>    String schro = <span class="string">"00:00:00"</span>;
+<span class="lineno"> 1178 </span>
+<span class="caretline"><span class="lineno"> 1179 </span>        <span class="warning"><span class="keyword">new</span> AsyncTask&lt;Void, Void, RotaFake>() {</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1180 </span>        <span class="annotation">@Override</span>
+<span class="lineno"> 1181 </span>        <span class="keyword">protected</span> RotaFake doInBackground(Void... voids) {
+<span class="lineno"> 1182 </span>            AppDatabase db = MyApp.getDatabase();
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/carlex/drive/VerifyLocationTask.java">../../src/main/java/com/carlex/drive/VerifyLocationTask.java</a>:9</span>: <span class="message">This field leaks a context object</span><br /><pre class="errorlines">
@@ -1345,9 +1365,9 @@ Dismiss</button>            </div>
 <span class="lineno">   5 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
 <span class="lineno">   6 </span>
 <span class="caretline"><span class="lineno">   7 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">   8 </span><span class="attribute">              </span><span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"250dp"</span>
-<span class="lineno">   9 </span>              <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/fundo"</span>
-<span class="lineno">  10 </span>              <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>                                              <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>                                             <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/fundo"</span> />
+</span><span class="lineno">   8 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"250dp"</span>
+<span class="lineno">   9 </span>                <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/fundo"</span>
+<span class="lineno">  10 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>                         
 </pre>
 
 </div>
@@ -1380,6 +1400,116 @@ To suppress this error, use the issue id "ContentDescription" as explained in th
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationContentDescriptionLink" onclick="reveal('explanationContentDescription');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ContentDescriptionCardLink" onclick="hideid('ContentDescriptionCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Internationalization"></a>
+<a name="SetTextI18n"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SetTextI18nCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">TextView Internationalization</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/carlex/drive/MainActivity.java">../../src/main/java/com/carlex/drive/MainActivity.java</a>:1201</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
+<span class="lineno"> 1198 </span>            textViewTempo.setText(<span class="string">"🏁 "</span> + String.format(<span class="string">"%02d:%02d:%02d"</span>, hours, minutes, seconds));            
+<span class="lineno"> 1199 </span>        }
+<span class="lineno"> 1200 </span>        <span class="keyword">else</span> 
+<span class="caretline"><span class="lineno"> 1201 </span>            textViewTempo.setText(<span class="warning"><span class="string">"🏁 00:00:00"</span></span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1202 </span>      }
+<span class="lineno"> 1203 </span>  }}.execute();
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationSetTextI18n" style="display: none;">
+When calling <code>TextView#setText</code><br/>
+* Never call <code>Number#toString()</code> to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using <code>String#format</code> with proper format specifications (<code>%d</code> or <code>%f</code>) instead.<br/>
+* Do not pass a string literal (e.g. "Hello") to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.<br/>
+* Do not build messages by concatenating text chunks. Such messages can not be properly translated.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/topics/resources/localization.html">https://developer.android.com/guide/topics/resources/localization.html</a>
+</div>To suppress this error, use the issue id "SetTextI18n" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">SetTextI18n</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Internationalization</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationSetTextI18nLink" onclick="reveal('explanationSetTextI18n');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SetTextI18nCardLink" onclick="hideid('SetTextI18nCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="HardcodedText"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="HardcodedTextCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Hardcoded text</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/layout/main.xml">../../src/main/res/layout/main.xml</a>:48</span>: <span class="message">Hardcoded string "bear", should use <code>@string</code> resource</span><br /><pre class="errorlines">
+<span class="lineno">  45 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span>
+<span class="lineno">  46 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  47 </span>                <span class="prefix">android:</span><span class="attribute">layout_weight</span>=<span class="value">"1"</span>
+<span class="caretline"><span class="lineno">  48 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">text</span>=<span class="value">"bear"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  49 </span>                <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"3dp"</span>
+<span class="lineno">  50 </span>                <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center"</span>
+<span class="lineno">  51 </span>                <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"#FFD888"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/main.xml">../../src/main/res/layout/main.xml</a>:94</span>: <span class="message">Hardcoded string "&#55356;&#57281; 00:00:00", should use <code>@string</code> resource</span><br /><pre class="errorlines">
+<span class="lineno">  91 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/tTempo"</span>
+<span class="lineno">  92 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  93 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno">  94 </span>                                <span class="warning"><span class="prefix">android:</span><span class="attribute">text</span>=<span class="value">"🏁 00:00:00"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  95 </span>                                <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"#000000"</span>
+<span class="lineno">  96 </span>                                <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"3dp"</span>
+<span class="lineno">  97 </span>                                <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center"</span>/>
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationHardcodedText" style="display: none;">
+Hardcoding text attributes directly in layout files is bad for several reasons:<br/>
+<br/>
+* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)<br/>
+<br/>
+* The application cannot be translated to other languages by just adding new translations for existing string resources.<br/>
+<br/>
+There are quickfixes to automatically extract this hardcoded string into a resource lookup.<br/>To suppress this error, use the issue id "HardcodedText" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">HardcodedText</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Internationalization</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationHardcodedTextLink" onclick="reveal('explanationHardcodedText');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="HardcodedTextCardLink" onclick="hideid('HardcodedTextCard');">
 Dismiss</button>            </div>
             </div>
           </section>

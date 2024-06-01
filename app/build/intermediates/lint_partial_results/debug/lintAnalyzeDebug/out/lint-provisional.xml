@@ -99,13 +99,13 @@
         message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
         <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
         <location
-            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService.java"
-            line="109"
-            column="6"
-            startOffset="3560"
-            endLine="109"
-            endColumn="64"
-            endOffset="3618"/>
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="75"
+            column="128"
+            startOffset="2752"
+            endLine="75"
+            endColumn="213"
+            endOffset="2837"/>
     </incident>
 
     <incident
@@ -115,12 +115,27 @@
         <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="184"
+            line="80"
+            column="128"
+            startOffset="3084"
+            endLine="80"
+            endColumn="217"
+            endOffset="3173"/>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="162"
             column="13"
-            startOffset="8064"
-            endLine="184"
+            startOffset="6587"
+            endLine="162"
             endColumn="117"
-            endOffset="8168"/>
+            endOffset="6691"/>
     </incident>
 
     <incident

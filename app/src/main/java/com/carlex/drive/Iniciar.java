@@ -52,7 +52,7 @@ public class Iniciar {
             	}
 		mainActivity.runOnUiThread(() -> {
 			mainActivity.iniciarFake = true;
-			mainActivity.mapaCentralizar = true;
+			//mainActivity.mapaCentralizar = true;
 		});
 	    }
 
