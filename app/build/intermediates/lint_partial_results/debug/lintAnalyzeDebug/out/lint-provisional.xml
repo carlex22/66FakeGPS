@@ -52,12 +52,12 @@
         <fix-data minSdk="ffffffffff800000" requiresApi="fffffffff8000000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
-            line="25"
-            column="6"
-            startOffset="1286"
-            endLine="25"
-            endColumn="74"
-            endOffset="1354"/>
+            line="28"
+            column="2"
+            startOffset="1585"
+            endLine="28"
+            endColumn="70"
+            endOffset="1653"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -66,6 +66,45 @@
             <entry
                 name="message"
                 string="Attribute `appComponentFactory` is only used in API level 28 and higher (current min is %1$s)"/>
+        </map>
+    </incident>
+
+    <incident
+        id="Deprecated"
+        severity="warning"
+        message="`android:editable` is deprecated: Use an `&lt;EditText>` to make it editable">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/gnssmain.xml"
+            line="18"
+            column="13"
+            startOffset="624"
+            endLine="18"
+            endColumn="36"
+            endOffset="647"/>
+        <map>
+            <condition minGE="ffffffffffffffff"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/main.xml"
+            line="34"
+            column="10"
+            startOffset="969"
+            endLine="34"
+            endColumn="18"
+            endOffset="977"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
         </map>
     </incident>
 
@@ -94,18 +133,48 @@
     </incident>
 
     <incident
-        id="NotificationPermission"
+        id="MissingPermission"
         severity="error"
-        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
-        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION, android.permission.ACCESS_COARSE_LOCATION" requirement="|android.permission.ACCESS_COARSE_LOCATION,android.permission.ACCESS_FINE_LOCATION"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="75"
-            column="128"
-            startOffset="2752"
-            endLine="75"
-            endColumn="213"
-            endOffset="2837"/>
+            line="76"
+            column="18"
+            startOffset="4091"
+            endLine="76"
+            endColumn="68"
+            endOffset="4141"/>
+    </incident>
+
+    <incident
+        id="MissingPermission"
+        severity="error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION, android.permission.ACCESS_COARSE_LOCATION" requirement="|android.permission.ACCESS_COARSE_LOCATION,android.permission.ACCESS_FINE_LOCATION"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="97"
+            column="16"
+            startOffset="4828"
+            endLine="97"
+            endColumn="66"
+            endOffset="4878"/>
+    </incident>
+
+    <incident
+        id="MissingPermission"
+        severity="error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION, android.permission.ACCESS_COARSE_LOCATION" requirement="|android.permission.ACCESS_COARSE_LOCATION,android.permission.ACCESS_FINE_LOCATION"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="98"
+            column="20"
+            startOffset="4899"
+            endLine="98"
+            endColumn="74"
+            endOffset="4953"/>
     </incident>
 
     <incident
@@ -115,12 +184,12 @@
         <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="80"
-            column="128"
-            startOffset="3084"
-            endLine="80"
-            endColumn="217"
-            endOffset="3173"/>
+            line="139"
+            column="178"
+            startOffset="6304"
+            endLine="139"
+            endColumn="263"
+            endOffset="6389"/>
     </incident>
 
     <incident
@@ -130,12 +199,179 @@
         <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
-            line="162"
+            line="143"
+            column="180"
+            startOffset="6629"
+            endLine="143"
+            endColumn="269"
+            endOffset="6718"/>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="233"
+            column="97"
+            startOffset="10371"
+            endLine="233"
+            endColumn="131"
+            endOffset="10405"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+            <entry
+                name="message"
+                string="Field requires API level 31 (current min is %1$s): `android.location.provider.ProviderProperties#POWER_USAGE_LOW`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="233"
+            column="133"
+            startOffset="10407"
+            endLine="233"
+            endColumn="165"
+            endOffset="10439"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+            <entry
+                name="message"
+                string="Field requires API level 31 (current min is %1$s): `android.location.provider.ProviderProperties#ACCURACY_FINE`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="235"
+            column="101"
+            startOffset="10677"
+            endLine="235"
+            endColumn="135"
+            endOffset="10711"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+            <entry
+                name="message"
+                string="Field requires API level 31 (current min is %1$s): `android.location.provider.ProviderProperties#POWER_USAGE_LOW`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="InlinedApi"
+        severity="warning"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="235"
+            column="137"
+            startOffset="10713"
+            endLine="235"
+            endColumn="171"
+            endOffset="10747"/>
+        <map>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+            <entry
+                name="message"
+                string="Field requires API level 31 (current min is %1$s): `android.location.provider.ProviderProperties#ACCURACY_COARSE`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/FakeLocationService1.java"
+            line="266"
             column="13"
-            startOffset="6587"
-            endLine="162"
+            startOffset="12486"
+            endLine="266"
             endColumn="117"
-            endOffset="6691"/>
+            endOffset="12590"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 24">
+        <fix-replace
+            description="Delete @RequiresApi"
+            replacement=""
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/GNSSManager.java"
+                startOffset="357"
+                endOffset="398"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/GNSSManager.java"
+            line="14"
+            column="5"
+            startOffset="357"
+            endLine="14"
+            endColumn="46"
+            endOffset="398"/>
+        <map>
+            <condition minGE="ffffffffff800000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="MissingPermission"
+        severity="error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION" requirement="android.permission.ACCESS_FINE_LOCATION"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/GNSSManager.java"
+            line="37"
+            column="13"
+            startOffset="1149"
+            endLine="37"
+            endColumn="75"
+            endOffset="1211"/>
+    </incident>
+
+    <incident
+        id="MissingPermission"
+        severity="error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION" requirement="android.permission.ACCESS_FINE_LOCATION"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/GpsGnss.java"
+            line="107"
+            column="13"
+            startOffset="4580"
+            endLine="107"
+            endColumn="69"
+            endOffset="4636"/>
     </incident>
 
     <incident
@@ -145,12 +381,12 @@
         <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/OverlayService.java"
-            line="56"
+            line="36"
             column="17"
-            startOffset="2105"
-            endLine="56"
+            startOffset="1082"
+            endLine="36"
             endColumn="68"
-            endOffset="2156"/>
+            endOffset="1133"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -165,19 +401,424 @@
     <incident
         id="RtlHardcoded"
         severity="warning"
-        message="Use &quot;`Gravity.END`&quot; instead of &quot;`Gravity.RIGHT`&quot; to ensure correct behavior in right-to-left locales">
+        message="Use &quot;`Gravity.START`&quot; instead of &quot;`Gravity.LEFT`&quot; to ensure correct behavior in right-to-left locales">
         <location
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/OverlayService.java"
-            line="59"
-            column="44"
-            startOffset="2306"
-            endLine="59"
-            endColumn="49"
-            endOffset="2311"/>
+            line="40"
+            column="48"
+            startOffset="1288"
+            endLine="40"
+            endColumn="52"
+            endOffset="1292"/>
         <map>
             <entry
                 name="applies"
                 int="2"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpgga.java"
+            line="21"
+            column="36"
+            startOffset="697"
+            endLine="21"
+            endColumn="42"
+            endOffset="703"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpgga.java"
+            line="21"
+            column="61"
+            startOffset="722"
+            endLine="21"
+            endColumn="70"
+            endOffset="731"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpgll.java"
+            line="15"
+            column="36"
+            startOffset="463"
+            endLine="15"
+            endColumn="42"
+            endOffset="469"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpgll.java"
+            line="15"
+            column="61"
+            startOffset="488"
+            endLine="15"
+            endColumn="70"
+            endOffset="497"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gprmc.java"
+            line="20"
+            column="36"
+            startOffset="638"
+            endLine="20"
+            endColumn="42"
+            endOffset="644"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gprmc.java"
+            line="20"
+            column="61"
+            startOffset="663"
+            endLine="20"
+            endColumn="70"
+            endOffset="672"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gprmc.java"
+            line="21"
+            column="36"
+            startOffset="720"
+            endLine="21"
+            endColumn="42"
+            endOffset="726"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gprmc.java"
+            line="21"
+            column="61"
+            startOffset="745"
+            endLine="21"
+            endColumn="70"
+            endOffset="754"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpzda.java"
+            line="12"
+            column="36"
+            startOffset="350"
+            endLine="12"
+            endColumn="42"
+            endOffset="356"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpzda.java"
+            line="12"
+            column="61"
+            startOffset="375"
+            endLine="12"
+            endColumn="70"
+            endOffset="384"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpzda.java"
+            line="13"
+            column="36"
+            startOffset="432"
+            endLine="13"
+            endColumn="42"
+            endOffset="438"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="format"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#format`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Gpzda.java"
+            line="13"
+            column="61"
+            startOffset="457"
+            endLine="13"
+            endColumn="70"
+            endOffset="466"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.format.DateTimeFormatter"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="ofPattern"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.format.DateTimeFormatter#ofPattern`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="MissingPermission"
+        severity="error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`">
+        <fix-data missing="android.permission.ACCESS_FINE_LOCATION, android.permission.ACCESS_COARSE_LOCATION" requirement="|android.permission.ACCESS_COARSE_LOCATION,android.permission.ACCESS_FINE_LOCATION"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/Main.java"
+            line="64"
+            column="9"
+            startOffset="2067"
+            endLine="64"
+            endColumn="46"
+            endOffset="2104"/>
+    </incident>
+
+    <incident
+        id="NewApi"
+        severity="error"
+        message="">
+        <fix-data minSdk="ffffffffff800000" requiresApi="fffffffffe000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/gnssData/NmeaMsg.java"
+            line="25"
+            column="42"
+            startOffset="720"
+            endLine="25"
+            endColumn="45"
+            endOffset="723"/>
+        <map>
+            <entry
+                name="owner"
+                string="java.time.LocalDateTime"/>
+            <api-levels id="minSdk"
+                value="ffffffffff800000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffe000000"/>
+            <entry
+                name="name"
+                string="now"/>
+            <entry
+                name="message"
+                string="Call requires API level 26 (current min is %1$s): `java.time.LocalDateTime#now`"/>
         </map>
     </incident>
 
@@ -190,10 +831,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/xLocationManager.java"
             line="154"
             column="104"
-            startOffset="5238"
+            startOffset="5240"
             endLine="154"
             endColumn="138"
-            endOffset="5272"/>
+            endOffset="5274"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -214,10 +855,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/xLocationManager.java"
             line="154"
             column="140"
-            startOffset="5274"
+            startOffset="5276"
             endLine="154"
             endColumn="172"
-            endOffset="5306"/>
+            endOffset="5308"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -238,10 +879,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/xLocationManager.java"
             line="157"
             column="108"
-            startOffset="5489"
+            startOffset="5491"
             endLine="157"
             endColumn="142"
-            endOffset="5523"/>
+            endOffset="5525"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -262,10 +903,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/carlex/drive/xLocationManager.java"
             line="157"
             column="144"
-            startOffset="5525"
+            startOffset="5527"
             endLine="157"
             endColumn="178"
-            endOffset="5559"/>
+            endOffset="5561"/>
         <map>
             <api-levels id="minSdk"
                 value="ffffffffff800000"/>
@@ -274,6 +915,45 @@
             <entry
                 name="message"
                 string="Field requires API level 31 (current min is %1$s): `android.location.provider.ProviderProperties#ACCURACY_COARSE`"/>
+        </map>
+    </incident>
+
+    <incident
+        id="DuplicatePlatformClasses"
+        severity="fatal"
+        message="`json` defines classes that conflict with classes now provided by Android. Solutions include finding newer versions or alternative libraries that don&apos;t have the same problem (for example, for `httpclient` use `HttpUrlConnection` or `okhttp` instead), or repackaging the library using something like `jarjar`.">
+        <fix-replace
+            description="Delete dependency"
+            replacement=""
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="91"
+            column="5"
+            startOffset="2360"
+            endLine="91"
+            endColumn="44"
+            endOffset="2399"/>
+    </incident>
+
+    <incident
+        id="DuplicatePlatformClasses"
+        severity="fatal"
+        message="`commons-logging` defines classes that conflict with classes now provided by Android. Solutions include finding newer versions or alternative libraries that don&apos;t have the same problem (for example, for `httpclient` use `HttpUrlConnection` or `okhttp` instead), or repackaging the library using something like `jarjar`.">
+        <location
+            file="${:app*projectDir}/build.gradle"/>
+    </incident>
+
+    <incident
+        id="RtlEnabled"
+        severity="warning"
+        message="The project references RTL attributes, but does not explicitly enable or disable RTL support with `android:supportsRtl` in the manifest">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
         </map>
     </incident>
 

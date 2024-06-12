@@ -1,0 +1,75 @@
+package com.carlex.drive;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.google.android.gms.maps.model.LatLng;
+import android.hardware.SensorEventListener;
+import android.hardware.Sensor.*;
+import android.telephony.gsm.GsmCellLocation;
+import android.telephony.TelephonyManager;
+import android.telephony.CellLocation;
+import android.telephony.gsm.GsmCellLocation;
+import android.telephony.CellInfo;
+import android.telephony.*;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
+public class FakeLocationModule implements IXposedHookLoadPackage {
+    private static final String TAG = "FakeLocationModule";
+    private Context context;
+    private Map<SensorEventListener, List<Sensor>> stepListener;
+    private boolean enabled;
+    private String target;
+
+    @Override
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        context = MainActivity.mainApp;
+
+        String[] desiredPackages = new String[]{
+                "com.carlex.drive",
+                "com.app99.drive",
+                "flar2.devcheck",
+                "com.google.android.apps.location.gps.gnsslogger",
+                "fr.dvilleneuve.lockito"
+        };
+
+        for (String packageName : desiredPackages) {
+            if (lpparam.packageName.equals(packageName)) {
+                hookPackage(lpparam);
+            }
+        }
+    }
+
+    private void hookPackage(XC_LoadPackage.LoadPackageParam lpparam) {
+        XposedHelpers.findAndHookMethod("android.telephony.TelephonyManager", lpparam.classLoader,
+                "getCellLocation", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        log("getCellLocation called");
+                        GsmCellLocation gsmCellLocation = new GsmCellLocation();
+                        gsmCellLocation.setLacAndCid(33, 333);
+                        param.setResult(gsmCellLocation);
+                    }
+                });
+
+        // Add more hooks as needed for the specified package
+    }
+
+    private void log(String message) {
+        Log.d(TAG, message);
+    }
+}
+

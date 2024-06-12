@@ -1,0 +1,29 @@
+package com.carlex.drive
+
+import android.os.Bundle
+import android.widget.Toast
+import android.app.Activity
+import java.io.File
+import com.carlex.drive.PackageAnalyzer
+
+class GetObjectsHock : Activity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+
+        // Exemplo de uso da PackageAnalyzer
+        val packageNames = arrayOf("android.telephony.TelephonyManager", "android.os.Build")
+        val analyzer = PackageAnalyzer(this)
+        analyzer.analyzePackages(packageNames)
+
+
+	val driverInfo = DriverInfo(this, "1123456")
+
+	//DriverInfo driverinfo = new DriverInfo(MainActivity.this, "1123456"
+	//GetCell cell = new GetCell(MainActivity.this, latLng.latitude, latLng.longitude);
+
+            Toast.makeText(this, "Análise concluída", Toast.LENGTH_SHORT).show()
+    }
+}
+

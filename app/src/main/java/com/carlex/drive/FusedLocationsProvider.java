@@ -26,11 +26,16 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
     private final GoogleApiClient apiClient;
     public static Context xthis;
 
+    private static final String GPS_PROVIDER = LocationManager.GPS_PROVIDER;
+
     public FusedLocationsProvider(Context context) {
         this.context = context;
 	xthis = context;
-        this.location = new Location(LocationManager.GPS_PROVIDER);
+
+	Location location = new Location(GPS_PROVIDER);
+
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+	this.location = location;
 
         this.apiClient = new GoogleApiClient.Builder(this.context)
                 .addConnectionCallbacks(this)
@@ -38,8 +43,9 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
                 .addApi(LocationServices.API)
                 .build();
         this.apiClient.connect();
-    }
 
+	Log.d("Fused", "criadi");
+    }
 
 
     public void sToast(String txt){
@@ -63,16 +69,15 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
     }
 
     public void spoof(Location location) {
-        if (!isMockLocationsEnabled())
-            return;
+       // if (!isMockLocationsEnabled())
+         //   return;
 
         if (apiClient.isConnected()) {
             try {
                 fusedLocationClient.setMockMode(true);
                 fusedLocationClient.setMockLocation(location);
             } catch (SecurityException e) {
-		sToast("FALHA AO CONECTAR FUSED");
-                Log.d("FusedLocationsProvider", "SecurityException", e);
+                Log.d("Fused", "SecurityException", e);
             }
         }
     }
@@ -82,19 +87,20 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
         try {
             fusedLocationClient.setMockMode(true);
         } catch (SecurityException e) {
-		sToast("FALHA AO CONECTAR FUSED");
-            Log.d("FusedLocationsProvider", "SecurityException", e);
+		Log.d("fused","FALHA AO CONECTAR FUSED", e);
         }
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        // Handle the connection suspended case if needed
+        // Handle the connection suspended case if neede
+	Log.d("fused", "SUSPENSO FAKE FUSED");
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // Handle the connection failed case if needed
+        // Handle the connection failed case if need
+	Log.d("fused", "FALHA FAKE FUSED");
     }
 
     private boolean isMockLocationsEnabled() {
@@ -102,7 +108,7 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
             return Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION) == 1;
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
-	    sToast("FALHA AO AUTORIZAR FAKE FUSED");
+	    Log.d("fused", "FALHA AO AUTORIZAR FAKE FUSED");
             return false;
         }
     }

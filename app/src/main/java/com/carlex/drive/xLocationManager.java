@@ -147,7 +147,7 @@ public class xLocationManager {
         networkLocation = new Location(NETWORK_PROVIDER);
         isMockLocationsEnabled = areLocationPermissionsGranted(context) && isMockLocationsEnabled(context);
         random = new Random();
-	isMockLocationsEnabled=true;
+	//isMockLocationsEnabled=true;
         if (isMockLocationsEnabled) {
 	    removeProviders();
 

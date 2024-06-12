@@ -1,0 +1,80 @@
+package com.carlex.drive
+
+import android.content.Context
+import android.content.pm.PackageManager
+import dalvik.system.DexFile
+import com.google.gson.Gson
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+
+class PackageAnalyzer(private val context: Context) {
+
+    fun analyzePackages(packageNames: Array<String>) {
+        for (packageName in packageNames) {
+            val getters = getGetters(packageName)
+            val json = createJson(packageName, getters)
+            saveToJsonFile(json, "hookclass.json")
+        }
+    }
+
+    private fun getGetters(packageName: String): List<String> {
+        val getters = mutableListOf<String>()
+
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+            val packagePath = packageInfo.applicationInfo.sourceDir
+            val packageDex = DexFile(packagePath)
+
+            val entries = packageDex.entries()
+            while (entries.hasMoreElements()) {
+                val className = entries.nextElement()
+                if (className.startsWith(packageName)) {
+                    try {
+                        val clazz = Class.forName(className)
+                        val methods = clazz.methods
+                        for (method in methods) {
+                            if (method.name.startsWith("get") && method.parameterCount == 0) {
+                                getters.add(method.name)
+                            }
+                        }
+                    } catch (e: ClassNotFoundException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return getters
+    }
+
+    private fun createJson(packageName: String, getters: List<String>): String {
+        val jsonMap = mutableMapOf<String, Any?>()
+
+        for (getter in getters) {
+            jsonMap[getter] = null
+        }
+
+        val packageMap = mutableMapOf<String, Any?>()
+        packageMap[packageName] = jsonMap
+
+        return Gson().toJson(packageMap)
+    }
+
+    private fun saveToJsonFile(json: String, fileName: String) {
+        try {
+            val file = File(context.filesDir, fileName)
+            val writer = FileWriter(file, true)
+            writer.write(json)
+            writer.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+}
+

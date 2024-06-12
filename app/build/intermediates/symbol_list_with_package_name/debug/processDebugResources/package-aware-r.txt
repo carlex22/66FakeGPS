@@ -2861,9 +2861,9 @@ id cut
 id dadosrota
 id dark
 id data
-id databottom
 id datagps
 id datatop
+id datatop1
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3142,8 +3142,9 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id tCel
+id tSat
 id tTempo
-id tVmed
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3168,6 +3169,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3365,6 +3367,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout gnssmain
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog
@@ -3428,6 +3431,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 plurals mtrl_badge_content_description
+raw gps
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3498,6 +3502,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fcm_fallback_notification_channel_label
 string hello_world
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description

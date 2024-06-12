@@ -2,11 +2,11 @@
     name="debug"
     package="com.carlex.drive"
     minSdkVersion="24"
-    targetSdkVersion="34"
+    targetSdkVersion="33"
     debuggable="true"
     mergedManifest="build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml"
     partialResultsDir="build/intermediates/android_test_lint_partial_results/debug/lintAnalyzeDebugAndroidTest/out"
-    desugaredMethodsFiles="/data/data/com.termux/files/home/.gradle/caches/transforms-4/0570876f90afa1f0ecfc623902c7b4e8/transformed/D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="/data/data/com.termux/files/home/.gradle/caches/transforms-4/b03e4b45045714dbcaf156acc633ea71/transformed/D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -25,6 +25,6 @@
       type="INSTRUMENTATION_TEST"
       applicationId="com.carlex.drive.test"
       generatedResourceFolders="build/generated/res/resValues/androidTest/debug"
-      desugaredMethodsFiles="/data/data/com.termux/files/home/.gradle/caches/transforms-4/0570876f90afa1f0ecfc623902c7b4e8/transformed/D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="/data/data/com.termux/files/home/.gradle/caches/transforms-4/b03e4b45045714dbcaf156acc633ea71/transformed/D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

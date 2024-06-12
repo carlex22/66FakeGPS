@@ -12,6 +12,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.4.0'
+	classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+
 	//compileOnly 'de.robv.android.xposed:api:82'
     	//compileOnly 'de.robv.android.xposed:api:82:sources'
 		// NOTE: Do not place your application dependencies here; they belong
@@ -28,6 +30,7 @@ allprojects {
     		mavenCentral()
 		jcenter()
                 maven { url "https://maven.google.com" }
+		maven { url 'https://jitpack.io' }
 		maven { url 'https://api.xposed.info/' }
 		maven { url "https://repo1.maven.org/mave2/" }
     }

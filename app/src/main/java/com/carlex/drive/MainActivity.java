@@ -1,10 +1,19 @@
 package com.carlex.drive;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.os.Process;
 import android.*;
 import android.app.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
-
+import java.io.*;
+import java.util.*;
 import android.content.pm.*;
 import android.location.*;
 import android.os.*;
@@ -60,6 +69,7 @@ import java.util.List;
 import android.app.*;
 import android.content.*;
 import android.net.*;
+import java.text.SimpleDateFormat;
 import android.os.*;
 import android.view.Gravity;
 import android.app.ActivityManager;
@@ -77,7 +87,11 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import androidx.appcompat.app.AppCompatActivity;
-
+import uk.me.g4dpz.satellite.GroundStationPosition;
+	import uk.me.g4dpz.satellite.SatPos;
+	import uk.me.g4dpz.satellite.Satellite;
+	import uk.me.g4dpz.satellite.SatelliteFactory;
+	import uk.me.g4dpz.satellite.TLE;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
@@ -85,14 +99,37 @@ import androidx.core.content.ContextCompat;
 import android.content.SharedPreferences;
 
 
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
+import android.widget.ScrollView;
+
+import androidx.annotation.NonNull;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 
-
+//import com.topjohnwu.libsuexample.databinding.ActivityMainBinding;
+//import com.topjohnwu.superuser.CallbackList;
+import com.topjohnwu.superuser.Shell;
+import com.topjohnwu.superuser.ipc.RootService;
+import com.topjohnwu.superuser.nio.FileSystemManager;
 
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
-
+  //private SpaceMan spaceMan;
 public static boolean processado = false;
 private static final int REQUEST_CODE_POST_NOTIFICATIONS = 1;
 public static List<LatLng> wPoints  = new ArrayList<>();    
@@ -138,6 +175,9 @@ public static SeekBar turboSeekBar;
 public static BitmapDescriptor transparentIcon;
 public static List<Long> timeValues = new ArrayList<>();
 public static  Handler centralizeHandler = new Handler();
+private Handler cellInfoHandler = new Handler();
+	private Handler gnssHandler = new Handler();
+//private xCellLoc cellLoc;
 public static long tempoDecorrido = 0;
 public static TextView textViewTempo;
 public static float zoom = (float) 15;
@@ -179,6 +219,12 @@ public SharedPreferences prefs;
 public static Intent fIntent;
 public static String msgLo = "Carregando...";
 public static boolean load = false;
+public TextView tSat;
+public TextView tCel;
+
+public static boolean su = false;
+private static final long MINUTE_IN_MILLIS = 15000;
+
 
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -186,12 +232,14 @@ protected void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.main);
 
+
+
+
 	//textview main
 	tbear = findViewById(R.id.tbear);
 	tspeed = findViewById(R.id.tspeed);
 	talti = findViewById(R.id.talti);
 	textViewTempo = findViewById(R.id.tTempo);   
-	textViewveloMed = findViewById(R.id.tVmed);
 	gerarRotaButton = findViewById(R.id.brota);
 	puloButton = findViewById(R.id.bpulo);
 	checkloc = findViewById(R.id.checkloc);
@@ -200,8 +248,9 @@ protected void onCreate(Bundle savedInstanceState) {
 	textViewTempo = findViewById(R.id.tTempo);             
 	mapView = findViewById(R.id.mapView);
 	wClicked = false;
+	tSat = findViewById(R.id.tSat);
+	tCel = findViewById(R.id.tCel);
 
-	textViewveloMed = findViewById(R.id.tVmed);
 	Runnable centralizeRunnable;
 
 	ImageView fundo  = findViewById(R.id.fundo);
@@ -218,7 +267,7 @@ protected void onCreate(Bundle savedInstanceState) {
         turbo = prefs.getInt(KEY_TURBO, 0);
 
         // Exemplo: se turbo for 0, definir um valor padrão
-        if (turbo == 0) {
+        if (turbo == 0) {	
             turbo = 5; // Exemplo de valor padrão
             saveTurboValue(turbo); // Salvar o valor padrão
         }
@@ -358,6 +407,8 @@ protected void onPostCreate(Bundle savedInstanceState) {
 
 
 
+
+
 protected void onStart() {
         super.onStart();
 	new VerifyLocationTask(this, locationManager).execute();
@@ -369,12 +420,59 @@ protected void onStart() {
 }
 	
 
+private boolean isDeviceRooted() {
+    // Verifica se o arquivo su está presente
+    File file = new File("/system/xbin/su");
+    if (file.exists()) {
+        return true;
+    }
+
+    // Verifica se o arquivo su está presente
+    file = new File("/system/bin/su");
+    return file.exists();
+}
+
+
+
 @Override
-protected void onResume() {                     
-    super.onResume();                         
+protected void onResume() {         
+    super.onResume();                
+
+    boolean isRooted = isDeviceRooted();
+
+    if (isRooted) {
+        /*try {
+            Process process = Runtime.getRuntime().exec("su");
+            DataOutputStream outputStream = new DataOutputStream(process.getOutputStream());
+            
+            // Adiciona o provedor de localização GPS, network e wifi às configurações permitidas
+            outputStream.writeBytes("settings put secure location_providers_allowed +gps,network,wifi\n");
+            outputStream.flush();
+            
+            // Sai do shell root
+            outputStream.writeBytes("exit\n");
+            outputStream.flush();
+            
+            // Espera o término do processo
+            process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }*/
+    }	
+
     mapView.onResume();            
     //mapaCentralizar = true;
     mapView.setVisibility(View.VISIBLE);
+
+	//cellLoc = new xCellLoc(this);
+        //cellLoc.startUpdatingCellLocation();
+  
+
+
+     //DriverInfo driverinfo = new DriverInfo(MainActivity.this, "1123456");
+     //GetCell cell = new GetCell(MainActivity.this, latLng.latitude, latLng.longitude);
+
     inicar=true;
     if (!FakeLocationService1.isServiceRunning()) {                 
         //checkloc.setChecked(true);         
@@ -396,10 +494,30 @@ protected void onResume() {
 	       }
        }
     }
-
 }
 
 
+private String readRawTextFile(int resId) {
+        InputStream inputStream = getResources().openRawResource(resId);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
 
 public static  boolean isServiceRunning(Class<?> serviceClass) {
     ActivityManager manager = (ActivityManager) MainActivity.mainApp.getSystemService(Context.ACTIVITY_SERVICE);
@@ -697,6 +815,99 @@ public class SegmentoRota {
 
 */
 
+
+private static float[] computeDistanceAndBearing(double lat1, double lon1, double lat2, double lon2) {
+        int MAXITERS = 20;
+        lat1 *= Math.PI / 180.0;
+        lat2 *= Math.PI / 180.0;
+        lon1 *= Math.PI / 180.0;
+        lon2 *= Math.PI / 180.0;
+
+        double a = 6378137.0;
+        double b = 6356752.3142;
+        double f = (a - b) / a;
+        double aSqMinusBSqOverBSq = (a * a - b * b) / (b * b);
+
+        double L = lon2 - lon1;
+        double A = 0.0;
+        double U1 = Math.atan((1.0 - f) * Math.tan(lat1));
+        double U2 = Math.atan((1.0 - f) * Math.tan(lat2));
+
+        double cosU1 = Math.cos(U1);
+        double cosU2 = Math.cos(U2);
+        double sinU1 = Math.sin(U1);
+        double sinU2 = Math.sin(U2);
+        double cosU1cosU2 = cosU1 * cosU2;
+        double sinU1sinU2 = sinU1 * sinU2;
+
+        double sigma = 0.0;
+        double deltaSigma = 0.0;
+        double cosSqAlpha = 0.0;
+        double cos2SM = 0.0;
+        double cosSigma = 0.0;
+        double sinSigma = 0.0;
+        double cosLambda = 0.0;
+        double sinLambda = 0.0;
+
+        double lambda = L;
+        for (int iter = 0; iter < MAXITERS; iter++) {
+            double lambdaOrig = lambda;
+            cosLambda = Math.cos(lambda);
+            sinLambda = Math.sin(lambda);
+            double t1 = cosU2 * sinLambda;
+            double t2 = cosU1 * sinU2 - sinU1 * cosU2 * cosLambda;
+            double sinSqSigma = t1 * t1 + t2 * t2;
+            sinSigma = Math.sqrt(sinSqSigma);
+            cosSigma = sinU1sinU2 + cosU1cosU2 * cosLambda;
+            sigma = Math.atan2(sinSigma, cosSigma);
+            double sinAlpha = (sinSigma == 0) ? 0.0 :
+				cosU1cosU2 * sinLambda / sinSigma;
+            cosSqAlpha = 1.0 - sinAlpha * sinAlpha;
+            cos2SM = (cosSqAlpha == 0) ? 0.0 :
+				cosSigma - 2.0 * sinU1sinU2 / cosSqAlpha;
+
+            double uSquared = cosSqAlpha * aSqMinusBSqOverBSq;
+            A = 1 + (uSquared / 16384.0) *
+				(4096.0 + uSquared *
+				(-768 + uSquared * (320.0 - 175.0 * uSquared)));
+            double B = (uSquared / 1024.0) *
+				(256.0 + uSquared *
+				(-128.0 + uSquared * (74.0 - 47.0 * uSquared)));
+            double C = (f / 16.0) *
+				cosSqAlpha *
+				(4.0 + f * (4.0 - 3.0 * cosSqAlpha));
+            double cos2SMSq = cos2SM * cos2SM;
+            deltaSigma = B * sinSigma *
+				(cos2SM + (B / 4.0) *
+				(cosSigma * (-1.0 + 2.0 * cos2SMSq) -
+				(B / 6.0) * cos2SM *
+				(-3.0 + 4.0 * sinSigma * sinSigma) *
+				(-3.0 + 4.0 * cos2SMSq)));
+
+            lambda = L +
+				(1.0 - C) * f * sinAlpha *
+				(sigma + C * sinSigma *
+				(cos2SM + C * cosSigma *
+				(-1.0 + 2.0 * cos2SM * cos2SM)));
+
+            double delta = (lambda - lambdaOrig) / lambda;
+            if (Math.abs(delta) < 1.0e-12) {
+                break;
+            }
+        }
+
+        float distance = (float) (b * A * (sigma - deltaSigma));
+        float initialBearing = (float) Math.atan2(cosU2 * sinLambda,
+												  cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
+        initialBearing *= 180.0 / Math.PI;
+        float finalBearing = (float) Math.atan2(cosU1 * sinLambda,
+												-sinU1 * cosU2 + cosU1 * sinU2 * cosLambda);
+        finalBearing *= 180.0 / Math.PI;
+
+        return new float[]{distance, initialBearing, finalBearing};
+    }
+
+
 //processar resposta dados api
 public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
     rotaFake = new ArrayList<>();
@@ -717,13 +928,28 @@ public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
 
 
 	//procesamento inicial  lista pontos rotafake
-        for (int i = 0; i < pontos.size() - 1; i++) {
-            LatLng pontoAtual = pontos.get(i);
-            LatLng proximoPonto = pontos.get(i + 1);
-            float bearing = calcularBearing(pontoAtual, proximoPonto);
-	    double distancia = calcularDistancia(pontoAtual, proximoPonto);
+        for (int i = 1; i < pontos.size() - 1; i++) {
+            LatLng pontoAtual = pontos.get(i-1);
+            LatLng proximoPonto = pontos.get(i);
+
+	    float[] resultado = computeDistanceAndBearing(pontoAtual.latitude, pontoAtual.longitude, proximoPonto.latitude, proximoPonto.longitude);
+
+
+	    float bearing =  resultado[1];
+            float distancia =  resultado[0];
+
+	    //bearing = (float) ((bearing + 180.0) % 360.0 - 180.0);
+
+
+            //float bearing = calcularBearing(pontoAtual, proximoPonto);
+	    //double distancia = calcularDistancia(pontoAtual, proximoPonto);
+
 	    double tempoo = (distancia / velocidade)*1000;
-            Object[] dadosSegmento = new Object[]{indiceSegmento, pontoAtual, bearing, velocidade, tempoo, distancia, tempooEmSegundos, distanciatotalmetros, freio};
+            Object[] dadosSegmento = new Object[]{
+		    indiceSegmento, 
+		    //pontoAtual, 
+		    proximoPonto,
+		    bearing, velocidade, tempoo, distancia, tempooEmSegundos, distanciatotalmetros, freio};
             rotaFake.add(dadosSegmento);
 
 	    //adicionar pontos nova poliline
@@ -749,21 +975,30 @@ public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
      }
 
      // Recalcular os valores de distância e bering 
-     for (int i = 0; i < rotaFake.size(); i++) {
-    	Object[] dadosSegmento = rotaFake.get(i);
+     for (int i = 1; i < rotaFake.size()-1; i++) {
+	Object[] proximoDadosSegmento = rotaFake.get(i);
+    	Object[] dadosSegmento = rotaFake.get(i-1);
     	LatLng pontoAtual = (LatLng) dadosSegmento[1]; 
     	LatLng proximoPonto = null;
-    	if (i < rotaFake.size() - 1) {
-        	Object[] proximoDadosSegmento = rotaFake.get(i + 1);
+    	//if (i < rotaFake.size()) {
+        	//proximoDadosSegmento = rotaFake.get(i);
         	proximoPonto = (LatLng) proximoDadosSegmento[1]; 
-    	}
-    	if (proximoPonto != null) {
-        	float bearing = calcularBearing(pontoAtual, proximoPonto);
-        	double distancia = calcularDistancia(pontoAtual, proximoPonto); 
-        	dadosSegmento[2] = bearing; 
-        	dadosSegmento[5] = distancia;
-    	}
-    	rotaFake.set(i, dadosSegmento); 
+    	//}
+    	//if (proximoPonto != null) {
+
+		float[] resultado = computeDistanceAndBearing(pontoAtual.latitude, pontoAtual.longitude, proximoPonto.latitude, proximoPonto.longitude);                                                                                     
+		float bearing =  resultado[1];
+		float distancia =  resultado[0];                                                      
+		//bearing = (float) ((bearing + 180.0) % 360.0 - 180.0);
+        	//float bearing = calcularBearing(pontoAtual, proximoPonto);
+        	//double distancia = calcularDistancia(pontoAtual, proximoPonto); 
+		proximoDadosSegmento[2] = bearing;
+		proximoDadosSegmento[5] = distancia;
+        	//dadosSegmento[2] = bearing; 
+        	//dadosSegmento[5] = distancia;
+    	//}
+	rotaFake.set(i, proximoDadosSegmento);
+    	//rotaFake.set(i, dadosSegmento); 
      }
 
      //simular freio  curvas
@@ -846,7 +1081,11 @@ private void salvarRotafakeEmArquivo() {
 
                 // Remover todos os registros exceto
 
-                MyApp.getDatabase().rotaFakeDao().deleteAll();
+                MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
+
+		//Intent intent = new Intent("com.example.ACTION_STOP_SERVICE");
+		//sendBroadcast(intent);
+
 
                 for (Object[] dadosSegmento : rotaFake) {
                     int indiceSegmento = (int) dadosSegmento[0];
@@ -891,10 +1130,13 @@ private void procesarrMovimento() {
     double tempototal = 100; // tempo total fixo para distribuição
     int numerosegmentos = 0;
     double sumntempo = 0.0;
+    double nntempo =0;
+    double tssum = 0;
+    double ttotal =0;
     int ii = 0; // índice inicial para o loop
-
+    int i=0;
     // Iterar sobre a lista rotaFake
-    for (int i = ii; i < rotaFake.size(); i++) {
+    for (i = ii; i < rotaFake.size(); i++) {
         // Contar número de segmentos com o mesmo índice
         Object[] dadosSegmento = rotaFake.get(i);
         double ntempo = (double) dadosSegmento[4];
@@ -923,14 +1165,45 @@ private void procesarrMovimento() {
             ii = i;
         }
 
+
+	if (indiceSegmento != (int) dadosSegmento[0]){
+		ttotal += tempototal;
+	}
         // Atualizar o índice do segmento
 	long tempotlong = (long) dadosSegmento[6];
 	tempototal = (double) (tempotlong*1000);
         indiceSegmento = (int) dadosSegmento[0];
     }	
 
-    procesarrMovimentofim();
 
+    double tt = 0;
+
+    for (int j = 0; j < rotaFake.size(); j++) {   
+	 Object[] NdadosSegmento = rotaFake.get(j);
+	 double ntempo = (double) NdadosSegmento[4];
+	 tt += ntempo;
+    }
+
+
+    String a = "t"+ formatarTempo(((long) tt/1000));
+    mToast(a);
+
+ a = "tt"+ formatarTempo(((long) ttotal /1000));    
+ mToast(a);
+
+    for (int j = 0; j < rotaFake.size(); j++) {
+       Object[] NdadosSegmento = rotaFake.get(j);    
+	double ntempo = (double) NdadosSegmento[4];              
+	// Distribuir ponderadamente o valor de ttotal
+        double peso = (ntempo / tt) * numerosegmentos;
+	ntempo = (ttotal / numerosegmentos) * peso;             
+	NdadosSegmento[4] = ntempo;
+	rotaFake.set(j, NdadosSegmento);
+    }
+
+
+
+    procesarrMovimentofim();
 }
 
 
@@ -947,8 +1220,8 @@ private void procesarrMovimentofim() {
 		double freio  = (double) dadosSegmento[8]; 
 		//double ntempo = (double) dadosSegmento[4]; 
 		velocidade *= (1 - freio);
-		velocidade = Math.max(0.1, Math.min(velocidade, 250));
-		double distancia = (double) dadosSegmento[5]; 
+		velocidade = Math.max(2, Math.min(velocidade, 60));
+		float distancia = (float) dadosSegmento[5]; 
 		double ntempo = (distancia / velocidade) * 1000;
 		dadosSegmento[3] = (double) velocidade;
 		dadosSegmento[4] = (double) ntempo;    
@@ -959,7 +1232,7 @@ private void procesarrMovimentofim() {
 
 
 
-//processo simular freio aceleracao curvas
+//processo simular freio aceleracao curvasi
 private void simularMovimento() {
     if (rotaFake == null || rotaFake.isEmpty()) {
         Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");
@@ -974,7 +1247,7 @@ private void simularMovimento() {
 
     
     // freio inial/final
-    for (i = 0; i < Math.min(50, rotaFake.size()); i++) {
+    for (i = 0; i < Math.min(20, rotaFake.size()); i++) {
         Object[] dadosSegmento = rotaFake.get(i);
         dadosSegmento[8] = nfreio;
         rotaFake.set(i, dadosSegmento);
@@ -982,8 +1255,8 @@ private void simularMovimento() {
     }
 
     //suavizar mudanca  velocudade freio/acelerador
-    int ss = rotaFake.size()-50;
-    for (i = 50; i < ss - 1; i++) {
+    int ss = rotaFake.size()-20;
+    for (i = 20; i < ss - 1; i++) {
     Object[] sdadosSegmento = rotaFake.get(i);
       double speedAtual = (double) sdadosSegmento[3];
       Object[] sdadosProxSegmento = rotaFake.get(i + 1);
@@ -1027,16 +1300,16 @@ private void simularMovimento() {
         //float diffBearing = 0;
 	//double diffSpeed = 0;
 	//double parteSeed = 0;
-	int turboo = 10;
+	int turboo = 7;
         
 	Object[] dadosSegmento = rotaFake.get(i);
-        double bearingAtual = (float) dadosSegmento[2];
+        float bearingAtual = (float) dadosSegmento[2];
 	double velocidadeAtual = (double) dadosSegmento[3];
-	double distcu = (double) dadosSegmento[5];
+	float distcu = (float) dadosSegmento[5];
 
 
 	Object[] dadosProximoSegmento = rotaFake.get(i+9);
-        double bearingProximo = (float) dadosProximoSegmento[2];
+        float bearingProximo = (float) dadosProximoSegmento[2];
 	int diffBearing = dBearing(bearingAtual, bearingProximo);
 
 	if(diffBearing>90)
@@ -1164,6 +1437,52 @@ public void drawRoute(List<LatLng> routePoints) {
 		googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));                 
 }
 
+/*
+private Runnable cellInfoRunnable = new Runnable() {
+		public void run() {
+			JSONObject jsonResponse;
+			double lat1 = 0.0, lon1 = 0.0, alt1 = 0.0;
+			if (latLng!=null){
+				lat1 = latLng.latitude;
+				lon1 = latLng.longitude;
+				alt1 = currentAlt;
+			}
+			jsonResponse =  Cellinfo.Cellinfo(lat1, lon1);
+			if (jsonResponse!=null){
+				tCel.setText(jsonResponse.toString());
+			}
+			cellInfoHandler.postDelayed(this, 10000); 
+		}
+	};
+	
+	private Runnable gnssRunnable = new Runnable() {
+		public void run() {
+			String tles = readRawTextFile(R.raw.gps);
+			double lat1 = 0.0, lon1 = 0.0, alt1 = 0.0;
+			if (latLng!=null){
+			lat1 = latLng.latitude;           
+			lon1 = latLng.longitude;
+			alt1 = currentAlt;
+			}
+			spaceMan = new SpaceMan(tles, lat1, lon1, alt1);
+			sting log = "";
+			for (SatelliteInfo si: spaceMan) {
+				log += "\n[";
+				log += ("SAT " + si.tle.getName() + " above_horizon " + si.satPos.isAboveHorizon());
+				log += (", azi " + si.satPos.getAzimuth() + " ele " + si.satPos.getElevation() +
+					", lon " + si.satPos.getLongitude() + ", lat " + si.satPos.getLatitude() + ", alt " + si.satPos.getAltitude())+ "] ";
+			}
+			tSat.setText(log);
+			gnssHandler.postDelayed(this, 1000); 
+		}
+	};
+
+*/
+
+
+
+
+
 
 
 
@@ -1172,6 +1491,9 @@ public void centralizar(){
 	if (googleMap == null) {
 		return;
 	}
+
+	//cellInfoHandler.postDelayed(cellInfoRunnable, 10000);
+	//gnssHandler.postDelayed(gnssRunnable, 1000);
 
 
 	String schro = "00:00:00";
@@ -1406,10 +1728,10 @@ protected void onPause() {
             startActivityForResult(oIntent, 1234); 
 	    // 1234 é um código de solicitação arbitrário
         } else {
-    //       startOverlayService();
+           //startOverlayService();
         }
     } else {
-  //      startOverlayService();
+        //startOverlayService();
     }
 }
 

@@ -4,7 +4,7 @@
     <issue
         id="LintBaseline"
         severity="Information"
-        message="41 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml"
+        message="40 warnings were filtered out because they are listed in the baseline file, lint-baseline.xml"
         category="Lint"
         priority="10"
         summary="Baseline Applied"
@@ -16,13 +16,491 @@
     <issue
         id="LintBaselineFixed"
         severity="Information"
-        message="15 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with `android.lintOptions.checkDependencies=true`. Unmatched issue types: DefaultLocale (6), GradleDependency, HardcodedText (2), IconDuplicatesConfig (5), InlinedApi (4), SuspiciousIndentation (2)"
+        message="16 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with `android.lintOptions.checkDependencies=true`. Unmatched issue types: DefaultLocale (6), GradleDependency, HardcodedText (3), IconDuplicatesConfig (5), InlinedApi (4), SuspiciousIndentation (2)"
         category="Lint"
         priority="10"
         summary="Baselined Issues Fixed"
         explanation="If a lint baseline describes a problem which is no longer reported, then the problem has either been fixed, or perhaps the issue type has been disabled. In any case, the entry can be removed from the baseline (such that if the issue is reintroduced at some point, lint will complain rather than just silently starting to match the old baseline entry again.)">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/lint-baseline.xml"/>
+    </issue>
+
+    <issue
+        id="IidCompatibilityCheckFailure"
+        severity="Information"
+        message="Check failed with exception: java.lang.NoSuchMethodException: com.android.tools.lint.detector.api.LintModelModuleProject.getGradleProjectModel()"
+        category="Lint"
+        priority="1"
+        summary="Firebase IID Compatibility Check Unable To Run"
+        explanation="The check failed to run as it encountered unknown failure.&#xA;This is most likely caused by a new version of Android Gradle Plugin that this check does not support.&#xA;Please make sure your build does not depend on firebase-iid version earlier than 20.1.1 as it will cause issues.">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app"/>
+    </issue>
+
+    <issue
+        id="IidCompatibilityCheckFailure"
+        severity="Information"
+        message="Check failed with exception: java.lang.NoSuchMethodException: com.android.tools.lint.detector.api.LintModelModuleProject.getGradleProjectModel()"
+        category="Lint"
+        priority="1"
+        summary="Firebase IID Compatibility Check Unable To Run"
+        explanation="The check failed to run as it encountered unknown failure.&#xA;This is most likely caused by a new version of Android Gradle Plugin that this check does not support.&#xA;Please make sure your build does not depend on firebase-iid version earlier than 20.1.1 as it will cause issues.">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app"/>
+    </issue>
+
+    <issue
+        id="IidCompatibilityCheckFailure"
+        severity="Information"
+        message="Check failed with exception: java.lang.NoSuchMethodException: com.android.tools.lint.detector.api.LintModelModuleProject.getGradleProjectModel()"
+        category="Lint"
+        priority="1"
+        summary="Firebase IID Compatibility Check Unable To Run"
+        explanation="The check failed to run as it encountered unknown failure.&#xA;This is most likely caused by a new version of Android Gradle Plugin that this check does not support.&#xA;Please make sure your build does not depend on firebase-iid version earlier than 20.1.1 as it will cause issues.">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1="   gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);  "
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="76"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1=" gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="97"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1=" networkLocation = locationManager.getLastKnownLocation(NETWORK_PROVIDER);"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="98"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1="            locationManager.registerGnssStatusCallback(gnssStatusCallback);"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/GNSSManager.java"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1="            locationManager.registerGnssStatusCallback(gnssCallback);"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/GpsGnss.java"
+            line="107"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        severity="Error"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        category="Correctness"
+        priority="9"
+        summary="Missing Permissions"
+        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
+        errorLine1="        fusedLocationClient.getLastLocation()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Main.java"
+            line="64"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="MockLocation"
+        severity="Fatal"
+        message="Mock locations should only be requested in a test or debug-specific manifest file (typically `src/debug/AndroidManifest.xml`)"
+        category="Correctness"
+        priority="8"
+        summary="Using mock location provider in production"
+        explanation="Using a mock location provider (by requiring the permission `android.permission.ACCESS_MOCK_LOCATION`) should **only** be done in debug builds (or from tests). In Gradle projects, that means you should only request this permission in a test or debug source set specific manifest file.&#xA;&#xA;To fix this, create a new manifest file in the debug folder and move the `&lt;uses-permission>` element there. A typical path to a debug manifest override file in a Gradle project is src/debug/AndroidManifest.xml."
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.ACCESS_MOCK_LOCATION&quot;/>"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml"
+            line="15"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="TextViewEdits"
+        severity="Warning"
+        message="Attribute `android:editable` should not be used with `&lt;TextView>`: Change element type to `&lt;EditText>` ?"
+        category="Correctness"
+        priority="7"
+        summary="TextView should probably be an EditText instead"
+        explanation="Using a `&lt;TextView>` to input text is generally an error, you should be using `&lt;EditText>` instead.  `EditText` is a subclass of `TextView`, and some of the editing support is provided by `TextView`, so it&apos;s possible to set some input-related properties on a `TextView`. However, using a `TextView` along with input attributes is usually a cut &amp; paste error. To input text you should be using `&lt;EditText>`.&#xA;&#xA;This check also checks subclasses of `TextView`, such as `Button` and `CheckBox`, since these have the same issue: they should not be used with editable attributes."
+        errorLine1="            android:editable=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/gnssmain.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="TextViewEdits"
+        severity="Warning"
+        message="Attribute `android:inputType` should not be used with `&lt;TextView>`: Change element type to `&lt;EditText>` ?"
+        category="Correctness"
+        priority="7"
+        summary="TextView should probably be an EditText instead"
+        explanation="Using a `&lt;TextView>` to input text is generally an error, you should be using `&lt;EditText>` instead.  `EditText` is a subclass of `TextView`, and some of the editing support is provided by `TextView`, so it&apos;s possible to set some input-related properties on a `TextView`. However, using a `TextView` along with input attributes is usually a cut &amp; paste error. To input text you should be using `&lt;EditText>`.&#xA;&#xA;This check also checks subclasses of `TextView`, such as `Button` and `CheckBox`, since these have the same issue: they should not be used with editable attributes."
+        errorLine1="            android:inputType=&quot;textMultiLine&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/gnssmain.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String nmeaOutput = String.format(&quot;%s,%s.00,%s,%s,%s,%s,%d,%02d,%.2f,%.1f,M,%.1f,M,%s,%s&quot;,"
+        errorLine2="                            ^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgga.java"
+            line="34"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String nmeaOutput = String.format(&quot;%s,%s,%d,%s,%.2f,%.2f,%.2f&quot;,"
+        errorLine2="                            ^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgsa.java"
+            line="39"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String nmeaOutput = String.format(&quot;%s,%d,%d,%d%s&quot;,"
+        errorLine2="                            ^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgsv.java"
+            line="28"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="            this.satsIds.add(String.format(&quot;%02d&quot;, i));"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/GpgsvGroup.java"
+            line="16"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String nmeaOutput = String.format(&quot;%s,%.2f,T&quot;, SENTENCE_ID, heading);"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gphdt.java"
+            line="13"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String nmeaOutput = String.format(&quot;%s,%s.000,%s,%s,%s,%s,%s,%.3f,%.2f,%s,%s,%s,%s&quot;,"
+        errorLine2="                            ^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gprmc.java"
+            line="34"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="   .add(String.format(&quot;%.2f,T&quot;, headingTrue))"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpvtg.java"
+            line="22"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="   .add(String.format(&quot;%.2f,N&quot;, sogKnots))"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpvtg.java"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="   .add(String.format(&quot;%.2f,K&quot;, getSogKmhr()))"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpvtg.java"
+            line="25"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `toUpperCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        String hexStr = Integer.toHexString(checkSum).toUpperCase();"
+        errorLine2="                                                      ~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/NmeaMsg.java"
+            line="55"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        return new String[] {String.format(&quot;%02d%06.3f&quot;, graus, minutosDecimal), Character.toString(direcao)};"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Position.java"
+            line="40"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        return String.format(&quot;%03d° %06.3f&apos; %c&quot;, graus, minutosDecimal, direcao);"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Position.java"
+            line="47"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        severity="Warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        return String.format(&quot;%03d° %06.3f&apos; %c&quot;, graus, minutosDecimal, direcao);"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Position.java"
+            line="55"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        severity="Warning"
+        message="Field requires API level 31 (current min is 24): `android.location.provider.ProviderProperties#ACCURACY_FINE`"
+        category="Correctness"
+        priority="6"
+        summary="Using inlined constants on older versions"
+        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
+        errorLine1="     locationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);                      "
+        errorLine2="                                                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="233"
+            column="133"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        severity="Warning"
+        message="Field requires API level 31 (current min is 24): `android.location.provider.ProviderProperties#POWER_USAGE_LOW`"
+        category="Correctness"
+        priority="6"
+        summary="Using inlined constants on older versions"
+        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
+        errorLine1="     locationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);                      "
+        errorLine2="                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="233"
+            column="97"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        severity="Warning"
+        message="Field requires API level 31 (current min is 24): `android.location.provider.ProviderProperties#ACCURACY_COARSE`"
+        category="Correctness"
+        priority="6"
+        summary="Using inlined constants on older versions"
+        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
+        errorLine1="     locationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);                   "
+        errorLine2="                                                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="235"
+            column="137"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        severity="Warning"
+        message="Field requires API level 31 (current min is 24): `android.location.provider.ProviderProperties#POWER_USAGE_LOW`"
+        category="Correctness"
+        priority="6"
+        summary="Using inlined constants on older versions"
+        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and decide whether it&apos;s safe and can be suppressed or whether the code needs to be guarded.&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level."
+        errorLine1="     locationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);                   "
+        errorLine2="                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+            line="235"
+            column="101"/>
     </issue>
 
     <issue
@@ -37,7 +515,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="56"
+            line="36"
             column="17"/>
     </issue>
 
@@ -106,24 +584,229 @@
     </issue>
 
     <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
         category="Correctness"
         priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="     XposedHelpers.findAndHookMethod("
-        errorLine2="~~~~~">
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                   ~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationModule.java"
-            line="150"
-            column="1"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgga.java"
+            line="21"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationModule.java"
-            line="78"
-            column="1"
-            message="Previous line indentation here"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgga.java"
+            line="21"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                   ~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgll.java"
+            line="15"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpgll.java"
+            line="15"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                   ~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gprmc.java"
+            line="20"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gprmc.java"
+            line="20"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcDate = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;ddMMyy&quot;));"
+        errorLine2="                                   ~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gprmc.java"
+            line="21"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcDate = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;ddMMyy&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gprmc.java"
+            line="21"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                   ~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpzda.java"
+            line="12"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcTime = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;HHmmss&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpzda.java"
+            line="12"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#format`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcDate = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;dd,MM,yyyy&quot;));"
+        errorLine2="                                   ~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpzda.java"
+            line="13"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.format.DateTimeFormatter#ofPattern`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcDate = utcDateTime.format(DateTimeFormatter.ofPattern(&quot;dd,MM,yyyy&quot;));"
+        errorLine2="                                                            ~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/Gpzda.java"
+            line="13"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 26 (current min is 24): `java.time.LocalDateTime#now`"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="        this.utcDateTime = LocalDateTime.now();"
+        errorLine2="                                         ~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/gnssData/NmeaMsg.java"
+            line="25"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        severity="Warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        category="Correctness"
+        priority="6"
+        summary="Target SDK attribute is not targeting latest version"
+        explanation="When your application runs on a version of Android that is more recent than your `targetSdkVersion` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdkVersion` is less than 14, your app may get an option button in the UI.&#xA;&#xA;To fix this issue, set the `targetSdkVersion` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: https://developer.android.com/reference/android/os/Build.VERSION_CODES.html as well as follow this guide:&#xA;https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        url="https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        urls="https://developer.android.com/distribute/best-practices/develop/target-sdk.html,https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        errorLine1="        targetSdkVersion 33"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="20"
+            column="9"/>
     </issue>
 
     <issue
@@ -134,36 +817,15 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1=" isRunning = true;"
+        errorLine1=" this.locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);"
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="45"
+            line="63"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="43"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="   fusedLocationsProvider.spoof(fusedLocation);"
-        errorLine2="~~~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="93"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="92"
+            line="61"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -180,11 +842,11 @@
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="126"
+            line="187"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="64"
+            line="128"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -201,11 +863,11 @@
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="159"
+            line="263"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
-            line="158"
+            line="262"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -222,11 +884,11 @@
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
-            line="31"
+            line="33"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
-            line="30"
+            line="32"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -239,15 +901,57 @@
         priority="6"
         summary="Suspicious indentation"
         explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1="     sToast(&quot;FALHA AO AUTORIZAR FAKE FUSED&quot;);"
+        errorLine1="     Log.d(&quot;fused&quot;, &quot;FALHA AO AUTORIZAR FAKE FUSED&quot;);"
         errorLine2="~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
-            line="105"
+            line="111"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java"
-            line="104"
+            line="110"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        severity="Warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        category="Correctness"
+        priority="6"
+        summary="Suspicious indentation"
+        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
+        errorLine1="     Log.d(&quot;GpsGnss&quot;, &quot;GpsGnss loaded&quot;);"
+        errorLine2="~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/Main.java"
+            line="97"
+            column="1"/>
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/Main.java"
+            line="96"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        severity="Warning"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        category="Correctness"
+        priority="6"
+        summary="Suspicious indentation"
+        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
+        errorLine1=" nfreio = Math.max(0.0, nfreio - 0.01); "
+        errorLine2="~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1254"
+            column="1"/>
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
+            line="1253"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -264,11 +968,11 @@
         errorLine2="~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1158"
+            line="1431"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1156"
+            line="1429"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -285,11 +989,11 @@
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1206"
+            line="1528"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1179"
+            line="1501"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -306,11 +1010,11 @@
         errorLine2="~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1381"
+            line="1703"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1380"
+            line="1702"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -327,32 +1031,11 @@
         errorLine2="~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1441"
+            line="1763"
             column="1"/>
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1440"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1=" params.gravity = Gravity.BOTTOM | Gravity.RIGHT;"
-        errorLine2="~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="59"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="53"
+            line="1762"
             column="1"
             message="Previous line indentation here"/>
     </issue>
@@ -400,42 +1083,19 @@
     </issue>
 
     <issue
-        id="SuspiciousIndentation"
-        severity="Warning"
-        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
-        category="Correctness"
-        priority="6"
-        summary="Suspicious indentation"
-        explanation="This check looks for cases where the indentation suggests a grouping that isn&apos;t actually there in the code. A common example of this would be something like&#xA;```kotlin&#xA;if (column > width)&#xA;    line++&#xA;    column = 0&#xA;```&#xA;Here, the `column = 0` line will be executed every single time, not just if the condition is true."
-        errorLine1=" isMockLocationsEnabled=true;"
-        errorLine2="~">
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
-            line="150"
-            column="1"/>
-        <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/xLocationManager.java"
-            line="149"
-            column="1"
-            message="Previous line indentation here"/>
-    </issue>
-
-    <issue
-        id="InflateParams"
-        severity="Warning"
-        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        id="ProtectedPermissions"
+        severity="Error"
+        message="Permission is only granted to system apps"
         category="Correctness"
         priority="5"
-        summary="Layout Inflation without a Parent"
-        explanation="When inflating a layout, avoid passing in null as the parent view, since otherwise any layout parameters on the root of the inflated layout will be ignored."
-        url="https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/"
-        urls="https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/"
-        errorLine1="        overlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);"
-        errorLine2="                                                                                 ~~~~">
+        summary="Using system app permission"
+        explanation="Permissions with the protection level `signature`, `privileged` or `signatureOrSystem` are only granted to system apps. If an app is a regular non-system app, it will never be able to use these permissions."
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.ACCESS_MOCK_LOCATION&quot;/>"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="46"
-            column="82"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml"
+            line="15"
+            column="22"/>
     </issue>
 
     <issue
@@ -450,7 +1110,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
-            line="50"
+            line="81"
             column="20"/>
     </issue>
 
@@ -466,7 +1126,39 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
-            line="54"
+            line="85"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.core:core than 1.12.0 is available: 1.13.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;androidx.core:core:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="88"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.13.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;androidx.core:core-ktx:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="89"
             column="20"/>
     </issue>
 
@@ -482,7 +1174,39 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
-            line="59"
+            line="90"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.android.gms:play-services-ads-identifier than 17.0.0 is available: 18.1.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;com.google.android.gms:play-services-ads-identifier:17.0.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="95"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.firebase:firebase-messaging than 20.2.4 is available: 24.0.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;com.google.firebase:firebase-messaging:20.2.4&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="98"
             column="20"/>
     </issue>
 
@@ -498,7 +1222,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
-            line="62"
+            line="102"
             column="20"/>
     </issue>
 
@@ -514,8 +1238,40 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
-            line="75"
+            line="115"
             column="20"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        severity="Warning"
+        message="`android:editable` is deprecated: Use an `&lt;EditText>` to make it editable"
+        category="Correctness"
+        priority="2"
+        summary="Using deprecated resources"
+        explanation="Deprecated views, attributes and so on are deprecated because there is a better way to do something. Do it that new way. You&apos;ve been warned."
+        errorLine1="            android:editable=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/gnssmain.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        severity="Warning"
+        message="Unnecessary; SDK_INT is always >= 24"
+        category="Performance"
+        priority="6"
+        summary="Obsolete SDK_INT Version Check"
+        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
+        errorLine1="    @RequiresApi(api = Build.VERSION_CODES.N)"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/GNSSManager.java"
+            line="14"
+            column="5"/>
     </issue>
 
     <issue
@@ -530,7 +1286,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1402"
+            line="1724"
             column="9"/>
     </issue>
 
@@ -578,7 +1334,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="100"
+            line="137"
             column="8"/>
     </issue>
 
@@ -594,7 +1350,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="101"
+            line="138"
             column="8"/>
     </issue>
 
@@ -610,7 +1366,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="102"
+            line="139"
             column="8"/>
     </issue>
 
@@ -626,7 +1382,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="118"
+            line="155"
             column="8"/>
     </issue>
 
@@ -642,7 +1398,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="119"
+            line="156"
             column="8"/>
     </issue>
 
@@ -658,7 +1414,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="134"
+            line="171"
             column="8"/>
     </issue>
 
@@ -674,7 +1430,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="135"
+            line="172"
             column="8"/>
     </issue>
 
@@ -690,7 +1446,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="137"
+            line="174"
             column="8"/>
     </issue>
 
@@ -706,7 +1462,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="142"
+            line="182"
             column="8"/>
     </issue>
 
@@ -722,7 +1478,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="144"
+            line="184"
             column="8"/>
     </issue>
 
@@ -738,7 +1494,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="160"
+            line="200"
             column="8"/>
     </issue>
 
@@ -754,7 +1510,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="165"
+            line="205"
             column="8"/>
     </issue>
 
@@ -770,7 +1526,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="166"
+            line="206"
             column="8"/>
     </issue>
 
@@ -786,7 +1542,7 @@
         errorLine2="       ~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="174"
+            line="214"
             column="8"/>
     </issue>
 
@@ -802,7 +1558,7 @@
         errorLine2="    ^">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="841"
+            line="1076"
             column="5"/>
     </issue>
 
@@ -818,7 +1574,7 @@
         errorLine2="        ^">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1179"
+            line="1501"
             column="9"/>
     </issue>
 
@@ -871,6 +1627,70 @@
     </issue>
 
     <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.layout.overlay_layout` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/overlay_layout.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        severity="Warning"
+        message="This `ScrollView` layout or its `RelativeLayout` parent is unnecessary"
+        category="Performance"
+        priority="2"
+        summary="Unnecessary parent layout"
+        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
+        errorLine1="    &lt;ScrollView"
+        errorLine2="     ~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/gnssmain.xml"
+            line="6"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        severity="Warning"
+        message="This `ScrollView` layout or its `LinearLayout` parent is unnecessary"
+        category="Performance"
+        priority="2"
+        summary="Unnecessary parent layout"
+        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
+        errorLine1="    &lt;ScrollView"
+        errorLine2="     ~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="29"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        severity="Warning"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is possibly unnecessary"
+        category="Performance"
+        priority="2"
+        summary="Unnecessary parent layout"
+        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
+        errorLine1="  &lt;LinearLayout"
+        errorLine2="   ~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="55"
+            column="4"/>
+    </issue>
+
+    <issue
         id="IconLocation"
         severity="Warning"
         message="Found bitmap drawable `res/drawable/fundo.png` in densityless folder"
@@ -907,19 +1727,55 @@
     </issue>
 
     <issue
-        id="ClickableViewAccessibility"
+        id="TextFields"
         severity="Warning"
-        message="`onTouch` should call `View#performClick` when a click is detected"
-        category="Accessibility"
-        priority="6"
-        summary="Accessibility in Custom Views"
-        explanation="If a `View` that overrides `onTouchEvent` or uses an `OnTouchListener` does not also implement `performClick` and call it when clicks are detected, the `View` may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in `View#performClick` as some accessibility services invoke `performClick` when a click action should occur."
-        errorLine1="            public boolean onTouch(View v, MotionEvent event) {"
-        errorLine2="                           ~~~~~~~">
+        message="This text field does not specify an `inputType`"
+        category="Usability"
+        priority="5"
+        summary="Missing `inputType`"
+        explanation="Providing an `inputType` attribute on a text field improves usability because depending on the data to be input, optimized keyboards can be shown to the user (such as just digits and parentheses for a phone number). &#xA;&#xA;The lint detector also looks at the `id` of the view, and if the id offers a hint of the purpose of the field (for example, the `id` contains the phrase `phone` or `email`), then lint will also ensure that the `inputType` contains the corresponding type attributes.&#xA;&#xA;If you really want to keep the text field generic, you can suppress this warning by setting `inputType=&quot;text&quot;`."
+        errorLine1="        &lt;EditText"
+        errorLine2="         ~~~~~~~~">
         <location
-            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="188"
-            column="28"/>
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="34"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        severity="Warning"
+        message="Missing `autofillHints` attribute"
+        category="Usability"
+        priority="3"
+        summary="Use Autofill"
+        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
+        url="https://developer.android.com/guide/topics/text/autofill.html"
+        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        errorLine1="        &lt;EditText"
+        errorLine2="         ~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="34"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="KtxExtensionAvailable"
+        severity="Information"
+        message="Add suffix `-ktx` to enable the Kotlin extensions for this library"
+        category="Productivity"
+        priority="4"
+        summary="KTX Extension Available"
+        explanation="Android KTX extensions augment some libraries with support for modern Kotlin language features like extension functions, extension properties, lambdas, named parameters, coroutines, and more.&#xA;&#xA;In Kotlin projects, use the KTX version of a library by replacing the dependency in your `build.gradle` file. For example, you can replace `androidx.fragment:fragment` with `androidx.fragment:fragment-ktx`."
+        url="https://developer.android.com/kotlin/ktx"
+        urls="https://developer.android.com/kotlin/ktx"
+        errorLine1="    implementation &apos;androidx.core:core:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/build.gradle"
+            line="88"
+            column="20"/>
     </issue>
 
     <issue
@@ -941,6 +1797,22 @@
     </issue>
 
     <issue
+        id="LabelFor"
+        severity="Warning"
+        message="Missing accessibility label: provide either a view with an `android:labelFor` that references this view or provide an `android:hint`"
+        category="Accessibility"
+        priority="2"
+        summary="Missing accessibility label"
+        explanation="Editable text fields should provide an `android:hint` or, provided your `minSdkVersion` is at least 17, they may be referenced by a view with a `android:labelFor` attribute.&#xA;&#xA;When using `android:labelFor`, be sure to provide an `android:text` or an `android:contentDescription`.&#xA;&#xA;If your view is labeled but by a label in a different layout which includes this one, just suppress this warning from lint."
+        errorLine1="        &lt;EditText"
+        errorLine2="         ~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="34"
+            column="10"/>
+    </issue>
+
+    <issue
         id="SetTextI18n"
         severity="Warning"
         message="String literal in `setText` can not be translated. Use Android resources instead."
@@ -954,7 +1826,7 @@
         errorLine2="                         ~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/MainActivity.java"
-            line="1201"
+            line="1523"
             column="26"/>
     </issue>
 
@@ -970,8 +1842,24 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
-            line="48"
+            line="68"
             column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;cell&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                                android:text=&quot;cell&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
+            line="80"
+            column="33"/>
     </issue>
 
     <issue
@@ -986,24 +1874,24 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/main.xml"
-            line="94"
+            line="111"
             column="33"/>
     </issue>
 
     <issue
         id="RtlHardcoded"
         severity="Warning"
-        message="Use &quot;`Gravity.END`&quot; instead of &quot;`Gravity.RIGHT`&quot; to ensure correct behavior in right-to-left locales"
+        message="Use &quot;`Gravity.START`&quot; instead of &quot;`Gravity.LEFT`&quot; to ensure correct behavior in right-to-left locales"
         category="Internationalization:Bidirectional Text"
         priority="5"
         summary="Using left/right instead of start/end attributes"
         explanation="Using `Gravity#LEFT` and `Gravity#RIGHT` can lead to problems when a layout is rendered in locales where text flows from right to left. Use `Gravity#START` and `Gravity#END` instead. Similarly, in XML `gravity` and `layout_gravity` attributes, use `start` rather than `left`.&#xA;&#xA;For XML attributes such as paddingLeft and `layout_marginLeft`, use `paddingStart` and `layout_marginStart`. **NOTE**: If your `minSdkVersion` is less than 17, you should add **both** the older left/right attributes **as well as** the new start/end attributes. On older platforms, where RTL is not supported and the start/end attributes are unknown and therefore ignored, you need the older left/right attributes. There is a separate lint check which catches that type of error.&#xA;&#xA;(Note: For `Gravity#LEFT` and `Gravity#START`, you can use these constants even when targeting older platforms, because the `start` bitmask is a superset of the `left` bitmask. Therefore, you can use `gravity=&quot;start&quot;` rather than `gravity=&quot;left|start&quot;`.)"
-        errorLine1=" params.gravity = Gravity.BOTTOM | Gravity.RIGHT;"
-        errorLine2="                                           ~~~~~">
+        errorLine1="        params.gravity = Gravity.TOP | Gravity.LEFT;"
+        errorLine2="                                               ~~~~">
         <location
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/java/com/carlex/drive/OverlayService.java"
-            line="59"
-            column="44"/>
+            line="40"
+            column="48"/>
     </issue>
 
     <issue
@@ -1020,6 +1908,18 @@
             file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/res/layout/overlay_layout.xml"
             line="10"
             column="2"/>
+    </issue>
+
+    <issue
+        id="RtlEnabled"
+        severity="Warning"
+        message="The project references RTL attributes, but does not explicitly enable or disable RTL support with `android:supportsRtl` in the manifest"
+        category="Internationalization:Bidirectional Text"
+        priority="3"
+        summary="Using RTL attributes without enabling RTL support"
+        explanation="To enable right-to-left support, when running on API 17 and higher, you must set the `android:supportsRtl` attribute in the manifest `&lt;application>` element.&#xA;&#xA;If you have started adding RTL attributes, but have not yet finished the migration, you can set the attribute to false to satisfy this lint check.">
+        <location
+            file="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml"/>
     </issue>
 
 </issues>
