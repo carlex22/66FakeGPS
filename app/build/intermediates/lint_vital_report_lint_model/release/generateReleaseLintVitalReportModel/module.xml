@@ -3,7 +3,7 @@
     dir="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app"
     name=":app"
     type="APP"
-    maven="66FakeGPS:app:unspecified"
+    maven="com.github.topjohnwu.libsu:app:unspecified"
     agpVersion="8.4.0"
     buildFolder="build"
     bootClassPath="/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-34/android.jar:/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/x34/core-lambda-stubs.jar"
@@ -12,9 +12,16 @@
     neverShrinking="true">
   <lintOptions
       baselineFile="lint-baseline.xml"
+      disable="BlockedPrivateApi"
       abortOnError="true"
       absolutePaths="true"
       checkReleaseBuilds="true"
-      explainIssues="true"/>
+      explainIssues="true">
+    <severities>
+      <severity
+        id="BlockedPrivateApi"
+        severity="IGNORE" />
+    </severities>
+  </lintOptions>
   <variant name="release"/>
 </lint-module>

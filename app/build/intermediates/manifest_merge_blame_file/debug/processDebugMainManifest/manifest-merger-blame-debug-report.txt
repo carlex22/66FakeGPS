@@ -6,7 +6,7 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-9        android:targetSdkVersion="34" />
+9        android:targetSdkVersion="33" />
 10
 11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 11-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:4:5-79
@@ -41,292 +41,436 @@
 21    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 21-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:14:5-84
 21-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:14:22-82
-22
-23    <uses-feature
-23-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
-24        android:glEsVersion="0x00020000"
-24-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:27:9-41
-25        android:required="true" />
-25-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:28:9-32
-26
-27    <queries>
-27-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:30:5-34:15
-28
-29        <!-- Needs to be explicitly declared on Android R+ -->
-30        <package android:name="com.google.android.apps.maps" />
-30-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:33:9-64
-30-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:33:18-61
-31    </queries>
-32
-33    <permission
-33-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-34        android:name="com.carlex.drive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-34-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-35        android:protectionLevel="signature" />
-35-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
-36
-37    <uses-permission android:name="com.carlex.drive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-37-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
-37-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+22    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+22-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:15:5-78
+22-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:15:22-76
+23    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+23-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:16:5-75
+23-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:16:22-72
+24    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+24-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:17:5-76
+24-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:17:22-73
+25
+26    <uses-feature
+26-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
+27        android:glEsVersion="0x00020000"
+27-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:27:9-41
+28        android:required="true" />
+28-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:28:9-32
+29
+30    <queries>
+30-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:30:5-34:15
+31
+32        <!-- Needs to be explicitly declared on Android R+ -->
+33        <package android:name="com.google.android.apps.maps" />
+33-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:33:9-64
+33-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:33:18-61
+34    </queries>
+35
+36    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+36-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:24:5-68
+36-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:24:22-65
+37    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+37-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:26:5-82
+37-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:26:22-79
 38
-39    <application
-39-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:17:5-108:19
-40        android:name="com.carlex.drive.MyApp"
-40-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:22:6-27
-41        android:allowBackup="true"
-41-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:18:9-35
-42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-42-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:25:6-74
-43        android:debuggable="true"
-44        android:extractNativeLibs="false"
-45        android:icon="@drawable/ico"
-45-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:19:9-37
-46        android:label="@string/app_name"
-46-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:20:9-41
-47        android:resizeableActivity="true"
-47-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:23:9-42
-48        android:theme="@style/AppTheme" >
-48-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:21:6-37
-49        <activity
-49-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:27:2-40:20
-50            android:name="com.carlex.drive.MainActivity"
-50-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:27:12-40
-51            android:exported="true"
-51-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:29:4-27
-52            android:theme="@style/Theme.AppCompat" >
-52-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:28:3-41
-53            <intent-filter>
-53-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:30:3-33:19
-54                <action android:name="android.intent.action.MAIN" />
-54-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:31:4-56
-54-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:31:12-53
-55
-56                <category android:name="android.intent.category.LAUNCHER" />
-56-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:32:4-64
-56-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:32:14-61
-57            </intent-filter>
-58            <intent-filter>
-58-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:34:3-39:19
-59                <action android:name="android.intent.action.VIEW" />
-59-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:35:4-56
-59-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:35:12-53
-60
-61                <category android:name="android.intent.category.DEFAULT" />
-61-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:25-84
-61-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:35-81
-62                <category android:name="android.intent.category.BROWSABLE" />
-62-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:4-65
-62-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:14-62
-63
-64                <data android:scheme="waze" />
-64-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:38:4-34
-64-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:38:10-31
-65            </intent-filter>
-66        </activity>
+39    <permission
+39-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+40        android:name="com.carlex.drive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+40-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+41        android:protectionLevel="signature" />
+41-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+42
+43    <uses-permission android:name="com.carlex.drive.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/ -->
+43-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+43-->[androidx.core:core:1.13.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+44    <application
+44-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:20:5-122:19
+45        android:name="com.carlex.drive.MyApp"
+45-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:25:2-23
+46        android:allowBackup="true"
+46-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:21:9-35
+47        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+47-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:28:2-70
+48        android:debuggable="true"
+49        android:extractNativeLibs="false"
+50        android:icon="@drawable/ico"
+50-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:22:9-37
+51        android:label="@string/app_name"
+51-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:23:9-41
+52        android:resizeableActivity="true"
+52-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:26:2-35
+53        android:theme="@style/AppTheme" >
+53-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:24:2-33
+54        <activity
+54-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:30:2-45:13
+55            android:name="com.carlex.drive.MainActivity"
+55-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:30:12-40
+56            android:exported="true"
+56-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:34:10-33
+57            android:launchMode="singleTask"
+57-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:31:3-34
+58            android:taskAffinity="com.carlex.drive"
+58-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:33:14-53
+59            android:theme="@style/Theme.AppCompat" >
+59-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:32:3-41
+60            <intent-filter>
+60-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:35:3-38:19
+61                <action android:name="android.intent.action.MAIN" />
+61-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:4-56
+61-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:36:12-53
+62
+63                <category android:name="android.intent.category.LAUNCHER" />
+63-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:4-64
+63-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:37:14-61
+64            </intent-filter>
+65            <intent-filter>
+65-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:39:3-44:19
+66                <action android:name="android.intent.action.VIEW" />
+66-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:40:4-56
+66-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:40:12-53
 67
-68        <meta-data
-68-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:42:2-44:36
-69            android:name="xposedmodule"
-69-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:43:13-40
-70            android:value="true" />
-70-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:44:13-33
-71        <meta-data
-71-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:45:9-47:103
-72            android:name="xposeddescription"
-72-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:46:13-45
-73            android:value="Fake Gps, and auto drive, simulate gnss and wls locatin, very realistic" />
-73-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:47:13-100
-74        <meta-data
-74-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:48:9-51:14
-75            android:name="xposedminversion"
-75-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:49:13-44
-76            android:value="53" >
-76-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:50:3-21
-77        </meta-data>
-78        <meta-data
-78-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:52:2-54:30
-79            android:name="xposedname"
-79-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:53:6-31
-80            android:value="Drive" />
-80-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:54:6-27
-81        <meta-data
-81-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:55:2-57:41
-82            android:name="xposedpackage"
-82-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:56:6-34
-83            android:value="com.carlex.drive" />
-83-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:57:6-38
-84        <meta-data
-84-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:58:2-60:28
-85            android:name="xposedversion"
-85-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:59:6-34
-86            android:value="1.0" />
-86-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:60:6-25
+68                <category android:name="android.intent.category.DEFAULT" />
+68-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:41:25-84
+68-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:41:35-81
+69                <category android:name="android.intent.category.BROWSABLE" />
+69-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:42:4-65
+69-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:42:14-62
+70
+71                <data android:scheme="waze" />
+71-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:43:4-34
+71-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:43:10-31
+72            </intent-filter>
+73        </activity>
+74        <activity
+74-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:49:2-57:19
+75            android:name="com.carlex.drive.gnssData.Main"
+75-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:49:12-57
+76            android:exported="true"
+76-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:52:50-73
+77            android:launchMode="singleTask"
+77-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:50:3-34
+78            android:taskAffinity="com.carlex.drive"
+78-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:52:3-42
+79            android:theme="@style/Theme.AppCompat" >
+79-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:51:3-41
+80            <intent-filter>
+80-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:53:7-56:24
+81                <action android:name="android.intent.action.VIEW" />
+81-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:40:4-56
+81-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:40:12-53
+82
+83                <category android:name="android.intent.category.DEFAULT" />
+83-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:41:25-84
+83-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:41:35-81
+84            </intent-filter>
+85        </activity>
+86
 87        <meta-data
-87-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:61:2-63:31
-88            android:name="xposedauthor"
-88-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:62:6-33
-89            android:value="Carlex" />
-89-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:63:6-28
+87-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:60:2-62:36
+88            android:name="xposedmodule"
+88-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:61:13-40
+89            android:value="true" />
+89-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:62:13-33
 90        <meta-data
-90-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:64:2-66:53
-91            android:name="xposeddonate"
-91-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:65:6-33
-92            android:value="https://www.paypal.me/carlex" />
-92-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:66:6-50
+90-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:63:9-65:103
+91            android:name="xposeddescription"
+91-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:64:13-45
+92            android:value="Fake Gps, and auto drive, simulate gnss and wls locatin, very realistic" />
+92-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:65:13-100
 93        <meta-data
-93-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:67:2-69:52
-94            android:name="xposedhomepage"
-94-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:68:3-32
-95            android:value="http://www.github.com/carlex22" />
-95-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:69:3-49
+93-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:66:2-68:36
+94            android:name="xposedname"
+94-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:67:6-31
+95            android:value="66 Fake Gps" />
+95-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:68:6-33
 96        <meta-data
-96-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:73:2-75:61
-97            android:name="com.google.android.geo.API_KEY"
-97-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:74:3-48
-98            android:value="AIzaSyC4UVRx10NmwhLT8ve0HnOedFbXGxk4piI" />
-98-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:75:3-58
-99
-100        <!-- AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI" / -->
-101
+96-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:69:2-71:41
+97            android:name="xposedpackage"
+97-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:70:6-34
+98            android:value="com.carlex.drive" />
+98-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:71:6-38
+99        <meta-data
+99-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:72:2-74:27
+100            android:name="xposedminversion"
+100-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:73:3-34
+101            android:value="82" />
+101-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:74:6-24
 102        <meta-data
-102-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:79:2-81:58
-103            android:name="com.google.android.gms.version"
-103-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:80:3-48
-104            android:value="@integer/google_play_services_version" />
-104-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:81:3-56
-105
-106        <!-- Suas meta-dados e atividades aqui -->
-107
-108        <service
-108-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:86:2-95:12
-109            android:name="com.carlex.drive.FakeLocationService1"
-109-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:87:6-42
-110            android:enabled="true"
-110-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:88:6-28
-111            android:exported="true"
-111-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:89:6-29
-112            android:foregroundServiceType="location"
-112-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:90:2-42
-113            android:permission="android.permission.FOREGROUND_SERVICE" >
-113-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:91:6-64
-114            <intent-filter>
-114-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:92:6-94:22
-115                <action android:name="com.carlex.drive.FakeLocationService1" />
-115-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:93:10-72
-115-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:93:18-70
-116            </intent-filter>
-117        </service>
-118        <service
-118-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:97:2-106:12
-119            android:name="com.carlex.drive.OverlayService"
-119-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:98:6-36
-120            android:enabled="true"
-120-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:99:6-28
-121            android:exported="true"
-121-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:100:6-29
-122            android:foregroundServiceType="location"
-122-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:101:6-46
-123            android:permission="android.permission.FOREGROUND_SERVICE" >
-123-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:102:6-64
-124            <intent-filter>
-124-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:103:6-105:23
-125                <action android:name="com.carlex.drive.OverlayService" />
-125-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:104:10-66
-125-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:104:18-64
-126            </intent-filter>
-127        </service>
-128
-129        <!-- Needs to be explicitly declared on P+ -->
-130        <uses-library
-130-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:39:9-41:40
-131            android:name="org.apache.http.legacy"
-131-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:40:13-50
-132            android:required="false" />
-132-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/65dc9418da9507495b0eb67023831c65/transformed/play-services-maps-18.2.0/AndroidManifest.xml:41:13-37
-133
-134        <activity
-134-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/82d301cf81f55d0c2520717a13432497/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
-135            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-135-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/82d301cf81f55d0c2520717a13432497/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:19-85
-136            android:exported="false"
-136-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/82d301cf81f55d0c2520717a13432497/transformed/play-services-base-18.3.0/AndroidManifest.xml:22:19-43
-137            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-137-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/82d301cf81f55d0c2520717a13432497/transformed/play-services-base-18.3.0/AndroidManifest.xml:21:19-78
-138
-139        <provider
-139-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-140            android:name="androidx.startup.InitializationProvider"
-140-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
-141            android:authorities="com.carlex.drive.androidx-startup"
-141-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
-142            android:exported="false" >
-142-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
-143            <meta-data
-143-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-144                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-144-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
-145                android:value="androidx.startup" />
-145-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5ce76cd183daff386edb000795ef88d8/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
-146            <meta-data
-146-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/b19582049fad0e598b76a3a6fb55d8fd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-147                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-147-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/b19582049fad0e598b76a3a6fb55d8fd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-148                android:value="androidx.startup" />
-148-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/b19582049fad0e598b76a3a6fb55d8fd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-149            <meta-data
-149-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-150                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-150-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-151                android:value="androidx.startup" />
-151-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-152        </provider>
-153
-154        <service
-154-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e3f7d45728254cae1fbeb827d6138a1c/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-155            android:name="androidx.room.MultiInstanceInvalidationService"
-155-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e3f7d45728254cae1fbeb827d6138a1c/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-156            android:directBootAware="true"
-156-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e3f7d45728254cae1fbeb827d6138a1c/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-157            android:exported="false" />
-157-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e3f7d45728254cae1fbeb827d6138a1c/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-158
-159        <receiver
-159-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-160            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-160-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-161            android:directBootAware="false"
-161-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-162            android:enabled="true"
-162-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-163            android:exported="true"
-163-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-164            android:permission="android.permission.DUMP" >
-164-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
-165            <intent-filter>
-165-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-166                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-166-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-166-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
-167            </intent-filter>
-168            <intent-filter>
-168-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-169                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-169-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-169-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
-170            </intent-filter>
-171            <intent-filter>
-171-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-172                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-172-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-172-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
-173            </intent-filter>
-174            <intent-filter>
-174-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-175                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-175-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-175-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e80a0a0da7fd9e0293b7c0bf418855aa/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-176            </intent-filter>
-177        </receiver>
-178    </application>
-179
-180</manifest>
+102-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:75:2-77:31
+103            android:name="xposedauthor"
+103-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:76:6-33
+104            android:value="Carlex" />
+104-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:77:6-28
+105        <meta-data
+105-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:78:2-80:53
+106            android:name="xposeddonate"
+106-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:79:6-33
+107            android:value="https://www.paypal.me/carlex" />
+107-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:80:6-50
+108        <meta-data
+108-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:81:2-83:52
+109            android:name="xposedhomepage"
+109-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:82:3-32
+110            android:value="http://www.github.com/carlex22" />
+110-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:83:3-49
+111        <meta-data
+111-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:87:2-89:61
+112            android:name="com.google.android.geo.API_KEY"
+112-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:88:3-48
+113            android:value="AIzaSyC4UVRx10NmwhLT8ve0HnOedFbXGxk4piI" />
+113-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:89:3-58
+114
+115        <!-- AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI" / -->
+116
+117        <meta-data
+117-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:93:2-95:58
+118            android:name="com.google.android.gms.version"
+118-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:94:3-48
+119            android:value="@integer/google_play_services_version" />
+119-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:95:3-56
+120
+121        <!-- Suas meta-dados e atividades aqui -->
+122
+123        <service
+123-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:100:2-109:12
+124            android:name="com.carlex.drive.FakeLocationService1"
+124-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:101:6-42
+125            android:enabled="true"
+125-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:102:6-28
+126            android:exported="true"
+126-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:103:6-29
+127            android:foregroundServiceType="location"
+127-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:104:2-42
+128            android:permission="android.permission.FOREGROUND_SERVICE" >
+128-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:105:6-64
+129            <intent-filter>
+129-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:106:6-108:22
+130                <action android:name="com.carlex.drive.FakeLocationService1" />
+130-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:107:10-72
+130-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:107:18-70
+131            </intent-filter>
+132        </service>
+133        <service
+133-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:111:2-120:12
+134            android:name="com.carlex.drive.OverlayService"
+134-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:112:6-36
+135            android:enabled="true"
+135-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:113:6-28
+136            android:exported="true"
+136-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:114:6-29
+137            android:foregroundServiceType="location"
+137-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:115:6-46
+138            android:permission="android.permission.FOREGROUND_SERVICE" >
+138-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:116:6-64
+139            <intent-filter>
+139-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:117:6-119:23
+140                <action android:name="com.carlex.drive.OverlayService" />
+140-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:118:10-66
+140-->/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app/src/main/AndroidManifest.xml:118:18-64
+141            </intent-filter>
+142        </service>
+143
+144        <!-- Needs to be explicitly declared on P+ -->
+145        <uses-library
+145-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:39:9-41:40
+146            android:name="org.apache.http.legacy"
+146-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:40:13-50
+147            android:required="false" />
+147-->[com.google.android.gms:play-services-maps:18.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/42aae8007c0767519fcc879c1c6de241/transformed/play-services-maps-18.2.0/AndroidManifest.xml:41:13-37
+148        <!--
+149             FirebaseMessagingService performs security checks at runtime,
+150             but set to not exported to explicitly avoid allowing another app to call it.
+151        -->
+152        <service
+152-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:28:9-35:19
+153            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+153-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:29:13-82
+154            android:directBootAware="true"
+154-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:30:13-43
+155            android:exported="false" >
+155-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:31:13-37
+156            <intent-filter android:priority="-500" >
+156-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:32:13-34:29
+156-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:32:28-51
+157                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+157-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:33:17-78
+157-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:33:25-75
+158            </intent-filter>
+159        </service>
+160        <service
+160-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:36:9-42:19
+161            android:name="com.google.firebase.components.ComponentDiscoveryService"
+161-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:37:13-84
+162            android:directBootAware="true"
+162-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+163            android:exported="false" >
+163-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:38:13-37
+164            <meta-data
+164-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:39:13-41:85
+165                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+165-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:40:17-119
+166                android:value="com.google.firebase.components.ComponentRegistrar" />
+166-->[com.google.firebase:firebase-messaging:20.2.4] /data/data/com.termux/files/home/.gradle/caches/transforms-4/7c724e683304e585bad45cd1962ba882/transformed/firebase-messaging-20.2.4/AndroidManifest.xml:41:17-82
+167            <meta-data
+167-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:32:13-34:85
+168                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+168-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:33:17-96
+169                android:value="com.google.firebase.components.ComponentRegistrar" />
+169-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:34:17-82
+170            <meta-data
+170-->[com.google.firebase:firebase-datatransport:17.0.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/04ecd6f19798b25e3ac9bef848a562e1/transformed/firebase-datatransport-17.0.3/AndroidManifest.xml:28:13-30:85
+171                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+171-->[com.google.firebase:firebase-datatransport:17.0.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/04ecd6f19798b25e3ac9bef848a562e1/transformed/firebase-datatransport-17.0.3/AndroidManifest.xml:29:17-115
+172                android:value="com.google.firebase.components.ComponentRegistrar" />
+172-->[com.google.firebase:firebase-datatransport:17.0.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/04ecd6f19798b25e3ac9bef848a562e1/transformed/firebase-datatransport-17.0.3/AndroidManifest.xml:30:17-82
+173            <meta-data
+173-->[com.google.firebase:firebase-installations:16.3.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c101f725d5ded7ccf7a2ee30720b8365/transformed/firebase-installations-16.3.3/AndroidManifest.xml:17:13-19:85
+174                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+174-->[com.google.firebase:firebase-installations:16.3.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c101f725d5ded7ccf7a2ee30720b8365/transformed/firebase-installations-16.3.3/AndroidManifest.xml:18:17-127
+175                android:value="com.google.firebase.components.ComponentRegistrar" />
+175-->[com.google.firebase:firebase-installations:16.3.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/c101f725d5ded7ccf7a2ee30720b8365/transformed/firebase-installations-16.3.3/AndroidManifest.xml:19:17-82
+176        </service>
+177
+178        <receiver
+178-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:37:9-44:20
+179            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+179-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:38:13-78
+180            android:exported="true"
+180-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:39:13-36
+181            android:permission="com.google.android.c2dm.permission.SEND" >
+181-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:40:13-73
+182            <intent-filter>
+182-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:41:13-43:29
+183                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+183-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:42:17-81
+183-->[com.google.firebase:firebase-iid:20.2.3] /data/data/com.termux/files/home/.gradle/caches/transforms-4/29bc3cab0739b2b115edbda62854054f/transformed/firebase-iid-20.2.3/AndroidManifest.xml:42:25-78
+184            </intent-filter>
+185        </receiver>
+186
+187        <activity
+187-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5d41021c92f00e258b8601e6d2d017b4/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+188            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+188-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5d41021c92f00e258b8601e6d2d017b4/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+189            android:exported="false"
+189-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5d41021c92f00e258b8601e6d2d017b4/transformed/play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+190            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+190-->[com.google.android.gms:play-services-base:18.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5d41021c92f00e258b8601e6d2d017b4/transformed/play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+191
+192        <provider
+192-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+193            android:name="com.google.firebase.provider.FirebaseInitProvider"
+193-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+194            android:authorities="com.carlex.drive.firebaseinitprovider"
+194-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+195            android:exported="false"
+195-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+196            android:initOrder="100" />
+196-->[com.google.firebase:firebase-common:19.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/064fb17b3a4ea943b13ebf49f765cad3/transformed/firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+197        <provider
+197-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+198            android:name="androidx.startup.InitializationProvider"
+198-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+199            android:authorities="com.carlex.drive.androidx-startup"
+199-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+200            android:exported="false" >
+200-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+201            <meta-data
+201-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+202                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+202-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+203                android:value="androidx.startup" />
+203-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5cd324955be98db24ca76e006686050/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+204            <meta-data
+204-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/6b028ab4abafde2611579d7c6a00572a/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+205                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+205-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/6b028ab4abafde2611579d7c6a00572a/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+206                android:value="androidx.startup" />
+206-->[androidx.lifecycle:lifecycle-process:2.6.2] /data/data/com.termux/files/home/.gradle/caches/transforms-4/6b028ab4abafde2611579d7c6a00572a/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+207            <meta-data
+207-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+208                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+208-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+209                android:value="androidx.startup" />
+209-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+210        </provider>
+211
+212        <service
+212-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:29:9-35:19
+213            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+213-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:30:13-103
+214            android:exported="false" >
+214-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:31:13-37
+215            <meta-data
+215-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:32:13-34:39
+216                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+216-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:33:17-94
+217                android:value="cct" />
+217-->[com.google.android.datatransport:transport-backend-cct:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/51ddfa203cac6e11d0a85a95468f4fa5/transformed/transport-backend-cct-2.2.0/AndroidManifest.xml:34:17-36
+218        </service>
+219        <service
+219-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:26:9-30:19
+220            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+220-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:27:13-117
+221            android:exported="false"
+221-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:28:13-37
+222            android:permission="android.permission.BIND_JOB_SERVICE" >
+222-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:29:13-69
+223        </service>
+224
+225        <receiver
+225-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:32:9-34:40
+226            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+226-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:33:13-132
+227            android:exported="false" />
+227-->[com.google.android.datatransport:transport-runtime:2.2.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/89f4af3c8c0081db4fdc5dc7c320c907/transformed/transport-runtime-2.2.0/AndroidManifest.xml:34:13-37
+228
+229        <service
+229-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/80269487833577c52821304e0affa02e/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+230            android:name="androidx.room.MultiInstanceInvalidationService"
+230-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/80269487833577c52821304e0affa02e/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+231            android:directBootAware="true"
+231-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/80269487833577c52821304e0affa02e/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+232            android:exported="false" />
+232-->[androidx.room:room-runtime:2.6.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/80269487833577c52821304e0affa02e/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+233
+234        <receiver
+234-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+235            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+235-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+236            android:directBootAware="false"
+236-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+237            android:enabled="true"
+237-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+238            android:exported="true"
+238-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+239            android:permission="android.permission.DUMP" >
+239-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+240            <intent-filter>
+240-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+241                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+241-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+241-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+242            </intent-filter>
+243            <intent-filter>
+243-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+244                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+244-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+244-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+245            </intent-filter>
+246            <intent-filter>
+246-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+247                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+247-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+247-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+248            </intent-filter>
+249            <intent-filter>
+249-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+250                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+250-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+250-->[androidx.profileinstaller:profileinstaller:1.3.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/a1f6e544cf93ffac29dfd123d42c61ce/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+251            </intent-filter>
+252        </receiver>
+253    </application>
+254
+255</manifest>

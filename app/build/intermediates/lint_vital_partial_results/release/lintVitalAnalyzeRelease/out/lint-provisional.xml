@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.4.0" type="conditional_incidents">
+
+    <incident
+        id="DuplicatePlatformClasses"
+        severity="fatal"
+        message="`json` defines classes that conflict with classes now provided by Android. Solutions include finding newer versions or alternative libraries that don&apos;t have the same problem (for example, for `httpclient` use `HttpUrlConnection` or `okhttp` instead), or repackaging the library using something like `jarjar`.">
+        <fix-replace
+            description="Delete dependency"
+            replacement=""
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="91"
+            column="5"
+            startOffset="2360"
+            endLine="91"
+            endColumn="44"
+            endOffset="2399"/>
+    </incident>
+
+    <incident
+        id="DuplicatePlatformClasses"
+        severity="fatal"
+        message="`commons-logging` defines classes that conflict with classes now provided by Android. Solutions include finding newer versions or alternative libraries that don&apos;t have the same problem (for example, for `httpclient` use `HttpUrlConnection` or `okhttp` instead), or repackaging the library using something like `jarjar`.">
+        <location
+            file="${:app*projectDir}/build.gradle"/>
+    </incident>
+
+</incidents>

@@ -1,0 +1,90 @@
+package com.carlex.drive;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import de.robv.android.xposed.XposedBridge;
+import java.lang.reflect.Method;
+import de.robv.android.xposed.XC_MethodReplacement;
+
+
+public class JsonCreator {
+
+    public static JSONObject createJson(Object object, String className) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("class", className);
+            Method[] methods = object.getClass().getMethods();
+            for (Method method : methods) {
+                if (method.getName().startsWith("get") && method.getParameterTypes().length == 0) {
+                    String methodName = method.getName();
+                    String newPath = className + "." + methodName;
+                    try {
+                        ensureXposedPermission(method);  // Verifica permissões com Xposed
+                        Object value = method.invoke(object);
+                        if (value != null) {
+                            if (isObject(value)) {
+                                json.put(methodName, createJson(value, newPath));
+                            } else if (value instanceof Iterable) {
+                                json.put(methodName, "Iterable");
+                            } else {
+                                json.put(methodName, getTypeString(value.getClass()));
+                            }
+                        }
+                    } catch (Exception e) {
+                        json.put(methodName, "Unable to access value: " + e.getMessage());
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    private static void ensureXposedPermission(Method method) {
+        try {
+            XposedBridge.hookMethod(method, XC_MethodReplacement.DO_NOTHING);
+        } catch (Exception e) {
+            XposedBridge.log("Xposed permission grant failed for method: " + method.getName() + " with error: " + e.getMessage());
+        }
+    }
+
+    private static boolean isObject(Object value) {
+        return !isWrapperType(value.getClass()) && !value.getClass().isPrimitive() && !(value instanceof String);
+    }
+
+    private static boolean isWrapperType(Class<?> clazz) {
+        return clazz.equals(Boolean.class) || clazz.equals(Character.class) ||
+               clazz.equals(Byte.class) || clazz.equals(Short.class) ||
+               clazz.equals(Integer.class) || clazz.equals(Long.class) ||
+               clazz.equals(Float.class) || clazz.equals(Double.class) ||
+               clazz.equals(Void.class);
+    }
+
+    private static String getTypeString(Class<?> clazz) {
+        if (clazz.equals(String.class)) {
+            return "String";
+        } else if (clazz.equals(Integer.class) || clazz.equals(int.class)) {
+            return "int";
+        } else if (clazz.equals(Boolean.class) || clazz.equals(boolean.class)) {
+            return "boolean";
+        } else if (clazz.equals(Double.class) || clazz.equals(double.class)) {
+            return "double";
+        } else if (clazz.equals(Float.class) || clazz.equals(float.class)) {
+            return "float";
+        } else if (clazz.equals(Long.class) || clazz.equals(long.class)) {
+            return "long";
+        } else if (clazz.equals(Short.class) || clazz.equals(short.class)) {
+            return "short";
+        } else if (clazz.equals(Byte.class) || clazz.equals(byte.class)) {
+            return "byte";
+        } else if (clazz.equals(Character.class) || clazz.equals(char.class)) {
+            return "char";
+        } else if (clazz.equals(Void.class)) {
+            return "void";
+        } else {
+            return "Object";
+        }
+    }
+}
+

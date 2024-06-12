@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.carlex.drive.app-mergeReleaseResources-36:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.carlex.drive.app-mergeReleaseResources-37:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
-                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/dd9d6c8aa0b9b93cf8d27be101e4af4d/transformed/appcompat-1.6.1/res/values-en-rAU/values-en-rAU.xml",
+                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/dbc9e5b536d996d97499ddc77f56da92/transformed/appcompat-1.6.1/res/values-en-rAU/values-en-rAU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/4b72087d23b894668e1868859acd25a6/transformed/core-1.13.1/res/values-en-rAU/values-en-rAU.xml",
+                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/21ea12b8ca0a027490b09eeed0d31b2c/transformed/core-1.13.1/res/values-en-rAU/values-en-rAU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

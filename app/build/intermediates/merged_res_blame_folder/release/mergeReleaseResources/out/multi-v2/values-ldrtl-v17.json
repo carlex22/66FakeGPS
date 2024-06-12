@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.carlex.drive.app-mergeReleaseResources-36:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.carlex.drive.app-mergeReleaseResources-37:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/3df142e08cf85eefd9f7a2836e2884dc/transformed/material-1.7.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/737a8bfc3ec2c6a99c674eb0ea5dd043/transformed/material-1.7.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

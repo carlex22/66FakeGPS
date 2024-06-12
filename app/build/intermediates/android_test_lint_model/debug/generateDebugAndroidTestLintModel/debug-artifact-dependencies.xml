@@ -1,9 +1,18 @@
 <dependencies>
   <compile
-      roots=":@@:app::debug,com.google.android.gms:play-services-location:21.2.0@aar,com.google.maps.android:android-maps-utils:3.8.2@aar,com.google.android.gms:play-services-maps:18.2.0@aar,com.google.maps:google-maps-services:2.2.0@jar,com.google.android.material:material:1.7.0@aar,androidx.appcompat:appcompat:1.6.1@aar,com.google.android.gms:play-services-base:18.3.0@aar,com.google.android.gms:play-services-tasks:18.1.0@aar,com.google.android.gms:play-services-basement:18.3.0@aar,androidx.viewpager2:viewpager2:1.0.0@aar,androidx.fragment:fragment:1.3.6@aar,androidx.fragment:fragment:1.3.6@aar,androidx.activity:activity:1.6.0@aar,androidx.dynamicanimation:dynamicanimation:1.0.0@aar,androidx.legacy:legacy-support-core-utils:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.lifecycle:lifecycle-livedata:2.6.2@aar,androidx.lifecycle:lifecycle-common:2.6.2@jar,androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar,androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar,androidx.lifecycle:lifecycle-livedata-core:2.6.2@aar,androidx.lifecycle:lifecycle-runtime:2.6.2@aar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2@aar,androidx.core:core-ktx:1.13.1@aar,androidx.appcompat:appcompat-resources:1.6.1@aar,androidx.drawerlayout:drawerlayout:1.1.1@aar,androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar,androidx.transition:transition:1.2.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.recyclerview:recyclerview:1.1.0@aar,androidx.customview:customview:1.1.0@aar,androidx.core:core:1.13.1@aar,androidx.core:core:1.13.1@aar,androidx.cursoradapter:cursoradapter:1.0.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.room:room-runtime:2.6.1@aar,androidx.room:room-common:2.6.1@jar,androidx.sqlite:sqlite-framework:2.4.0@aar,androidx.sqlite:sqlite:2.4.0@aar,androidx.cardview:cardview:1.0.0@aar,androidx.collection:collection:1.1.0@jar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.arch.core:core-common:2.2.0@jar,androidx.interpolator:interpolator:1.0.0@aar,androidx.savedstate:savedstate:1.2.1@aar,androidx.documentfile:documentfile:1.0.0@aar,androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar,androidx.print:print:1.0.0@aar,androidx.constraintlayout:constraintlayout:2.1.4@aar,androidx.annotation:annotation-experimental:1.4.0@aar,com.squareup.retrofit2:converter-gson:2.9.0@jar,com.squareup.retrofit2:retrofit:2.9.0@jar,com.squareup.okhttp3:logging-interceptor:4.9.1@jar,com.squareup.okhttp3:okhttp:4.10.0@jar,androidx.annotation:annotation-jvm:1.6.0@jar,org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3@jar,org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3@jar,com.squareup.okio:okio-jvm:3.0.0@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22@jar,org.jetbrains.kotlin:kotlin-stdlib:1.9.0@jar,com.google.code.gson:gson:2.10.1@jar,io.opencensus:opencensus-api:0.31.0@jar,org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0@jar,org.jetbrains:annotations:23.0.0@jar,io.grpc:grpc-context:1.27.2@jar">
+      roots=":@@:app::debug,com.github.topjohnwu.libsu:service:5.2.2@aar,com.github.topjohnwu.libsu:core:5.2.2@aar,com.github.topjohnwu.libsu:nio:5.2.2@aar,com.google.android.gms:play-services-location:21.2.0@aar,com.google.maps.android:android-maps-utils:3.8.2@aar,com.google.android.gms:play-services-maps:18.2.0@aar,com.google.maps:google-maps-services:2.2.0@jar,com.google.android.material:material:1.7.0@aar,androidx.appcompat:appcompat:1.6.1@aar,com.google.firebase:firebase-messaging:20.2.4@aar,com.google.firebase:firebase-iid:20.2.3@aar,com.google.firebase:firebase-iid-interop:17.0.0@aar,com.google.android.gms:play-services-base:18.3.0@aar,com.google.android.gms:play-services-ads-identifier:17.0.0@aar,com.google.firebase:firebase-datatransport:17.0.3@aar,com.google.firebase:firebase-installations:16.3.3@aar,com.google.firebase:firebase-common:19.3.0@aar,com.google.firebase:firebase-installations-interop:16.0.0@aar,com.google.android.gms:play-services-tasks:18.1.0@aar,com.google.android.gms:play-services-stats:17.0.0@aar,com.google.firebase:firebase-measurement-connector:18.0.0@aar,com.google.android.gms:play-services-basement:18.3.0@aar,androidx.viewpager2:viewpager2:1.0.0@aar,androidx.fragment:fragment:1.3.6@aar,androidx.fragment:fragment:1.3.6@aar,androidx.activity:activity:1.6.0@aar,androidx.appcompat:appcompat-resources:1.6.1@aar,androidx.drawerlayout:drawerlayout:1.1.1@aar,androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar,androidx.dynamicanimation:dynamicanimation:1.0.0@aar,androidx.transition:transition:1.2.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.legacy:legacy-support-core-utils:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.recyclerview:recyclerview:1.1.0@aar,androidx.customview:customview:1.1.0@aar,androidx.core:core:1.13.1@aar,androidx.core:core:1.13.1@aar,androidx.lifecycle:lifecycle-common:2.6.2@jar,androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar,androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar,androidx.lifecycle:lifecycle-livedata-core:2.6.2@aar,androidx.lifecycle:lifecycle-livedata:2.6.2@aar,androidx.lifecycle:lifecycle-runtime:2.6.2@aar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2@aar,androidx.core:core-ktx:1.13.1@aar,androidx.cursoradapter:cursoradapter:1.0.0@aar,com.google.android.datatransport:transport-backend-cct:2.2.0@aar,com.google.android.datatransport:transport-runtime:2.2.0@aar,com.google.firebase:firebase-components:16.0.0@aar,com.google.firebase:firebase-encoders-json:16.0.0@aar,androidx.room:room-runtime:2.6.1@aar,androidx.room:room-common:2.6.1@jar,androidx.sqlite:sqlite-framework:2.4.0@aar,androidx.sqlite:sqlite:2.4.0@aar,androidx.cardview:cardview:1.0.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.collection:collection:1.1.0@jar,androidx.interpolator:interpolator:1.0.0@aar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.arch.core:core-common:2.2.0@jar,androidx.documentfile:documentfile:1.0.0@aar,androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar,androidx.print:print:1.0.0@aar,androidx.savedstate:savedstate:1.2.1@aar,androidx.constraintlayout:constraintlayout:2.1.4@aar,androidx.annotation:annotation-experimental:1.4.0@aar,org.json:json:20240303@jar,com.squareup.retrofit2:converter-gson:2.9.0@jar,com.squareup.retrofit2:retrofit:2.9.0@jar,com.squareup.okhttp3:logging-interceptor:4.9.1@jar,com.squareup.okhttp3:okhttp:4.10.0@jar,org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3@jar,org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3@jar,com.squareup.okio:okio-jvm:3.0.0@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.0@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.0@jar,androidx.annotation:annotation-jvm:1.6.0@jar,org.jetbrains.kotlin:kotlin-stdlib:2.0.0@jar,uk.me.g4dpz:predict4java:1.1.3@jar,de.robv.android.xposed:api:82@jar,com.google.code.gson:gson:2.10.1@jar,io.opencensus:opencensus-api:0.31.0@jar,com.google.android.datatransport:transport-api:2.2.0@aar,org.jetbrains:annotations:23.0.0@jar,commons-lang:commons-lang:2.6@jar,commons-logging:commons-logging:1.1.1@jar,io.grpc:grpc-context:1.27.2@jar,com.google.dagger:dagger:2.24@jar,com.google.auto.value:auto-value-annotations:1.6.5@jar,javax.inject:javax.inject:1@jar">
     <dependency
         name=":@@:app::debug"
         simpleName="artifacts::app"/>
+    <dependency
+        name="com.github.topjohnwu.libsu:service:5.2.2@aar"
+        simpleName="com.github.topjohnwu.libsu:service"/>
+    <dependency
+        name="com.github.topjohnwu.libsu:core:5.2.2@aar"
+        simpleName="com.github.topjohnwu.libsu:core"/>
+    <dependency
+        name="com.github.topjohnwu.libsu:nio:5.2.2@aar"
+        simpleName="com.github.topjohnwu.libsu:nio"/>
     <dependency
         name="com.google.android.gms:play-services-location:21.2.0@aar"
         simpleName="com.google.android.gms:play-services-location"/>
@@ -23,11 +32,41 @@
         name="androidx.appcompat:appcompat:1.6.1@aar"
         simpleName="androidx.appcompat:appcompat"/>
     <dependency
+        name="com.google.firebase:firebase-messaging:20.2.4@aar"
+        simpleName="com.google.firebase:firebase-messaging"/>
+    <dependency
+        name="com.google.firebase:firebase-iid:20.2.3@aar"
+        simpleName="com.google.firebase:firebase-iid"/>
+    <dependency
+        name="com.google.firebase:firebase-iid-interop:17.0.0@aar"
+        simpleName="com.google.firebase:firebase-iid-interop"/>
+    <dependency
         name="com.google.android.gms:play-services-base:18.3.0@aar"
         simpleName="com.google.android.gms:play-services-base"/>
     <dependency
+        name="com.google.android.gms:play-services-ads-identifier:17.0.0@aar"
+        simpleName="com.google.android.gms:play-services-ads-identifier"/>
+    <dependency
+        name="com.google.firebase:firebase-datatransport:17.0.3@aar"
+        simpleName="com.google.firebase:firebase-datatransport"/>
+    <dependency
+        name="com.google.firebase:firebase-installations:16.3.3@aar"
+        simpleName="com.google.firebase:firebase-installations"/>
+    <dependency
+        name="com.google.firebase:firebase-common:19.3.0@aar"
+        simpleName="com.google.firebase:firebase-common"/>
+    <dependency
+        name="com.google.firebase:firebase-installations-interop:16.0.0@aar"
+        simpleName="com.google.firebase:firebase-installations-interop"/>
+    <dependency
         name="com.google.android.gms:play-services-tasks:18.1.0@aar"
         simpleName="com.google.android.gms:play-services-tasks"/>
+    <dependency
+        name="com.google.android.gms:play-services-stats:17.0.0@aar"
+        simpleName="com.google.android.gms:play-services-stats"/>
+    <dependency
+        name="com.google.firebase:firebase-measurement-connector:18.0.0@aar"
+        simpleName="com.google.firebase:firebase-measurement-connector"/>
     <dependency
         name="com.google.android.gms:play-services-basement:18.3.0@aar"
         simpleName="com.google.android.gms:play-services-basement"/>
@@ -41,36 +80,6 @@
         name="androidx.activity:activity:1.6.0@aar"
         simpleName="androidx.activity:activity"/>
     <dependency
-        name="androidx.dynamicanimation:dynamicanimation:1.0.0@aar"
-        simpleName="androidx.dynamicanimation:dynamicanimation"/>
-    <dependency
-        name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
-        simpleName="androidx.legacy:legacy-support-core-utils"/>
-    <dependency
-        name="androidx.loader:loader:1.0.0@aar"
-        simpleName="androidx.loader:loader"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-livedata:2.6.2@aar"
-        simpleName="androidx.lifecycle:lifecycle-livedata"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-common:2.6.2@jar"
-        simpleName="androidx.lifecycle:lifecycle-common"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar"
-        simpleName="androidx.lifecycle:lifecycle-viewmodel"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-livedata-core:2.6.2@aar"
-        simpleName="androidx.lifecycle:lifecycle-livedata-core"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-runtime:2.6.2@aar"
-        simpleName="androidx.lifecycle:lifecycle-runtime"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2@aar"
-        simpleName="androidx.lifecycle:lifecycle-viewmodel-savedstate"/>
-    <dependency
-        name="androidx.core:core-ktx:1.13.1@aar"
-        simpleName="androidx.core:core-ktx"/>
-    <dependency
         name="androidx.appcompat:appcompat-resources:1.6.1@aar"
         simpleName="androidx.appcompat:appcompat-resources"/>
     <dependency
@@ -79,6 +88,9 @@
     <dependency
         name="androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar"
         simpleName="androidx.coordinatorlayout:coordinatorlayout"/>
+    <dependency
+        name="androidx.dynamicanimation:dynamicanimation:1.0.0@aar"
+        simpleName="androidx.dynamicanimation:dynamicanimation"/>
     <dependency
         name="androidx.transition:transition:1.2.0@aar"
         simpleName="androidx.transition:transition"/>
@@ -92,6 +104,12 @@
         name="androidx.viewpager:viewpager:1.0.0@aar"
         simpleName="androidx.viewpager:viewpager"/>
     <dependency
+        name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
+        simpleName="androidx.legacy:legacy-support-core-utils"/>
+    <dependency
+        name="androidx.loader:loader:1.0.0@aar"
+        simpleName="androidx.loader:loader"/>
+    <dependency
         name="androidx.recyclerview:recyclerview:1.1.0@aar"
         simpleName="androidx.recyclerview:recyclerview"/>
     <dependency
@@ -101,11 +119,41 @@
         name="androidx.core:core:1.13.1@aar"
         simpleName="androidx.core:core"/>
     <dependency
+        name="androidx.lifecycle:lifecycle-common:2.6.2@jar"
+        simpleName="androidx.lifecycle:lifecycle-common"/>
+    <dependency
+        name="androidx.lifecycle:lifecycle-viewmodel:2.6.2@aar"
+        simpleName="androidx.lifecycle:lifecycle-viewmodel"/>
+    <dependency
+        name="androidx.lifecycle:lifecycle-livedata-core:2.6.2@aar"
+        simpleName="androidx.lifecycle:lifecycle-livedata-core"/>
+    <dependency
+        name="androidx.lifecycle:lifecycle-livedata:2.6.2@aar"
+        simpleName="androidx.lifecycle:lifecycle-livedata"/>
+    <dependency
+        name="androidx.lifecycle:lifecycle-runtime:2.6.2@aar"
+        simpleName="androidx.lifecycle:lifecycle-runtime"/>
+    <dependency
+        name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2@aar"
+        simpleName="androidx.lifecycle:lifecycle-viewmodel-savedstate"/>
+    <dependency
+        name="androidx.core:core-ktx:1.13.1@aar"
+        simpleName="androidx.core:core-ktx"/>
+    <dependency
         name="androidx.cursoradapter:cursoradapter:1.0.0@aar"
         simpleName="androidx.cursoradapter:cursoradapter"/>
     <dependency
-        name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
-        simpleName="androidx.versionedparcelable:versionedparcelable"/>
+        name="com.google.android.datatransport:transport-backend-cct:2.2.0@aar"
+        simpleName="com.google.android.datatransport:transport-backend-cct"/>
+    <dependency
+        name="com.google.android.datatransport:transport-runtime:2.2.0@aar"
+        simpleName="com.google.android.datatransport:transport-runtime"/>
+    <dependency
+        name="com.google.firebase:firebase-components:16.0.0@aar"
+        simpleName="com.google.firebase:firebase-components"/>
+    <dependency
+        name="com.google.firebase:firebase-encoders-json:16.0.0@aar"
+        simpleName="com.google.firebase:firebase-encoders-json"/>
     <dependency
         name="androidx.room:room-runtime:2.6.1@aar"
         simpleName="androidx.room:room-runtime"/>
@@ -122,20 +170,20 @@
         name="androidx.cardview:cardview:1.0.0@aar"
         simpleName="androidx.cardview:cardview"/>
     <dependency
+        name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
+        simpleName="androidx.versionedparcelable:versionedparcelable"/>
+    <dependency
         name="androidx.collection:collection:1.1.0@jar"
         simpleName="androidx.collection:collection"/>
+    <dependency
+        name="androidx.interpolator:interpolator:1.0.0@aar"
+        simpleName="androidx.interpolator:interpolator"/>
     <dependency
         name="androidx.arch.core:core-runtime:2.1.0@aar"
         simpleName="androidx.arch.core:core-runtime"/>
     <dependency
         name="androidx.arch.core:core-common:2.2.0@jar"
         simpleName="androidx.arch.core:core-common"/>
-    <dependency
-        name="androidx.interpolator:interpolator:1.0.0@aar"
-        simpleName="androidx.interpolator:interpolator"/>
-    <dependency
-        name="androidx.savedstate:savedstate:1.2.1@aar"
-        simpleName="androidx.savedstate:savedstate"/>
     <dependency
         name="androidx.documentfile:documentfile:1.0.0@aar"
         simpleName="androidx.documentfile:documentfile"/>
@@ -146,11 +194,17 @@
         name="androidx.print:print:1.0.0@aar"
         simpleName="androidx.print:print"/>
     <dependency
+        name="androidx.savedstate:savedstate:1.2.1@aar"
+        simpleName="androidx.savedstate:savedstate"/>
+    <dependency
         name="androidx.constraintlayout:constraintlayout:2.1.4@aar"
         simpleName="androidx.constraintlayout:constraintlayout"/>
     <dependency
         name="androidx.annotation:annotation-experimental:1.4.0@aar"
         simpleName="androidx.annotation:annotation-experimental"/>
+    <dependency
+        name="org.json:json:20240303@jar"
+        simpleName="org.json:json"/>
     <dependency
         name="com.squareup.retrofit2:converter-gson:2.9.0@jar"
         simpleName="com.squareup.retrofit2:converter-gson"/>
@@ -164,9 +218,6 @@
         name="com.squareup.okhttp3:okhttp:4.10.0@jar"
         simpleName="com.squareup.okhttp3:okhttp"/>
     <dependency
-        name="androidx.annotation:annotation-jvm:1.6.0@jar"
-        simpleName="androidx.annotation:annotation-jvm"/>
-    <dependency
         name="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3@jar"
         simpleName="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm"/>
     <dependency
@@ -176,14 +227,23 @@
         name="com.squareup.okio:okio-jvm:3.0.0@jar"
         simpleName="com.squareup.okio:okio-jvm"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22@jar"
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.0@jar"
         simpleName="org.jetbrains.kotlin:kotlin-stdlib-jdk8"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22@jar"
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.0@jar"
         simpleName="org.jetbrains.kotlin:kotlin-stdlib-jdk7"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib:1.9.0@jar"
+        name="androidx.annotation:annotation-jvm:1.6.0@jar"
+        simpleName="androidx.annotation:annotation-jvm"/>
+    <dependency
+        name="org.jetbrains.kotlin:kotlin-stdlib:2.0.0@jar"
         simpleName="org.jetbrains.kotlin:kotlin-stdlib"/>
+    <dependency
+        name="uk.me.g4dpz:predict4java:1.1.3@jar"
+        simpleName="uk.me.g4dpz:predict4java"/>
+    <dependency
+        name="de.robv.android.xposed:api:82@jar"
+        simpleName="de.robv.android.xposed:api"/>
     <dependency
         name="com.google.code.gson:gson:2.10.1@jar"
         simpleName="com.google.code.gson:gson"/>
@@ -191,13 +251,28 @@
         name="io.opencensus:opencensus-api:0.31.0@jar"
         simpleName="io.opencensus:opencensus-api"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0@jar"
-        simpleName="org.jetbrains.kotlin:kotlin-stdlib-common"/>
+        name="com.google.android.datatransport:transport-api:2.2.0@aar"
+        simpleName="com.google.android.datatransport:transport-api"/>
     <dependency
         name="org.jetbrains:annotations:23.0.0@jar"
         simpleName="org.jetbrains:annotations"/>
     <dependency
+        name="commons-lang:commons-lang:2.6@jar"
+        simpleName="commons-lang:commons-lang"/>
+    <dependency
+        name="commons-logging:commons-logging:1.1.1@jar"
+        simpleName="commons-logging:commons-logging"/>
+    <dependency
         name="io.grpc:grpc-context:1.27.2@jar"
         simpleName="io.grpc:grpc-context"/>
+    <dependency
+        name="com.google.dagger:dagger:2.24@jar"
+        simpleName="com.google.dagger:dagger"/>
+    <dependency
+        name="com.google.auto.value:auto-value-annotations:1.6.5@jar"
+        simpleName="com.google.auto.value:auto-value-annotations"/>
+    <dependency
+        name="javax.inject:javax.inject:1@jar"
+        simpleName="javax.inject:javax.inject"/>
   </compile>
 </dependencies>

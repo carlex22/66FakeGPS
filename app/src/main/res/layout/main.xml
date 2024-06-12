@@ -7,8 +7,8 @@
 	<ImageView
                 android:layout_marginTop="250dp"
                 android:id="@+id/fundo"
-		android:layout_width="match_parent"                         
-		android:layout_height="wrap_content"                        
+		android:layout_width="match_parent"               
+		android:layout_height="wrap_content"              
 		android:src="@drawable/fundo" />
 
 
@@ -18,9 +18,31 @@
 		android:layout_height="match_parent"
 		android:apiKey="AIzaSyC4UVRx10NmwhLT8ve0HnOedFbXGxk4piI"
 		android:visibility="gone"/>
-		<!--!AIzaSyCgefVFOWLWzW4K6BngQoQgdWELwm2SlBI-->
-	
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:visibility="gone"> 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"> 
+
+        <EditText
+            android:id="@+id/tSat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top" 
+            android:scrollbars="vertical"
+            android:textColor="#000000"
+		android:textSize="20sp" />
+
+</ScrollView>
+
+</LinearLayout>
 
 	<LinearLayout
 		android:id="@+id/data"
@@ -31,14 +53,12 @@
 		android:gravity="center">
 
 		<LinearLayout
-			android:id="@+id/databottom"
+			android:id="@+id/datatop1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
-			android:background="#7B1800"
 			android:gravity="center"
-			android:layout_marginBottom="4dp"
-			android:visibility="gone">
+			android:layout_marginBottom="4dp">
 
 			<TextView
 				android:id="@+id/tbear"
@@ -48,29 +68,26 @@
 				android:text="bear"
 				android:layout_margin="3dp"
 				android:gravity="center"
-				android:textColor="#FFD888"
+				android:textColor="#000000"
 				android:textSize="20sp"/>
+			
 
 			<TextView
-				android:id="@+id/tVmed"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:text="velocida med"
-				android:layout_margin="3dp"
-				android:gravity="center"
-				android:textColor="#FFD888"
-				android:textSize="20sp"/>
+                                android:id="@+id/tCel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="cell"
+                                android:layout_margin="3dp"
+                                android:gravity="center"
+                                android:textColor="#000000"
+				android:textSize="20sp"
+				android:visibility="gone"/>
+				
+
 
 		</LinearLayout>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:gravity="center"
-			android:background="#FF8100"
-			android:layout_marginTop="3dp"
-			android:visibility="gone"/>
 
 	</LinearLayout>
 

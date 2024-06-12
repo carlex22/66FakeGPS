@@ -12,21 +12,26 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/-->
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ico"
         android:label="@string/app_name"
-	    android:theme="@style/AppTheme"
-	    android:name=".MyApp"
-        android:resizeableActivity="true"
+	android:theme="@style/AppTheme"
+	android:name=".MyApp"
+	android:resizeableActivity="true"
         tools:replace="android:appComponentFactory"
-	    android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+	android:appComponentFactory="androidx.core.app.CoreComponentFactory">
 
 	<activity android:name=".MainActivity"
+		android:launchMode="singleTask"
 		android:theme="@style/Theme.AppCompat"
-	  android:exported="true">    
+    	        android:taskAffinity="com.carlex.drive"
+	        android:exported="true">    
 		<intent-filter>         
 			<action android:name="android.intent.action.MAIN" /> 
 			<category android:name="android.intent.category.LAUNCHER" />
@@ -37,7 +42,20 @@
 			<category android:name="android.intent.category.BROWSABLE" />                     
 			<data android:scheme="waze" />
 		</intent-filter>
-        </activity>
+	</activity>
+
+
+
+	<activity android:name="com.carlex.drive.gnssData.Main" 
+		android:launchMode="singleTask"  
+		android:theme="@style/Theme.AppCompat" 
+		android:taskAffinity="com.carlex.drive"      		android:exported="true">             
+	     <intent-filter>     
+			<action android:name="android.intent.action.VIEW" />           
+			<category android:name="android.intent.category.DEFAULT" />      
+	      </intent-filter>   
+      	</activity>
+
 
 	<meta-data
             android:name="xposedmodule"
@@ -45,19 +63,15 @@
         <meta-data
             android:name="xposeddescription"
             android:value="Fake Gps, and auto drive, simulate gnss and wls locatin, very realistic" />
-        <meta-data
-            android:name="xposedminversion"
-		android:value="53">
-	</meta-data>
 	<meta-data
 	    android:name="xposedname"
-	    android:value="Drive" />
+	    android:value="66 Fake Gps" />
 	<meta-data
 	    android:name="xposedpackage"
 	    android:value="com.carlex.drive" />
 	<meta-data
-	    android:name="xposedversion"
-	    android:value="1.0" />
+		android:name="xposedminversion"
+	    android:value="82" />
 	<meta-data
 	    android:name="xposedauthor"
 	    android:value="Carlex" />

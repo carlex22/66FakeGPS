@@ -1,0 +1,105 @@
+package com.carlex.drive;
+
+
+import android.telephony.CellInfo;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellIdentityGsm;
+import android.util.Log;
+
+public class xCellInfoGsm {
+    private static final String TAG = "xCellInfoGsm";
+    
+    private final CellIdentityGsm cellIdentityGsm;
+    private final CellSignalStrengthGsm cellSignalStrengthGsm;
+
+    // Construtor para inicializar com CellIdentityGsm e CellSignalStrengthGsm
+    public xCellInfoGsm(CellIdentityGsm cellIdentityGsm, CellSignalStrengthGsm cellSignalStrengthGsm) {
+        this.cellIdentityGsm = cellIdentityGsm;
+        this.cellSignalStrengthGsm = cellSignalStrengthGsm;
+    }
+
+    // Métodos para obter informações da célula GSM
+    public CellIdentityGsm getCellIdentity() {
+        Log.d(TAG, "getCellIdentity() called");
+        return cellIdentityGsm;
+    }
+
+    public CellSignalStrengthGsm getCellSignalStrength() {
+        Log.d(TAG, "getCellSignalStrength() called");
+        return cellSignalStrengthGsm;
+    }
+
+    /*
+    // Método para criar uma instância de xCellInfoGsm a partir de CellInfoGsm
+    public static xCellInfoGsm fromCellInfoGsm(CellInfoGsm cellInfoGsm) {
+        if (cellInfoGsm == null) {
+            return null;
+        }
+        Log.d(TAG, "fromCellInfoGsm() called");
+        return new xCellInfoGsm(cellInfoGsm.getCellIdentity(), cellInfoGsm.getCellSignalStrength());
+    }
+
+    // Método para criar uma xCellInfoGsm fictícia
+    public static xCellInfoGsm createFakeCellInfoGsm() {
+        Log.d(TAG, "createFakeCellInfoGsm() called");
+        
+        // Gerar uma CellIdentityGsm fictícia
+        CellIdentityGsm fakeCellIdentity = new CellIdentityGsm(
+            123,  // MCC (Mobile Country Code)
+            456,  // MNC (Mobile Network Code)
+            7890, // LAC (Location Area Code)
+            12345, // CID (Cell Identity)
+            1     // Arfcn (Absolute RF Channel Number)
+        );
+
+        // Gerar um CellSignalStrengthGsm fictício
+        CellSignalStrengthGsm fakeSignalStrength = new CellSignalStrengthGsm(
+            99,   // ASU (Arbitrary Strength Unit)
+            0,    // Dbm (Signal Strength in dBm)
+            -1    // Timing Advance
+        );
+
+        return new xCellInfoGsm(fakeCellIdentity, fakeSignalStrength);
+    }*/
+
+    
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        xCellInfoGsm that = (xCellInfoGsm) obj;
+        return cellIdentityGsm.equals(that.cellIdentityGsm) && cellSignalStrengthGsm.equals(that.cellSignalStrengthGsm);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cellIdentityGsm.hashCode();
+        result = 31 * result + cellSignalStrengthGsm.hashCode();
+        return result;
+    }
+}
+
+/*import android.telephony.CellInfoGsm;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellIdentityGsm;
+
+public class xCellInfoGsm {
+//extends CellInfo {
+
+    private CellIdentityGsm cellIdentity;
+    private CellSignalStrengthGsm cellSignalStrength;
+
+    public xCellInfoGsm() {
+        this.cellIdentity = new CellIdentityGsm(12345, 67890, 1, 2, 3);
+        this.cellSignalStrength = new CellSignalStrengthGsm(-85, 10, 15);
+    }
+
+    public CellIdentityGsm getCellIdentity() {
+        return cellIdentity;
+    }
+
+    public CellSignalStrengthGsm getCellSignalStrength() {
+        return cellSignalStrength;
+    }
+}
+*/
