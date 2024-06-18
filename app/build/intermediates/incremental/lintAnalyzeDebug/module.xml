@@ -1,26 +1,18 @@
 <lint-module
     format="1"
-    dir="/data/data/com.termux/files/home/sdcard/TERMUX/66FakeGPS/app"
+    dir="/storage/emulated/0/AndroidIDEProjects/My Application6/app"
     name=":app"
     type="APP"
-    maven="com.github.topjohnwu.libsu:app:unspecified"
-    agpVersion="8.4.0"
+    maven="My Application6:app:"
+    agpVersion="8.1.1"
     buildFolder="build"
-    bootClassPath="/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/platforms/android-34/android.jar:/data/data/com.termux/files/usr/lib/jvm/java-17-openjdk/build-tools/x34/core-lambda-stubs.jar"
-    javaSourceLevel="1.8"
-    compileTarget="android-34"
-    neverShrinking="true">
+    bootClassPath="/data/data/com.itsaky.androidide/files/home/android-sdk/platforms/android-33/android.jar:/data/data/com.itsaky.androidide/files/home/android-sdk/build-tools/33.0.1/core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-33">
   <lintOptions
-      disable="BlockedPrivateApi"
       abortOnError="true"
       absolutePaths="true"
       checkReleaseBuilds="true"
-      explainIssues="true">
-    <severities>
-      <severity
-        id="BlockedPrivateApi"
-        severity="IGNORE" />
-    </severities>
-  </lintOptions>
+      explainIssues="true"/>
   <variant name="debug"/>
 </lint-module>

@@ -15,6 +15,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.os.Handler;
+import android.widget.ScrollView;
 
 public class Main extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -24,11 +25,18 @@ public class Main extends AppCompatActivity {
     private Runnable runnable;
     private boolean isUpdating = true;
 
+    private ScrollView scrollView;
+ 
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gnssmain);
+
+	scrollView = findViewById(R.id.scrollView);
+
 
         textView = findViewById(R.id.textView);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -81,6 +89,8 @@ private void stopUpdatingData() {
         // Geração das mensagens NMEA
         GnssMessages gnssMessages = new GnssMessages(position, altitude, speed, heading);
         String[] nmeaSentences = gnssMessages.generateNmeaMessages();
+
+
 
         // Armazenando as mensagens NMEA na classe GnssDataStorage
         for (String sentence : nmeaSentences) {
@@ -138,7 +148,20 @@ private void stopUpdatingData() {
         }
 
         textView.setText(gnssData.toString());
+
+	scrollToBottom();
     }
+
+
+private void scrollToBottom() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

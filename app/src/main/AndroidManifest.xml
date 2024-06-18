@@ -17,6 +17,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/-->
 
+
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/> <!-- Permissão de root, se aplicável -->
+
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ico"
@@ -46,15 +51,46 @@
 
 
 
-	<activity android:name="com.carlex.drive.gnssData.Main" 
-		android:launchMode="singleTask"  
-		android:theme="@style/Theme.AppCompat" 
-		android:taskAffinity="com.carlex.drive"      		android:exported="true">             
-	     <intent-filter>     
-			<action android:name="android.intent.action.VIEW" />           
-			<category android:name="android.intent.category.DEFAULT" />      
-	      </intent-filter>   
-      	</activity>
+	<activity 
+	android:name="com.carlex.drive.gnssData.Main" 
+	android:launchMode="singleTask"  
+	android:theme="@style/Theme.AppCompat" 
+	android:taskAffinity="com.carlex.drive"
+	android:exported="true">             
+	  <intent-filter>     
+		<action
+		android:name="android.intent.action.VIEW" />    
+		<category
+		android:name="android.intent.category.DEFAULT" />     
+	  </intent-filter>   
+  </activity>
+
+  <activity        
+	  android:name="com.carlex.drive.logActivity"          
+	  android:launchMode="singleTask"     
+	  android:theme="@style/Theme.AppCompat"
+        android:taskAffinity="com.carlex.drive"                                     android:exported="true">                                                      <intent-filter>
+                <action                                                                     android:name="android.intent.action.VIEW" />                                <category                                                                   android:name="android.intent.category.DEFAULT" />                     </intent-filter>                                                    </activity>
+
+
+  <activity                   
+	  android:name="com.carlex.drive.gnssData.gpsGetStatus"   
+	  android:launchMode="singleTask"                 
+	  android:theme="@style/Theme.AppCompat"       
+	  android:taskAffinity="com.carlex.drive"       
+	  android:exported="true">                 
+  	  <intent-filter>                            
+	  <action                             
+		  android:name="android.intent.action.VIEW" />   
+	  <category                                 
+		  android:name="android.intent.category.DEFAULT" />  
+  	</intent-filter>
+        </activity>
+
+<activity                                                                           android:name="com.carlex.drive.PreferencesActivity"                       android:launchMode="singleTask"
+          android:theme="@style/Theme.AppCompat"                                      android:taskAffinity="com.carlex.drive"                                     android:exported="true">                                                    <intent-filter>                                                             <action
+                  android:name="android.intent.action.VIEW" />                        <category                                                                           android:name="android.intent.category.DEFAULT" />                 </intent-filter>
+        </activity>
 
 
 	<meta-data
@@ -82,6 +118,11 @@
 		android:name="xposedhomepage"
 		android:value="http://www.github.com/carlex22" />
 
+		<meta-data
+            android:name="xposedscope"
+            android:resource="@array/scope" />
+
+
 
 
 	<meta-data           
@@ -97,6 +138,16 @@
 
         <!-- Suas meta-dados e atividades aqui -->
 
+
+<service android:name=".GnssLoggerService" android:exported="true">
+    <intent-filter>
+        <action android:name="com.carlex.drive.gnsslogger.IGnssLoggerService" />
+    </intent-filter>
+</service>
+
+
+
+
 	<service
     	android:name=".FakeLocationService1"
     	android:enabled="true"
@@ -106,7 +157,19 @@
     	<intent-filter>
         	<action android:name="com.carlex.drive.FakeLocationService1"/>
     	</intent-filter>
-	</service>
+</service>
+
+
+
+<service                                                          android:name="com.carlex.drive.gnssData.gpstatusService"
+	android:enabled="true"           
+	android:exported="true"               
+	android:foregroundServiceType="location"
+	android:permission="android.permission.FOREGROUND_SERVICE">                     
+<intent-filter>                        
+	<action android:name="com.carlex.drive.FakeLocationService1"/>  
+	</intent-filter>                   
+</service>
 
 	<service
     	android:name=".OverlayService"

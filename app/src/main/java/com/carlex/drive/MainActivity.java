@@ -118,14 +118,16 @@ import androidx.annotation.NonNull;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
 
 //import com.topjohnwu.libsuexample.databinding.ActivityMainBinding;
 //import com.topjohnwu.superuser.CallbackList;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.ipc.RootService;
 import com.topjohnwu.superuser.nio.FileSystemManager;
-
+import android.content.ComponentName;                             import android.content.ServiceConnection;                         import android.os.IBinder;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
@@ -226,6 +228,20 @@ public static boolean su = false;
 private static final long MINUTE_IN_MILLIS = 15000;
 
 
+
+/////
+//
+//
+
+
+    
+
+
+
+
+
+
+
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	savedInstanceState1 = savedInstanceState;
@@ -271,7 +287,6 @@ protected void onCreate(Bundle savedInstanceState) {
             turbo = 5; // Exemplo de valor padrão
             saveTurboValue(turbo); // Salvar o valor padrão
         }
-
 
 
 	// Solicitar permissão POST_NOTIFICATIONS se necessário       
@@ -439,39 +454,8 @@ protected void onResume() {
     super.onResume();                
 
     boolean isRooted = isDeviceRooted();
-
-    if (isRooted) {
-        /*try {
-            Process process = Runtime.getRuntime().exec("su");
-            DataOutputStream outputStream = new DataOutputStream(process.getOutputStream());
-            
-            // Adiciona o provedor de localização GPS, network e wifi às configurações permitidas
-            outputStream.writeBytes("settings put secure location_providers_allowed +gps,network,wifi\n");
-            outputStream.flush();
-            
-            // Sai do shell root
-            outputStream.writeBytes("exit\n");
-            outputStream.flush();
-            
-            // Espera o término do processo
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
-    }	
-
     mapView.onResume();            
-    //mapaCentralizar = true;
     mapView.setVisibility(View.VISIBLE);
-
-	//cellLoc = new xCellLoc(this);
-        //cellLoc.startUpdatingCellLocation();
-  
-
-
-     //DriverInfo driverinfo = new DriverInfo(MainActivity.this, "1123456");
-     //GetCell cell = new GetCell(MainActivity.this, latLng.latitude, latLng.longitude);
 
     inicar=true;
     if (!FakeLocationService1.isServiceRunning()) {                 
@@ -1749,6 +1733,8 @@ public void onDestroy() {
 	super.onDestroy();   
 	//stopFakeLoc();
 	//mapView.onDestroy();
+	//
+
 }                                  
 
 //baixa memoria android
