@@ -1,41 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '8.1.1' apply false
+    id 'com.android.library' version '8.1.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.0' apply false     
 
-buildscript {
-    repositories {
-		//google
-		mavenCentral()
-		jcenter()
-		maven { url "https://maven.google.com" }
-		maven { url 'https://jitpack.io' }
-
-		maven { url "https://repo1.maven.org/mave2/" }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.4.0'
-	classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
-
-	//compileOnly 'de.robv.android.xposed:api:82'
-    	//compileOnly 'de.robv.android.xposed:api:82:sources'
-		// NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-
-    ext {
-        androidX = true
-    }
 }
-
-allprojects {
-    repositories {
-    		mavenCentral()
-		jcenter()
-                maven { url "https://maven.google.com" }
-		maven { url 'https://jitpack.io' }
-		maven { url 'https://api.xposed.info/' }
-		maven { url "https://repo1.maven.org/mave2/" }
-    }
-}
-
 
 task clean(type: Delete) {
     delete rootProject.buildDir

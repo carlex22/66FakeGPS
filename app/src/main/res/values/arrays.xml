@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scope">
+	    <item>com.carlex.drive</item>
+	    <item>com.app99.drive</item>
+	    <item>flar2.devcheck</item>
+	    <item>com.google.android.apps.location.gps.gnsslogger</item>
+	    <item>fr.dvilleneuve.lockito</item>
+	    <item>info.zamojski.soft.towercollector</item>
+    </string-array>
+</resources>
+

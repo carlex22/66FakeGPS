@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
-
+import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.widget.Toast;
@@ -30,12 +30,12 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
 
     public FusedLocationsProvider(Context context) {
         this.context = context;
-	xthis = context;
+    	xthis = context;
 
-	Location location = new Location(GPS_PROVIDER);
+    	Location location = new Location(GPS_PROVIDER);
 
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
-	this.location = location;
+	    this.location = location;
 
         this.apiClient = new GoogleApiClient.Builder(this.context)
                 .addConnectionCallbacks(this)
@@ -65,8 +65,10 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
         location.setBearing(bearing);*/
 
     public Location build(Location location) {
-        return this.location;
+	return location;
     }
+
+
 
     public void spoof(Location location) {
        // if (!isMockLocationsEnabled())
@@ -75,9 +77,18 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
         if (apiClient.isConnected()) {
             try {
                 fusedLocationClient.setMockMode(true);
+                location.setProvider("fused");                        
+                Bundle extras = new Bundle();                            
+                extras.putInt("satellites", 
+                SpaceMan.getSatelliteCount());
+                extras.putFloat("xxmaxCn0", 
+                SpaceMan.getMaxCn0()); 
+                extras.putFloat("xxmeanCn0", 
+                SpaceMan.getMeanCn0());      
+                location.setExtras(extras);
                 fusedLocationClient.setMockLocation(location);
             } catch (SecurityException e) {
-                Log.d("Fused", "SecurityException", e);
+                Log.d("xFused", "SecurityException", e);
             }
         }
     }

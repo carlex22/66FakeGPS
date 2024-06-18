@@ -1,7 +1,6 @@
 package com.carlex.drive;
 
 import android.Manifest;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -12,277 +11,308 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.os.SystemClock;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.Toast;
+import android.location.provider.ProviderProperties;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import android.util.Log;
-import java.util.concurrent.ThreadLocalRandom;
-import android.location.provider.ProviderProperties;
-import com.google.android.gms.common.ConnectionResult;    
-import android.widget.Toast;                           
 
-
-import android.Manifest;
-import android.content.Context;      
-import android.content.pm.PackageManager;               import android.location.Location;                       import android.location.LocationListener;               import android.location.LocationManager;                import android.os.Bundle;                               import androidx.core.content.ContextCompat;             import com.google.android.gms.maps.model.LatLng;                                                                import android.Manifest;                                import android.content.Context;                         import android.content.pm.PackageManager;               import android.location.Criteria;                       import android.location.Location;                       import android.location.LocationManager;                import android.os.Build;                                import android.os.SystemClock;                          import android.provider.Settings;                       import android.util.Log;                                import android.location.provider.ProviderProperties;    import androidx.core.content.ContextCompat;             import androidx.core.view.InputDeviceCompat;            import java.util.Random;                                import java.util.concurrent.ThreadLocalRandom;          import android.widget.Toast;
-
-import com.google.android.gms.common.api.GoogleApiClient;   
-import com.google.android.gms.location.FusedLocationProviderClient; 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class FakeLocationService1 extends Service {
-    public double latitude, longitude, altitude;
-    public float bearing;
-    public double velocidade;
-    public static final String TAG = "FakeLocationService";
-    public static boolean isRunning = false;
-    public static boolean parado = true;
-    public Thread backgroundThread;
-    public static boolean processado;
-    //public static Toast toast;
-    public FusedLocationsProvider fusedLocationsProvider;
-    public static  LocationManager locationManager;
-    public Context context;
+
+    public static double latitude, longitude, altitude;
+    public static float bearing;
+    public static double velocidade;
     public static Location gpsLocation;
     public static Location networkLocation;
-    public static FusedLocationProviderClient fusedLocation;
+    public static boolean isRunning = false;
+    public static boolean parado = true;
+    public static boolean isMockLocationsEnabled;
+    
+    private Thread backgroundThread;
+    public static LocationManager locationManager;
+    private FusedLocationProviderClient fusedLocation;
+    public static SpaceMan spaceMan;
+    private Context context;
+  
+    public FusedLocationsProvider fusedLocationsProvider;
+  
+    private static final String TAG = "FLS";
     private static final String CHANNEL_ID = "FakeLocationServiceChannel";
-    private static final String GPS_PROVIDER = LocationManager.GPS_PROVIDER;                                                 
-    private static final String NETWORK_PROVIDER = LocationManager.NETWORK_PROVIDER;                                            
-    private static boolean isMockLocationsEnabled;
+    private static final String GPS_PROVIDER = LocationManager.GPS_PROVIDER;
+    private static final String NETWORK_PROVIDER = LocationManager.NETWORK_PROVIDER;
+    private static final String FUSED_PROVIDER = LocationManager.FUSED_PROVIDER;
 
+   private static final Object lock = new Object();
 
     
-    public void onCreate() {
-        super.onCreate();
-        this.context = MainActivity.context;
-
-	this.locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-	// Verifica se o GPS está disponível
-	boolean gpsEnabled = locationManager.isProviderEnabled(GPS_PROVIDER);
-
-
-	isMockLocationsEnabled = true;
-
-	// Verifica  permissão de localização
-	if (areLocationPermissionsGranted(context)) {
-		// Verifica se o GPS está disponível
-		if (gpsEnabled) {
-			Toast.makeText(context, "GPS disponível", Toast.LENGTH_SHORT).show();
-			gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);		
-			latitude = gpsLocation.getLatitude();    
-			longitude = gpsLocation.getLongitude(); 
-			altitude = gpsLocation.getAltitude(); 
-			bearing = gpsLocation.getBearing();
-		}
-	} else {
-		Toast.makeText(context, "Localizacao inicial definida", Toast.LENGTH_SHORT).show();
-		latitude = -23.5879554;
-		longitude = -46.63816059;
-		altitude = 750.0;
-		bearing = 45f;
-		gpsLocation = new Location(GPS_PROVIDER);
-		gpsLocation.setLatitude(latitude);
-		gpsLocation.setLongitude(longitude);
-		gpsLocation.setAltitude(altitude);
-		gpsLocation.setBearing(bearing);
-		//locationManager.setLocation(gpsLocation);
-		//locationManager.setTestProviderLocation(provider, location);
-	}
-
-	gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);
-	networkLocation = locationManager.getLastKnownLocation(NETWORK_PROVIDER);
-	//fusedLocation = LocationServices.getFusedLocationProviderClient(this);
-
-
-	fusedLocationsProvider = new FusedLocationsProvider(context);
-
-	createNotificationChannel();
-
-
-	if (isMockLocationsEnabled){
-		Toast.makeText(context, "Permissão de localização falsa concedida", Toast.LENGTH_SHORT).show();
-		startForeground(1, getNotification("66 Fake Gps Ligado").build());
-		initTestProvider();
-	} else {
-		startForeground(1, getNotification("Falha ao iniciar 66 Fake").build());
-		Toast.makeText(context, "Permissão de localização falsa não concedida", Toast.LENGTH_SHORT).show();
-		return;
-	}
-
-	isRunning = true;
+   static void setLatitude(double newLatitude) {
+        synchronized (lock) {
+            latitude = newLatitude;
+        }
     }
 
+    // Getter e Setter sincronizados para longitude
+    public static synchronized double getLongitude() {
+        return longitude;
+    }
 
+    public static synchronized double getLatitude() {                       
+         return latitude;
+    }
 
-    public static boolean isServiceRunning() {
+    public static void setLongitude(double newLongitude) {
+        synchronized (lock) {
+            longitude = newLongitude;
+        }
+    }
+
+    // Getter e Setter sincronizados para velocidade
+    public static synchronized double getSpeed() {
+        return velocidade;
+    }
+
+    public static void setSpeed(double newVelocidade) {
+        synchronized (lock) {
+            velocidade = newVelocidade;
+        }
+    }
+
+    // Getter e Setter sincronizados para altitude
+    public static synchronized double getAltitude() {
+        return altitude;
+    }
+
+    public static void setAltitude(double newAltitude) {
+        synchronized (lock) {
+            altitude = newAltitude;
+        }
+    }
+
+    // Getter e Setter sincronizados para bearing
+    public static synchronized float getBearing() {
+        return bearing;
+    }
+
+    public static void setBearing(float newBearing) {
+        synchronized (lock) {
+            bearing = newBearing;
+	    }    
+    }
+    
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+       if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);
+            networkLocation = locationManager.getLastKnownLocation(NETWORK_PROVIDER);
+        }
+        
+        boolean gpsEnabled = locationManager.isProviderEnabled(GPS_PROVIDER);
+        //isMockLocationsEnabled = true;
+
+        if (areLocationPermissionsGranted(context)) {
+            if (gpsEnabled) {
+                Toast.makeText(context, "GPS disponível", Toast.LENGTH_SHORT).show();
+                Location gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);
+                if (gpsLocation != null) {
+                    latitude = gpsLocation.getLatitude();
+                    longitude = gpsLocation.getLongitude();
+                    altitude = gpsLocation.getAltitude();
+                    bearing = gpsLocation.getBearing();
+                }
+                isMockLocationsEnabled = true;
+            }
+        } else {
+            setDefaultLocation();
+            isMockLocationsEnabled = true;
+        }
+        
+
+        //fusedLocation = LocationServices.getFusedLocationProviderClient(this);
+        //fusedLocationsProvider = new FusedLocationsProvider(context);
+      
+        createNotificationChannel();
+
+        if (isMockLocationsEnabled) {
+            Toast.makeText(context, "Permissão de localização falsa concedida", Toast.LENGTH_SHORT).show();
+            startForeground(1, getNotification("66 Fake Gps Ligado").build());
+            initTestProvider();
+        } else {
+            startForeground(1, getNotification("Falha ao iniciar 66 Fake").build());
+            Toast.makeText(context, "Permissão de localização falsa não concedida", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String tles = readRawTextFile(R.raw.gps);
+        spaceMan = new SpaceMan(context, tles, new Location(GPS_PROVIDER));
+    }
+    
+    
+   public static boolean isServiceRunning() {
         return isRunning;
     }
 
     
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(() -> {
-
-	    //iniciar servico loop infinito
+        backgroundThread = new Thread(() -> {
             while (true) {
-
-                //Limpaar dados antigos
-		MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());
-
                 RotaFake rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-
-		//Verificar se o veículo está parado
-		if (gpsLocation.getSpeed()>0.5 && parado == true){ if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(this).notify(2, getNotification("66 em Rota").build()); }              
-			parado = false;                  
-		} 
-
-		if (gpsLocation.getSpeed()<=0.5 && parado == false){ if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(this).notify(2, getNotification("66 Estacionado").build()); }            
-			parado = true;                        
-		}
-
-		//Verificar dados rotafake
-		if (rotaFake1 != null) {
-		    //esperar tempo para proxima atualizacao
-                    long tempo = rotaFake1.getTempo();
-                    long diferencaTempo = tempo - System.currentTimeMillis();
-		    if (diferencaTempo > 0) {
-			    try {Thread.sleep(diferencaTempo);} 
-			    catch (InterruptedException e) {}
-                    }
-		    
-                } else {
-		    float tnoise = (float) (ThreadLocalRandom.current().nextDouble(100, 150));
-		    if (latitude < -10.0){ 
-			    RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + 159));
-		    MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
-			    rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-		    }
-
-		    try { Thread.sleep((long) tnoise); }   
-		    catch (InterruptedException e) {}        
-
-		}                          
-
-	        //iniciar spoofing   
-		if (latitude < -10.0) {              
-			if (isMockLocationsEnabled) { 
-				spoofLocation(rotaFake1, gpsLocation, GPS_PROVIDER);   
-				spoofLocation(rotaFake1, networkLocation, NETWORK_PROVIDER);
-				fusedLocationsProvider.spoof(gpsLocation);
-			}
-		}
-
-		//limpar pontos antigos
-		MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis()); 
-	    }
-
-	//fim thread
-	}).start();
-
-	//nao reiniciar 
-	return START_NOT_STICKY;
+                spoofLocationAndUpdate(rotaFake1);
+                handleVehicleState(rotaFake1);
+                MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());
+            }
+        });
+        backgroundThread.start();
+        return START_NOT_STICKY;
     }
 
-	
-    //criar localizacao spoofada
-
-    public void spoofLocation(RotaFake rotaFake1, Location location, String provider) {
-
-	    latitude = rotaFake1.getLatitude();   
-	    longitude = rotaFake1.getLongitude();      
-	    bearing = rotaFake1.getBearing();        
-	    velocidade = rotaFake1.getVelocidade();                                                                                 
-	    //Location gpsLocation = new Location(provider);
-	    float noise = (float) (ThreadLocalRandom.current().nextDouble(0, 20)/10);   
-	    long Timef = System.currentTimeMillis();              
-	    location.setLatitude(latitude);                
-	    location.setLongitude(longitude);            
-	    location.setBearing(bearing+(noise/2));         
-	    location.setSpeed((float) ((velocidade+(noise/3.6f))/4));
-	    location.setTime(Timef);                         
-	    location.setAltitude((double) ((700 + Math.random() * 50)+noise));
-	    location.setAccuracy((float) (ThreadLocalRandom.current().nextDouble(0, 20)/10));                                                       
-	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		    location.setVerticalAccuracyMeters((float) (ThreadLocalRandom.current().nextDouble(0, 20)/10));            
-		    location.setSpeedAccuracyMetersPerSecond(noise/3.6f);
-		    location.setBearingAccuracyDegrees(noise/2);
-	    }
-
-	    location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
-
-	    if (isMockLocationsEnabled){
-	    	try {                                           
-		    //locationManager.setLocation(location);        
-		    locationManager.setTestProviderLocation(provider, location);
-	    	} catch (SecurityException se) {      
-		    Log.d("FakeLocationService", "falha no Mock", se);                            
-	   	}	
-	    }
+    private void handleVehicleState(RotaFake rotaFake1) {
+        if (getGpsSpeed() > 0.5 && parado) {
+            notifyState("66 em Rota");
+            parado = false;
+        } else if (getGpsSpeed() <= 0.5 && !parado) {
+            notifyState("66 Estacionado");
+            parado = true;
+        }
+        if (rotaFake1 == null) {
+            sleepRandomTime();
+        } else {
+            waitForNextUpdate(rotaFake1);
+        }
     }
 
-
-    public static void initTestProvider() {  
-	//isMockLocationsEnabled = areLocationP0ermissionsGranted(this) && isMockLocationsEnabled(this.context);    
-
-	if (isMockLocationsEnabled) {            
-	    removeProviders();               
-	    locationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);                      
-	    locationManager.setTestProviderEnabled(GPS_PROVIDER, true);                                                
-	    locationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);                   
-	    locationManager.setTestProviderEnabled(NETWORK_PROVIDER, true);    
-	}                                                
+    private void spoofLocationAndUpdate(RotaFake rotaFake1) {
+        
+        if (latitude < -10.0 && isMockLocationsEnabled) {
+            spoofLocation(rotaFake1, new Location(GPS_PROVIDER), GPS_PROVIDER);
+            spoofLocation(rotaFake1, new Location(NETWORK_PROVIDER), NETWORK_PROVIDER);
+            if (gpsLocation!=null){
+              //  fusedLocationsProvider.spoof(gpsLocation);
+                updateSpaceMan(gpsLocation);
+                }
+        }
+        MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());
     }
 
-    
-    public static void removeProviders() {      
-	     if (isMockLocationsEnabled) {       
-		     try {                   
-			     locationManager.removeTestProvider(GPS_PROVIDER);                                        
-			     locationManager.removeTestProvider(NETWORK_PROVIDER);        
-		     } catch (IllegalArgumentException | SecurityException e) {                         
-			     Log.d("Fakelocatinservice", "erro remover provedores", e);           
-		     }                                                             }                   
-     }                                                                                   
-
-     
-     public static boolean areLocationPermissionsGranted(Context context) {
-        return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-     }                                                                                                                                   
-     
-     public static boolean isMockLocationsEnabled(Context context) { 
-	return Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0;       
-     }
-
-    
+    @Override
     public void onDestroy() {
         super.onDestroy();
-	isRunning = false;
-        stopForeground(true);
+        isRunning = false;
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             NotificationManagerCompat.from(this).notify(2, getNotification("Fake Location Service Stopped").build());
-        } 
-	removeProviders();
+        }
+        removeProviders();
     }
 
-
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    
-    private NotificationCompat.Builder getNotification(String message) {
-        return new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Fake Location Service")
-                .setContentText(message)
-                .setSmallIcon(R.drawable.ico)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+    private void notifyState(String message) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            NotificationManagerCompat.from(this).notify(2, getNotification(message).build());
+        }
     }
 
+    private void sleepRandomTime() {
+        float tnoise = (float) (ThreadLocalRandom.current().nextDouble(100, 150));
+        try {
+            Thread.sleep((long) tnoise);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void waitForNextUpdate(RotaFake rotaFake1) {
+        long tempo = rotaFake1.getTempo();
+        long diferencaTempo = tempo - System.currentTimeMillis();
+        if (diferencaTempo > 0) {
+            try {
+                Thread.sleep(diferencaTempo);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    private void setDefaultLocation() {
+        Toast.makeText(context, "Localização inicial definida", Toast.LENGTH_SHORT).show();
+        latitude = -23.5879554;
+        longitude = -46.63816059;
+        altitude = 750.0;
+        bearing = 45f;
+    }
+
+    public void spoofLocation(RotaFake rotaFake1, Location location, String provider) {
+        if (location==null){
+            location  = new Location(provider);
+        } 
     
+        if (rotaFake1!=null){
+            latitude = rotaFake1.getLatitude();
+            longitude = rotaFake1.getLongitude();
+            bearing = rotaFake1.getBearing();
+            velocidade = rotaFake1.getVelocidade();
+        }
+
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+        float noise = (float) (ThreadLocalRandom.current().nextDouble(0, 20) / 10);
+        long Timef = System.currentTimeMillis();
+        location.setBearing(bearing + (noise / 2));
+        location.setSpeed((float) ((velocidade + (noise / 3.6f)) / 4));
+        location.setTime(Timef);
+        location.setAltitude((double) ((700 + Math.random() * 50) + noise));
+        location.setAccuracy((float) (ThreadLocalRandom.current().nextDouble(0, 20) / 10));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            location.setVerticalAccuracyMeters((float) (ThreadLocalRandom.current().nextDouble(0, 20) / 10));
+            location.setSpeedAccuracyMetersPerSecond(noise / 3.6f);
+            location.setBearingAccuracyDegrees(noise / 2);
+        }
+        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
+
+        if (isMockLocationsEnabled) {
+            try {
+                    locationManager.setTestProviderLocation(provider, location);
+            } catch (SecurityException se) {
+                Log.d(TAG, "Falha no Mock", se);
+            }
+        }
+    }
+
+    private static void updateSpaceMan(Location location) {
+        SpaceMan.setGroundStationPosition(location);
+        //SpaceMan.calculatePositions();
+        Log.d(TAG, "Max C/N0: " + SpaceMan.getMaxCn0());
+        Log.d(TAG, "Mean C/N0: " + SpaceMan.getMeanCn0());
+        Log.d(TAG, "Satellite Count: " + SpaceMan.getSatelliteCount());
+    }
+
+    private float getGpsSpeed() {
+        return new Location(GPS_PROVIDER).getSpeed();
+    }
+
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Fake Location Service Channel";
@@ -294,4 +324,68 @@ public class FakeLocationService1 extends Service {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    private NotificationCompat.Builder getNotification(String message) {
+        return new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Fake Location Service")
+                .setContentText(message)
+                .setSmallIcon(R.drawable.ico)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+    }
+
+    private String readRawTextFile(int resId) {
+        InputStream inputStream = getResources().openRawResource(resId);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+
+    
+   public static void initTestProvider() {
+	//isMockLocationsEnabled = areLocationP0ermissionsGranted(this) && isMockLocationsEnabled(this.context);
+
+	if (isMockLocationsEnabled) {
+	    removeProviders();
+	    locationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
+	    locationManager.setTestProviderEnabled(GPS_PROVIDER, true);
+	    locationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
+	    locationManager.setTestProviderEnabled(NETWORK_PROVIDER, true);
+	}
+    }
+
+    
+    
+    public static boolean areLocationPermissionsGranted(Context context) {
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    
+
+    public static void removeProviders() {
+	     if (isMockLocationsEnabled) {
+		     try {
+			     locationManager.removeTestProvider(GPS_PROVIDER);
+			     locationManager.removeTestProvider(NETWORK_PROVIDER);
+		     } catch (IllegalArgumentException | SecurityException e) {
+			     Log.d("Fakelocatinservice", "erro remover provedores", e);
+		     }                                                             }
+     }
+    
+    
+
 }
