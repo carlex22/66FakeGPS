@@ -28,11 +28,11 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
 
     private static final String GPS_PROVIDER = LocationManager.GPS_PROVIDER;
 
-    public FusedLocationsProvider(Context context) {
+    public FusedLocationsProvider(Context context, Location location) {
         this.context = context;
     	xthis = context;
 
-    	Location location = new Location(GPS_PROVIDER);
+    //	Location location = new Location(GPS_PROVIDER);
 
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 	    this.location = location;
@@ -49,20 +49,10 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
 
 
     public void sToast(String txt){
-	    Toast.makeText(xthis, txt, Toast.LENGTH_SHORT).show();
+	  //  Toast.makeText(xthis, txt, Toast.LENGTH_SHORT).show();
     }
 
-   // public Location build(double latitude, double longitude, float accuracy, float bearing, float speed, float altitude) {
-       /* float speedInMeters = speed / 3.6f;
-
-        location.setLatitude(latitude);
-        location.setLongitude(longitude);
-        location.setSpeed(speedInMeters);
-        location.setAccuracy(accuracy);
-        location.setAltitude(altitude);
-        location.setTime(System.currentTimeMillis());
-        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
-        location.setBearing(bearing);*/
+   
 
     public Location build(Location location) {
 	return location;
@@ -71,35 +61,35 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
 
 
     public void spoof(Location location) {
-       // if (!isMockLocationsEnabled())
-         //   return;
+     //  if (!isMockLocationsEnabled())
+    //    return;
 
-        if (apiClient.isConnected()) {
-            try {
+       // if (apiClient.isConnected()) {
+           // try {
                 fusedLocationClient.setMockMode(true);
-                location.setProvider("fused");                        
-                Bundle extras = new Bundle();                            
+                //location.setProvider("fused");                        
+                 /* Bundle extras = new Bundle();                            
                 extras.putInt("satellites", 
                 SpaceMan.getSatelliteCount());
                 extras.putFloat("xxmaxCn0", 
                 SpaceMan.getMaxCn0()); 
                 extras.putFloat("xxmeanCn0", 
                 SpaceMan.getMeanCn0());      
-                location.setExtras(extras);
-                fusedLocationClient.setMockLocation(location);
-            } catch (SecurityException e) {
-                Log.d("xFused", "SecurityException", e);
-            }
-        }
+                location.setExtras(extras);*/
+                 fusedLocationClient.setMockLocation(location);
+        //    } catch (SecurityException e) {
+          //      Log.d("xFused", "SecurityException", e);
+   //     }
+      //  }
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        try {
+       // try {
             fusedLocationClient.setMockMode(true);
-        } catch (SecurityException e) {
-		Log.d("fused","FALHA AO CONECTAR FUSED", e);
-        }
+       // } catch (SecurityException e) {
+	//	Log.d("fused","FALHA AO CONECTAR FUSED", e);
+      //  }
     }
 
     @Override
@@ -115,13 +105,14 @@ public class FusedLocationsProvider implements GoogleApiClient.OnConnectionFaile
     }
 
     private boolean isMockLocationsEnabled() {
-        try {
-            return Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION) == 1;
-        } catch (Settings.SettingNotFoundException e) {
-            e.printStackTrace();
-	    Log.d("fused", "FALHA AO AUTORIZAR FAKE FUSED");
-            return false;
-        }
+       // try {
+        //    return Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION) == 1;
+       // } catch (Settings.SettingNotFoundException e) {
+         //   e.printStackTrace();
+	   // Log.d("fused", "FALHA AO AUTORIZAR FAKE FUSED");
+       //))     return false;
+     //   }
+        return true;
     }
 }
 

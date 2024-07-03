@@ -7,6 +7,7 @@ pluginManagement {
     maven { url 'https://jitpack.io' }
     maven { url 'https://api.xposed.info/' }
     maven { url "https://repo1.maven.org/maven2/" }
+    
   }
 }
 
@@ -21,6 +22,9 @@ dependencyResolutionManagement {
     maven { url "https://repo1.maven.org/maven2/" }
   }
 }
+
+
+
 
 rootProject.name = "66 Fake Gps"
 

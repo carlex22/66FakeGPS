@@ -1,12 +1,12 @@
-#Tue Jun 18 06:30:50 GMT 2024
-path.4=14/classes.dex
-path.3=classes2.dex
-path.2=11/classes.dex
+#Wed Jul 03 02:59:18 GMT 2024
+path.4=classes2.dex
+path.3=3/classes.dex
+path.2=14/classes.dex
 path.1=0/classes.dex
 path.0=classes.dex
-base.4=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
-base.3=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.2=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
+base.4=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.3=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
+base.2=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
 base.1=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.0=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.3=classes4.dex

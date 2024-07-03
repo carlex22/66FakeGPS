@@ -97,7 +97,7 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.content.SharedPreferences;
-
+import android.preference.PreferenceManager;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -106,7 +106,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
+
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
@@ -120,14 +120,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
+
 
 //import com.topjohnwu.libsuexample.databinding.ActivityMainBinding;
 //import com.topjohnwu.superuser.CallbackList;
-import com.topjohnwu.superuser.Shell;
-import com.topjohnwu.superuser.ipc.RootService;
-import com.topjohnwu.superuser.nio.FileSystemManager;
-import android.content.ComponentName;                             import android.content.ServiceConnection;                         import android.os.IBinder;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
@@ -233,12 +229,24 @@ private static final long MINUTE_IN_MILLIS = 15000;
 //
 //
 
+private static final int REQUEST_LOCATION_PERMISSION = 1;
 
     
 
-
-
-
+    /*
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == REQUEST_LOCATION_PERMISSION) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permissões concedidas, iniciar o serviço
+            startFakeLoc();
+        } else {
+            // Permissões negadas, mostrar uma mensagem ou tomar uma ação apropriada
+            Toast.makeText(this, "Permissões de localização são necessárias para o funcionamento do aplicativo", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+*/
 
 
 
@@ -248,9 +256,14 @@ protected void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.main);
 
+        
+	    if (!FakeLocationService1.isServiceRunning()) {
+            	new Iniciar(this).iniciar();
+	    }
 
 
-
+       PreferenceManager.getDefaultSharedPreferences(this).edit().apply();
+        
 	//textview main
 	tbear = findViewById(R.id.tbear);
 	tspeed = findViewById(R.id.tspeed);
@@ -296,15 +309,28 @@ protected void onCreate(Bundle savedInstanceState) {
 	    }
 	}
 
-	// Verifica permissão salvar log da rota    
-	if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1); } else { }
-
+        
+        
+        /*
+        
+     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                REQUEST_LOCATION_PERMISSION);
+    } 
+        // Permissões já concedidas, iniciar o serviço
+        locationManager = xLocationManager.getInstance(mainApp);
+        */
+        
+        
+        fIntent = new Intent(this, FakeLocationService1.class);	
+        startFakeLoc();
+    
 
 	// iniciar dados  de localização
-	locationManager = xLocationManager.getInstance(mainApp);
-
-	fIntent = new Intent(this, FakeLocationService1.class);	
-
+	
 	////////////Botoes 
 	
 	//botao getar rota
@@ -354,7 +380,8 @@ protected void onCreate(Bundle savedInstanceState) {
     						polyline = null; 
 				}
 				stopFakeLoc();
-				//mapaCentralizar = true;
+              //  FakeLocationService1.setIsRunnig(false);
+                //mapaCentralizar = true;
 			} else {
 			}
 		    //}
@@ -420,13 +447,21 @@ protected void onPostCreate(Bundle savedInstanceState) {
     mapView.getMapAsync(this);
 }
 
-
+@Override
+public void onBackPressed() {
+    // Em vez de finalizar a atividade, mova-a para o fundo
+    moveTaskToBack(true);
+}
 
 
 
 protected void onStart() {
-        super.onStart();
-	new VerifyLocationTask(this, locationManager).execute();
+    super.onStart();
+	long intervaloMillisegundos = 250L;
+          
+    CentralizeHandler centralizeHandler = new CentralizeHandler(this, context);
+    centralizeHandler.startCentralizing(intervaloMillisegundos);
+
 	if (!FakeLocationService1.isServiceRunning()) {     
 		//checkloc.setChecked(true);       
 		iniciarFake=true;          
@@ -436,15 +471,15 @@ protected void onStart() {
 	
 
 private boolean isDeviceRooted() {
-    // Verifica se o arquivo su está presente
+   /* // Verifica se o arquivo su está presente
     File file = new File("/system/xbin/su");
     if (file.exists()) {
         return true;
     }
 
     // Verifica se o arquivo su está presente
-    file = new File("/system/bin/su");
-    return file.exists();
+    file = new File("/system/bin/su");*/
+    return false;
 }
 
 
@@ -456,6 +491,11 @@ protected void onResume() {
     boolean isRooted = isDeviceRooted();
     mapView.onResume();            
     mapView.setVisibility(View.VISIBLE);
+        
+        
+     if (latLng ==null){
+            onSaltoClick();
+            }
 
     inicar=true;
     if (!FakeLocationService1.isServiceRunning()) {                 
@@ -463,6 +503,11 @@ protected void onResume() {
 	checkfake.setChecked(true);
 	iniciarFake=true;                                   
     }
+        mapaCentralizar= false;
+        
+        
+        
+        
     stopOverlayService();                        
     Intent intent = getIntent();
     if (intent != null && intent.getData() != null && "waze".equals(intent.getData().getScheme())) {
@@ -531,9 +576,9 @@ public void startFakeLoc() {
 }
 
 public void stopFakeLoc() {
-    if (FakeLocationService1.isServiceRunning()) {
+  //  if (FakeLocationService1.isServiceRunning()) {
         stopService(fIntent);
-    }
+//  }
 }
 
 
@@ -551,6 +596,7 @@ public void onGerarotaClick() {
             return;
         }
 
+        
         // Check distancia
         double dist = calcularDistancia(latLng, latLngfake);
         if (dist < 10) {
@@ -607,21 +653,40 @@ public void onSaltoClick(){
 		return;
 	}
 
-	//obter nova cordenada salto             
-	latLngfake = cameraPosition.target;      
-
+	//obter nova cordenada salto           
+    if (latLng ==null){
+       latLng = new LatLng(-23.5879554, -46.63816059);
+            latLngfake = latLng;
+    }
+    
+    else {
+	    latLngfake = cameraPosition.target;      
+    }
+        
+        
+        
+        
 	//limpar dados fake e salvar novo ponto      
 	rotaFake = new ArrayList<>();         
 	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 100, 0.0, 0.0};
 	rotaFake.add(dadosSegmento);
 	salvarRotafakeEmArquivo();
 
-
-
+try{
+            MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
+         } catch (Exception e) {
+            
+        }
+        
 	if (!FakeLocationService1.isServiceRunning()) {      
 		startFakeLoc();            
 	}
-
+        
+        try{
+            MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
+         } catch (Exception e) {
+            
+        }
 	//iniciar fake                       
 	//mapaCentralizar = true;             
 	iniciarFake = true;                  
@@ -634,7 +699,7 @@ public void onSaltoClick(){
 		polyline = null;           
 	}
 
-	toast = Toast.makeText(MainActivity.this, "Teletransportado para: ", Toast.LENGTH_SHORT);
+	toast = Toast.makeText(MainActivity.this, "Teletransportado de:" + latLng.toString() + "para: " + latLngfake.toString(), Toast.LENGTH_SHORT);
 	toast.show();
 }
 
@@ -643,13 +708,13 @@ public void onSaltoClick(){
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == 1234) {
+ /*   if (requestCode == 1234) {
         if (Settings.canDrawOverlays(MainActivity.this)) {
             //startOverlayService();
         } else {
             Toast.makeText(MainActivity.this, "Permissão de sobreposição negada", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 }
 
 //inicar overlay
@@ -1170,10 +1235,10 @@ private void procesarrMovimento() {
 
 
     String a = "t"+ formatarTempo(((long) tt/1000));
-    mToast(a);
+    //mToast(a);
 
  a = "tt"+ formatarTempo(((long) ttotal /1000));    
- mToast(a);
+// mToast(a);
 
     for (int j = 0; j < rotaFake.size(); j++) {
        Object[] NdadosSegmento = rotaFake.get(j);    
@@ -1204,7 +1269,7 @@ private void procesarrMovimentofim() {
 		double freio  = (double) dadosSegmento[8]; 
 		//double ntempo = (double) dadosSegmento[4]; 
 		velocidade *= (1 - freio);
-		velocidade = Math.max(2, Math.min(velocidade, 60));
+		velocidade = Math.max(1, Math.min(velocidade, 45));
 		float distancia = (float) dadosSegmento[5]; 
 		double ntempo = (distancia / velocidade) * 1000;
 		dadosSegmento[3] = (double) velocidade;
@@ -1311,7 +1376,7 @@ private void simularMovimento() {
 		//velocidadeAtual *= fatorReducao;
 		dadosSegmento[3] = (double) velocidadeAtual;
 		double fre = fatorReducao + (double) dadosSegmento[8];
-		fre = Math.max(0, Math.min(fre, 0.90));
+		fre = Math.max(0, Math.min(fre, 0.95));
 		dadosSegmento[8] = (double) fre;
 		rotaFake.set(j, dadosSegmento);
 		j--;
@@ -1330,7 +1395,7 @@ public Double fator(int angulo, int tempo) {
         double y = tempo;
         
         double P = 0.01125 * x - 0.1125;
-        double Sp = 0.09 * y + 0.1;
+        double Sp = 0.095 * y + 0.05;
         
         double z = P * Sp;
         
@@ -1475,11 +1540,13 @@ public void centralizar(){
 	if (googleMap == null) {
 		return;
 	}
+        
+        mapaCentralizar = false;
 
 	//cellInfoHandler.postDelayed(cellInfoRunnable, 10000);
 	//gnssHandler.postDelayed(gnssRunnable, 1000);
 
-
+/*
 	String schro = "00:00:00";
 
         new AsyncTask<Void, Void, RotaFake>() {
@@ -1507,7 +1574,7 @@ public void centralizar(){
 			textViewTempo.setText("🏁 00:00:00");
             }
         }}.execute();
-
+*/
 
 	if (polyline != null) {      
 		desMarker.setVisible(true);  
@@ -1531,7 +1598,9 @@ public void centralizar(){
 	if (latLng!=null){
 	carMarker.setPosition(latLng);                        
 	carMarker.setRotation(currentBearing);
+    }
 	
+        mapaCentralizar = false;
 
 	//centralizar mapa e camera
 	if (!mapaCentralizar){
@@ -1554,13 +1623,15 @@ public void centralizar(){
 			//zoom = calculateZoomfrom(latLng, polyline);
 			zoom = (float) 15;
 		} else { zoom = (float) 15; }
-    		
+            
+            
+        
 		// mover camera atualizar marcadorez
-    		CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(zoom).build();
-    		//googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    	CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(zoom).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 		googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-	}
-	}
+    }
+	
 }
 
 //calcular zoon poliline
@@ -1684,7 +1755,8 @@ public void onMapReady(GoogleMap googleMap) {
         public void onCameraMoveStarted(int reason) {
             if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
                 mapaCentralizar = false;
-		checkloc.setChecked(false);
+	        	checkloc.setChecked(false);
+                mapaCentralizar = false;
             }
         }
     });
@@ -1705,7 +1777,7 @@ private Bitmap resizeBitmap(int resourceId, int width, int height) {
 protected void onPause() {
     super.onPause();
     mapView.onPause();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+  /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         if (!Settings.canDrawOverlays(MainActivity.this)) {
             Intent oIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
 	    Uri.parse("package:" + getPackageName()));
@@ -1716,7 +1788,7 @@ protected void onPause() {
         }
     } else {
         //startOverlayService();
-    }
+    }*/
 }
 
 
@@ -1732,7 +1804,7 @@ private void stopOverlayService() {
 public void onDestroy() {      
 	super.onDestroy();   
 	//stopFakeLoc();
-	//mapView.onDestroy();
+	mapView.onDestroy();
 	//
 
 }                                  

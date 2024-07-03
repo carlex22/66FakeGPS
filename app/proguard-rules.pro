@@ -1,4 +1,4 @@
-# Add project specific ProGuard rules here.
+{}# Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
 # in C:\tools\adt-bundle-windows-x86_64-20131030\sdk/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
@@ -15,3 +15,6 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+

@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+  <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!--android:sharedUserId="android.uid.system"-->   
+     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,17 +15,24 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_WIFI_CREDENTIAL"/>
+    
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/-->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
 
 
 <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
 <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/> <!-- Permissão de root, se aplicável -->
 
-
+    
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ico"
@@ -122,7 +133,15 @@
             android:name="xposedscope"
             android:resource="@array/scope" />
 
-
+<provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.carlex.drive.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
 
 	<meta-data           
@@ -145,23 +164,42 @@
     </intent-filter>
 </service>
 
+        <activity android:name=".nmea.SettingsActivity"
+          android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".FakeLocationService1"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.FOREGROUND_SERVICE">
+        </service>
+        
+        
+        
+        <service
+            android:name=".SpaceManService"
+            android:enabled="true"
+            android:exported="true"
+                android:foregroundServiceType="location" />
+    	
+
+        
+       <service
+            android:name=".SensorProcessorService"
+            android:enabled="true"
+            android:exported="true"
+       android:foregroundServiceType="location" />
+    	
 
 
-
-	<service
-    	android:name=".FakeLocationService1"
-    	android:enabled="true"
-    	android:exported="true"
-	android:foregroundServiceType="location"
-    	android:permission="android.permission.FOREGROUND_SERVICE">
-    	<intent-filter>
-        	<action android:name="com.carlex.drive.FakeLocationService1"/>
-    	</intent-filter>
-</service>
-
-
-
-<service                                                          android:name="com.carlex.drive.gnssData.gpstatusService"
+<service                       
+    android:name="com.carlex.drive.gnssData.gpstatusService"
 	android:enabled="true"           
 	android:exported="true"               
 	android:foregroundServiceType="location"

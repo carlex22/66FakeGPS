@@ -1,1 +1,5 @@
-com.carlex.drive.MainHook
+com.carlex.drive.NmeaHook
+com.carlex.drive.GnssStatusHook
+com.carlex.drive.CellHooks
+com.carlex.drive.SensorHook
+

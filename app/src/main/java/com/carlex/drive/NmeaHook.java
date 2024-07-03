@@ -1,86 +1,102 @@
 package com.carlex.drive;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.location.LocationManager;
 import android.location.OnNmeaMessageListener;
 import android.util.Log;
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class NmeaHook implements IXposedHookLoadPackage {
-    private static final String TAG = "NMEAHook";
-    private static final String NMEA = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,";
-    private static Long Timestamp = 123456789L;
-    private Context systemContext;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public void setSystemContext(Context context) {
-        this.systemContext = context;
-    }
+public class NmeaHook implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+    private static final String TAG = "xNMEAHook";
+    private static final String FILE_PATH = "/data/system/carlex/locations.json";
+    private static Context systemContext;
+    private static String NMEA = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,";
 
     @Override
-    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        try {
-            if (!isPackageInScope(lpparam.packageName)) {
-               // return;
+    public void initZygote(StartupParam startupParam) throws Throwable {
+        //XposedBridge.log(TAG + ": initialized in Zygote");
+        /*systemContext = (Context) XposedHelpers.callMethod(
+            XposedHelpers.callStaticMethod(
+                XposedHelpers.findClass("android.app.ActivityThread", null), "currentActivityThread"
+            ), "getSystemContext"
+        );*/
+    }
+
+    private static void updateNmeaFromJson() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            //Log.e(TAG, "File not found: " + FILE_PATH);
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            StringBuilder jsonString = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonString.append(line);
             }
+            JSONArray jsonArray = new JSONArray(jsonString.toString());
+            if (jsonArray.length() > 0) {
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                if (jsonObject.has("nmea")) {
+                    NMEA = jsonObject.getString("nmea");
+                } else {
+                    //Log.e(TAG, "NMEA key not found in JSON");
+                }
+            }
+        } catch (IOException | JSONException e) {
+            //Log.e(TAG, "Error reading NMEA from JSON file: ", e);
+        }
+    }
 
-            XposedBridge.log("Hooking package: " + lpparam.packageName);
-
+   
+    @Override
+    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        if (lpparam.packageName.equals("com.carlex.drive")) {
+            return;
+        }
+        
+        //XposedBridge.log(TAG + ": NmeaHook loaded for package " + lpparam.packageName);
+        try {
+            // Hook para o método addNmeaListener
             XposedHelpers.findAndHookMethod(LocationManager.class, "addNmeaListener", OnNmeaMessageListener.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     final OnNmeaMessageListener originalListener = (OnNmeaMessageListener) param.args[0];
-                    try {
-                        OnNmeaMessageListener hookedListener = new OnNmeaMessageListener() {
-                            @Override
-                            public void onNmeaMessage(String message, long timestamp) {
-                                // Valor original
-                                Log.i(TAG, "Original: " + message + " " + timestamp);
-                                // Modifique a mensagem NMEA 
-                                message = NMEA;
-                                timestamp = Timestamp;
 
-                                // Passe a mensagem modificada
-                                originalListener.onNmeaMessage(message, timestamp);
-                                Log.i(TAG, "Hooked NMEA message: " + message + " " + timestamp);
-                            }
-                        };
-                        param.args[0] = hookedListener;
-                        Log.i(TAG, "Hooked addNmeaListener");
-                    } catch (Throwable t) {
-                        Log.e(TAG, "Error: " + t);
-                        t.printStackTrace();
-                    }
+                    OnNmeaMessageListener hookedListener = new OnNmeaMessageListener() {
+                        @Override
+                        public void onNmeaMessage(String message, long timestamp) {
+                           // //Log.i(TAG, "Original NMEA message: " + message + " " + timestamp);
+                            
+                                // Modifique a mensagem NMEA e o timestamp
+                                updateNmeaFromJson();
+                                message = NMEA;
+                                
+                            // Passe a mensagem modificada
+                            originalListener.onNmeaMessage(message, timestamp);
+                            //Log.i(TAG, "Hooked NMEA message passed: " + message + " " + timestamp);
+                        }
+                    };
+                    param.args[0] = hookedListener;
+                   // //Log.i(TAG, "Hooked addNmeaListener");
                 }
             });
         } catch (Throwable t) {
-            Log.e(TAG, "Error: " + t);
-            t.printStackTrace();
+            //Log.e(TAG, "Error hooking addNmeaListener: " + t);
         }
-    }
-
-    private boolean isPackageInScope(String packageName) {
-        try {
-            if (systemContext == null) {
-                Log.e(TAG, "System context is null");
-                return false;
-            }
-            Resources res = systemContext.getResources();
-            String[] scope = res.getStringArray(res.getIdentifier("scope", "array", systemContext.getPackageName()));
-
-            for (String pkg : scope) {
-                if (packageName.equals(pkg)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error in isPackageInScope: " + e.getMessage(), e);
-        }
-        return false;
     }
 }
-

@@ -1,100 +1,59 @@
-// MainHook.java
 package com.carlex.drive;
 
-import de.robv.android.xposed.IXposedHookZygoteInit;
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import de.robv.android.xposed.IXposedHookZygoteInit.StartupParam;
-import de.robv.android.xposed.XposedHelpers;
+import android.app.AndroidAppHelper;
 import android.content.Context;
-import android.util.Log;
-
-import java.io.DataOutputStream;
-import java.io.IOException;
+import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import com.carlex.drive.NmeaHook.*;
 
 public class MainHook implements IXposedHookZygoteInit, IXposedHookLoadPackage {
-    private static final String TAG = "MainHook";
-
-    private NmeaHook nmeaHook = new NmeaHook();
-    private GnssStatusHook gnssStatusHook = new GnssStatusHook();
-   // private GnssStatusHook1 gnssStatusHook1 = new GnssStatusHook1();
-
-    private GnssMeasurementsHook gnssMeasurementsHook = new GnssMeasurementsHook();
-
-    //private GnssNavigationMessageHook gnssNavigationMessageHook = new GnssNavigationMessageHook();
-
-    private ConnectivityHooks connectivityHooks = new ConnectivityHooks();
-
-    private Context systemContext;
-
+    private XSharedPreferences prefs;
+    private static final String TAG = "MAINHook";
+    
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
-        try {
-            // Inicialização do Zygote
-            Log.i(TAG, "Zygote initialized");
-
-            // Obter contexto do sistema
-            systemContext = (Context) XposedHelpers.callStaticMethod(
-                    XposedHelpers.findClass("android.app.ActivityThread", null),
-                    "currentApplication"
-            );
-            Log.i(TAG, "System context obtained");
-
-            //0 Conceder permissões de superusuário e de sistema ao pacotie
-	    /*if (lpparam.packageName.equals("com.carlex.drive")) {           
-            	grantPermissions("com.carlex.drive");
-		Log.i(TAG, "Permissions granted to com.carlex.drive");
-	    }*/
-        } catch (Throwable t) {
-            Log.e(TAG, "Error initializing Zygote: " + t);
-            t.printStackTrace();
-        }
-    }
-
-    private void grantPermissions(String packageName) {
-        try {
-            Process su = Runtime.getRuntime().exec("su");
-            DataOutputStream os = new DataOutputStream(su.getOutputStream());
-
-            os.writeBytes("pm grant " + packageName + " android.permission.SYSTEM_ALERT_WINDOW\n");
-            os.writeBytes("pm grant " + packageName + " android.permission.WRITE_SECURE_SETTINGS\n");
-            os.writeBytes("pm grant " + packageName + " android.permission.READ_PHONE_STATE\n");
-            os.writeBytes("exit\n");
-            os.flush();
-            os.close();
-
-            su.waitFor();
-            Log.i(TAG, "Granted superuser and system permissions to " + packageName);
-        } catch (IOException | InterruptedException e) {
-            Log.e(TAG, "Error granting permissions: " + e);
-            e.printStackTrace();
-        }
+        // Inicialize as preferências
+        prefs = new XSharedPreferences("com.carlex.drive", "com.carlex.drive_preferences");
+        prefs.makeWorldReadable();
+        XposedBridge.log(TAG + ": Preferences initialized");
     }
 
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        try {
-		
-		if (lpparam.packageName.equals("com.carlex.drive")) {
-			grantPermissions("com.carlex.drive");      
-			Log.i(TAG, "Permissions granted to com.carlex.drive");                                     
-		}
-	
-	    gnssStatusHook.setSystemContext(systemContext);
-        nmeaHook.setSystemContext(systemContext);
-	    connectivityHooks.setSystemContext(systemContext);
-        gnssMeasurementsHook.setSystemContext(systemContext);
-	    
-        gnssMeasurementsHook.handleLoadPackage(lpparam);
-	    gnssStatusHook.handleLoadPackage(lpparam);
-        nmeaHook.handleLoadPackage(lpparam);
-        connectivityHooks.handleLoadPackage(lpparam);
-            
-        Log.i(TAG, "Hooks initialized for package: " + lpparam.packageName);
-        } catch (Throwable t) {
-            Log.e(TAG, "Error in MainHook: " + t);
-            t.printStackTrace();
-        }
+       // if (!lpparam.packageName.equals("com.carlex.drive")) {
+       //     return;
+      //  }
+        XposedBridge.log(TAG + ": Handling package " + lpparam.packageName);
+
+        // Hook para o método setNmea de SpaceManService
+        XposedHelpers.findAndHookMethod(
+            "com.carlex.drive.SpaceManService",
+            lpparam.classLoader,
+            "setNmea",
+            String.class,
+            new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    String nmea = (String) param.args[0];
+                    XposedBridge.log(TAG + ": Intercepted xNMEA setNmea call with value: " + nmea);
+                    // Atualize o valor no NmeaHook
+                  //  NmeaHook.setNmea(nmea);
+                }
+            }
+        );
+
+        // Atualize a string nmea quando o pacote é carregado
+        prefs.reload();
+        String nmea = prefs.getString("nmea", "");
+        XposedBridge.log(TAG + ": xLoaded xNMEA from preferences: " + nmea);
+
+        // Atualize o valor no NmeaHook
+         //NmeaHook.setNmea(nmea);
+        XposedBridge.log(TAG + ": Updated xNMEAHook with nmea: " + nmea);
     }
 }
-

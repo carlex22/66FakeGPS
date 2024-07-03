@@ -1,155 +1,267 @@
 package com.carlex.drive;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import android.util.Pair;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class ConnectivityHooks implements IXposedHookLoadPackage {
+import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
 
-    private static final String TAG = "ExtendedConnectivityHooks";
-    private Map<String, Integer> classes;
-    private Map<String, Integer> tipoDados;
-    private Map<String, Object> valores;
-    private Context systemContext;
+public class ConnectivityHooks implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+    private static final String TAG = "ConnectivityHooks";
+    private static final String PREFS_FILE_PATH = "/data/system/carlex/preferences.json";
+    private Map<String, Object> hooksMap = new HashMap<>();
 
-    public void setSystemContext(Context context) {
-        this.systemContext = context;
+    @Override
+    public void initZygote(StartupParam startupParam) throws Throwable {
+        Log.d(TAG, "Zygote initialized");
+        try {
+            Log.d(TAG, "Reading preferences file...");
+            String jsonData = readPreferencesFile();
+            Log.d(TAG, "Preferences JSON data: " + jsonData);
+
+            if (jsonData == null) {
+                Log.d(TAG, "Preferences JSON data is null...");
+                return;
+            }
+
+            Log.d(TAG, "Parsing JSON data...");
+            JSONArray jsonArray = new JSONArray(jsonData);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Log.d(TAG, "Processing JSON object: " + jsonObject.toString());
+                iterateAndHook(jsonObject);
+            }
+        } catch (IOException | JSONException e) {
+            Log.e(TAG, "Error reading or parsing preferences JSON", e);
+        }
     }
 
     @Override
-    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        try {
-            if (!lpparam.packageName.equals("com.carlex.drive")) {
-              //  return;
-            }
-
-            Log.d(TAG, "Package loaded: " + lpparam.packageName);
-
-            // Inicializa as sublistas de preferências se não existirem
-            initializePreferences();
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(systemContext);
-
-            // Carregar valores das preferências
-            loadPreferences(prefs);
-
-            // Aplicar hooks a outros pacotes
-            applyHooksToOtherPackages();
-
-            // Registrar um OnSharedPreferenceChangeListener para monitorar mudanças nas preferências
-            prefs.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
-                try {
-                    loadPreferences(sharedPreferences);
-                    applyHooksToOtherPackages();
-                    Log.d(TAG, "Preferences updated: " + key);
-                } catch (Exception e) {
-                    Log.e(TAG, "Error updating preferences: " + e.getMessage(), e);
-                }
-            });
-        } catch (Exception e) {
-            Log.e(TAG, "Error in handleLoadPackage: " + e.getMessage(), e);
-        }
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        Log.d(TAG, "handleLoadPackage: Loaded app: " + lpparam.packageName);
     }
 
-    private void initializePreferences() {
-        try {
-            if (classes == null) {
-                classes = new HashMap<>();
-                tipoDados = new HashMap<>();
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(systemContext);
-                Map<String, ?> allEntries = prefs.getAll();
-
-                // Carrega classes e tipos de dados a partir das preferências
-                for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                    String key = entry.getKey();
-                    if (key.startsWith("class_")) {
-                        classes.put(key.replace("class_", ""), (Integer) entry.getValue());
-                    } else if (key.startsWith("tipo_")) {
-                        tipoDados.put(key.replace("tipo_", ""), (Integer) entry.getValue());
-                    }
-                }
-                Log.d(TAG, "Preferences initialized: " + classes.size() + " classes and " + tipoDados.size() + " data types loaded");
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error in initializePreferences: " + e.getMessage(), e);
+    private String readPreferencesFile() throws IOException {
+        File prefsFile = new File(PREFS_FILE_PATH);
+        if (!prefsFile.exists()) {
+            Log.d(TAG, "Preferences file not found");
+            return null;
         }
+
+        BufferedReader reader = new BufferedReader(new FileReader(prefsFile));
+        StringBuilder content = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            content.append(line);
+        }
+        reader.close();
+        Log.d(TAG, "Read preferences file content: " + content.toString());
+        return content.toString();
     }
 
-    private void loadPreferences(SharedPreferences prefs) {
-        try {
-            valores = new HashMap<>();
-            Map<String, ?> allEntries = prefs.getAll();
-            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
-                valores.put(key, value);
-                Log.d(TAG, "Loaded preference: " + key + " = " + value);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error loading preferences: " + e.getMessage(), e);
-        }
-    }
-
-    private void applyHooksToOtherPackages() {
-        try {
-            XposedBridge.hookAllMethods(XposedHelpers.findClass("android.app.Application", null), "attach", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    Context context = (Context) param.args[0];
-                    ClassLoader classLoader = context.getClassLoader();
-                    updateHooks(classLoader);
-                }
-            });
-        } catch (Exception e) {
-            Log.e(TAG, "Error applying hooks to other packages: " + e.getMessage(), e);
-        }
-    }
-
-    private void updateHooks(ClassLoader classLoader) {
-        try {
-            for (Map.Entry<String, Object> entry : valores.entrySet()) {
-                String key = entry.getKey();
-                Object returnValue = entry.getValue();
+    private void iterateAndHook(JSONObject jsonObject) {
+        Iterator<String> keys = jsonObject.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            try {
+                JSONObject valueObject = jsonObject.getJSONObject(key);
+                String typeName = valueObject.keys().next();
+                String returnValueStr = valueObject.getString(typeName);
 
                 String[] parts = key.split("\\.");
-                int classId = Integer.parseInt(parts[0]);
-                int tipoId = Integer.parseInt(parts[1]);
-                String methodName = parts[2];
+                String methodName = parts[parts.length - 1];
+                String className = String.join(".", parts[0], parts[1], parts[2]);
 
-                String className = getKeyFromValue(classes, classId);
-                String tipo = getKeyFromValue(tipoDados, tipoId);
+                Class<?> clazz = findClass(className);
 
-                if (className != null && tipo != null) {
-                    XposedHelpers.findAndHookMethod(className, classLoader, methodName, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            param.setResult(returnValue);
-                        }
-                    });
-                    Log.d(TAG, "Hooked method: " + className + "." + methodName + " with return value: " + returnValue);
+                if (clazz != null) {
+                    Method method = findMethod(clazz, methodName);
+
+                    if (method != null) {
+                        Object returnValue = convertFromString(typeName, returnValueStr);
+
+                        Log.d(TAG, "Hooking method: " + key + " with return value: " + returnValue);
+                        hooksMap.put(key, returnValue);
+                        hookMethodWithLogging(clazz, methodName, returnValue);
+                    } else {
+                        Log.e(TAG, "Method not found: " + methodName + " in class " + className);
+                    }
+                } else {
+                    Log.e(TAG, "Class not found: " + className);
                 }
+            } catch (JSONException e) {
+                Log.e(TAG, "Error parsing JSON object: " + key, e);
+            } catch (Exception e) {
+                Log.e(TAG, "Error hooking method: " + key, e);
             }
-        } catch (Exception e) {
-            Log.e(TAG, "Error updating hooks: " + e.getMessage(), e);
         }
     }
 
-    private <T, E> T getKeyFromValue(Map<T, E> map, E value) {
-        for (Map.Entry<T, E> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
-                return entry.getKey();
+    private Class<?> findClass(String className) {
+        switch (className) {
+            case "int":
+                return int.class;
+            case "boolean":
+                return boolean.class;
+            case "float":
+                return float.class;
+            case "double":
+                return double.class;
+            case "long":
+                return long.class;
+            case "short":
+                return short.class;
+            case "byte":
+                return byte.class;
+            case "char":
+                return char.class;
+            default:
+                try {
+                    return Class.forName(className);
+                } catch (ClassNotFoundException e) {
+                    Log.e(TAG, "Class not found: " + className, e);
+                    return null;
+                }
+        }
+    }
+
+    private Method findMethod(Class<?> clazz, String methodName) {
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.getName().equals(methodName)) {
+                return method;
             }
         }
         return null;
     }
-}
 
+    private void hookMethodWithLogging(Class<?> clazz, String methodName, Object returnValue) {
+        try {
+            XposedHelpers.findAndHookMethod(clazz, methodName, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    Log.d(TAG, "Original method called: " + clazz.getName() + "." + methodName);
+                }
+
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(returnValue);
+                }
+            });
+        } catch (Exception e) {
+            Log.e(TAG, "Error hooking method: " + clazz.getName() + "." + methodName, e);
+        }
+    }
+
+    private Object convertFromString(String typeName, String valueStr) throws Exception {
+        switch (typeName) {
+            case "java.lang.Boolean":
+            case "boolean":
+                return Boolean.parseBoolean(valueStr);
+            case "java.lang.Integer":
+            case "int":
+                return Integer.parseInt(valueStr);
+            case "java.lang.Long":
+            case "long":
+                return Long.parseLong(valueStr);
+            case "java.lang.Float":
+            case "float":
+                return Float.parseFloat(valueStr);
+            case "java.lang.Double":
+            case "double":
+                return Double.parseDouble(valueStr);
+            case "java.lang.Short":
+            case "short":
+                return Short.parseShort(valueStr);
+            case "java.lang.Byte":
+            case "byte":
+                return Byte.parseByte(valueStr);
+            case "java.lang.Character":
+            case "char":
+                return valueStr.charAt(0);
+            case "java.lang.String":
+                return valueStr;
+            case "java.util.List":
+                return parseList(valueStr);
+            case "java.util.Map":
+                return parseMap(valueStr);
+            case "android.util.Pair":
+                return parsePair(valueStr);
+            default:
+                return parseComplexObject(typeName, valueStr);
+        }
+    }
+
+    private List<Object> parseList(String valueStr) {
+        List<Object> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(valueStr);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String itemValueStr = jsonArray.getString(i);
+                list.add(convertFromString("java.lang.String", itemValueStr));
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing list from string: " + valueStr, e);
+        }
+        return list;
+    }
+
+    private Map<String, Object> parseMap(String valueStr) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            JSONObject jsonObject = new JSONObject(valueStr);
+            Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                String itemValueStr = jsonObject.getString(key);
+                map.put(key, convertFromString("java.lang.String", itemValueStr));
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing map from string: " + valueStr, e);
+        }
+        return map;
+    }
+
+    private Pair<Object, Object> parsePair(String valueStr) {
+        try {
+            String[] parts = valueStr.split(" ");
+            Object first = convertFromString("java.lang.String", parts[0]);
+            Object second = convertFromString("java.lang.String", parts[1]);
+            return new Pair<>(first, second);
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing pair from string: " + valueStr, e);
+            return null;
+        }
+    }
+
+    private Object parseComplexObject(String typeName, String valueStr) {
+        try {
+            Class<?> clazz = findClass(typeName);
+            Constructor<?> constructor = clazz.getDeclaredConstructor(String.class);
+            return constructor.newInstance(valueStr);
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing complex object: " + typeName + " with value: " + valueStr, e);
+            return null;
+        }
+    }
+}

@@ -1,140 +1,50 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/build.gradle",
+      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorProcessorService2.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 21,
+          "index": 5845,
+          "line": 139
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 21,
+          "index": 5845,
+          "line": 139
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/FakeLocationService1.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorProcessorService.java",
       "selection": {
         "end": {
-          "column": 16,
-          "index": 7295,
-          "line": 209
+          "column": 28,
+          "index": 10631,
+          "line": 227
         },
         "start": {
-          "column": 16,
-          "index": 7295,
-          "line": 209
+          "column": 28,
+          "index": 10631,
+          "line": 227
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/assets/xposed_init",
+      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorHook.java",
       "selection": {
         "end": {
-          "column": 25,
-          "index": 25,
-          "line": 0
-        },
-        "start": {
-          "column": 25,
-          "index": 25,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SpaceMan.java",
-      "selection": {
-        "end": {
-          "column": 23,
-          "index": 10180,
-          "line": 278
-        },
-        "start": {
-          "column": 23,
-          "index": 10180,
-          "line": 278
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/GnssMeasurementsHook.java",
-      "selection": {
-        "end": {
-          "column": 12,
-          "index": 2225,
-          "line": 66
-        },
-        "start": {
-          "column": 12,
-          "index": 2225,
-          "line": 66
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/GnssStatusHook.java",
-      "selection": {
-        "end": {
-          "column": 4,
-          "index": 4232,
-          "line": 103
-        },
-        "start": {
-          "column": 4,
-          "index": 4232,
-          "line": 103
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/.gitignore",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 30,
+          "index": 594,
+          "line": 20
         },
         "start": {
           "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/MainHook.java",
-      "selection": {
-        "end": {
-          "column": 3,
-          "index": 3151,
-          "line": 80
-        },
-        "start": {
-          "column": 3,
-          "index": 3151,
-          "line": 80
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/FusedLocationsProvider.java",
-      "selection": {
-        "end": {
-          "column": 16,
-          "index": 2601,
-          "line": 79
-        },
-        "start": {
-          "column": 16,
-          "index": 2601,
-          "line": 79
+          "index": 564,
+          "line": 20
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/FakeLocationService1.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorProcessorService.java"
 }

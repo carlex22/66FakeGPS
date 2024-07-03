@@ -1,5 +1,7 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
     compileSdkVersion 34
@@ -7,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId "com.carlex.drive"
-        minSdkVersion 24
-        targetSdkVersion 33
+        minSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.1"
 
@@ -21,10 +23,23 @@ android {
     
     buildFeatures {
         aidl true
+      //  viewBinding true
+    //    buildConfig true
+    }
+    
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 
+
+    packagingOptions {
+        exclude 'resources.arsc'
+        exclude 'AndroidManifest.xml'
+    }
+    
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildTypes {
@@ -39,8 +54,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     sourceSets {
@@ -55,11 +70,19 @@ android {
 
 dependencies {
     def libsuVersion = '5.2.2'
+    
+    
 
-    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
-    implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
-    implementation "com.github.topjohnwu.libsu:nio:${libsuVersion}"
+    implementation 'com.github.topjohnwu.libsu:core:5.2.2'
+    implementation 'com.github.topjohnwu.libsu:io:5.2.2'
+    implementation 'com.github.topjohnwu.libsu:nio:5.2.2'
 
+
+   // implementation files("${rootDir}/syslibs/manager.jar")
+    
+    
+
+    
     implementation 'com.google.android.gms:play-services-location:21.2.0'
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
     implementation 'com.google.maps:google-maps-services:2.2.0'
@@ -67,12 +90,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.maps.android:android-maps-utils:3.8.2'
-    implementation 'androidx.core:core:1.12.0'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core:1.2.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.annotation:annotation-experimental:1.4.0'
     implementation 'org.json:json:20240303'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+   // implementation 'com.google.firebase:firebase-messaging:20.2.4'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
@@ -82,5 +105,8 @@ dependencies {
     compileOnly 'de.robv.android.xposed:api:82'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.0.0'
     implementation 'uk.me.g4dpz:predict4java:1.1.3'
+    
+
+
 }
 

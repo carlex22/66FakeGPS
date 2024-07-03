@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <float name="altitude" value="0" />
+    <float name="speed" value="0" />
+    <float name="latitude" value="0" />
+    <float name="longitude" value="0" />
+    <float name="bearing" value="0" />
+    <string name="nmea" value="xxx" />
+    <int name="numsat" value="0" />
+    <float name="maxsnr" value="0" />
+    <float name="mensnr" value="0" />
+</map>

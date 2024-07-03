@@ -3,8 +3,8 @@ package com.carlex.drive;
 import android.content.Context;
 import android.location.GnssMeasurementsEvent;
 import android.location.GnssMeasurement;
-import android.location.GnssClock;
 import android.location.LocationManager;
+import android.location.GnssClock;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -12,60 +12,19 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import android.location.GnssMeasurementsEvent;
-import android.location.GnssMeasurement;
-import android.location.GnssClock;
-import android.location.GnssStatus;
-import android.location.LocationManager;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import com.carlex.drive.SpaceMan;
-
-//package com.carlex.drive;
-
-import android.content.Context;
-import android.location.GnssMeasurementsEvent;
-import android.location.GnssMeasurement;
-import android.location.GnssClock;
-import android.location.LocationManager;
-import android.util.Log;
-import androidx.annotation.NonNull;
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
-import com.carlex.drive.SpaceMan;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GnssMeasurementsHook implements IXposedHookLoadPackage {
     private static final String TAG = "GnssMeasurementsHook";
-    private Context systemContext;
-
-    public void setSystemContext(Context context) {
-        this.systemContext = context;
-    }
+    private static Context context;
 
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         try {
-            if (!isPackageInScope(lpparam.packageName)) {
-                return;
-            }
-
-            XposedBridge.log("Hooking package: " + lpparam.packageName);
-            
-            
-
+            //XposedBridge.log("Hooking package: " + lpparam.packageName);
             XposedHelpers.findAndHookMethod(LocationManager.class, "registerGnssMeasurementsCallback", GnssMeasurementsEvent.Callback.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
@@ -74,88 +33,100 @@ public class GnssMeasurementsHook implements IXposedHookLoadPackage {
                         GnssMeasurementsEvent.Callback hookedCallback = new GnssMeasurementsEvent.Callback() {
                             @Override
                             public void onGnssMeasurementsReceived(@NonNull GnssMeasurementsEvent event) {
-                                Log.i(TAG, "Original GNSS measurements: " + event);
-                                GnssMeasurementsEvent modifiedEvent = createModifiedGnssMeasurementsEvent(event);
-                                originalCallback.onGnssMeasurementsReceived(modifiedEvent);
-                                Log.i(TAG, "Hooked GNSS measurements: " + modifiedEvent);
+                                //Log.i(TAG, "Original GNSS measurements received: " + event);
+                                GnssMeasurementsEvent fakeEvent = createFakeGnssMeasurementsEvent(event);
+                                originalCallback.onGnssMeasurementsReceived(fakeEvent);
+                                //Log.i(TAG, "Hooked GNSS measurements: " + fakeEvent);
                             }
 
                             @Override
                             public void onStatusChanged(int status) {
+                                //Log.i(TAG, "GNSS measurements status changed: " + status);
                                 originalCallback.onStatusChanged(status);
                             }
                         };
                         param.args[0] = hookedCallback;
-                        Log.i(TAG, "Hooked registerGnssMeasurementsCallback");
+                        //Log.i(TAG, "Hooked registerGnssMeasurementsCallback");
                     } catch (Throwable t) {
-                        Log.e(TAG, "Error: " + t);
+                        //Log.e(TAG, "Error: " + t);
                         t.printStackTrace();
                     }
                 }
             });
         } catch (Throwable t) {
-            Log.e(TAG, "Error: " + t);
+            //Log.e(TAG, "Error: " + t);
             t.printStackTrace();
         }
     }
 
-    private boolean isPackageInScope(String packageName) {
+    public GnssMeasurementsEvent createFakeGnssMeasurementsEvent(GnssMeasurementsEvent originalEvent) {
         try {
-            if (systemContext == null) {
-                Log.e(TAG, "System context is null");
-                return false;
-            }
-            String[] scope = systemContext.getResources().getStringArray(systemContext.getResources().getIdentifier("scope", "array", systemContext.getPackageName()));
+            //Log.i(TAG, "Creating fake GNSS measurements event...");
 
-            for (String pkg : scope) {
-                if (packageName.equals(pkg)) {
-                    return true;
+            // Create a fake GnssClock using reflection
+            GnssClock gnssClock = createGnssClock();
+
+            // Create a list of fake GnssMeasurement using reflection
+            ArrayList<GnssMeasurement> fakeMeasurements = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                GnssMeasurement measurement = createGnssMeasurement();
+                if (measurement != null) {
+                    fakeMeasurements.add(measurement);
                 }
             }
+
+            // Create the fake GnssMeasurementsEvent using reflection
+            Constructor<GnssMeasurementsEvent> constructor = GnssMeasurementsEvent.class.getDeclaredConstructor(GnssClock.class, Iterable.class);
+            constructor.setAccessible(true);
+            GnssMeasurementsEvent fakeEvent = constructor.newInstance(gnssClock, fakeMeasurements);
+            return fakeEvent;
         } catch (Exception e) {
-            Log.e(TAG, "Error in isPackageInScope: " + e.getMessage(), e);
+            //Log.e(TAG, "Error creating fake GNSS measurements event: " + e.getMessage(), e);
+            return originalEvent;
         }
-        return false;
     }
 
-
-
-
-
-    private GnssMeasurementsEvent createModifiedGnssMeasurementsEvent(GnssMeasurementsEvent originalEvent) {
+    private GnssClock createGnssClock() {
         try {
-            GnssClock clock = originalEvent.getClock();
-            //List<GnssMeasurement> measurementList = new ArrayList<>();
-
-          //  List<SpaceMan.MyGpsSatellite> gpsSatellites = SpaceMan.getGpsSatellites();
-
-            /* // Itere sobre a lista de satélites e processe os dados
-            for (SpaceMan.MyGpsSatellite satellite : gpsSatellites) {
-
-               GnssMeasurement measurement = createGnssMeasurement();
-                if (measurement != null) {
-                    setField(measurement, "mSvid", satellite.getPrn());
-                    setField(measurement, "mConstellationType", GnssStatus.CONSTELLATION_GPS);
-                    setField(measurement, "mCnDbHz", satellite.getSnr());
-                    setField(measurement, "mElevationDegrees", satellite.getElevation());
-                    setField(measurement, "mAzimuthDegrees", satellite.getAzimuth());
-                    setField(measurement, "mHasEphemerisData", satellite.getHasEphemeris());
-                    setField(measurement, "mHasAlmanacData", satellite.getHasAlmanac());
-                    setField(measurement, "mUsedInFix", satellite.getUsedInFix());
-                    measurementList.add(measurement);
-                    Log.d(TAG, "SpaceMan add");
-                 }
-            }
-
-            // Use reflection to create the new GnssMeasurementsEvent
-            Constructor<GnssMeasurementsEvent> constructor = GnssMeasurementsEvent.class.getDeclaredConstructor(GnssClock.class, GnssMeasurement[].class);
+            Constructor<GnssClock> constructor = GnssClock.class.getDeclaredConstructor();
             constructor.setAccessible(true);
-            GnssMeasurementsEvent newEvent = constructor.newInstance(clock, measurementList.toArray(new GnssMeasurement[0]));
-           */
-            return null;
-            //return newEvent;
+            GnssClock gnssClock = constructor.newInstance();
+
+            Method setLeapSecond = GnssClock.class.getDeclaredMethod("setLeapSecond", int.class);
+            setLeapSecond.setAccessible(true);
+            setLeapSecond.invoke(gnssClock, 18);
+
+            Method setTimeNanos = GnssClock.class.getDeclaredMethod("setTimeNanos", long.class);
+            setTimeNanos.setAccessible(true);
+            setTimeNanos.invoke(gnssClock, 242411000000L);
+
+            Method setFullBiasNanos = GnssClock.class.getDeclaredMethod("setFullBiasNanos", long.class);
+            setFullBiasNanos.setAccessible(true);
+            setFullBiasNanos.invoke(gnssClock, -1402774495033002260L);
+
+            Method setBiasNanos = GnssClock.class.getDeclaredMethod("setBiasNanos", double.class);
+            setBiasNanos.setAccessible(true);
+            setBiasNanos.invoke(gnssClock, -0.4395635426044464);
+
+            Method setBiasUncertaintyNanos = GnssClock.class.getDeclaredMethod("setBiasUncertaintyNanos", double.class);
+            setBiasUncertaintyNanos.setAccessible(true);
+            setBiasUncertaintyNanos.invoke(gnssClock, 112542.763);
+
+            Method setDriftNanosPerSecond = GnssClock.class.getDeclaredMethod("setDriftNanosPerSecond", double.class);
+            setDriftNanosPerSecond.setAccessible(true);
+            setDriftNanosPerSecond.invoke(gnssClock, 30.716);
+
+            Method setDriftUncertaintyNanosPerSecond = GnssClock.class.getDeclaredMethod("setDriftUncertaintyNanosPerSecond", double.class);
+            setDriftUncertaintyNanosPerSecond.setAccessible(true);
+            setDriftUncertaintyNanosPerSecond.invoke(gnssClock, 76.248);
+
+            Method setHardwareClockDiscontinuityCount = GnssClock.class.getDeclaredMethod("setHardwareClockDiscontinuityCount", int.class);
+            setHardwareClockDiscontinuityCount.setAccessible(true);
+            setHardwareClockDiscontinuityCount.invoke(gnssClock, 21);
+
+            return gnssClock;
         } catch (Exception e) {
-            Log.e(TAG, "Error creating modified GNSS measurements: " + e.getMessage(), e);
+            //Log.e(TAG, "Error creating GnssClock: " + e.getMessage(), e);
             return null;
         }
     }
@@ -164,17 +135,50 @@ public class GnssMeasurementsHook implements IXposedHookLoadPackage {
         try {
             Constructor<GnssMeasurement> constructor = GnssMeasurement.class.getDeclaredConstructor();
             constructor.setAccessible(true);
-            return constructor.newInstance();
+            GnssMeasurement measurement = constructor.newInstance();
+
+            Method setSvid = GnssMeasurement.class.getDeclaredMethod("setSvid", int.class);
+            setSvid.setAccessible(true);
+            setSvid.invoke(measurement, 15);
+
+            Method setConstellationType = GnssMeasurement.class.getDeclaredMethod("setConstellationType", int.class);
+            setConstellationType.setAccessible(true);
+            setConstellationType.invoke(measurement, 3);
+
+            Method setTimeOffsetNanos = GnssMeasurement.class.getDeclaredMethod("setTimeOffsetNanos", double.class);
+            setTimeOffsetNanos.setAccessible(true);
+            setTimeOffsetNanos.invoke(measurement, 0.0);
+
+            Method setState = GnssMeasurement.class.getDeclaredMethod("setState", int.class);
+            setState.setAccessible(true);
+            setState.invoke(measurement, 49359);
+
+            Method setReceivedSvTimeNanos = GnssMeasurement.class.getDeclaredMethod("setReceivedSvTimeNanos", long.class);
+            setReceivedSvTimeNanos.setAccessible(true);
+            setReceivedSvTimeNanos.invoke(measurement, 81519375679486L);
+
+            Method setReceivedSvTimeUncertaintyNanos = GnssMeasurement.class.getDeclaredMethod("setReceivedSvTimeUncertaintyNanos", long.class);
+            setReceivedSvTimeUncertaintyNanos.setAccessible(true);
+            setReceivedSvTimeUncertaintyNanos.invoke(measurement, 35);
+
+            Method setCn0DbHz = GnssMeasurement.class.getDeclaredMethod("setCn0DbHz", float.class);
+            setCn0DbHz.setAccessible(true);
+            setCn0DbHz.invoke(measurement, 25.9f);
+
+            Method setPseudorangeRateMetersPerSecond = GnssMeasurement.class.getDeclaredMethod("setPseudorangeRateMetersPerSecond", float.class);
+            setPseudorangeRateMetersPerSecond.setAccessible(true);
+            setPseudorangeRateMetersPerSecond.invoke(measurement, -58.836f);
+
+            // Add more fields as necessary
+
+            return measurement;
         } catch (Exception e) {
-            Log.e(TAG, "Error creating GnssMeasurement instance: " + e.getMessage(), e);
+            //Log.e(TAG, "Error creating GnssMeasurement: " + e.getMessage(), e);
             return null;
         }
     }
 
-    private void setField(Object obj, String fieldName, Object value) throws NoSuchFieldException, IllegalAccessException {
-        Field field = obj.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        field.set(obj, value);
+    public void setSystemContext(Context context) {
+        this.context = context;
     }
 }
-

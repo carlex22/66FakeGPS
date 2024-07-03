@@ -1,4 +1,7 @@
-#Mon Jun 17 23:18:56 GMT 2024
-base.0=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+#Thu Jun 27 11:24:52 GMT 2024
+base.1=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
+path.1=classes2.dex
+base.0=/storage/emulated/0/AndroidIDEProjects/My Application6/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
 path.0=classes.dex

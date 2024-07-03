@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<gnssStatus>
+    <satellite>
+        <svid>1</svid>
+        <cn0DbHz>30.0</cn0DbHz>
+        <elevationDegrees>45.0</elevationDegrees>
+        <azimuthDegrees>120.0</azimuthDegrees>
+        <hasEphemeris>true</hasEphemeris>
+        <hasAlmanac>true</hasAlmanac>
+        <usedInFix>true</usedInFix>
+    </satellite>
+    <satellite>
+        <svid>2</svid>
+        <cn0DbHz>28.0</cn0DbHz>
+        <elevationDegrees>50.0</elevationDegrees>
+        <azimuthDegrees>100.0</azimuthDegrees>
+        <hasEphemeris>true</hasEphemeris>
+        <hasAlmanac>true</hasAlmanac>
+        <usedInFix>true</usedInFix>
+    </satellite>
+</gnssStatus>

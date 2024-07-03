@@ -1,25 +1,60 @@
 package com.carlex.drive;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.provider.Settings;
+import android.telephony.CellIdentityCdma;
+import android.util.DisplayMetrics;
+import android.widget.LinearLayout;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.topjohnwu.superuser.Shell;
+import com.topjohnwu.superuser.io.SuFile;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;  // Adicionado para capturar InvocationTargetException
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoCdma;
+
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.topjohnwu.superuser.Shell;
+import com.topjohnwu.superuser.io.SuFile;
 
 public class PreferencesActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 1;
+
     private static final String TAG = "PreferencesActivity";
+    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String PREFS_FILE_NAME = "preferences.json";
+    private static final String XPOSED_PREFS_FILE_NAME = "xposed_prefs.json";
+    private static final String XPOSED_DIRECTORY_PATH = "/data/user_de/0/com.android.xposed.installer/conf/";
 
     private LinearLayout preferencesContainer;
     private Button buttonSave;
@@ -36,9 +71,22 @@ public class PreferencesActivity extends AppCompatActivity {
         editTextMap = new HashMap<>();
         defaultValues = new HashMap<>();
 
+        Shell.su("pm grant " + getPackageName() + " android.permission.READ_PHONE_STATE").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.ACCESS_WIFI_STATE").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.BLUETOOTH").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.BLUETOOTH_ADMIN").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.INTERNET").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.ACCESS_NETWORK_STATE").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.READ_EXTERNAL_STORAGE").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.WRITE_EXTERNAL_STORAGE").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.ACCESS_FINE_LOCATION").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.ACCESS_COARSE_LOCATION").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.NETWORK_SETTINGS").exec();
+        Shell.su("pm grant " + getPackageName() + " android.permission.READ_WIFI_CREDENTIAL").exec();
+
         try {
             initializePreferences();
-            loadPreferences();
+            loadPreferencesFromFile();
         } catch (Exception e) {
             Log.e(TAG, "Error during onCreate: " + e.getMessage(), e);
         }
@@ -53,98 +101,74 @@ public class PreferencesActivity extends AppCompatActivity {
     }
 
     private void initializePreferences() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (!prefs.contains("initialized")) {
+        Log.d(TAG, "Initializing preferences...");
+        File file = SuFile.open(DIRECTORY_PATH, PREFS_FILE_NAME);
+        if (!file.exists()) {
+            Log.d(TAG, "Preferences file does not exist. Creating new preferences file...");
             try {
-                Map<String, Integer> classes = new HashMap<>();
-                Map<String, Integer> tipoDados = new HashMap<>();
+                Map<String, Class<?>> classes = new HashMap<>();
+                classes.put("android.telephony.CellInfoGsm", CellInfoGsm.class);
+                classes.put("android.telephony.CellInfoGsm", CellIdentityCdma.class);
+                classes.put("android.telephony.TelephonyManager", TelephonyManager.class);
+              //  classes.put("android.net.wifi.WifiManager", WifiManager.class);
+              //)/  classes.put("android.bluetooth.BluetoothAdapter", BluetoothAdapter.class);
+                //classes.put("android.util.DisplayMetrics", DisplayMetrics.class);
 
-               /* classes.put("android.telephony.AvailableNetworkInfo", 1);
-                classes.put("android.telephony.TelephonyManager", 2);
-                classes.put("android.telephony.CellIdentity", 3);
-                */
-		classes.put("android.telephony.cdma.CdmaCellLocation", 1);
-                /*classes.put("android.telephony.CellLocation", 5);
-                classes.put("android.telephony.CellSignalStrength", 6);
-                classes.put("android.telephony.NetworkScan", 7);
-                classes.put("android.telephony.ServiceState", 8);
-                classes.put("android.telephony.SignalStrength", 9);
-                classes.put("android.telephony.SubscriptionInfo", 10);
-                */
-		//classes.put("android.os.Buildr", 1);
+                JSONObject jsonObject = new JSONObject();
 
-                tipoDados.put("Int", 1);
-                tipoDados.put("String", 2);
-                tipoDados.put("Double", 3);
-                tipoDados.put("Float", 4);
-                tipoDados.put("Boolean", 5);
-                tipoDados.put("List", 6);
-
-                List<Class<?>> classesToInspect = new ArrayList<>();
-                for (String className : classes.keySet()) {
-                    classesToInspect.add(getClassByName(className));
-                }
-
-                for (int i = 0; i < classesToInspect.size(); i++) {
-                    Class<?> cls = classesToInspect.get(i);
-                    if (cls == null) continue;
-
+                for (Map.Entry<String, Class<?>> entry : classes.entrySet()) {
+                    String className = entry.getKey();
+                    Class<?> cls = entry.getValue();
+                  //  Object instance = getInstance(cls);
                     Method[] methods = cls.getDeclaredMethods();
+
                     for (Method method : methods) {
                         if (isGetter(method)) {
-                            String key = cls.getSimpleName() + "." + method.getName();
-                            String value;
+                            String methodName = method.getName();
                             try {
-                                value = method.invoke(null).toString();
-                                if (value == null) value = "";
+                                Object returnValue = method.invoke(methodName);
+                                String typeName = method.getReturnType().getSimpleName();
+                                String valueString = convertToString(returnValue);
+                                String value =  valueString;
+
+                                if (value != null && !value.isEmpty()) {
+                                    String chave = className + "." + methodName;
+                                    String  t = method.getReturnType().getCanonicalName();
+                                    JSONObject valueObject = new JSONObject();
+                                    valueObject.put(t, value);
+                                    jsonObject.put(chave, valueObject);
+                           
+                                    
+                                    Log.d(TAG, "Added preference: " + chave + " = " + value);
+                                }
+                            } catch (InvocationTargetException e) {
+                                Throwable cause = e.getCause();
+                                if (cause instanceof SecurityException) {
+                                    Log.e(TAG, "SecurityException invoking method: " + methodName + " for class: " + className, e);
+                                } else {
+                                    Log.e(TAG, "Error invoking method: " + methodName + " for class: " + className, e);
+                                }
                             } catch (Exception e) {
-                                value = "";
-                                Log.e(TAG, "Error invoking method: " + method.getName() + " for class: " + cls.getSimpleName(), e);
-                            }
-                            defaultValues.put(key, value);
-                            Log.i(TAG, "Initialized preference: " + key + " with value: " + value);
-                        }
-                    }
-
-                    Object instance = createInstance(cls);
-                    if (instance != null) {
-                        Method[] instanceMethods = instance.getClass().getDeclaredMethods();
-                        for (Method instanceMethod : instanceMethods) {
-                            if (isGetter(instanceMethod)) {
-                                String key = instance.getClass().getSimpleName() + "." + instanceMethod.getName();
-                                String value;
-                                try {
-                                    value = instanceMethod.invoke(instance).toString();
-                                    if (value == null) value = "";
-                                } catch (Exception e) {
-                                    value = "";
-                                    Log.e(TAG, "Error invoking instance method: " + instanceMethod.getName() + " for class: " + instance.getClass().getSimpleName(), e);
-                                }
-                                if (!defaultValues.containsKey(key)) {
-                                    defaultValues.put(key, value);
-                                    Log.i(TAG, "Initialized preference from instance: " + key + " with value: " + value);
-                                }
-
-                                // Adiciona a classe da instância à lista de classes para inspecionar
-                                Class<?> newClass = instanceMethod.getReturnType();
-                                if (!classes.containsKey(newClass.getSimpleName())) {
-                                    classes.put(newClass.getSimpleName(), classes.size() + 1);
-                                    classesToInspect.add(newClass);
-                                    Log.i(TAG, "Added new class to inspect: " + newClass.getSimpleName());
-                                }
+                                Log.e(TAG, "Error invoking method: " + methodName + " for class: " + className, e);
                             }
                         }
                     }
                 }
 
-                SharedPreferences.Editor editor = prefs.edit();
-                for (Map.Entry<String, String> entry : defaultValues.entrySet()) {
-                    editor.putString(entry.getKey(), entry.getValue());
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.put(jsonObject);
+
+                Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+                Shell.su("chmod 777 " + DIRECTORY_PATH).exec();
+                Log.d(TAG, "Created and set permissions for directory: " + DIRECTORY_PATH);
+
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write(jsonArray.toString());
+                    Shell.su("chmod 666 " + file.getAbsolutePath()).exec();
+                    Log.i(TAG, "Preferences initialized and saved to: " + file.getAbsolutePath());
+                } catch (IOException e) {
+                    Log.e(TAG, "Error writing preferences to file: " + e.getMessage());
                 }
-                editor.putBoolean("initialized", true);
-                editor.apply();
-                Log.i(TAG, "Preferences initialized and saved");
 
             } catch (Exception e) {
                 Log.e(TAG, "Error initializing preferences: " + e.getMessage(), e);
@@ -152,86 +176,116 @@ public class PreferencesActivity extends AppCompatActivity {
         }
     }
 
-    private Class<?> getClassByName(String className) {
-        try {
-            return Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, "Class not found: " + className, e);
+    
+    private String convertToString(Object obj) {
+        if (obj == null) {
+            return "null";
+        }
+        if (obj instanceof Iterable) {
+            
             return null;
         }
-    }
-
-    private Object createInstance(Class<?> cls) {
-        try {
-            return cls.newInstance();
-        } catch (Exception e) {
-            Log.e(TAG, "Error creating instance of class: " + cls.getSimpleName(), e);
-            return null;
+        if (obj.getClass().isArray()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (int i = 0; i < java.lang.reflect.Array.getLength(obj); i++) {
+                sb.append(convertToString(java.lang.reflect.Array.get(obj, i))).append(", ");
+            }
+            if (sb.length() > 1) {
+                sb.setLength(sb.length() - 2); // remove trailing comma and space
+            }
+            sb.append("]");
+            return sb.toString();
         }
+        return obj.toString();
     }
 
     private boolean isGetter(Method method) {
-        if (!method.getName().startsWith("get")) return false;
-        if (method.getParameterTypes().length != 0) return false;
-        if (void.class.equals(method.getReturnType())) return false;
-        return true;
+        return method.getName().startsWith("get") && method.getParameterTypes().length == 0 && !void.class.equals(method.getReturnType());
     }
 
-    private void loadPreferences() {
-        try {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-            Map<String, ?> allEntries = prefs.getAll();
-            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                String key = entry.getKey();
-                if (key.equals("initialized")) continue; // Skip the initialized flag
 
-                Object value = entry.getValue();
+    private void loadPreferencesFromFile() {
+        Log.d(TAG, "Loading preferences from file...");
+        File file = SuFile.open(DIRECTORY_PATH, PREFS_FILE_NAME);
+        if (!file.exists()) {
+            Log.i(TAG, "Preferences file does not exist");
+            return;
+        }
 
-                TextView textView = new TextView(this);
-                textView.setText(key);
-                preferencesContainer.addView(textView);
-
-                EditText editText = new EditText(this);
-                if (value instanceof String) {
-                    editText.setText((String) value);
-                } else if (value instanceof Integer) {
-                    editText.setText(String.valueOf(value));
-                } else if (value instanceof Boolean) {
-                    editText.setText(String.valueOf(value));
-                } else if (value instanceof Float) {
-                    editText.setText(String.valueOf(value));
-                } else if (value instanceof Long) {
-                    editText.setText(String.valueOf(value));
-                }
-                editTextMap.put(key, editText);
-                preferencesContainer.addView(editText);
-
-                Log.i(TAG, "Loaded preference: " + key + " with value: " + value);
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line);
             }
-        } catch (Exception e) {
-            Log.e(TAG, "Error loading preferences: " + e.getMessage(), e);
+
+            JSONArray jsonArray = new JSONArray(content.toString());
+            if (jsonArray.length() > 0) {
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                Iterator<String> keys = jsonObject.keys();
+
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    String value = jsonObject.getString(key);
+
+                    TextView textView = new TextView(this);
+                    textView.setText(key);
+                    preferencesContainer.addView(textView);
+
+                    EditText editText = new EditText(this);
+                    editText.setText(value);
+                    editTextMap.put(key, editText);
+                    preferencesContainer.addView(editText);
+
+                    Log.i(TAG, "Loaded preference from file: " + key + " with value: " + value);
+                }
+            }
+        } catch (IOException | JSONException e) {
+            Log.e(TAG, "Error loading preferences from file: " + e.getMessage(), e);
         }
     }
 
     private void savePreferences() {
+        Log.d(TAG, "Saving preferences...");
         try {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = prefs.edit();
+            JSONArray jsonArray = new JSONArray();
+            JSONObject jsonObject = new JSONObject();
 
             for (Map.Entry<String, EditText> entry : editTextMap.entrySet()) {
                 String key = entry.getKey();
                 EditText editText = entry.getValue();
                 String value = editText.getText().toString();
-
-                editor.putString(key, value);
+                jsonObject.put(key, value);
                 Log.i(TAG, "Saved preference: " + key + " with value: " + value);
             }
-            editor.apply();
-            Log.i(TAG, "Preferences saved successfully");
+
+            jsonArray.put(jsonObject);
+
+            Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+            File dir = SuFile.open(DIRECTORY_PATH);
+            File file = SuFile.open(dir, PREFS_FILE_NAME);
+
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(jsonArray.toString());
+                Shell.su("chmod 666 " + file.getAbsolutePath()).exec();
+                Log.i(TAG, "Saved preferences to: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                Log.e(TAG, "Error writing preferences to file: " + e.getMessage());
+            }
+
+            File xposedFile = SuFile.open(XPOSED_DIRECTORY_PATH, XPOSED_PREFS_FILE_NAME);
+            try (FileWriter writer = new FileWriter(xposedFile)) {
+                writer.write(jsonArray.toString());
+                Shell.su("chmod 666 " + xposedFile.getAbsolutePath()).exec();
+                Log.i(TAG, "Saved Xposed preferences to: " + xposedFile.getAbsolutePath());
+            } catch (IOException e) {
+                Log.e(TAG, "Error writing Xposed preferences to file: " + e.getMessage());
+            }
+
         } catch (Exception e) {
             Log.e(TAG, "Error saving preferences: " + e.getMessage(), e);
         }
     }
 }
-
