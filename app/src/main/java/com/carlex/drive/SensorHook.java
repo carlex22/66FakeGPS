@@ -153,17 +153,17 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
             JSONArray jsonArray = new JSONArray(content.toString());
             if (jsonArray.length() > 0) {
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
-                if (sensorType == Sensor.TYPE_ACCELEROMETER) {
+                if (sensorType == Sensor.TYPE_ACCELEROMETER) { 
                     return new float[]{
-                            (float) jsonObject.getDouble("Ax"),
-                            (float) jsonObject.getDouble("Ay"),
-                            (float) jsonObject.getDouble("Az")
+                            (float) jsonObject.optDouble("Ax"),
+                            (float) jsonObject.optDouble("Ay"),
+                            (float) jsonObject.optDouble("Az")
                     };
                 } else if (sensorType == Sensor.TYPE_GYROSCOPE) {
                     return new float[]{
-                            (float) jsonObject.getDouble("Gx"),
-                            (float) jsonObject.getDouble("Gy"),
-                            (float) jsonObject.getDouble("Gz")
+                            (float) jsonObject.optDouble("Gx"),
+                            (float) jsonObject.optDouble("Gy"),
+                            (float) jsonObject.optDouble("Gz")
                     };
                 }
             }
@@ -177,7 +177,7 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
         Queue<float[]> history = sensorType == Sensor.TYPE_ACCELEROMETER ? accelHistory : gyroHistory;
 
         // Add new values to the history queue
-        if (history.size() >= 30) {
+        if (history.size() >= 2) {
             history.poll(); // Remove the oldest entry if the queue is full
         }
         history.add(newValues);

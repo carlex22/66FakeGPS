@@ -34,9 +34,9 @@ public class SensorProcessorService2 extends Service {
 
     private static LinkedList<PseudoSensorData> pseudoSensorHistory = new LinkedList<>();
     private static final int PSEUDO_HISTORY_SIZE = 50;
-
+ 
     private Handler handler;
-    private Runnable runnable;
+    private Runnable runnable; 
 
     @Nullable
     @Override

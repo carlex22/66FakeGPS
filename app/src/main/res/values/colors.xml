@@ -1,6 +1,6 @@
 <resources>
-    <color name="colorPrimary">#3F51B5</color> <!-- Cor primária -->
-    <color name="colorPrimaryDark">#303F9F</color> <!-- Cor primária escura -->
-    <color name="colorAccent">#FF4081</color> <!-- Cor de destaque -->
+    <color name="colorPrimary">#Ffffff</color> <!-- Cor primária -->
+    <color name="colorPrimaryDark">#555555</color> <!-- Cor primária escura -->
+    <color name="colorAccent">#888888</color> <!-- Cor de destaque -->
 </resources>
 

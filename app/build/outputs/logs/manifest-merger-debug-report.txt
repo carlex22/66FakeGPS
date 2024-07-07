@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:1:1-224:12
-MERGED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:1:1-224:12
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:1:1-247:12
+MERGED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:1:1-247:12
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml:1:1-6:12
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml:1:1-6:12
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml:1:1-6:12
@@ -171,7 +171,7 @@ ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/A
 	android:name
 		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:32:18-68
 application
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:36:5-223:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:36:5-246:19
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/b9bb691a7fa8fa660b5ad9e4549c2662/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/b9bb691a7fa8fa660b5ad9e4549c2662/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
@@ -222,274 +222,296 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /data/data/com.itsaky.andro
 		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:43:9-52
 	android:name
 		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:41:2-23
-activity#com.carlex.drive.MainActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:46:2-61:13
-	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:47:3-34
+activity#com.carlex.drive.SplashActivity
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:47:8-55:16
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:50:10-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:50:13-36
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:48:3-41
-	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:49:14-53
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:48:13-51
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:46:12-40
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:49:9-39
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:51:3-54:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:51:9-54:25
 action#android.intent.action.MAIN
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:52:4-56
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:52:13-65
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:52:12-53
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:52:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:53:4-64
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:53:13-73
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:53:14-61
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:waze
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:55:3-60:19
-action#android.intent.action.VIEW
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:56:4-56
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:53:23-70
+activity#com.carlex.drive.MainActivity
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:58:2-73:13
+	android:launchMode
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:59:3-34
+	android:exported
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:62:10-33
+	android:theme
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:60:3-41
+	android:taskAffinity
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:61:14-53
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:56:12-53
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:58:12-40
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:63:3-66:19
 category#android.intent.category.DEFAULT
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:57:25-84
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:65:4-63
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:57:35-81
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:65:14-60
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:waze
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:67:3-72:19
+action#android.intent.action.VIEW
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:68:4-56
+	android:name
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:68:12-53
 category#android.intent.category.BROWSABLE
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:58:4-65
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:70:4-65
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:58:14-62
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:70:14-62
 data
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:59:4-34
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:71:4-34
 	android:scheme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:59:10-31
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:71:10-31
 activity#com.carlex.drive.gnssData.Main
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:65:2-77:14
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:77:2-89:14
 	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:67:2-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:79:2-33
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:70:2-25
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:82:2-25
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:68:2-40
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:80:2-40
 	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:69:2-41
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:81:2-41
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:66:2-47
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:78:2-47
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:71:4-76:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:83:4-88:20
 activity#com.carlex.drive.logActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:79:3-84:394
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:91:3-96:394
 	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:81:4-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:93:4-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:83:85-108
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:95:85-108
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:82:4-42
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:94:4-42
 	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:83:9-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:95:9-48
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:80:4-47
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:92:4-47
 activity#com.carlex.drive.gnssData.gpsGetStatus
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:87:3-99:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:99:3-111:20
 	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:89:4-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:101:4-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:92:4-27
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:104:4-27
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:90:4-42
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:102:4-42
 	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:91:4-43
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:103:4-43
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:88:4-57
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:100:4-57
 activity#com.carlex.drive.PreferencesActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:101:1-104:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:113:1-116:20
 	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:101:159-190
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:113:159-190
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:102:163-186
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:114:163-186
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:102:11-49
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:114:11-49
 	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:102:87-126
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:114:87-126
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:101:85-136
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:113:85-136
 meta-data#xposedmodule
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:107:2-109:36
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:119:2-121:36
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:109:13-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:121:13-33
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:108:13-40
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:120:13-40
 meta-data#xposeddescription
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:110:9-112:103
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:122:9-124:103
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:112:13-100
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:124:13-100
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:111:13-45
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:123:13-45
 meta-data#xposedname
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:113:2-115:36
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:125:2-127:36
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:115:6-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:127:6-33
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:114:6-31
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:126:6-31
 meta-data#xposedpackage
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:116:2-118:41
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:128:2-130:41
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:118:6-38
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:130:6-38
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:117:6-34
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:129:6-34
 meta-data#xposedminversion
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:119:2-121:27
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:131:2-133:27
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:121:6-24
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:133:6-24
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:120:3-34
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:132:3-34
 meta-data#xposedauthor
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:122:2-124:31
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:134:2-136:31
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:124:6-28
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:136:6-28
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:123:6-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:135:6-33
 meta-data#xposeddonate
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:125:2-127:53
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:137:2-139:53
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:127:6-50
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:139:6-50
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:126:6-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:138:6-33
 meta-data#xposedhomepage
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:128:2-130:52
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:140:2-142:52
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:130:3-49
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:142:3-49
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:129:3-32
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:141:3-32
 meta-data#xposedscope
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:132:3-134:47
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:144:3-146:47
 	android:resource
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:134:13-44
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:146:13-44
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:133:13-39
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:145:13-39
 provider#androidx.core.content.FileProvider
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:136:1-144:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:148:1-156:20
 	android:grantUriPermissions
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:140:13-47
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:152:13-47
 	android:authorities
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:138:13-60
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:150:13-60
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:139:13-37
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:151:13-37
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:137:13-62
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:149:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:141:13-143:58
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:153:13-155:58
 	android:resource
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:143:17-55
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:155:17-55
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:142:17-67
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:154:17-67
 meta-data#com.google.android.geo.API_KEY
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:147:2-149:61
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:159:2-161:61
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:149:3-58
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:161:3-58
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:148:3-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:160:3-48
 meta-data#com.google.android.gms.version
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:153:2-155:58
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:165:2-167:58
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/93a73870a57d57625f2b68025ce4210c/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/93a73870a57d57625f2b68025ce4210c/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/ac7c16ba656120700dc84180cf5c078e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/ac7c16ba656120700dc84180cf5c078e/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:155:3-56
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:167:3-56
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:154:3-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:166:3-48
 service#com.carlex.drive.GnssLoggerService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:161:1-165:11
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:173:1-177:11
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:161:44-67
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:173:44-67
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:161:10-43
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:173:10-43
 intent-filter#action:name:com.carlex.drive.gnsslogger.IGnssLoggerService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:162:5-164:21
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:174:5-176:21
 action#com.carlex.drive.gnsslogger.IGnssLoggerService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:163:9-81
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:175:9-81
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:163:17-78
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:175:17-78
 activity#com.carlex.drive.nmea.SettingsActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:167:9-174:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:179:9-186:20
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:168:11-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:180:11-33
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:169:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:181:13-36
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:167:19-56
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:179:19-56
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.VIEW
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:170:13-173:29
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:182:13-185:29
 category#android.intent.category.VIEW
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:172:17-73
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:184:17-73
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:172:27-70
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:184:27-70
 service#com.carlex.drive.FakeLocationService1
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:176:9-181:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:188:9-193:19
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:178:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:190:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:179:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:191:13-36
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:180:13-71
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:192:13-71
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:177:13-49
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:189:13-49
 service#com.carlex.drive.SpaceManService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:185:9-189:60
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:197:9-201:60
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:187:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:199:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:188:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:200:13-36
 	android:foregroundServiceType
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:189:17-57
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:201:17-57
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:186:13-44
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:198:13-44
 service#com.carlex.drive.SensorProcessorService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:193:8-197:51
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:205:8-210:71
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:195:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:207:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:196:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:208:13-36
+	android:permission
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:210:11-69
 	android:foregroundServiceType
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:197:8-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:209:8-48
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:194:13-51
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:206:13-51
+service#com.carlex.drive.ElevationService
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:214:8-218:51
+	android:enabled
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:216:13-35
+	android:exported
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:217:13-36
+	android:foregroundServiceType
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:218:8-48
+	android:name
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:215:13-45
 service#com.carlex.drive.gnssData.gpstatusService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:201:1-210:11
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:224:1-233:11
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:203:2-24
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:226:2-24
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:204:2-25
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:227:2-25
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:206:2-60
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:229:2-60
 	android:foregroundServiceType
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:205:2-42
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:228:2-42
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:202:5-61
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:225:5-61
 intent-filter#action:name:com.carlex.drive.FakeLocationService1
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:207:1-209:18
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:230:1-232:18
 action#com.carlex.drive.FakeLocationService1
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:208:2-64
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:231:2-64
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:208:10-62
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:231:10-62
 service#com.carlex.drive.OverlayService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:212:2-221:12
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:235:2-244:12
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:214:6-28
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:237:6-28
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:215:6-29
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:238:6-29
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:217:6-64
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:240:6-64
 	android:foregroundServiceType
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:216:6-46
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:239:6-46
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:213:6-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:236:6-36
 intent-filter#action:name:com.carlex.drive.OverlayService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:218:6-220:23
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:241:6-243:23
 action#com.carlex.drive.OverlayService
-ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:219:10-66
+ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:242:10-66
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:219:18-64
+		ADDED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/AndroidManifest.xml:242:18-64
 uses-sdk
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /storage/emulated/0/AndroidIDEProjects/My Application6/app/src/debug/AndroidManifest.xml

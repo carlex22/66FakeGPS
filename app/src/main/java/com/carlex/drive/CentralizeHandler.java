@@ -53,7 +53,7 @@ public class CentralizeHandler {
             double longitude = Double.parseDouble(prefs.getString("longitude", "0.0"));
             float bearing = Float.parseFloat(prefs.getString("bearing", "0.0"));
             float speed = Float.parseFloat(prefs.getString("speed", "0.0"));
-            speed /= 3.6f;
+            speed *= 3.6f;
             double altitude = Double.parseDouble(prefs.getString("altitude", "0.0"));
 
             // Atualizar com dados carregados

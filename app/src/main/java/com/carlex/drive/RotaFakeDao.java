@@ -27,7 +27,7 @@ public interface RotaFakeDao {
     @Query("DELETE FROM rota_fake WHERE id NOT IN (SELECT id FROM rota_fake ORDER BY id LIMIT 2)")
     void deleteAllExceptFirstFour();
 
-    @Query("DELETE FROM rota_fake WHERE id >= 0")   
+    @Query("DELETE FROM rota_fake")   
     void deleteAll();
 
 

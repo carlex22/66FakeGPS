@@ -41,7 +41,7 @@ public class ObterSegmentosRotaOpen {
         );
     }
 
-    public static void obterSegmentosRota(@NonNull LatLng origem, @NonNull LatLng destino, @NonNull OnSegmentosRotaListener listener) {
+    public static boolean obterSegmentosRota(@NonNull LatLng origem, @NonNull LatLng destino, @NonNull OnSegmentosRotaListener listener) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -78,6 +78,8 @@ public class ObterSegmentosRotaOpen {
                 Log.e(TAG, "Erro na solicitação da API", t);
             }
         });
+        
+        return true;
     }
 
     private static List<Segmento> obterSegmentos(DirectionsResponse response) {

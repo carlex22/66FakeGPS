@@ -43,6 +43,18 @@
         tools:replace="android:appComponentFactory"
 	android:appComponentFactory="androidx.core.app.CoreComponentFactory">
 
+        
+       <activity
+            android:theme="@style/Theme.AppCompat"
+        android:name=".SplashActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+        
+        
 	<activity android:name=".MainActivity"
 		android:launchMode="singleTask"
 		android:theme="@style/Theme.AppCompat"
@@ -50,7 +62,7 @@
 	        android:exported="true">    
 		<intent-filter>         
 			<action android:name="android.intent.action.MAIN" /> 
-			<category android:name="android.intent.category.LAUNCHER" />
+			<category android:name="android.intent.category.DEFAULT" />
 		</intent-filter>                       
 		<intent-filter>                  
 			<action android:name="android.intent.action.VIEW" />
@@ -194,9 +206,20 @@
             android:name=".SensorProcessorService"
             android:enabled="true"
             android:exported="true"
+       android:foregroundServiceType="location"
+          android:permission="android.permission.FOREGROUND_SERVICE"/>
+    
+    	
+
+       <service
+            android:name=".ElevationService"
+            android:enabled="true"
+            android:exported="true"
        android:foregroundServiceType="location" />
     	
 
+        
+        
 
 <service                       
     android:name="com.carlex.drive.gnssData.gpstatusService"

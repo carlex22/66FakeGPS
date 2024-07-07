@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import java.util.Locale;
 import android.os.Process;
 import android.*;
 import android.app.*;
@@ -49,6 +49,7 @@ import android.widget.SeekBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.location.Location;
+import android.app.Dialog;
 import java.util.Collections;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -120,6 +121,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 //import com.topjohnwu.libsuexample.databinding.ActivityMainBinding;
@@ -203,13 +206,12 @@ public static double mockalt = 0.0;
 public static Context mainApp;
 public static Context context;
 public static boolean serviceFakeRun = false;
-public static ProgressDialog progressDialog;
-public static ProgressDialog progressDialog1;
-public static ProgressDialog progressDialog2;
+
 public static Bundle savedInstanceState1;
 public static boolean wClicked = false;
 public static Uri dWaze;
 public static ImageView fundo;
+
 private static final String PREF_NAME = "MyPrefs";
 private static final String KEY_TURBO = "turbo";
 public SharedPreferences prefs;
@@ -219,10 +221,16 @@ public static String msgLo = "Carregando...";
 public static boolean load = false;
 public TextView tSat;
 public TextView tCel;
+    public static LinearLayout carregando;
 
+    
+   public static  Dialog progressDialog;
+    
 public static boolean su = false;
 private static final long MINUTE_IN_MILLIS = 15000;
-
+    
+    
+    public boolean pro = false;
 
 
 /////
@@ -255,13 +263,15 @@ protected void onCreate(Bundle savedInstanceState) {
 	savedInstanceState1 = savedInstanceState;
 
         setContentView(R.layout.main);
-
+        
+Locale.setDefault(Locale.US);
         
 	    if (!FakeLocationService1.isServiceRunning()) {
             	new Iniciar(this).iniciar();
 	    }
 
 
+        
        PreferenceManager.getDefaultSharedPreferences(this).edit().apply();
         
 	//textview main
@@ -279,27 +289,33 @@ protected void onCreate(Bundle savedInstanceState) {
 	wClicked = false;
 	tSat = findViewById(R.id.tSat);
 	tCel = findViewById(R.id.tCel);
+        
+    carregando = findViewById(R.id.loading);
 
 	Runnable centralizeRunnable;
 
 	ImageView fundo  = findViewById(R.id.fundo);
 	fundo.setVisibility(View.VISIBLE);
+        
+    // processado =  showProgressDialog("Aguarde teletransporte...");
+   
+   // carregando.setVisibility(View.VISIBLE);
+        
 	
 	//Context static 
 	mainApp = getApplicationContext();
 	this.context = getApplicationContext();
 
+    
 	getSupportActionBar().hide();
 
 	// Carregar o valor salvo de turbo
         prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        turbo = prefs.getInt(KEY_TURBO, 0);
+        turbo = prefs.getInt(KEY_TURBO, 1);
 
-        // Exemplo: se turbo for 0, definir um valor padrão
-        if (turbo == 0) {	
-            turbo = 5; // Exemplo de valor padrão
-            saveTurboValue(turbo); // Salvar o valor padrão
-        }
+        turboSeekBar.setProgress(turbo);
+        
+        
 
 
 	// Solicitar permissão POST_NOTIFICATIONS se necessário       
@@ -326,7 +342,7 @@ protected void onCreate(Bundle savedInstanceState) {
         
         
         fIntent = new Intent(this, FakeLocationService1.class);	
-        startFakeLoc();
+     processado =  startFakeLoc();
     
 
 	// iniciar dados  de localização
@@ -338,17 +354,19 @@ protected void onCreate(Bundle savedInstanceState) {
 	   @Override
 	   public void onClick(View v) {
 		   //if (inicar){
-		   onGerarotaClick();
+     //   showProgressDialog("Aguarde teletransporte...");
+		   processado = onGerarotaClick();
+        //   processado = hideProgressDialog();         
 	   //	}
 	   }
 	});
 
 	//botao salto localizacao teletransporte
-	puloButton.setOnClickListener(new View.OnClickListener() {
+	puloButton.setOnClickListener( new View.OnClickListener() {
 		@Override                                        
    		public void onClick(View v) {
 		//	if (inicar)
-                	onSaltoClick();
+              processado =  onSaltoClick();
 		}      
 	});
 
@@ -438,6 +456,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	//mapView.setVisibility(View.VISIBLE);
 
 }
+    
 
 
 @Override
@@ -457,10 +476,7 @@ public void onBackPressed() {
 
 protected void onStart() {
     super.onStart();
-	long intervaloMillisegundos = 250L;
-          
-    CentralizeHandler centralizeHandler = new CentralizeHandler(this, context);
-    centralizeHandler.startCentralizing(intervaloMillisegundos);
+	
 
 	if (!FakeLocationService1.isServiceRunning()) {     
 		//checkloc.setChecked(true);       
@@ -488,13 +504,14 @@ private boolean isDeviceRooted() {
 protected void onResume() {         
     super.onResume();                
 
+  
     boolean isRooted = isDeviceRooted();
     mapView.onResume();            
     mapView.setVisibility(View.VISIBLE);
         
         
      if (latLng ==null){
-            onSaltoClick();
+          processado = onSaltoClick();
             }
 
     inicar=true;
@@ -519,10 +536,20 @@ protected void onResume() {
 	       dWaze = intent.getData();          
 	       String query = dWaze.getQuery();
 	       if (query != null) {
-		       handleIntent(query);                
+		      processado = handleIntent(query);                
 	       }
        }
     }
+        
+      //  processado =   hideProgressDialog();
+        
+        //carregando.setVisibility(View.GONE);
+        
+        long intervaloMillisegundos = 100L;
+          
+    CentralizeHandler centralizeHandler = new CentralizeHandler(this, context);
+    centralizeHandler.startCentralizing(intervaloMillisegundos);
+       
 }
 
 
@@ -535,7 +562,7 @@ private String readRawTextFile(int resId) {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line).append("\n");
-            }
+            }    
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -559,20 +586,22 @@ public static  boolean isServiceRunning(Class<?> serviceClass) {
 }
 
 
-private void saveTurboValue(int value) {
+private boolean saveTurboValue(int value) {
         SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(KEY_TURBO, value);
         editor.apply();
+        return true;
     }
 
 
 
 
-public void startFakeLoc() {
+public boolean startFakeLoc() {
     if (!FakeLocationService1.isServiceRunning()) {
         ContextCompat.startForegroundService(this, fIntent);
     }
+        return true;
 }
 
 public void stopFakeLoc() {
@@ -589,11 +618,13 @@ public void mToast(String msg) {
 }
 
 
-public void onGerarotaClick() {
-        // Check dados gerar rota
+public boolean onGerarotaClick() {
+        
+         // Check dados gerar rota
         if (latLng == null || latLngfake == null) {
             mToast("Erro dados rota");
-            return;
+         
+            return true;
         }
 
         
@@ -601,11 +632,13 @@ public void onGerarotaClick() {
         double dist = calcularDistancia(latLng, latLngfake);
         if (dist < 10) {
             mToast("Rota muito curta " + dist);
-            return;
+          
+            return true;
         }
         if (dist > 50000) {
             mToast("Rota muito Longa " + dist);
-            return;
+          
+            return true;
         }
 
 
@@ -616,11 +649,12 @@ public void onGerarotaClick() {
         rotaFake = new ArrayList<>();
         Object[] dadosSegmento = new Object[]{0, latLng, currentBearing, 0.0, 100.0, 0.0, 100L, 0.0, 0.0};
         rotaFake.add(dadosSegmento);
-	salvarRotafakeEmArquivo();
+    
+    salvarRotafakeEmArquivo(this);
 
 
 	if (!FakeLocationService1.isServiceRunning()) { 
-		startFakeLoc(); 
+	processado = startFakeLoc(); 
 	}
 
         //mapaCentralizar = true;
@@ -635,22 +669,34 @@ public void onGerarotaClick() {
         }
 
         // Solicitar dados API Google Maps
-        getrota(latLng, latLngfake);
-        mToast("Gerando rota para: \n" + latLngfake.toString());
+      processado = getrota(latLng, latLngfake);
+      //  mToast("Gerando rota para: \n" + latLngfake.toString());
 
 
 //	progressDialog = new ProgressDialog(this);
 //	msgLo = "Carregando...";
 //	load = true;
-//	progressDialog.setMessage(msgLo);                             progressDialog.setCancelable(false);                          progressDialog.show();
+//	progressDialog.setMessage(msgLo);    
+ 
+        
+        return true;
+        
 }
 
 
-public void onSaltoClick(){
-        //check dados mapa
+public boolean onSaltoClick(){
+            //check dados mapa
         if (googleMap  == null) { 
 		mToast("Mapa nao carregado");
-		return;
+          
+		return true;
+           
+	}
+        
+        
+        
+        if (!FakeLocationService1.isServiceRunning()) { 
+	processado = startFakeLoc(); 
 	}
 
 	//obter nova cordenada salto           
@@ -670,25 +716,9 @@ public void onSaltoClick(){
 	rotaFake = new ArrayList<>();         
 	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 100, 0.0, 0.0};
 	rotaFake.add(dadosSegmento);
-	salvarRotafakeEmArquivo();
+    salvarRotafakeEmArquivo(this);
 
-try{
-            MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
-         } catch (Exception e) {
-            
-        }
-        
-	if (!FakeLocationService1.isServiceRunning()) {      
-		startFakeLoc();            
-	}
-        
-        try{
-            MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
-         } catch (Exception e) {
-            
-        }
-	//iniciar fake                       
-	//mapaCentralizar = true;             
+
 	iniciarFake = true;                  
 	checkfake.setChecked(true);                                        
 	//checkloc.setChecked(true);
@@ -699,8 +729,11 @@ try{
 		polyline = null;           
 	}
 
-	toast = Toast.makeText(MainActivity.this, "Teletransportado de:" + latLng.toString() + "para: " + latLngfake.toString(), Toast.LENGTH_SHORT);
-	toast.show();
+//	toast = Toast.makeText(MainActivity.this, "Teletransportado de:" + latLng.toString() + "para: " + latLngfake.toString(), Toast.LENGTH_SHORT);
+//	toast.show();
+        
+    
+        return true;
 }
 
 
@@ -741,8 +774,25 @@ protected void onNewIntent(Intent intent) {
         setIntent(intent);
 }
 
+// Função para inicializar e mostrar o ProgressDialog
+public static void showProgressDialog() {
+        carregando.bringToFront();
+            carregando.setVisibility(View.VISIBLE);
+            
+}
 
-private void handleIntent(String query) {
+    
+    
+public static boolean hideProgressDialog() {
+         
+            carregando.setVisibility(View.GONE);
+        return true;
+  }
+    
+    
+    
+private boolean handleIntent(String query) {
+        
         if (query != null) {
             String[] params = query.split("&");
             double latitude = 0;
@@ -762,20 +812,23 @@ private void handleIntent(String query) {
                     }
                 }
             }
+           
             // Definir ponto destino rota
             latLngFakewaze = new LatLng(latitude, longitude);
 	    latLngfake = latLngFakewaze;                    
-	    onGerarotaClick();                      
+	  processado = onGerarotaClick();                      
 	    mToast("Ativando Auto Rota Fake Waze");
 	}
+        
+        return true;
 }
 
 
 
 //Solicitar dados api google 
-public void getrota(LatLng ORIGEM, LatLng DESTINO){
+public boolean getrota(LatLng ORIGEM, LatLng DESTINO){
     List<SegmentoRota> segmentosRota = new ArrayList<>();
-    ObterSegmentosRota.obterSegmentosRota(ORIGEM, DESTINO, new ObterSegmentosRota.OnSegmentosRotaListener() {
+    ObterSegmentosRota.obterSegmentosRota(this, ORIGEM, DESTINO, new ObterSegmentosRota.OnSegmentosRotaListener() {
         public void onSegmentosRota(List<ObterSegmentosRota.Segmento> segmentos) {
             if (segmentos != null) {
                 for (ObterSegmentosRota.Segmento segmento : segmentos) {
@@ -786,9 +839,10 @@ public void getrota(LatLng ORIGEM, LatLng DESTINO){
                     segmentosRota.add(segmentoRota);
                 }
             }
-            processarSegmentosRota(segmentosRota);
+           processado = processarSegmentosRota(segmentosRota);
         }
     });
+        return true;
 }
 
 //dados rota bruta
@@ -810,8 +864,6 @@ public class SegmentoRota {
     public List<LatLng> getPontos() {
         return pontos;                                                                              }                                                            
 }
-
-
 
 
 
@@ -958,7 +1010,7 @@ private static float[] computeDistanceAndBearing(double lat1, double lon1, doubl
 
 
 //processar resposta dados api
-public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
+public boolean processarSegmentosRota(List<SegmentoRota> segmentosRota) {
     rotaFake = new ArrayList<>();
     List<LatLng> poliFake = new ArrayList<>();
     for (int indiceSegmento = 0; indiceSegmento < segmentosRota.size(); indiceSegmento++) {
@@ -1011,7 +1063,7 @@ public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
     poliFake = m.suavizarCoordenadas(poliFake);
 
     //gerar poliline
-    drawRoute(poliFake);
+  processado = drawRoute(poliFake);
 
     //trocar pontos poliline  em rotafake 
     for (int i = 0; i < rotaFake.size(); i++) {
@@ -1051,17 +1103,18 @@ public void processarSegmentosRota(List<SegmentoRota> segmentosRota) {
      }
 
      //simular freio  curvas
-     simularMovimento();
+   processado = simularMovimento();
 
      //simular acelerador curvas
      Collections.reverse(rotaFake);
-     simularMovimento();
+    processado =  simularMovimento();
 
      //recalcular tempo e velocidade pontos rota 
      Collections.reverse(rotaFake);
-     procesarrMovimento();
+     processado = procesarrMovimento();
 
-     salvarRotafakeEmArquivo();
+    processado =  salvarRotafakeEmArquivo(this);
+    return true;
 }
 
 
@@ -1121,28 +1174,32 @@ private void salvarRotafakeEmArquivo() {
 }*/
 
 
-private void salvarRotafakeEmArquivo() {
-    new AsyncTask<Void, Void, String>() {
-        @Override
-        protected String doInBackground(Void... voids) {
+    public boolean salvarRotafakeEmArquivo(Context context) {
+        // Exibir ProgressDialog
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Salvando rota...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // Usar ExecutorService para chamadas assíncronas
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            String result;
             try {
-                long cTime = System.currentTimeMillis() + 5000;
+                long cTime = System.currentTimeMillis() + 1000;
 
                 // Remover todos os registros exceto
-
-                MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
-
-		//Intent intent = new Intent("com.example.ACTION_STOP_SERVICE");
-		//sendBroadcast(intent);
-
+                MyApp.getDatabase().rotaFakeDao().deleteAll();
 
                 for (Object[] dadosSegmento : rotaFake) {
                     int indiceSegmento = (int) dadosSegmento[0];
                     LatLng pontoAtual = (LatLng) dadosSegmento[1];
                     float bearing = (float) dadosSegmento[2];
-                    double velocidade = (double) dadosSegmento[3]*(turbo+1);
+                    double velocidade = (double) dadosSegmento[3] * (turbo + 1);
                     double tempoo = (double) dadosSegmento[4];
-                    long tempo1 = (long) tempoo/(turbo+1);
+                    long tempo1 = (long) tempoo / (turbo + 1);
 
                     cTime += tempo1;
 
@@ -1150,29 +1207,31 @@ private void salvarRotafakeEmArquivo() {
                     MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
                 }
 
-                return "Dados salvos no banco de dados com sucesso. turbo:" + turbo;
-
+                result = "Dados salvos no banco de dados com sucesso. turbo:" + turbo;
             } catch (Exception e) {
                 e.printStackTrace();
-       		         return "Erro ao salvar os dados: " + e.getMessage();
+                result = "Erro ao salvar os dados: " + e.getMessage();
             }
-        }
 
-        @Override
-        protected void onPostExecute(String result) {
-	    //startFakeLoc();
-	    //hideProgressDialog();
-        }
-    }.execute();
-}
+            // Atualizar a UI na thread principal
+            String finalResult = result;
+            handler.post(() -> {
+                progressDialog.dismiss();
+                // Realizar ações pós-execução na UI, por exemplo, exibir uma mensagem ao usuário
+                // Toast.makeText(context, finalResult, Toast.LENGTH_LONG).show();
+            });
+        });
+
+        return true;
+    }
 
 
 
 //pre processo final rota fake
-private void procesarrMovimento() {
+private boolean  procesarrMovimento() {
     if (rotaFake == null || rotaFake.isEmpty()) {
         Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");
-        return;
+        return true;
     }
 
     int indiceSegmento = 0;
@@ -1248,19 +1307,20 @@ private void procesarrMovimento() {
 	ntempo = (ttotal / numerosegmentos) * peso;             
 	NdadosSegmento[4] = ntempo;
 	rotaFake.set(j, NdadosSegmento);
-    }
+    };
 
 
 
-    procesarrMovimentofim();
+  processado = procesarrMovimentofim();
+        return true;
 }
 
 
 //proceso etapa final geracao  rotafake
-private void procesarrMovimentofim() {   
+private boolean procesarrMovimentofim() {   
 	if (rotaFake == null || rotaFake.isEmpty()) {     
 		Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");   
-		return;             
+		return true;             
 	}                                                    
 	// Recalcular os valores de tempo e velocidade 
 	for (int i = 0; i < (rotaFake.size()-1); i++) {   
@@ -1276,16 +1336,17 @@ private void procesarrMovimentofim() {
 		dadosSegmento[4] = (double) ntempo;    
 		rotaFake.set(i, dadosSegmento); 
 	}
+        return true;
 }
 
 
 
 
 //processo simular freio aceleracao curvasi
-private void simularMovimento() {
+private boolean  simularMovimento() {
     if (rotaFake == null || rotaFake.isEmpty()) {
         Log.e("simularMovimento", "A lista rotaFake está vazia ou não inicializada.");
-        return;
+        return true;
     }
 
     double nfreio = 0.95;
@@ -1386,6 +1447,7 @@ private void simularMovimento() {
     }
 
     Log.i("simularMovimento", "Simulação concluída.");
+     return true;
 }
 
 
@@ -1443,7 +1505,7 @@ private float calcularBearing(LatLng pontoA, LatLng pontoB) {
 
 
 //desenhar poliline
-public void drawRoute(List<LatLng> routePoints) {
+public boolean drawRoute(List<LatLng> routePoints) {
 	if (polyline != null) {
     		polyline.remove();
     		polyline = null; 
@@ -1484,6 +1546,7 @@ public void drawRoute(List<LatLng> routePoints) {
                 // mover camera atualizar marcadorez      
 		CameraPosition cameraPosition = new CameraPosition.Builder().target(center).zoom(zoom).build();      
 		googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));                 
+    return true;
 }
 
 /*
@@ -1536,9 +1599,9 @@ private Runnable cellInfoRunnable = new Runnable() {
 
 
 //atualizar mapa e controles
-public void centralizar(){
+public boolean centralizar(){
 	if (googleMap == null) {
-		return;
+		return true;
 	}
         
         mapaCentralizar = false;
@@ -1546,7 +1609,7 @@ public void centralizar(){
 	//cellInfoHandler.postDelayed(cellInfoRunnable, 10000);
 	//gnssHandler.postDelayed(gnssRunnable, 1000);
 
-/*
+
 	String schro = "00:00:00";
 
         new AsyncTask<Void, Void, RotaFake>() {
@@ -1574,7 +1637,7 @@ public void centralizar(){
 			textViewTempo.setText("🏁 00:00:00");
             }
         }}.execute();
-*/
+
 
 	if (polyline != null) {      
 		desMarker.setVisible(true);  
@@ -1586,7 +1649,7 @@ public void centralizar(){
 
 
 	//atualizar textview
-	sspeed = String.format("⏱️ %.1f", currentSpeed*3.6*4)+ " km/h";
+	sspeed = String.format("⏱️ %.1f", currentSpeed)+ " km/h";
 	salti = String.format("🏔️%.1f", currentAlt)+ "m";
 
 	tspeed.setText(sspeed);    
@@ -1631,7 +1694,7 @@ public void centralizar(){
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 		googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
-	
+	return true;
 }
 
 //calcular zoon poliline

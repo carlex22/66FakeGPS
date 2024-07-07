@@ -97,7 +97,7 @@ public final class RotaFakeDao_Impl implements RotaFakeDao {
       @Override
       @NonNull
       public String createQuery() {
-        final String _query = "DELETE FROM rota_fake WHERE id >= 0";
+        final String _query = "DELETE FROM rota_fake";
         return _query;
       }
     };

@@ -6,10 +6,12 @@ import android.os.Environment;
 import android.content.res.XmlResourceParser;
 import android.content.ContentResolver;
 import android.os.IBinder;
+import com.google.android.gms.location.LastLocationRequest;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import com.carlex.drive.R;
 import org.json.JSONArray;
+import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Service;
@@ -53,6 +55,8 @@ import com.topjohnwu.superuser.io.SuFile;
 
 public class SpaceManService extends Service {
 
+    
+    
     private static final String TAG = "SpaceManService";
     private static final long INTERVAL_MS = 2500;
     private static final String PREF_SATELLITES = "fake_satellites";
@@ -75,9 +79,10 @@ public class SpaceManService extends Service {
     private LocationListener locationListener;
     private GnssMeasurementsEvent.Callback gnssMeasurementsCallback;
 
-    private GroundStationPosition groundStationPosition;
-    private Date now;
-    private Location calculatedLocation;
+    private static GroundStationPosition groundStationPosition;
+    private static  Date now;
+    private static  Location calculatedLocation;
+    private static Location loc;
 
     private static String newNmeaSentence = "$XPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,";
     private static String fakeNmeaSentence = newNmeaSentence;
@@ -85,12 +90,13 @@ public class SpaceManService extends Service {
     private static ArrayList<MyGpsSatellite> gpsSatellites = new ArrayList<>();
     private static ArrayList<SatelliteInfo> sats = new ArrayList<>();
 
-    private GnssStatus fakegnssStatus;
+    private static  GnssStatus fakegnssStatus;
     private static SpaceManService instance;
     private SystemPreferencesHandler systemPreferencesHandler;
 
-    private SharedPreferences satellitePreferences;
-    private SharedPreferences locationPreferences;
+    public static Location lastLocation;
+    private static  SharedPreferences satellitePreferences;
+    private static SharedPreferences locationPreferences;
     private static GetCell getCell;
     private static GetCell.CellInfoData cellInfoData;
 
@@ -98,7 +104,7 @@ public class SpaceManService extends Service {
         return instance != null;
     }
 
-    private Boolean checkSave() {
+    public static boolean checkSave() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSaveTime < 1000) {
             return false;
@@ -108,7 +114,7 @@ public class SpaceManService extends Service {
     }
     
     
-    private Boolean checkSaveM() {
+    public static boolean checkSaveM() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSaveTimeM < 60000) {
             return false;
@@ -117,7 +123,7 @@ public class SpaceManService extends Service {
         return true;
     }
     
-    private Boolean isSignificantLocationChange(Location loc) {
+    public static boolean isSignificantLocationChange(Location loc) {
         float[] result = new float[1];
         if (cellInfoData != null) {
             Location.distanceBetween(loc.getLatitude(), loc.getLongitude(), cellInfoData.getLat(), cellInfoData.getLon(), result);
@@ -130,7 +136,7 @@ public class SpaceManService extends Service {
     }
     
     
-    private void saveCellToPreferences(Location loc) {
+    private static boolean saveCellToPreferences(Location loc) {
         if (checkSaveM() || isSignificantLocationChange(loc) || cellInfoData == null ) {
              log("xCell obtendo informações da célula.");
           
@@ -139,7 +145,7 @@ public class SpaceManService extends Service {
             
             if (cellInfoData == null) {
                 log("xCell Não foi possível obter informações da célula.");
-                return;
+                return false;
             }
     
             
@@ -156,7 +162,7 @@ public class SpaceManService extends Service {
                 jsonArray.put(jsonObject);
             } catch (JSONException e) {
                 log("xCell Error converting cell data to JSON: " + e.getMessage());
-                return;
+                return false;
             }
     
             Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
@@ -165,55 +171,79 @@ public class SpaceManService extends Service {
     
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write(jsonArray.toString());
-                Shell.su("chmod 666 " + file.getAbsolutePath()).exec();
+                Shell.su("chmod 777 " + file.getAbsolutePath()).exec();
                 log("xCell Saved cell data to: " + file.getAbsolutePath());
             } catch (IOException e) {
                 log("xCell Error writing cell data to file: " + e.getMessage());
+                return false;
             }
         }
         log("xCell usando cache informações da célula.");
+        return true;
     }
+    
+    public static boolean setLastLoc(Location lLocation){
+        lastLocation = lLocation;
+        log("set lastLOC"+ lastLocation.toString());
+        return true;
+    }   
+    
+    public static void settLoc(Location lLocation){
+        loc = lLocation;
+        log("set cureLOC" + loc.toString());
+    }   
 
-
-
-    private void saveLocationToPreferences(Location loc) {
-        if (checkSave()) {
-            JSONArray jsonArray = new JSONArray();
+    public static  boolean  saveLocationToPreferences(Location lloc, double latitude, double longitude, float bearing, double speed, double altitude, long timestamp) {
+     //   if (checkSave()) {
+        try {
             JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put("Latitude", loc.getLatitude());
-                jsonObject.put("Longitude", loc.getLongitude());
-                jsonObject.put("Altitude", loc.getAltitude());
-                jsonObject.put("Bearing", loc.getBearing());
-                jsonObject.put("Speed", loc.getSpeed());
-                jsonObject.put("Accuracy", loc.getAccuracy());
-                jsonObject.put("Timestamp", loc.getTime());
-                jsonObject.put("Provider", loc.getProvider());
-                jsonObject.put("nmea", getNmea());
-                jsonArray.put(jsonObject);
+            JSONArray jsonArray = new JSONArray();
+            if (loc!=null && lastLocation!=null){
+                    jsonObject = new JSONObject();
+                    jsonObject.put("Latitude", lloc.getLatitude());
+                    jsonObject.put("Longitude", lloc.getLongitude());
+                    jsonObject.put("Altitude", lloc.getAltitude());
+                    jsonObject.put("Bearing", lloc.getBearing());
+                    jsonObject.put("Speed", lloc.getSpeed());
+                    jsonObject.put("Accuracy", lloc.getAccuracy());
+                    jsonObject.put("Timestamp", lloc.getTime());
+                    jsonObject.put("Provider", loc.getProvider());
+                    jsonArray.put(1,jsonObject);
+                
+                    jsonObject = new JSONObject();
+                    jsonObject.put("Latitude", latitude);
+                    jsonObject.put("Longitude", longitude);
+                    jsonObject.put("Altitude", altitude);
+                    jsonObject.put("Bearing", bearing);
+                    jsonObject.put("Speed", speed);
+                    jsonObject.put("Accuracy", 2);
+                    jsonObject.put("Timestamp", timestamp);
+                    jsonObject.put("nmea", getNmea());
+                    jsonArray.put(0,jsonObject);
+                
+                    Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+                    File dir = SuFile.open(DIRECTORY_PATH);
+                    File file = SuFile.open(dir, KEY_LOCATIONS);
+    
+                    try (FileWriter writer = new FileWriter(file)) {
+                        writer.write(jsonArray.toString());
+                        Shell.su("chmod 777 " + file.getAbsolutePath()).exec();
+                        log("Saved location to: " + file.getAbsolutePath());
+                    } catch (IOException e) {
+                        log("Error writing location to file: " + e.getMessage());
+                        return false;
+                    }
+                
+                }
             } catch (JSONException e) {
                 log("Error converting location to JSON: " + e.getMessage());
-                return;
+                return false;
             }
-
-            Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
-            File dir = SuFile.open(DIRECTORY_PATH);
-            File file = SuFile.open(dir, KEY_LOCATIONS);
-
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(jsonArray.toString());
-                Shell.su("chmod 666 " + file.getAbsolutePath()).exec();
-                log("Saved location to: " + file.getAbsolutePath());
-            } catch (IOException e) {
-                log("Error writing location to file: " + e.getMessage());
-            }
-            
-            saveSatellitesToPreferences();
-            saveCellToPreferences(loc);
-        }
+            return true;
+     //   }
     }
 
-    protected void log(String s) {
+    protected static void log(String s) {
         Log.d(TAG, s);
     }
 
@@ -221,7 +251,7 @@ public class SpaceManService extends Service {
     public static float maxSnr = 0;
     public static float meanSnr = 0;
 
-    private void saveSatellitesToPreferences() {
+    public static boolean saveSatellitesToPreferences() {
             try {
                 SharedPreferences.Editor editor = satellitePreferences.edit();
                 editor.clear();
@@ -249,7 +279,8 @@ public class SpaceManService extends Service {
                         }
                         sumSnr += satellite.getSnr();
                     } catch (JSONException e) {
-                        log("Error converting satellite to JSON: " + e.getMessage());
+                    return false;
+                        //"Error converting satellite to JSON: " + e.getMessage());
                     }
                 }
 
@@ -269,33 +300,37 @@ public class SpaceManService extends Service {
     
                 try (FileWriter writer = new FileWriter(file)) {
                     writer.write(satellitesDataArray.toString());
-                    Shell.su("chmod 666 " + file.getAbsolutePath()).exec();
+                    Shell.su("chmod 777 " + file.getAbsolutePath()).exec();
                     log("Saved location to: " + file.getAbsolutePath());
                 } catch (IOException e) {
                     log("Error writing location to file: " + e.getMessage());
+                    return false;
                 }
                 
             } catch (Exception e) {
                 log("Error saving satellites to preferences: " + e.getMessage());
+            return false;
             }
+        return true;
     }
 
-    public void setNmea(String nmea) {
+    public static void setNmea(String nmea) {
         fakeNmeaSentence = nmea;
     }
 
-    public String getNmea() {
+    public static String getNmea() {
         return fakeNmeaSentence;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+       Locale.setDefault(Locale.US);
         log("Service onCreate");
         getCell = new GetCell();
     }
 
-    private boolean isRunning = false;
+    private static  boolean isRunning = false;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -457,28 +492,29 @@ public class SpaceManService extends Service {
         return START_STICKY;
     }
 
-    private void updateSatelliteList(GnssStatus status) {
+    private static void updateSatelliteList(GnssStatus status) {
         if (calculatedLocation != null) {
             groundStationPosition = new GroundStationPosition(calculatedLocation.getLatitude(), calculatedLocation.getLongitude(), calculatedLocation.getAltitude());
             setNow();
             calculatePositions();
-            saveLocationToPreferences(calculatedLocation);
+            boolean ssat = saveSatellitesToPreferences();
+            boolean scel = saveCellToPreferences(loc);
         } else {
             log("Calculated location is null, cannot update satellite list");
         }
     }
 
-    public String getFakeMessage() {
+    public static String getFakeMessage() {
         Log.i(TAG, "NMEA getFakeMessage called");
         return fakeNmeaSentence;
     }
 
-    private void setNow() {
+    private static void setNow() {
         now = new Date(System.currentTimeMillis());
         log("Current time set: " + now);
     }
 
-    private void calculatePositions() {
+    public static  void calculatePositions() {
         gpsSatellites.clear();
         float maxCn0 = 0f;
         float meanCn0 = 0f;
@@ -530,7 +566,7 @@ public class SpaceManService extends Service {
         return satelliteCount;
     }
 
-    public void dumpGpsSatellites() {
+    public static void dumpGpsSatellites() {
         String sta = "";
         for (MyGpsSatellite gs : gpsSatellites) {
             sta += " [" + gs.toString() + "]";
@@ -538,11 +574,11 @@ public class SpaceManService extends Service {
         Log.i(TAG, "Fix: " + gpsSatellites.size() + " sats: " + sta);
     }
 
-    public GnssStatus createFakeGnssStatus() {
+    public static GnssStatus createFakeGnssStatus() {
         try {
             Log.i(TAG, "Build GNSS status...");
 
-            calculatePositions();
+             calculatePositions();
             GnssStatus.Builder builder = new GnssStatus.Builder();
 
             Log.i(TAG, "Satellite count: " + gpsSatellites.size());
@@ -570,7 +606,7 @@ public class SpaceManService extends Service {
         }
     }
 
-    public float noise() {
+    public static float noise() {
         return (float) (ThreadLocalRandom.current().nextDouble(0, 1) / 25);
     }
 
@@ -589,15 +625,15 @@ public class SpaceManService extends Service {
         }
     }
 
-    private boolean isAuthorizedPackage(String packageName) {
+    private static  boolean isAuthorizedPackage(String packageName) {
         return "com.carlex.drive".equals(packageName);
     }
 
-    public void parseTLE(String xtles) {
+    public static  void parseTLE(String xtles) {
         parseTLE(xtles.split("\n"));
     }
 
-    public void parseTLE(String[] tles) {
+    public static void parseTLE(String[] tles) {
         log("Parsing TLEs");
         sats.clear();
         for (int i = 0; (i + 2) < tles.length; i += 3) {
@@ -637,7 +673,7 @@ public class SpaceManService extends Service {
         return null;
     }
 
-    public class MyGpsSatellite {
+    public static  class MyGpsSatellite {
         public float azimuth, elevation;
         public int prn;
         public float snr;
@@ -682,7 +718,7 @@ public class SpaceManService extends Service {
         }
     }
 
-    private class SatelliteInfo {
+    private static class SatelliteInfo {
         TLE tle;
         Satellite satellite;
         SatPos satPos;

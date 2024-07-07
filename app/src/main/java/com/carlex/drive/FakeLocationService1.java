@@ -7,12 +7,14 @@ import android.app.Service;
 import android.content.Context;
 import android.os.RemoteException;
 import android.os.RemoteException;
+import android.widget.Space;
+import com.google.android.gms.location.LocationAvailability;
 import java.io.File;
 import android.location.Location;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
-
+import java.util.Locale;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.Looper;
@@ -71,7 +73,7 @@ import android.os.Handler;
 import kotlin.contracts.Returns;
 public class FakeLocationService1 extends Service {
 
-    public static double latitude =  -100.0, longitude = -10.0, altitude = 10.0;
+    public static double latitude =  -100.0, longitude = -10.0, altitude = 750.0;
     public static float bearing= 5f;
     public static double velocidade = 0f;
     public static Location gpsLocation;
@@ -82,6 +84,8 @@ public class FakeLocationService1 extends Service {
     private static Queue<Float> bearingHistory = new LinkedList<>();
  
     public static boolean isMockLocationsEnabled;
+    private static Runnable runnable;
+    private static SensorProcessor sensorProcessor;
     
     private static Thread backgroundThread;
     public static LocationManager locationManager;
@@ -91,6 +95,9 @@ public class FakeLocationService1 extends Service {
  private static final String PREFS_NAME = "LocationPreferences";
 
     public static Location ffLocation;
+    
+    private static ElevationService elevationService;
+    private static Handler handler;
     
     private static SystemPreferencesHandler systemPreferencesHandler;
     
@@ -107,7 +114,7 @@ public class FakeLocationService1 extends Service {
    
     
     
-    private static void saveLocationPreferences(Context context, double latitude, double longitude, float bearing, float speed, double altitude) {
+    private static boolean saveLocationPreferences(Context context, double latitude, double longitude, float bearing, float speed, double altitude) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("latitude", String.valueOf(latitude));
@@ -116,12 +123,14 @@ public class FakeLocationService1 extends Service {
         editor.putString("speed", String.valueOf(speed));
         editor.putString("altitude", String.valueOf(altitude));
         editor.apply();
+        return true;
     }
     
     
    public void onCreate() {
         super.onCreate();
         createNotificationChannel();
+       Locale.setDefault(Locale.US);
         isRunning= false;
         Log.i(TAG, "service created");
         //startForeground(148, getNotification("Fake Gps Ligado").build());
@@ -211,23 +220,26 @@ public class FakeLocationService1 extends Service {
     
         startService(serviceIntent);
         
-        Intent serviceIntentSe = new Intent(this, SensorProcessorService.class);
-        startService(serviceIntentSe);
+        sensorProcessor = new SensorProcessor();
+        
   
+        initTestProvider();
+        
+        elevationService = new ElevationService();
+        
     
        // spaceMan = new SpaceMan(context, tles, new Location(GPS_PROVIDER));
     
         if (isMockLocationsEnabled) {
             Toast.makeText(context, "Permissão de localização falsa concedida", Toast.LENGTH_SHORT).show();
             if (backgroundThread == null || !backgroundThread.isAlive()) {
-                initTestProvider();
-                startBackgroundTask();
+                
+                boolean rr = startBackgroundTask();
             }
         } else {
             Toast.makeText(context, "Permissão de localização falsa não concedida", Toast.LENGTH_SHORT).show();
         }
     
-            
         
         return START_STICKY;
     }
@@ -240,21 +252,30 @@ public class FakeLocationService1 extends Service {
         return isRunning;
     }
 
-    private static void startBackgroundTask() {
+    public static boolean startBackgroundTask() {
         backgroundThread = new Thread(() -> {
             while (true) {
                 RotaFake rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-                handleVehicleState(rotaFake1);
-                spoofLocationAndUpdate(rotaFake1);
+                boolean pp = postlocation(rotaFake1);
+                boolean ss = handleVehicleState(rotaFake1);    
+                boolean mmo = spoofLocationAndUpdate(rotaFake1);
+                if(gpsLocation != null) SpaceManService.settLoc(gpsLocation);
                 MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());
             }
         });
         backgroundThread.start();
+        return true;
     }
 
-    private static void handleVehicleState(RotaFake rotaFake1) {
+    public static Long uTempo = 0L;
+    
+    private static boolean handleVehicleState(RotaFake rotaFake1) {
         if (rotaFake1 != null) {
             //Verificar se o veículo está parado
+            if (gpsLocation == null){
+               return false;
+             }
+       
 		    if (gpsLocation.getSpeed()>0.5 && parado == true){ if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 em Rota").build()); }              
 			    parado = false;           
                 Log.i(TAG, "Fake 66 Rota created");
@@ -266,9 +287,21 @@ public class FakeLocationService1 extends Service {
 		    //esperar tempo para proxima atualizacao
             long tempo = rotaFake1.getTempo();
             long diferencaTempo = tempo - System.currentTimeMillis();
+            
 		    if (diferencaTempo > 0) {
+                if (gpsLocation!=null) {
+                        SensorProcessor.setAltitude(gpsLocation.getAltitude());
+                        SensorProcessor.setLatitude(rotaFake1.getLatitude());
+                        SensorProcessor.setLongitude(rotaFake1.getLongitude());
+                        SensorProcessor.setBearing(rotaFake1.getBearing());
+                        SensorProcessor.setTempo(System.currentTimeMillis()-uTempo+diferencaTempo); 
+                        boolean runs = SensorProcessor.starTask(); 
+                        Log.i(TAG, "proceed sensor:"+runs);
+                }
 			    try {Thread.sleep(diferencaTempo);} 
 			    catch (InterruptedException e) {}
+                uTempo = System.currentTimeMillis();
+            
             }
         } else {
 		    float tnoise = (float) (ThreadLocalRandom.current().nextDouble(100, 150));
@@ -279,16 +312,42 @@ public class FakeLocationService1 extends Service {
 		}
 		    try { Thread.sleep((long) tnoise); }   
 		    catch (InterruptedException e) {}        
-		}                          
+		}                
+        return true;          
     }
 
-    private static  void spoofLocationAndUpdate(RotaFake rotaFake1) {
+    private static boolean  spoofLocationAndUpdate(RotaFake rotaFake1) {
         if (latitude < -1.0) {
-              spoofLocation(rotaFake1, gpsLocation, GPS_PROVIDER);
-              spoofLocation(rotaFake1, networkLocation, NETWORK_PROVIDER);
-              spoofLocation(rotaFake1, ffLocation, FUSED_PROVIDER);
+              gpsLocation = spoofLocation(rotaFake1, gpsLocation, GPS_PROVIDER);
+              networkLocation = spoofLocation(rotaFake1, networkLocation, NETWORK_PROVIDER);
+              ffLocation = spoofLocation(rotaFake1, ffLocation, FUSED_PROVIDER);
              // updateSpaceMan(gpsLocation);
         }
+        return true;
+    }
+    
+    private static boolean postlocation(RotaFake rotaFake1){
+        if (rotaFake1!=null){
+            if(gpsLocation != null) {
+                    boolean sp = SpaceManService.setLastLoc(gpsLocation);
+                    boolean sav = SpaceManService.saveLocationToPreferences(
+                    gpsLocation, 
+                    rotaFake1.getLatitude(),
+                    rotaFake1.getLongitude(),
+                    rotaFake1.getBearing(),
+                    rotaFake1.getVelocidade(),
+                    750.0,
+                    System.currentTimeMillis());
+                                /*  SensorProcessorService.setculo(
+                    rotaFake1.getLatitude(),
+                    rotaFake1.getLongitude(),
+                    rotaFake1.getBearing(),
+                    rotaFake1.getVelocidade(),
+                    750.0,
+                    System.currentTimeMillis());*/
+                }
+            }
+        return true;
     }
 
     @Override
@@ -304,6 +363,7 @@ public class FakeLocationService1 extends Service {
             e.printStackTrace();
         }
         removeProviders();
+        handler.removeCallbacks(runnable);
         if (backgroundThread != null) {
             backgroundThread.interrupt();
         }
@@ -329,11 +389,30 @@ public class FakeLocationService1 extends Service {
             Thread.currentThread().interrupt();
         }
     }
+    
+    public static double getaltitude() {
+        elevationService.obterAltitude(latitude, longitude, new ElevationService.ElevationCallback() {
+                    public void onElevationReceived(double altitude) {   
+                        FakeLocationService1.setAltitude(altitude);
+                        Log.d(TAG, "A altitude da coordenada (" + latitude + ", " + longitude + ") é: " + altitude + " metros");
+                    }
+                    public void onError(Exception e) {
+                        Log.e(TAG, "Erro ao obter a altitude", e);
+                    }
+                }); 
+        return altitude;
+    }
+    
+    
+    private static void setAltitude(double alt){
+        altitude = alt;
+    }
 
-    private static void waitForNextUpdate(RotaFake rotaFake1) {
+    private static  boolean waitForNextUpdate(RotaFake rotaFake1) {
         long tempo = rotaFake1.getTempo();
         long diferencaTempo = tempo - System.currentTimeMillis();
         if (diferencaTempo > 0) {
+           
             try {
                 Thread.sleep(diferencaTempo);
             } catch (InterruptedException e) {
@@ -348,7 +427,7 @@ public class FakeLocationService1 extends Service {
 			    rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
               }
         }
-        
+        return true;
     }
 
     private static void setDefaultLocation() {
@@ -360,91 +439,82 @@ public class FakeLocationService1 extends Service {
     }
     
     
-    private static float processSensorData(Queue<Float> history, float newValue) {
-        // Add new values to the history queue
-        if (history.size() >= 10) {
-            history.poll(); // Remove the oldest entry if the queue is full
-        }
-        history.add(newValue);
-
-        // Calculate the average of the historical values
-        float smoothedValue = 0;
-        for (float value : history) {
-            smoothedValue += value;
-        }
-        smoothedValue /= history.size();
-        smoothedValue = round(smoothedValue, 3); // Arredondar para 3 casas decimais
-
-        // Calculate the threshold
-        float threshold = smoothedValue * 1.5f;
-
-        // Ignore outliers
-        if (Math.abs(newValue - smoothedValue) > threshold) {
-            return smoothedValue; // Return the smoothed value if the new value is an outlier
-        }
-
-        return round(newValue, 3); // Return the new value if it is not an outlier, arredondado para 3 casas decimais
+    private static double adicionarRuido(double valorOriginal, double nivelRuido) {
+        Random random = new Random();
+        double ruido = (random.nextDouble() * 2 - 1) * nivelRuido;
+        return valorOriginal + ruido;
     }
     
     
-    private static float round(float value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
+    private static final double LAT_LNG_NOISE_LEVEL = 0.000001; // Ajuste o nível de ruído conforme necessário
+    private static final double BEARING_NOISE_LEVEL = 1.0; // Ajuste o nível de ruído conforme necessário
+    private static final double VELOCIDADE_NOISE_LEVEL = 0.1; // Ajuste o nível de ruído conforme necessário
 
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.floatValue();
+    private static long lastSaveTime = 0;
+    
+   public static boolean checkSave() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastSaveTime < 5000) {
+            return false;
+        }
+        lastSaveTime = currentTime;
+        return true;
     }
+    
+    
+    
 
-    private static void spoofLocation(RotaFake rotaFake1, Location location, String provider) {
+    private static Location spoofLocation(RotaFake rotaFake1, Location location, String provider) {
+       
         if (isRunning){
            if (location==null){
-              return;
+              return null;
            } 
             
+          
             
-        float smoothedBearing = 0f;
-        float smoothedSpeed= 0f;
-        float smoothedAltitude= 0f;
-        float noise3 = (float) (ThreadLocalRandom.current().nextDouble(0, 15) );
+        
+        float noise3 = (float) (ThreadLocalRandom.current().nextDouble(0, 1) );
    
-    
-        if (rotaFake1!=null){
-            latitude = rotaFake1.getLatitude();
-            longitude = rotaFake1.getLongitude();
-            bearing = rotaFake1.getBearing();
-            velocidade = rotaFake1.getVelocidade();
-            smoothedAltitude = 750+noise3;
-            smoothedBearing = processSensorData(bearingHistory, bearing);
-            smoothedSpeed = processSensorData(speedHistory, (float) velocidade);
-            saveLocationPreferences(context, latitude, longitude, smoothedBearing, smoothedSpeed, smoothedAltitude);
+        if (rotaFake1 != null) {
+            latitude = adicionarRuido(rotaFake1.getLatitude(), LAT_LNG_NOISE_LEVEL);
+            longitude = adicionarRuido(rotaFake1.getLongitude(), LAT_LNG_NOISE_LEVEL);
+            bearing = ((float) adicionarRuido(rotaFake1.getBearing(), BEARING_NOISE_LEVEL));
+            velocidade = Math.abs(adicionarRuido(rotaFake1.getVelocidade(), VELOCIDADE_NOISE_LEVEL));
+            if (checkSave() && velocidade > 1){
+                altitude = getaltitude();
+            } else {
+                altitude = adicionarRuido(altitude,1);
+            }
+                
         }
+            
+        
             
         location.setLatitude(latitude);
         location.setLongitude(longitude);
-        float noise = (float) (ThreadLocalRandom.current().nextDouble(0, 20) / 100);
-        float noise1 = (float) (ThreadLocalRandom.current().nextDouble(0, 20) / 10000);
-        float noise2 = (float) (ThreadLocalRandom.current().nextDouble(0, 20) / 10000);
-
-        long Timef = System.currentTimeMillis();
-        location.setBearing(round(smoothedBearing + (noise / 5),3));
-        location.setSpeed(round ((smoothedSpeed+noise) / 5f,3));
-        location.setTime(Timef+((long)(noise*17)));
-        location.setAltitude((double)round((smoothedAltitude),3));
+        
+        long Timef = (long) adicionarRuido((double)System.currentTimeMillis(),100);
+           
+        location.setBearing(bearing );
+        location.setSpeed((float) (velocidade/3.6f) );
+        location.setTime(Timef);
+        location.setAltitude(altitude);
         location.setAccuracy(((int)noise3/5)+1);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            location.setVerticalAccuracyMeters(0.5f);
-            location.setSpeedAccuracyMetersPerSecond(0.5f);
-            location.setBearingAccuracyDegrees((ThreadLocalRandom.current().nextInt(1, 2) ));
+            location.setVerticalAccuracyMeters(Math.abs((float) (noise3+0.1)));
+            location.setSpeedAccuracyMetersPerSecond(Math.abs((float) (noise3+0.1)/2));
+            location.setBearingAccuracyDegrees(Math.abs(ThreadLocalRandom.current().nextInt(1, 3) ));
         }
-        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos()+((long)noise3));
+        location.setElapsedRealtimeNanos((long) adicionarRuido((double) SystemClock.elapsedRealtimeNanos(),100));
             try {
                 Bundle extras = new Bundle();                          
                 extras.putInt("satellites", 
                 SpaceManService.getSatelliteCount());
                 extras.putFloat("maxCn0", 
-                round(SpaceManService.getMaxCn0(),3)); 
+                (SpaceManService.getMaxCn0())); 
                 extras.putFloat("meanCn0", 
-                round(SpaceManService.getMeanCn0(),3));      
+                (SpaceManService.getMeanCn0()));      
                 location.setExtras(extras);
                 //Log.d(TAG, "max" + SpaceManService.getMaxCn0());
                  if (provider == FUSED_PROVIDER){
@@ -454,10 +524,19 @@ public class FakeLocationService1 extends Service {
                  }
             } catch (SecurityException se) {
                 Log.d(TAG, "Falha no Mock", se);
+                return null;
             }
             
+            if (provider == GPS_PROVIDER) {
+                saveLocationPreferences(context, latitude, longitude, bearing, (float)velocidade, altitude);
+                
+            }
+           
             
+            
+            return location;
         }
+        return null;
     }
 
     private static void updateSpaceMan(Location location) {
