@@ -1,0 +1,35 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorProcessor.java",
+      "selection": {
+        "end": {
+          "column": 13,
+          "index": 4235,
+          "line": 129
+        },
+        "start": {
+          "column": 13,
+          "index": 4235,
+          "line": 129
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/FakeLocationService1.java",
+      "selection": {
+        "end": {
+          "column": 64,
+          "index": 20872,
+          "line": 532
+        },
+        "start": {
+          "column": 64,
+          "index": 20872,
+          "line": 532
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/My Application6/app/src/main/java/com/carlex/drive/SensorProcessor.java"
+}

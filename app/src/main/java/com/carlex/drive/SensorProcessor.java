@@ -92,27 +92,27 @@ public class SensorProcessor  {
     
     public static void setLatitude(double latitude) {
         lat = latitude;
-        Log.d(TAG, "Latitude set to " + latitude);
+      //  Log.d(TAG, "Latitude set to " + latitude);
     }
     
     public static void setBearing(double bearing) {
         bear = bearing;
-        Log.d(TAG, "Bearing set to " + bearing);
+      //  Log.d(TAG, "Bearing set to " + bearing);
     }
 
     public static void setLongitude(double longitude) {
         lon = longitude;
-        Log.d(TAG, "Longitude set to " + longitude);
+      //  Log.d(TAG, "Longitude set to " + longitude);
     }
 
     public static void setAltitude(double altitude) {
         alt = altitude;
-        Log.d(TAG, "Altitude set to " + alt);
+     //   Log.d(TAG, "Altitude set to " + alt);
     }
     
    public static void setTempo(long tem) {
         tempo = tem;
-        Log.d(TAG, "tempo set to " + tempo);
+     //   Log.d(TAG, "tempo set to " + tempo);
     }
     
     
@@ -124,17 +124,17 @@ public class SensorProcessor  {
         //}
         
 
-        Log.d(TAG, "Processing location data...");
+       // Log.d(TAG, "Processing location data...");
         
         double distanciaT = generateNoise() + Math.abs(calculateDistance(lat, lon, last[4], last[5]));
        // double distanciaLon = Math.abs(calculateDistance(lon1, lon1, last[7], last[7]) + generateNoise());
-        double distanciaLat = Math.abs(calculateLatDistance(last[4], lat));
-        double distanciaLon = Math.abs(calculateLonDistance(last[5], lon, last[4]));
+        double distanciaLat = Math.abs(calculateLatDistance(lat, last[4]));
+        double distanciaLon = Math.abs(calculateLonDistance(lon, last[5], lat));
       
-        double distanciaAlt = (last[6] - alt);
+        double distanciaAlt = (alt-last[6]);
         
         
-        double yaw =  calcularVelocidadeAngular(calcularDiferencaAngulos(last[7],bear),tempo);
+        double yaw =  calcularVelocidadeAngular(calcularDiferencaAngulos(bear, last[7]),tempo);
         double pitch = calcularVelocidadeAngular(calcularAnguloDeslocamento(distanciaT, distanciaAlt), tempo);
         double roll = calcularVelocidadeAngular(generateNoise(),tempo);
 
@@ -143,9 +143,9 @@ public class SensorProcessor  {
         double velocidadeY = (distanciaLon / (tempo));
         double velocidadeZ = (distanciaAlt / (tempo));
 
-        double acex =  ((velocidadeX - last[0]) / (tempo));
-        double acey =  ((velocidadeY - last[1]) / (tempo));
-        double acez =  ((velocidadeZ - last[2]) / (tempo));
+        double acex =  ((velocidadeX - last[1]) / (tempo))*1000;
+        double acey =  ((velocidadeY - last[2]) / (tempo))*1000;
+        double acez =  ((velocidadeZ - last[3]) / (tempo))*1000;
 
         
         Log.d(TAG, String.format(Locale.US, "Calculated values - acex: %f, acey: %f, acez: %f, yaw: %f, pitch: %f, roll: %f", acex, acey, acez, yaw, pitch, roll));
@@ -172,8 +172,8 @@ public class SensorProcessor  {
                 fileWriter.write(outputData.toString(4));
             }
 
-            Log.d(TAG, "Processed data saved to file");
-            Log.d(TAG, "Latdata: "+ doubleArrayToString(last));
+            //Log.d(TAG, "Processed data saved to file");
+          //  Log.d(TAG, "Latdata: "+ doubleArrayToString(last));
             
             
             double[] data = { 
@@ -188,7 +188,7 @@ public class SensorProcessor  {
             
             last = data;
 
-            Log.d(TAG, "Location data updated for next cycle");
+            Log.d(TAG, "---------- end sensor cycle-----------");
 
             /*// Atualizar último dado para o próximo ciclo
             JSONObject lastData = new JSONObject();
@@ -294,7 +294,7 @@ public class SensorProcessor  {
     // Função para calcular a distância entre duas coordenadas
     private static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         try {
-            Log.d(TAG, "Calculating distance...");
+           // Log.d(TAG, "Calculating distance...");
             final int R = 6371000; // Radius of the Earth in km
             double latDistance = Math.toRadians(lat2 - lat1);
             double lonDistance = Math.toRadians(lon2 - lon1);
@@ -304,7 +304,7 @@ public class SensorProcessor  {
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             double distance = R * c ; // convert to meters
 
-            Log.d(TAG, String.format("Distance calculated: %f meters", distance));
+         //   Log.d(TAG, String.format("Distance calculated: %f meters", distance));
 
             return Math.abs(distance+generateNoise());
         } catch (Exception e) {
