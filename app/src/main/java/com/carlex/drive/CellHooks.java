@@ -25,7 +25,7 @@ import java.io.IOException;
 
 public class CellHooks implements IXposedHookZygoteInit, IXposedHookLoadPackage {
     private static final String TAG = "CellHooks";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
     private static final String CELL_DATA_FILE = "cell_data.json";
     private static Context systemContext;
 

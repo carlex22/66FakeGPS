@@ -9,6 +9,7 @@ import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import com.topjohnwu.superuser.io.SuFile;
+import com.topjohnwu.superuser.io.SuFile;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +25,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.math.BigDecimal;
 
+
+import android.content.Context;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,22 +39,29 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit {
     private static final String TAG = "SensorInterceptor";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
     private static final String INPUT_FILE = "sensor.json";
 
+    private static Context systemContext;
     private SensorEventListener originalAccelListener;
     private SensorEventListener originalGyroListener;
 
     private Queue<float[]> accelHistory = new LinkedList<>();
     private Queue<float[]> gyroHistory = new LinkedList<>();
 
-    @Override
+     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
-        //Log.d(TAG, "initZygote: Zygote initialized");
+        XposedBridge.log(TAG + ": initialized in Zygote");
+        systemContext = (Context) XposedHelpers.callMethod(
+            XposedHelpers.callStaticMethod(
+                XposedHelpers.findClass("android.app.ActivityThread", null), "currentActivityThread"
+            ), "getSystemContext"
+        );
     }
 
     @Override
@@ -111,7 +121,7 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
             }
         });
 
-        XposedBridge.hookAllMethods(SensorManager.class, "unregisterListener", new XC_MethodHook() {
+      /*  XposedBridge.hookAllMethods(SensorManager.class, "unregisterListener", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 SensorEventListener listener = (SensorEventListener) param.args[0];
@@ -122,7 +132,7 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
                     param.setResult(null);
                 }
             }
-        });
+        });*/
 
         XposedBridge.hookAllMethods(SensorManager.class, "getSensorList", new XC_MethodHook() {
             @Override
@@ -141,8 +151,28 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
         });
     }
 
+    
+    public static float[] ace = {0f, 0f, 0f};
+    public static float[] gir = {0f, 0f, 0f};
+    
     private float[] readSensorDataFromFile(int sensorType) {
+       
+       try {
+            Process process = Runtime.getRuntime().exec(new String[]{"su", "-c", "chmod 777 "+DIRECTORY_PATH+ INPUT_FILE});
+            process.waitFor();
+        } catch (Exception e) {
+           Log.e(TAG, "Error setting file permissions: " + e.getMessage());
+        }
+       
         File inputFile = SuFile.open(DIRECTORY_PATH, INPUT_FILE);
+        if (!inputFile.exists()) {
+            if (sensorType == Sensor.TYPE_ACCELEROMETER) 
+               return ace;
+            else  if (sensorType == Sensor.TYPE_ACCELEROMETER) 
+               return gir;
+            else
+               return null;
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
             StringBuilder content = new StringBuilder();
             String line;
@@ -154,17 +184,18 @@ public class SensorHook implements IXposedHookLoadPackage, IXposedHookZygoteInit
             if (jsonArray.length() > 0) {
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
                 if (sensorType == Sensor.TYPE_ACCELEROMETER) { 
-                    return new float[]{
-                            (float) jsonObject.optDouble("Ax"),
-                            (float) jsonObject.optDouble("Ay"),
-                            (float) jsonObject.optDouble("Az")
-                    };
+                    float ax = (float) jsonObject.optDouble("Ax");
+                    float ay = (float) jsonObject.optDouble("Ay");
+                    float az = (float) jsonObject.optDouble("Az");
+                    ace = new float[]{ax, ay, az};
+                    return ace;
                 } else if (sensorType == Sensor.TYPE_GYROSCOPE) {
-                    return new float[]{
+                    gir  = new float[]{
                             (float) jsonObject.optDouble("Gx"),
                             (float) jsonObject.optDouble("Gy"),
                             (float) jsonObject.optDouble("Gz")
                     };
+                    return gir;
                 }
             }
         } catch (IOException | org.json.JSONException e) {

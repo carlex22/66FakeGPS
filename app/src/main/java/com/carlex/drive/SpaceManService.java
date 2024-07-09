@@ -49,6 +49,7 @@ import uk.me.g4dpz.satellite.TLE;
 import android.preference.PreferenceManager;
 import com.topjohnwu.superuser.Shell;
 import java.io.IOException;
+import com.topjohnwu.superuser.io.SuFile;
   
 import com.topjohnwu.superuser.io.SuFile;
 // com.topjohnwu.superuser.io.SuFile;
@@ -64,7 +65,7 @@ public class SpaceManService extends Service {
     private static final String KEY_SATELLITES = "satellites.json";
     private static final String KEY_LOCATIONS = "locations.json";
     private static final long SAVE_INTERVAL_MS = 1000;
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
 
     private static long lastSaveTime = 0;
     private static long lastSaveTimeM = 0;
@@ -165,9 +166,9 @@ public class SpaceManService extends Service {
                 return false;
             }
     
-            Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
-            File dir = SuFile.open(DIRECTORY_PATH);
-            File file = SuFile.open(dir, "cell_data.json");
+            //Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+            //File dir = SuFile.open(DIRECTORY_PATH);
+            File file = SuFile.open(DIRECTORY_PATH, "cell_data.json");
     
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write(jsonArray.toString());
@@ -221,9 +222,11 @@ public class SpaceManService extends Service {
                     jsonObject.put("nmea", getNmea());
                     jsonArray.put(0,jsonObject);
                 
-                    Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
-                    File dir = SuFile.open(DIRECTORY_PATH);
-                    File file = SuFile.open(dir, KEY_LOCATIONS);
+                   // Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+                    //File dir = SuFile.open(DIRECTORY_PATH);
+                    File file = SuFile.open(DIRECTORY_PATH, KEY_LOCATIONS);
+                
+                
     
                     try (FileWriter writer = new FileWriter(file)) {
                         writer.write(jsonArray.toString());
@@ -294,9 +297,9 @@ public class SpaceManService extends Service {
                 satellitesDataArray.put(satellitesData);
                 
                 
-                Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
-                File dir = SuFile.open(DIRECTORY_PATH);
-                File file = SuFile.open(dir, KEY_SATELLITES);
+               // Shell.su("mkdir -p " + DIRECTORY_PATH).exec();
+              //  File dir = SuFile.open(DIRECTORY_PATH);
+                File file = SuFile.open(DIRECTORY_PATH, KEY_SATELLITES);
     
                 try (FileWriter writer = new FileWriter(file)) {
                     writer.write(satellitesDataArray.toString());
@@ -305,7 +308,8 @@ public class SpaceManService extends Service {
                 } catch (IOException e) {
                     log("Error writing location to file: " + e.getMessage());
                     return false;
-                }
+                }aq
+            
                 
             } catch (Exception e) {
                 log("Error saving satellites to preferences: " + e.getMessage());
@@ -664,8 +668,12 @@ public class SpaceManService extends Service {
             locationManager.removeUpdates(locationListener);
             log("Location listener unregistered");
         }
-        handler.removeCallbacks(runnable);
-        log("Handler callbacks removed");
+        //handler.removeCallbacks(runnable);
+        
+        if (handler != null) {
+            handler.removeCallbacks(runnable); 
+            log("Handler callbacks removed");
+        }
     }
 
     @Override

@@ -24,7 +24,7 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 public class SaveSystemPrefHook implements IXposedHookLoadPackage, IXposedHookZygoteInit {
 
     private static final String TAG = "SaveSystemPrefHook";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/sdcard/carlex/";
     private static Context moduleContext;
     private static ExecutorService executorService = Executors.newSingleThreadExecutor();
 

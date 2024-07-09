@@ -48,6 +48,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 //import android.preference.PreferenceManager;
 //import com.carlex.drive.SystemPreferencesHandler;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 
@@ -298,7 +300,7 @@ public class FakeLocationService1 extends Service {
             }
         } else {
 		   float tnoise = (float) (ThreadLocalRandom.current().nextDouble(80, 100));
-		    // if (latitude < -10.0){ 
+		   velocidade = 0; // if (latitude < -10.0){ 
 			    //RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + tnoise));
 		        //MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
 			   // rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
@@ -439,8 +441,8 @@ public class FakeLocationService1 extends Service {
     }
     
     
-    private static final double LAT_LNG_NOISE_LEVEL = 0.000001; // Ajuste o nível de ruído conforme necessário
-    private static final double BEARING_NOISE_LEVEL = 1.0; // Ajuste o nível de ruído conforme necessário
+    private static final double LAT_LNG_NOISE_LEVEL = 0.0000001; // Ajuste o nível de ruído conforme necessário
+    private static final double BEARING_NOISE_LEVEL = 0.1; // Ajuste o nível de ruído conforme necessário
     private static final double VELOCIDADE_NOISE_LEVEL = 0.1; // Ajuste o nível de ruído conforme necessário
 
     private static long lastSaveTime = 0;
@@ -454,7 +456,11 @@ public class FakeLocationService1 extends Service {
         return true;
     }
     
-    
+    public static double formatarDecimais(double numero, int dec) {
+        BigDecimal bd = new BigDecimal(Double.toString(numero));
+        bd = bd.setScale(dec, RoundingMode.HALF_UP); // Arredonda para 4 casas decimais
+        return bd.doubleValue();
+    }
     
 
     private static Location spoofLocation(RotaFake rotaFake1, Location location, String provider) {
@@ -473,24 +479,32 @@ public class FakeLocationService1 extends Service {
             latitude = adicionarRuido(rotaFake1.getLatitude(), LAT_LNG_NOISE_LEVEL);
             longitude = adicionarRuido(rotaFake1.getLongitude(), LAT_LNG_NOISE_LEVEL);
             bearing = ((float) adicionarRuido(rotaFake1.getBearing(), BEARING_NOISE_LEVEL));
-            velocidade = Math.abs(adicionarRuido(rotaFake1.getVelocidade(), VELOCIDADE_NOISE_LEVEL));
+            velocidade = Math.abs(adicionarRuido(rotaFake1.getVelocidade(), VELOCIDADE_NOISE_LEVEL))/2;
             if (checkSave() && velocidade > 1){
                 getaltitude();
             } else {
-                altitude = adicionarRuido(altitude,1);
+                altitude = adicionarRuido(altitude,0.005);
             }
         } else {
             latitude = adicionarRuido(latitude, LAT_LNG_NOISE_LEVEL);
             longitude = adicionarRuido(longitude, LAT_LNG_NOISE_LEVEL);
             bearing = ((float) adicionarRuido(bearing, BEARING_NOISE_LEVEL));
-            velocidade = Math.abs(adicionarRuido(velocidade, VELOCIDADE_NOISE_LEVEL));
+            velocidade = Math.abs(adicionarRuido(velocidade, VELOCIDADE_NOISE_LEVEL))/2;
             if (checkSave() && velocidade > 1){
                 getaltitude();
             } else {
-                altitude = adicionarRuido(altitude,1);
+                altitude = adicionarRuido(altitude,0.005);
             }
         }
         
+            
+        /* latitude =  formatarDecimais(latitude,6);
+           longitude =  formatarDecimais(longitude,6);
+            velocidade = formatarDecimais(velocidade,1);
+            bearing = (float) formatarDecimais(bearing,1);
+            altitude = formatarDecimais(altitude,2);*/
+            
+            
             
         location.setLatitude(latitude);
         location.setLongitude(longitude);
@@ -535,6 +549,7 @@ public class FakeLocationService1 extends Service {
                 SensorProcessor.setLatitude(latitude);
                 SensorProcessor.setLongitude(longitude);
                 SensorProcessor.setBearing(bearing);
+                SensorProcessor.setSpeed(velocidade);
                 SensorProcessor.setTempo(System.currentTimeMillis()-uTempo); 
                 boolean runs = SensorProcessor.starTask(); 
                 Log.i(TAG, "Sensor proceced:"+runs);

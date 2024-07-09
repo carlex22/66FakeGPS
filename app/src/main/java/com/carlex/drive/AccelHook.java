@@ -26,7 +26,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class AccelHook implements IXposedHookLoadPackage, IXposedHookZygoteInit {
     private static final String TAG = "AccelHook";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/emulated/0/carlex/";
     private static final String INPUT_FILE = "sensor.json";
     public static float[] data = new float[]{0.01f, 0.01f, 0.01f};
 

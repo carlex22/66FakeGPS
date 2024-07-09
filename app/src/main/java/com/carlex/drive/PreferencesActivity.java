@@ -51,7 +51,7 @@ public class PreferencesActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1;
 
     private static final String TAG = "PreferencesActivity";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/emulated/0/carlex/";
     private static final String PREFS_FILE_NAME = "preferences.json";
     private static final String XPOSED_PREFS_FILE_NAME = "xposed_prefs.json";
     private static final String XPOSED_DIRECTORY_PATH = "/data/user_de/0/com.android.xposed.installer/conf/";

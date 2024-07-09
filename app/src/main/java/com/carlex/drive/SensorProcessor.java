@@ -13,6 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Locale;
+import java.util.LinkedList;
+
+import com.topjohnwu.superuser.Shell;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,29 +25,35 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import com.topjohnwu.superuser.io.SuFile;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
+import java.util.Queue;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class SensorProcessor  {
     private static final String TAG = "SensorProcessorService";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
     private static final String INPUT_FILE = "locations.json";
     private static final String OUTPUT_FILE = "sensor.json";
     private static final double GRAVITY = 9.81;
 
     public static double lat = 0.1, lon = 0.1, alt  = 0.1, bear = 0.1, speed = 0.1;
-    public static long tempo = 100l;
+    public static double tempo = 100.0;
     
     public static double[] last = { 
                  0.001,
                  0.002, 0.003, 0.004, 
                  0.005, 0.006,
                  0.007,
-                 0.008
+                 0.008,
+                0.009,
+                 0.001
             };
     
     public static boolean isRunning = false;
@@ -54,6 +63,17 @@ public class SensorProcessor  {
     private Timer timer;
     private Handler handler;
     private static Random random;
+    private static Queue<Double> yawHistory = new LinkedList<>();
+    private static Queue<Double> pithHistory = new LinkedList<>();
+    private static Queue<Double> rowHistory = new LinkedList<>();
+    private static Queue<Double> axHistory = new LinkedList<>();
+    private static Queue<Double> ayHistory = new LinkedList<>();
+    private static Queue<Double> azHistory = new LinkedList<>();
+
+    private static Queue<Double> timeQueue = new LinkedList<>();
+
+        
+    
 
    
     
@@ -111,7 +131,13 @@ public class SensorProcessor  {
     }
     
    public static void setTempo(long tem) {
-        tempo = tem;
+        tempo = (double) tem;
+     //   Log.d(TAG, "tempo set to " + tempo);
+    }
+    
+    
+    public static void setSpeed(double spe) {
+        speed = spe;
      //   Log.d(TAG, "tempo set to " + tempo);
     }
     
@@ -123,53 +149,112 @@ public class SensorProcessor  {
            // throw new IllegalArgumentException("Array 'last' deve conter pelo menos 10 elementos.");
         //}
         
-
+        tempo/= 100;
+            
        // Log.d(TAG, "Processing location data...");
         
-        double distanciaT = generateNoise() + Math.abs(calculateDistance(lat, lon, last[4], last[5]));
+        double distanciaT = Math.abs(calculateDistance(lat, lon, last[4], last[5]));
        // double distanciaLon = Math.abs(calculateDistance(lon1, lon1, last[7], last[7]) + generateNoise());
-        double distanciaLat = Math.abs(calculateLatDistance(lat, last[4]));
+        double distanciaLat =   Math.abs(calculateLatDistance(lat, last[4]));
         double distanciaLon = Math.abs(calculateLonDistance(lon, last[5], lat));
       
         double distanciaAlt = (alt-last[6]);
+        Log.d(TAG, "Calculated diferencd altitude:"  + distanciaAlt);
+        double anguloZ = calcularAngulo(distanciaAlt,distanciaT);
         
+        double difanZ = (anguloZ - last[8]);
         
-        double yaw =  calcularVelocidadeAngular(calcularDiferencaAngulos(bear, last[7]),tempo);
-        double pitch = calcularVelocidadeAngular(calcularAnguloDeslocamento(distanciaT, distanciaAlt), tempo);
-        double roll = calcularVelocidadeAngular(generateNoise(),tempo);
+        // Garantir que a diferença seja sempre menor ou igual a 180 graus
+        if (difanZ > 180.0) {
+            difanZ = 360.0 - difanZ;
+        }
+        
+        Log.d(TAG, "Calculated diferencd ang alt:"  + distanciaAlt);
+    
+        double angulox = calcularDiferencaAngulos( last[7], bear);
+        
+         
+        double yaw =  calcularVelocidadeAngular(angulox,tempo);
+        double roll = calcularVelocidadeAngular(grausParaRadianos(difanZ), tempo);
+        double pitch = 0.0000000;
 
         
-        double velocidadeX = (distanciaLat / (tempo));
-        double velocidadeY = (distanciaLon / (tempo));
-        double velocidadeZ = (distanciaAlt / (tempo));
+        
+        double velocidadeX = ((distanciaLon) / (tempo));
+        double velocidadeY = ((distanciaT) / (tempo));
+        double velocidadeZ = (calcularHipotenusa(distanciaAlt,distanciaT)) / (tempo);
 
-        double acex =  ((velocidadeX - last[1]) / (tempo))*1000;
-        double acey =  ((velocidadeY - last[2]) / (tempo))*1000;
-        double acez =  ((velocidadeZ - last[3]) / (tempo))*1000;
+        double acex =  (9.8-calcularDistribuicao(grausParaRadianos(angulox))); //(((velocidadeX-last[1])) / (tempo));
+        double acey = -3+((speed - last[9])/tempo) + calcularDistribuicao(grausParaRadianos(anguloZ-angulox));; //(((velocidadeY-last[2])) / (tempo));//+calcularDistribuicao(grausParaRadianos(anguloZ));
+        double acez =  9.8-(calcularDistribuicao(grausParaRadianos(anguloZ)));//(((velocidadeZ-last[3])) / (tempo));//+(9.8-(calcularDistribuicao(grausParaRadianos(anguloZ))));
 
         
-        Log.d(TAG, String.format(Locale.US, "Calculated values - acex: %f, acey: %f, acez: %f, yaw: %f, pitch: %f, roll: %f", acex, acey, acez, yaw, pitch, roll));
+        Log.d(TAG, "Calculated values - acex: "+acex+", acey: "+acey+", acez: "+acez+", yaw: "+yaw+", pitch: "+pitch+", roll: "+roll);
 
+        
+        double totalSum = tempo;
+        for (double time : timeQueue) {
+            totalSum += time;
+        }
+        
+        timeQueue.add(tempo);
+        yawHistory.add(yaw);
+        rowHistory.add(roll);
+        pithHistory.add(pitch);
+        axHistory.add(acex);
+        ayHistory.add(acey);
+        azHistory.add(acez);
+
+        // Enquanto a soma dos registros + novo tempo for maior que 1000, remova o registro mais antigo
+        if (timeQueue.size()>2){
+            while (totalSum > 2.00) {
+                double removedTime = timeQueue.poll(); // Remove o registro mais antigo (início da fila)
+                yawHistory.poll();
+                rowHistory.poll();
+                pithHistory.poll();
+                azHistory.poll();
+                axHistory.poll();
+                ayHistory.poll();
+                if (removedTime > 0) {
+                    totalSum -= removedTime;
+                }
+            }
+        }
+        
+        
+       
+        
+        double totalPt = calculateWeightedAverage(pithHistory);
+        double totalYa = calculateWeightedAverage(yawHistory);
+        double totalRol = calculateWeightedAverage(rowHistory);
+
+        double totalax = calculateWeightedAverage(axHistory);
+        double totalay = calculateWeightedAverage(ayHistory);
+        double totalaz = calculateWeightedAverage(azHistory);
+
+        
+        
         try {
             JSONArray outputData = new JSONArray();
             JSONObject interpolatedData = new JSONObject();
             interpolatedData.putOpt("Timestamp", Instant.now().toEpochMilli());
-            interpolatedData.putOpt("Ax", acex);
-            interpolatedData.putOpt("Ay", acey);
-            interpolatedData.putOpt("Az", acez);
-            interpolatedData.putOpt("Gx", pitch);
-            interpolatedData.putOpt("Gy", yaw);
-            interpolatedData.putOpt("Gz", roll);
+            interpolatedData.putOpt("Ax", formatarParaQuatroDecimais(totalax+generateNoise()));
+            interpolatedData.putOpt("Ay", formatarParaQuatroDecimais(totalay+generateNoise()));
+            interpolatedData.putOpt("Az", formatarParaQuatroDecimais(totalaz+generateNoise()));
+            interpolatedData.putOpt("Gz", formatarParaQuatroDecimais(totalPt+generateNoise()));
+            interpolatedData.putOpt("Gy", formatarParaQuatroDecimais(totalYa+generateNoise()));
+            interpolatedData.putOpt("Gx", formatarParaQuatroDecimais(totalRol+generateNoise()));
             outputData.put(interpolatedData);
             
             // Salvar todos os dados processados no arquivo JSON de saída
-            File outputFile = SuFile.open(DIRECTORY_PATH, OUTPUT_FILE);
-            if (!outputFile.exists()) {
-                outputFile.createNewFile();
-            }
-            
-            try (FileWriter fileWriter = new FileWriter(outputFile)) {
-                fileWriter.write(outputData.toString(4));
+            File file = SuFile.open(DIRECTORY_PATH, OUTPUT_FILE);
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(outputData.toString());
+                Shell.su("chmod 777 " + file.getAbsolutePath()).exec();
+                Log.d(TAG, "sensor Saved  data to: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                Log.d(TAG, "Error writing cell data to file: " + e.getMessage());
+                return last;
             }
 
             //Log.d(TAG, "Processed data saved to file");
@@ -181,9 +266,14 @@ public class SensorProcessor  {
                  velocidadeX, velocidadeY, velocidadeZ, 
                  lat, lon,
                  alt,
-                 bear
+                 bear ,
+                 anguloZ,  
+                  speed
             };
             
+            
+            
+                
            Log.d(TAG, "Post data:"+ doubleArrayToString(data));
             
             last = data;
@@ -223,6 +313,31 @@ public class SensorProcessor  {
 }
 
     
+    
+    private static double calculateWeightedAverage(Queue<Double> history) {
+        double total = 0;
+        double weightSum = 0;
+        int index = history.size();
+        for (double value : history) {
+            total += value * index;
+            weightSum += index;
+            index--;
+        }
+        return total / weightSum;
+    }
+    
+    
+    
+   public static double calcularDistribuicao(double x) {
+        // Converte o ângulo x de graus para radianos
+        double xRadianos = grausParaRadianos(x);
+        // Calcula o peso usando a função cosseno
+        double peso = Math.cos(xRadianos);
+        // Multiplica pelo valor base de 9.8
+        return 9.8 * peso;
+    }
+    
+    
     // Função para calcular a distância entre duas latitudes
     private static double calculateLatDistance(double lat1, double lat2) {
         try {
@@ -236,6 +351,12 @@ public class SensorProcessor  {
             Log.e(TAG, "Error calculating latitude distance", e);
             return generateNoise(); // Retorna 0 em caso de erro
         }
+    }
+    
+    public static double formatarParaQuatroDecimais(double numero) {
+        BigDecimal bd = new BigDecimal(Double.toString(numero));
+        bd = bd.setScale(3, RoundingMode.HALF_UP); // Arredonda para 4 casas decimais
+        return bd.doubleValue();
     }
     
     // Função para calcular a distância entre duas longitudes considerando a latitude
@@ -257,36 +378,72 @@ public class SensorProcessor  {
     
     public static double calcularAnguloDeslocamento(double dXY, double deltaZ) {
         // Ângulo de deslocamento em radianos
-         double rad = Math.atan2(deltaZ, dXY);
+         double rad = grausParaRadianos(Math.atan2(deltaZ, dXY));
          Log.d(TAG, String.format("Ângulo de deslocamento em radianos calculated: %f rad, | %f | %f", rad, dXY, deltaZ));
-         return rad+generateNoise();
+         return rad;
     }
 
+    
+    
+    public static double grausParaRadianos(double graus) {
+        return graus * Math.PI / 180.0;
+    }
+
+    // Método para calcular a diferença entre dois ângulos em radianos
+    public static double calcularDiferencaAngulos(double angulo1, double angulo2) {
+        // Calcula a diferença bruta
+        double delta = grausParaRadianos(angulo2) - grausParaRadianos(angulo1);
+        
+        // Ajusta para o intervalo [-π, π]
+       /* if (delta > Math.PI) {
+            delta -= 2 * Math.PI;
+        } else if (delta < -Math.PI) {
+            delta += 2 * Math.PI;
+        }*/
+        
+        return delta;
+    }
+    
+    
+    /*
     // Função para calcular a diferença entre dois ângulos em radianos
     public static double calcularDiferencaAngulos(double angulo1, double angulo2) {
         // Calcula a diferença entre os ângulos
         double diferenca = angulo2 - angulo1;
 
         // Ajusta a diferença para estar no intervalo [-π, π]
-        diferenca = (diferenca + Math.PI) % (2 * Math.PI) - Math.PI;
+     //   diferenca = (diferenca + Math.PI) % (2 * Math.PI) - Math.PI;
 
         // Converter diferença negativa para positiva
-        if (diferenca < 0) {
-            diferenca += 2 * Math.PI;
-        }
+     // /  if (diferenca < 0) {
+        //    diferenca += 2 * Math.PI;
+     //   }
         
         Log.d(TAG, String.format("Diferença entre os ânguloss calculated: %f rad | %f | %f", diferenca, angulo1, angulo2));
   
         return diferenca + generateNoise();
+    }*/
+    
+    
+   // Método para calcular a hipotenusa
+    public static double calcularHipotenusa(double cateto1, double cateto2) {
+        return Math.sqrt(Math.pow(cateto1, 2) + Math.pow(cateto2, 2));
+    }
+
+    // Método para calcular um dos ângulos agudos em graus
+    public static double calcularAngulo(double catetoOposto, double catetoAdjacente) {
+        double angulo = Math.toDegrees(Math.atan(catetoOposto / catetoAdjacente));
+        Log.d(TAG, String.format("angulo: %f graus | %f | %f", angulo, catetoOposto, catetoAdjacente));
+        return angulo;
     }
     
     
     // Função para calcular a velocidade angular em rad/s
-    public static double calcularVelocidadeAngular(double deltaTheta, long deltaTempo) {
+    public static double calcularVelocidadeAngular(double deltaTheta, double deltaTempo) {
         // Velocidade angular em rad/s
         double rads =  deltaTheta / (deltaTempo);
         Log.d(TAG, String.format("Velocidade angular calculated: %f rad | %f | ms ", rads, deltaTheta)+ deltaTempo);
-        return rads+generateNoise();
+        return rads;
     }
     
 
@@ -306,7 +463,7 @@ public class SensorProcessor  {
 
          //   Log.d(TAG, String.format("Distance calculated: %f meters", distance));
 
-            return Math.abs(distance+generateNoise());
+            return Math.abs(distance);
         } catch (Exception e) {
             Log.e(TAG, "Error calculating distance", e);
             return generateNoise(); // Retorna 0 em caso de erro
@@ -315,7 +472,9 @@ public class SensorProcessor  {
 
     // Função para gerar ruído
     public static double generateNoise() {
-        double noise = Math.abs(ThreadLocalRandom.current().nextDouble(0.0001, 0.0002) );
-        return noise;
+        double noise = Math.abs(ThreadLocalRandom.current().nextDouble(0.001, 0.005) );
+        double noise2 = Math.abs(ThreadLocalRandom.current().nextDouble(0.001, 0.005) );
+     
+        return noise-noise2;
     }
 }

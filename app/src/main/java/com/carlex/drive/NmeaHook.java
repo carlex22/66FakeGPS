@@ -15,28 +15,42 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import com.topjohnwu.superuser.io.SuFile;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class NmeaHook implements IXposedHookZygoteInit, IXposedHookLoadPackage {
     private static final String TAG = "xNMEAHook";
-    private static final String FILE_PATH = "/data/system/carlex/locations.json";
+    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
+    private static final String INPUT_FILE = "locations.json";
+
     private static Context systemContext;
     private static String NMEA = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,";
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
-        //XposedBridge.log(TAG + ": initialized in Zygote");
-        /*systemContext = (Context) XposedHelpers.callMethod(
+        XposedBridge.log(TAG + ": initialized in Zygote");
+        systemContext = (Context) XposedHelpers.callMethod(
             XposedHelpers.callStaticMethod(
                 XposedHelpers.findClass("android.app.ActivityThread", null), "currentActivityThread"
             ), "getSystemContext"
-        );*/
+        );
     }
 
     private static void updateNmeaFromJson() {
-        File file = new File(FILE_PATH);
+        
+        
+       try {
+            Process process = Runtime.getRuntime().exec(new String[]{"su", "-c", "chmod 777 "+DIRECTORY_PATH+INPUT_FILE});
+            process.waitFor();
+        } catch (Exception e) {
+           Log.e(TAG, "Error setting file permissions: " + e.getMessage());
+        }
+        
+        
+       // File file = new File(FILE_PATH);
+        File file = SuFile.open(DIRECTORY_PATH, INPUT_FILE);
         if (!file.exists()) {
             //Log.e(TAG, "File not found: " + FILE_PATH);
             return;

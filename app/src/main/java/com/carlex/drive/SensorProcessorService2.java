@@ -23,7 +23,7 @@ import java.util.LinkedList;
 public class SensorProcessorService2 extends Service {
 
     private static final String TAG = "SensorProcessorService";
-    private static final String DIRECTORY_PATH = "/data/system/carlex/";
+    private static final String DIRECTORY_PATH = "/storage/emulated/0/carlex/";
     private static final String INPUT_FILE = "locations.json";
     private static final String OUTPUT_FILE = "sensor.json";
     private static final long INTERVAL = 100; // 0.1 segundo

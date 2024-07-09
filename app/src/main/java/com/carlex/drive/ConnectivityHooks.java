@@ -28,7 +28,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class ConnectivityHooks implements IXposedHookZygoteInit, IXposedHookLoadPackage {
     private static final String TAG = "ConnectivityHooks";
-    private static final String PREFS_FILE_PATH = "/data/system/carlex/preferences.json";
+    private static final String PREFS_FILE_PATH = "/sdcard/carlex/preferences.json";
     private Map<String, Object> hooksMap = new HashMap<>();
 
     @Override
@@ -63,6 +63,8 @@ public class ConnectivityHooks implements IXposedHookZygoteInit, IXposedHookLoad
     }
 
     private String readPreferencesFile() throws IOException {
+        
+        
         File prefsFile = new File(PREFS_FILE_PATH);
         if (!prefsFile.exists()) {
             Log.d(TAG, "Preferences file not found");
