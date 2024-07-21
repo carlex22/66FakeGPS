@@ -21,15 +21,15 @@ public class GetCell {
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     public static class CellInfoData {
-        private String cellId;
-        private String lac;
-        private String mcc;
-        private String mnc;
+        private int cellId;
+        private int lac;
+        private int mcc;
+        private int mnc;
         private double lat;
         private double lon;
         private String date;
 
-        public CellInfoData(String cellId, String lac, String mcc, String mnc, double lat, double lon, String date) {
+        public CellInfoData(int cellId, int lac, int mcc, int mnc, double lat, double lon, String date) {
             this.cellId = cellId;
             this.lac = lac;
             this.mcc = mcc;
@@ -39,19 +39,19 @@ public class GetCell {
             this.date = date;
         }
 
-        public String getCellId() {
+        public int getCellId() {
             return cellId;
         }
 
-        public String getLac() {
+        public int getLac() {
             return lac;
         }
 
-        public String getMcc() {
+        public int getMcc() {
             return mcc;
         }
 
-        public String getMnc() {
+        public int getMnc() {
             return mnc;
         }
 
@@ -138,10 +138,10 @@ public class GetCell {
                     JSONArray cells = jsonResponse.getJSONArray("cells");
                     if (cells.length() > 0) {
                         JSONObject cell = cells.getJSONObject(0);
-                        String cellId = cell.getString("cellid");
-                        String lac = cell.getString("lac");
-                        String mcc = cell.getString("mcc");
-                        String mnc = cell.getString("mnc");
+                        int cellId = cell.getInt("cellid");
+                        int lac = cell.getInt("lac");
+                        int mcc = cell.getInt("mcc");
+                        int mnc = cell.getInt("mnc");
                         String date = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(new Date());
                         Log.d(TAG, "doInBackground: Informações da célula obtidas - Cell ID: " + cellId + ", LAC: " + lac + ", MCC: " + mcc + ", MNC: " + mnc);
                         return new CellInfoData(cellId, lac, mcc, mnc, lat, lon, date);
@@ -165,7 +165,7 @@ public class GetCell {
         }
     }
 
-    public static CellInfoData getCellInfo(double lat, double lon) {
+    public  CellInfoData getCellInfo(double lat, double lon) {
         Log.d(TAG, "getCellInfo: Iniciando obtenção de informações da célula para latitude: " + lat + ", longitude: " + lon);
         try {
             CellInfoData cellInfoData = new GetCellInfoTask(lat, lon).execute().get();

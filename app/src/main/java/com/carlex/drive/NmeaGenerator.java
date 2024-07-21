@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
 public class NmeaGenerator {
 
-    public static String generateNmea(GnssStatus gnssStatus, Location location, String originalNmea) {
+    public static String generateNmea(CustomGnssStatus gnssStatus, Location location, String originalNmea) {
         StringBuilder nmeaSentences = new StringBuilder();
 
         // Analisar a sentença NMEA original para determinar qual sentença gerar
@@ -64,7 +66,7 @@ public class NmeaGenerator {
     }
 
 
-private static String generateGsvSentence(GnssStatus gnssStatus) {
+private static String generateGsvSentence(CustomGnssStatus gnssStatus) {
     StringBuilder gsv = new StringBuilder();
     int numSatellites = gnssStatus.getSatelliteCount();
     
@@ -97,7 +99,7 @@ private static String generateGsvSentence(GnssStatus gnssStatus) {
 }
 
 
-    private static String generateGsaSentence(GnssStatus gnssStatus) {
+    private static String generateGsaSentence(CustomGnssStatus gnssStatus) {
         StringBuilder gsa = new StringBuilder();
         gsa.append("$GPGSA,A,3,"); // Auto selection of 2D or 3D fix, 3D fix
         int maxSatellites = 12;

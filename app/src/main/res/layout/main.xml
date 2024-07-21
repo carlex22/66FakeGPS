@@ -4,19 +4,15 @@
      android:layout_height="match_parent"
      android:layout_width="match_parent">
 
-    <ImageView
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent"
-         android:src="@drawable/fundo"
-         android:layout_marginTop="250dp"
-         android:id="@+id/fundo" />
+    
+   <fragment
+        android:id="@+id/mapView"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       
+        />
 
-    <com.google.android.gms.maps.MapView
-         android:layout_height="match_parent"
-         android:layout_width="match_parent"
-         android:apiKey="AIzaSyC4UVRx10NmwhLT8ve0HnOedFbXGxk4piI"
-         android:visibility="gone"
-         android:id="@+id/mapView" />
 
     <LinearLayout
          android:layout_height="match_parent"
@@ -104,7 +100,7 @@
              android:textSize="30sp"
              android:textColor="#Ffffff"
              android:id="@+id/tcarrgando"
-             android:text="carregando..." />
+             android:text="Modo Demo..." />
 
     </LinearLayout>
 

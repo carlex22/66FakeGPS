@@ -1,5 +1,9 @@
 package com.carlex.drive;
 
+
+import android.database.Cursor;
+
+import android.net.Uri;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,8 +12,13 @@ import android.content.Context;
 import android.os.RemoteException;
 import android.os.RemoteException;
 import android.widget.Space;
+
+import java.time.Year;
+import android.app.AppOpsManager;
 import com.google.android.gms.location.LocationAvailability;
 import java.io.File;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import android.location.Location;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +32,14 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.SystemClock;
 import android.os.Bundle;
+import java.util.List;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.time.Instant;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -45,6 +62,16 @@ import java.math.RoundingMode;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import com.carlex.drive.fLocation;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
+
 
 //import android.preference.PreferenceManager;
 //import com.carlex.drive.SystemPreferencesHandler;
@@ -73,70 +100,148 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import android.os.Handler;
 import kotlin.contracts.Returns;
+import android.content.ContentValues;
+
 public class FakeLocationService1 extends Service {
 
-    public static double latitude =  -100.0, longitude = -10.0, altitude = 750.0;
+    
+    
+    public static double latitude =  -23.5879554,  longitude = -46.6381605, altitude = 750.0;
     public static float bearing= 5f;
     public static double velocidade = 0f;
     public static Location gpsLocation;
     public static Location networkLocation;
     public static boolean isRunning = false;
     public static boolean parado = true;
-   private static Queue<Float> speedHistory = new LinkedList<>();
-    private static Queue<Float> bearingHistory = new LinkedList<>();
+    private Queue<Double> speedHistory = new LinkedList<>();
+    private Queue<fLocation> locationHistory = new LinkedList<>();
+    private Queue<Float> bearingHistory = new LinkedList<>();
+    private Queue<Double> altitudeHistory = new LinkedList<>();
+    private Queue<Long> timeHistory = new LinkedList<>();
+    private Queue<Long> timeHistory1 = new LinkedList<>();
  
+    
     public static boolean isMockLocationsEnabled;
-    private static Runnable runnable;
-    private static SensorProcessor sensorProcessor;
+    private  Runnable runnable;
+    private  SensorProcessor sensorProcessor;
     
-    private static Thread backgroundThread;
-    public static LocationManager locationManager;
-    private static  FusedLocationProviderClient fusedLocation;
-    public static SpaceMan spaceMan;
-    private static Context context;
- private static final String PREFS_NAME = "LocationPreferences";
-
-    public static Location ffLocation;
+    private  Thread backgroundThread;
+    public  LocationManager locationManager;
+    private   FusedLocationProviderClient fusedLocation;
     
-    private static ElevationService elevationService;
-    private static Handler handler;
+    private  Context context;
     
-    private static SystemPreferencesHandler systemPreferencesHandler;
+    public  Location ffLocation;
+    public  SaveSensorJson saveDataSensor;
+    
+    
+    private  ElevationService elevationService;
+    private  Handler handler;
+    private  boolean locSave = false;
     
     private static final int REQUEST_LOCATION_PERMISSION = 1;
 
-    public static FusedLocationsProvider fusedLocationsProvider;
+    public  FusedLocationsProvider fusedLocationsProvider;
   
     private static final String TAG = "FLS";
     private static final String CHANNEL_ID = "FakeLocationServiceChannel";
     private static final String GPS_PROVIDER = LocationManager.GPS_PROVIDER;
     private static final String NETWORK_PROVIDER = LocationManager.NETWORK_PROVIDER;
     private static final String FUSED_PROVIDER = LocationManager.FUSED_PROVIDER;
+    private  DataLocation dataLoc;
+    
+    private static final String PREF_NAME = "FakeLoc";
+    
+   public SharedPreferences prefs;
+    
+    
+    public static final String ACTION_SEND_DATA = "com.carlex.drive.ACTION_SEND_DATA";
+    public static final String PREFERENCES_FILE = "FakeLoc";
+    public static final String KEY_DATA = "chave";
 
+    
+    
+    
+    private void saveLocationPreferences(Context context, double latitude, double longitude, float bearing, float speed, double altitude) {
+        SharedPreferences prefs = getSharedPreferences (PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putFloat("latitude", (float)(latitude));
+        editor.putFloat("longitude", (float)(longitude));
+        editor.putFloat("bearing", (bearing));
+        editor.putFloat("speed", (speed));
+        editor.putFloat("altitude", (float)(altitude));
+        editor.apply();
+    }
+    
+    private  boolean checkPermissions() {
+        int writePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return writePermission == PackageManager.PERMISSION_GRANTED;
+    }
    
     
-    
-    private static boolean saveLocationPreferences(Context context, double latitude, double longitude, float bearing, float speed, double altitude) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("latitude", String.valueOf(latitude));
-        editor.putString("longitude", String.valueOf(longitude));
-        editor.putString("bearing", String.valueOf(bearing));
-        editor.putString("speed", String.valueOf(speed));
-        editor.putString("altitude", String.valueOf(altitude));
-        editor.apply();
-        return true;
-    }
+   public static boolean bSE;
+   public static JsonFileHandler saveSensor;
+   private static final String KEY_LOCATION = "location.json";
+   private static final String KEY_SENSOR = "sensor.json";
+   private static final String DIRECTORY_PATH = "/storage/emulated/0/carlex/";
+
+  public static Intent serviceIntent;
     
     
    public void onCreate() {
         super.onCreate();
         createNotificationChannel();
-       Locale.setDefault(Locale.US);
+        Locale.setDefault(Locale.US);
         isRunning= false;
+        PreferenceManager.getDefaultSharedPreferences(this).edit().apply();
+        dataLoc = new DataLocation();
         Log.i(TAG, "service created");
-        //startForeground(148, getNotification("Fake Gps Ligado").build());
     }
+    
+    public boolean dataLocation() {
+        return true;
+    }
+    
+    public  boolean isMockLocationsEnabled(RotaFake rotaFake){
+        boolean ismock = true; //isMockLocations();
+        if (isMockLocationsEnabled != ismock){
+            if (!isMockLocationsEnabled){
+                  boolean init = initTestProvider();
+                  gpsLocation = new Location(GPS_PROVIDER);
+                  networkLocation = new Location(NETWORK_PROVIDER);
+                  fusedLocationsProvider = new FusedLocationsProvider(context, networkLocation);
+                  boolean st = setDefaultLocation(rotaFake);
+            } else {
+                  removeProviders();
+            } 
+            isMockLocationsEnabled = ismock;
+        }
+        return isMockLocationsEnabled;
+    }
+        
+    
+    
+    public  boolean isMockLocations() {
+        boolean isMockLocationEnabled;
+        try {
+            AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+
+            if (appOps == null) {
+                Log.e(TAG, "AppOpsManager is null");
+                return false;
+            }
+
+            int mockLocationResult = appOps.checkOpNoThrow(AppOpsManager.OPSTR_MOCK_LOCATION, Process.myUid(), context.getPackageName());
+            isMockLocationEnabled = mockLocationResult == AppOpsManager.MODE_ALLOWED;
+          
+            return isMockLocationEnabled;
+        } catch (Exception e) {
+            Log.e(TAG, "Error checking mock locations: ", e);
+            return false;
+        }
+    }
+    
+    
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -144,27 +249,10 @@ public class FakeLocationService1 extends Service {
            Log.e(TAG, "Fake 66 service is runnig");
             return START_STICKY;
         }
-        
-        
         Log.i(TAG, "Fake 66 service start");
 
         isRunning = true;
-        
-        if (intent != null && intent.getExtras() != null) {
-            String packageName = intent.getExtras().getString("appContext");
-            if (packageName != null) {
-                try {
-                    context = createPackageContext(packageName, 0);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    
-        if (context == null) {
-            context = getApplicationContext();
-        }
-    
+        context = getApplicationContext();
         startForeground(1, getNotification("Fake Gps Ligado").build());
     
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -174,77 +262,46 @@ public class FakeLocationService1 extends Service {
             gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);
             networkLocation = locationManager.getLastKnownLocation(NETWORK_PROVIDER);
         }
-    
-        if (ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED) {
-            isMockLocationsEnabled = true;
-        }
-    
-        if (networkLocation == null) {
-            networkLocation = gpsLocation;
-        }
-    
+        
+        
         ffLocation = new Location(FUSED_PROVIDER);
         boolean gpsEnabled = locationManager.isProviderEnabled(GPS_PROVIDER);
-    
+        
+        
         if (gpsEnabled) {
-           // Toast.makeText(context, "GPS disponível", Toast.LENGTH_SHORT).show();
             Location gpsLocation = locationManager.getLastKnownLocation(GPS_PROVIDER);
             if (gpsLocation != null) {
                 latitude = gpsLocation.getLatitude();
                 longitude = gpsLocation.getLongitude();
                 altitude = gpsLocation.getAltitude();
                 bearing = gpsLocation.getBearing();
+                RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, System.currentTimeMillis());
+                boolean starmock = isMockLocationsEnabled(rotaFakeEntry);
             } else {
-                setDefaultLocation();
+                boolean starmock = isMockLocationsEnabled(loadLastLoc());
             }
-        } else {
-            setDefaultLocation();
         }
-            
-            
-       // fusedLocation = LocationServices.getFusedLocationProviderClient(context);
-       
-        if (gpsLocation==null){
-                gpsLocation = new Location(GPS_PROVIDER);
-                }
-            
-        fusedLocationsProvider = new FusedLocationsProvider(context, gpsLocation);
     
-        createNotificationChannel();
-        
-    
-        String tles = readRawTextFile(R.raw.gps);
-    
-        Intent serviceIntent = new Intent(context, SpaceManService.class);
-        serviceIntent.putExtra("location", gpsLocation);
-        serviceIntent.putExtra("tles", tles);
-        serviceIntent.putExtra("callingPackage", "com.carlex.drive.FakeLocationService1");
-    
-        startService(serviceIntent);
-        
-        sensorProcessor = new SensorProcessor();
-        
-  
-        initTestProvider();
+        if (!SpaceManService.isRunning()){
+            String tles = readRawTextFile(R.raw.gps);
+            Intent spaceIntent = new Intent(context, SpaceManService.class);
+            spaceIntent.putExtra("location", gpsLocation);
+            spaceIntent.putExtra("tles", tles);
+            startService(spaceIntent);
+        }        
+      
+        locSave = dataLocation();
         
         elevationService = new ElevationService();
         
-    
-       // spaceMan = new SpaceMan(context, tles, new Location(GPS_PROVIDER));
-    
-        if (isMockLocationsEnabled) {
-            Toast.makeText(context, "Permissão de localização falsa concedida", Toast.LENGTH_SHORT).show();
-            if (backgroundThread == null || !backgroundThread.isAlive()) {
-                
-                boolean rr = startBackgroundTask();
-            }
-        } else {
-            Toast.makeText(context, "Permissão de localização falsa não concedida", Toast.LENGTH_SHORT).show();
+        if (backgroundThread == null || !backgroundThread.isAlive()) {
+            boolean rr = startBackgroundTask();
         }
-    
         
         return START_STICKY;
     }
+    
+    public Intent spaceIntent;
 
     public static void setIsRunnig(Boolean set){
         isRunning = set;
@@ -254,16 +311,25 @@ public class FakeLocationService1 extends Service {
         return isRunning;
     }
 
-    public static boolean startBackgroundTask() {
+    public long s1=0L;
+    
+    public  boolean startBackgroundTask() {
         backgroundThread = new Thread(() -> {
             while (true) {
+                Long ss = 0l;
                 RotaFake rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-                boolean pp = postlocation(rotaFake1);
+                if (rotaFake1==null)
+                    rotaFake1 = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + 100));
+                
+                boolean starmock = isMockLocationsEnabled(rotaFake1);
                 MyApp.getDatabase().rotaFakeDao().deleteRotaFakeWithTimeGreaterThan(System.currentTimeMillis());
-                boolean ss = handleVehicleState(rotaFake1);    
-                boolean mmo = spoofLocationAndUpdate(rotaFake1);
-                if(gpsLocation != null) SpaceManService.settLoc(gpsLocation);
-                            Log.d(TAG, "---------- end mock cycle-----------");
+                ss = handleVehicleState(rotaFake1);
+              /*  if (ss+s1 > 30) {*/
+                    spoofLocationAndUpdate(rotaFake1);
+                    //s1 = 0L;
+                //} else s1 += ss;
+                
+                Log.d(TAG, ss+ "----------end mock cycle Time:"+ss+"-----------" );
             }
         });
         backgroundThread.start();
@@ -272,97 +338,57 @@ public class FakeLocationService1 extends Service {
 
     public static Long uTempo = 0L;
     
-    private static boolean handleVehicleState(RotaFake rotaFake1) {
+    private  long handleVehicleState(RotaFake rotaFake1) {
         if (rotaFake1 != null) {
             //Verificar se o veículo está parado
-            if (gpsLocation == null){
-               return false;
-             }
-       
-		    if (gpsLocation.getSpeed()>0.5 && parado == true){ if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 em Rota").build()); }              
-			    parado = false;           
-                Log.i(TAG, "Fake 66 Rota created");
-		    } 
-		    if (gpsLocation.getSpeed()<=0.5 && parado == false){ if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 Estacionado").build()); }            
-			    parado = true;    
-               Log.i(TAG, "Fake 66 Rota stop");
-		    }
+            if (gpsLocation != null){
+                if (gpsLocation.getSpeed()> 1 && parado == true){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 em Rota").build()); }              
+                    parado = false;       
+                    notifyState("Em Rota");    
+                    Log.i(TAG, "Fake 66 Rota created");
+                } 
+                if (gpsLocation.getSpeed()<= 1 && parado == false){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 Estacionado").build()); }            
+                    parado = true;    
+                    notifyState("Estacionado");  
+                    Log.i(TAG, "Fake 66 Rota stop");
+                }
+            }
 		    //esperar tempo para proxima atualizacao
             long tempo = rotaFake1.getTempo();
             long diferencaTempo = tempo - System.currentTimeMillis();
-            
 		    if (diferencaTempo > 0) {
-               // if (gpsLocation!=null) {
-                        
-                //}
 			    try {Thread.sleep(diferencaTempo);} 
 			    catch (InterruptedException e) {}
+                return diferencaTempo;
             }
         } else {
-		   float tnoise = (float) (ThreadLocalRandom.current().nextDouble(80, 100));
-		   velocidade = 0; // if (latitude < -10.0){ 
-			    //RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + tnoise));
-		        //MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
-			   // rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-		  //   }
+		    float tnoise = (float) (ThreadLocalRandom.current().nextDouble(90, 100));
+		    velocidade = 0; // if (latitude < -10.0){ 
+		    //RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + tnoise));
+		    //MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
+			//rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
 		    try { Thread.sleep((long) tnoise); }   
-		    catch (InterruptedException e) {}        
+		    catch (InterruptedException e) {}   
+            return (long) tnoise ; 
 		}                
-        uTempo = System.currentTimeMillis();
-        return true;          
+        return 0l;          
     }
 
-    private static boolean  spoofLocationAndUpdate(RotaFake rotaFake1) {
-        if (latitude < -1.0) {
-              gpsLocation = spoofLocation(rotaFake1, gpsLocation, GPS_PROVIDER);
-              networkLocation = spoofLocation(rotaFake1, networkLocation, NETWORK_PROVIDER);
-              ffLocation = spoofLocation(rotaFake1, ffLocation, FUSED_PROVIDER);
-             // updateSpaceMan(gpsLocation);
-        }
-        return true;
-    }
-    
-    private static boolean postlocation(RotaFake rotaFake1){
-        if (rotaFake1!=null){
-            if(gpsLocation != null) {
-                    boolean sp = SpaceManService.setLastLoc(gpsLocation);
-                    boolean sav = SpaceManService.saveLocationToPreferences(
-                    gpsLocation, 
-                    rotaFake1.getLatitude(),
-                    rotaFake1.getLongitude(),
-                    rotaFake1.getBearing(),
-                    rotaFake1.getVelocidade(),
-                    750.0,
-                    System.currentTimeMillis());
-                                /*  SensorProcessorService.setculo(
-                    rotaFake1.getLatitude(),
-                    rotaFake1.getLongitude(),
-                    rotaFake1.getBearing(),
-                    rotaFake1.getVelocidade(),
-                    750.0,
-                    System.currentTimeMillis());*/
-                }
-            }
-        return true;
+    private void spoofLocationAndUpdate(RotaFake rotaFake1) {
+          gpsLocation = spoofLocation(rotaFake1, gpsLocation, GPS_PROVIDER);
+          networkLocation = spoofLocation(rotaFake1, networkLocation, NETWORK_PROVIDER);
+          ffLocation = spoofLocation(rotaFake1, ffLocation, FUSED_PROVIDER);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         isRunning = false;
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-            NotificationManagerCompat.from(context).notify(2, getNotification("Fake Location Service Stopped").build());
-        }
-        try {
-            MyApp.getDatabase().rotaFakeDao().deleteAllExceptFirstFour();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        removeProviders();
-        handler.removeCallbacks(runnable);
-        if (backgroundThread != null) {
-            backgroundThread.interrupt();
-        }
+        
+        if (SpaceManService.isRunning())
+        if (spaceIntent!=null)
+            stopService(spaceIntent);
+        backgroundThread.interrupt();
         Log.i(TAG, "Fake 66 service S");
     }
     
@@ -371,13 +397,13 @@ public class FakeLocationService1 extends Service {
         return null;
     }
 
-    private static void notifyState(String message) {
+    private  void notifyState(String message) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             NotificationManagerCompat.from(context).notify(2, getNotification(message).build());
         }
     }
 
-    private static void sleepRandomTime() {
+    private  void sleepRandomTime() {
         float tnoise = (float) (ThreadLocalRandom.current().nextDouble(100, 150));
         try {
             Thread.sleep((long) tnoise);
@@ -386,7 +412,7 @@ public class FakeLocationService1 extends Service {
         }
     }
     
-    public static void getaltitude() {
+    public  void getaltitude() {
         elevationService.obterAltitude(latitude, longitude, new ElevationService.ElevationCallback() {
                     public void onElevationReceived(double altitude) {   
                         FakeLocationService1.setAltitude(altitude);
@@ -403,11 +429,12 @@ public class FakeLocationService1 extends Service {
         altitude = alt;
     }
 
-    private static  boolean waitForNextUpdate(RotaFake rotaFake1) {
+    
+    /*
+    private  boolean waitForNextUpdate(RotaFake rotaFake1) {
         long tempo = rotaFake1.getTempo();
         long diferencaTempo = tempo - System.currentTimeMillis();
         if (diferencaTempo > 0) {
-           
             try {
                 Thread.sleep(diferencaTempo);
             } catch (InterruptedException e) {
@@ -415,39 +442,97 @@ public class FakeLocationService1 extends Service {
             }
         } else {
              float tnoise = (float) (ThreadLocalRandom.current().nextDouble(100, 150));
-              if (latitude < -.0){ 
+              //if (latitude < -.0){ 
                 velocidade = 0.0;
 			    RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, (long) (System.currentTimeMillis() + 159));
                 MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
 			    rotaFake1 = MyApp.getDatabase().rotaFakeDao().getRotaFakeWithMinTime(System.currentTimeMillis());
-              }
+             // }
         }
         return true;
-    }
+    }*/
 
-    private static void setDefaultLocation() {
-        Toast.makeText(context, "Localização inicial definida", Toast.LENGTH_SHORT).show();
-        latitude = -23.5879554;
-        longitude = -46.63816059;
-        altitude = 750.0;
-        bearing = 45f;
+    private boolean setDefaultLocation(RotaFake rotaFakeEntry) {
+       try{
+            gpsLocation = spoofLocation(rotaFakeEntry, gpsLocation, GPS_PROVIDER);
+            networkLocation = spoofLocation(rotaFakeEntry, gpsLocation, GPS_PROVIDER);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, "Error requesting permissions: ", e);
+            return false;
+        }
+    }   
+    
+
+
+    public  RotaFake loadLastLoc() {
+        prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        
+        latitude =  (double)prefs.getFloat("latitude", -23.5879554f);
+        longitude = (double)prefs.getFloat( "longitude", -46.63816059f);
+        bearing = prefs.getFloat("bearing", 45f);
+        velocidade = 0.0;
+        altitude = (double) prefs.getFloat("altitude", 750f);
+
+        RotaFake rotaFakeEntry = new RotaFake( latitude, longitude, bearing, 0.0, System.currentTimeMillis());
+        return rotaFakeEntry; 
     }
     
     
-    private static double adicionarRuido(double valorOriginal, double nivelRuido) {
+    private  double adicionarRuido(double valorOriginal, double nivelRuido) {
         Random random = new Random();
         double ruido = (random.nextDouble() * 2 - 1) * nivelRuido;
         return valorOriginal + ruido;
     }
     
+    public float calcularMediaPonderadaAngular(Queue<Float> angulos) {
+        // Calcular componentes x e y
+        double x = 0.0;
+        double y = 0.0;
+        int n = 0;//angulos.size();
+        int i=1;
+        for (float value : angulos) {
+            double anguloRad = Math.toRadians((double)value);
+            double peso =  i ;  // O peso é o índice invertido
+            x += peso * Math.cos(anguloRad);
+            y += peso * Math.sin(anguloRad);
+            i++;
+        }
+
+        // Calcular a média ponderada do ângulo
+        double mediaAngularRad = Math.atan2(y, x);
+
+        // Converter de volta para graus
+        double mediaAngularGraus = Math.toDegrees(mediaAngularRad);
+
+        return (float) mediaAngularGraus;
+    }
     
-    private static final double LAT_LNG_NOISE_LEVEL = 0.0000001; // Ajuste o nível de ruído conforme necessário
+    
+    private double calculateWeightedAverage(Queue<Double> history) {
+       if (history.size()>0){
+            double total = 0;
+            double weightSum = 0;
+            int index =  1;//history.size();
+            for (double value : history) {
+                total += value * index;
+                weightSum += index;
+                index++;
+            }
+            double to = total / weightSum;
+            return to;
+        }
+        else return (0.000);
+    }
+
+    
+    private static final double LAT_LNG_NOISE_LEVEL = 0.000001; // Ajuste o nível de ruído conforme necessário
     private static final double BEARING_NOISE_LEVEL = 0.1; // Ajuste o nível de ruído conforme necessário
     private static final double VELOCIDADE_NOISE_LEVEL = 0.1; // Ajuste o nível de ruído conforme necessário
 
-    private static long lastSaveTime = 0;
+    private  long lastSaveTime = 0;
     
-   public static boolean checkSave() {
+   public  boolean checkSave() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSaveTime < 5000) {
             return false;
@@ -456,116 +541,155 @@ public class FakeLocationService1 extends Service {
         return true;
     }
     
-    public static double formatarDecimais(double numero, int dec) {
+    public  double formatarDecimais(double numero, int dec) {
+        
+        if (isNull(numero)) numero = 0.0;
+        if (isInfinite(numero)) numero = 0.0;
+        if (isNaN(numero)) numero = 0.0;
+        
+        
         BigDecimal bd = new BigDecimal(Double.toString(numero));
         bd = bd.setScale(dec, RoundingMode.HALF_UP); // Arredonda para 4 casas decimais
         return bd.doubleValue();
     }
     
+    
+    public static boolean isNull(Double value) {
+        return value == null;
+    }
 
-    private static Location spoofLocation(RotaFake rotaFake1, Location location, String provider) {
+    public static boolean isInfinite(Double value) {
+        return value != null && Double.isInfinite(value);
+    }
+
+    public static boolean isNaN(Double value) {
+        return value != null && Double.isNaN(value);
+    }
+    
+
+    private  Location spoofLocation(RotaFake rotaFake1, Location location, String provider) {
        
-        if (isRunning){
-           if (location==null){
-              return null;
-           } 
-            
-          
-            
+        if (location == null) location = new Location(provider);
+        if (rotaFake1 == null) rotaFake1 = new RotaFake( latitude, longitude, bearing, 0.0, System.currentTimeMillis());
+ 
         
-        float noise3 = (float) (ThreadLocalRandom.current().nextDouble(0, 1) );
-   
-        if (rotaFake1 != null) {
-            latitude = adicionarRuido(rotaFake1.getLatitude(), LAT_LNG_NOISE_LEVEL);
-            longitude = adicionarRuido(rotaFake1.getLongitude(), LAT_LNG_NOISE_LEVEL);
-            bearing = ((float) adicionarRuido(rotaFake1.getBearing(), BEARING_NOISE_LEVEL));
-            velocidade = Math.abs(adicionarRuido(rotaFake1.getVelocidade(), VELOCIDADE_NOISE_LEVEL))/2;
-            if (checkSave() && velocidade > 1){
-                getaltitude();
-            } else {
-                altitude = adicionarRuido(altitude,0.005);
-            }
-        } else {
-            latitude = adicionarRuido(latitude, LAT_LNG_NOISE_LEVEL);
-            longitude = adicionarRuido(longitude, LAT_LNG_NOISE_LEVEL);
-            bearing = ((float) adicionarRuido(bearing, BEARING_NOISE_LEVEL));
-            velocidade = Math.abs(adicionarRuido(velocidade, VELOCIDADE_NOISE_LEVEL))/2;
-            if (checkSave() && velocidade > 1){
-                getaltitude();
-            } else {
-                altitude = adicionarRuido(altitude,0.005);
-            }
-        }
+        latitude = adicionarRuido(rotaFake1.getLatitude(), LAT_LNG_NOISE_LEVEL);
+        longitude = adicionarRuido(rotaFake1.getLongitude(), LAT_LNG_NOISE_LEVEL);
+        bearing = ((float) adicionarRuido(rotaFake1.getBearing(), BEARING_NOISE_LEVEL));
+        velocidade = Math.abs(adicionarRuido(rotaFake1.getVelocidade(), VELOCIDADE_NOISE_LEVEL))/2;
+      
+        if (checkSave() && velocidade > 1) getaltitude();
+        else altitude = adicionarRuido(altitude,0.5);
         
-            
-        /* latitude =  formatarDecimais(latitude,6);
-           longitude =  formatarDecimais(longitude,6);
-            velocidade = formatarDecimais(velocidade,1);
-            bearing = (float) formatarDecimais(bearing,1);
-            altitude = formatarDecimais(altitude,2);*/
-            
-            
-            
-        location.setLatitude(latitude);
-        location.setLongitude(longitude);
         
-        long Timef = (long) adicionarRuido((double)System.currentTimeMillis(),100);
+        long Timef = System.currentTimeMillis() + (long) ThreadLocalRandom.current().nextInt(5, 10);
            
-        location.setBearing(bearing );
-        location.setSpeed((float) (velocidade/3.6f) );
-        location.setTime(Timef);
-        location.setAltitude(altitude);
-        location.setAccuracy(((int)noise3/5)+1);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            location.setVerticalAccuracyMeters(Math.abs((float) (noise3+0.1)));
-            location.setSpeedAccuracyMetersPerSecond(Math.abs((float) (noise3+0.1)/2));
-            location.setBearingAccuracyDegrees(Math.abs(ThreadLocalRandom.current().nextInt(1, 3) ));
+        fLocation flocation = new fLocation( latitude, longitude,bearing, (float) velocidade, altitude, Timef);
+        
+        if (altitude >0) altitude=altitude;
+        else altitude = 750;
+        
+        
+        if (provider == GPS_PROVIDER){
+            
+            if (locationHistory.size() >= 3) {
+                        locationHistory.poll();
+                } 
+            
+            locationHistory.add(flocation);
+            
+            
         }
-        location.setElapsedRealtimeNanos((long) adicionarRuido((double) SystemClock.elapsedRealtimeNanos(),100));
-            try {
-                Bundle extras = new Bundle();                          
-                extras.putInt("satellites", 
-                SpaceManService.getSatelliteCount());
-                extras.putFloat("maxCn0", 
-                (SpaceManService.getMaxCn0())); 
-                extras.putFloat("meanCn0", 
-                (SpaceManService.getMeanCn0()));      
-                location.setExtras(extras);
-                //Log.d(TAG, "max" + SpaceManService.getMaxCn0());
-                 if (provider == FUSED_PROVIDER){
-                    fusedLocationsProvider.spoof(location);
-                 } else {
-                    locationManager.setTestProviderLocation(provider, location);
-                 }
-            } catch (SecurityException se) {
-                Log.d(TAG, "Falha no Mock", se);
-                return null;
+            
+            if (locationHistory.size() >= 3){
+                
+                if (velocidade>1)
+                    velocidade = Math.abs(adicionarRuido(flocation.getDeltaSpeedXY((fLocation) locationHistory.toArray()[1]),VELOCIDADE_NOISE_LEVEL));
+            
+                long ttime = Math.abs(flocation.getDeltaTime((fLocation) locationHistory.toArray()[1]));
+                timeHistory.add(ttime);
+                speedHistory.add(velocidade);
+                bearingHistory.add(bearing);
+                altitudeHistory.add(altitude);
+                
+                long totalSum = 0;
+                for (double time : timeHistory) {
+                    totalSum += time;
+                }
+                
+                // Enquanto a soma dos registros + novo tempo for maior que 1000, remova o registro mais antigo
+                if (timeHistory.size()>2){
+                    while (totalSum > 2000) {
+                        double removedTime = timeHistory.poll(); // Remove o registro mais antigo (início da fila)
+                        speedHistory.poll();
+                        bearingHistory.poll();
+                        altitudeHistory.poll();
+                        if (removedTime > 0) {
+                            totalSum -= removedTime;
+                        }
+                    }
+                }
+                
+                altitude = calculateWeightedAverage(altitudeHistory);
+                velocidade = calculateWeightedAverage(speedHistory);
+                bearing = calcularMediaPonderadaAngular(bearingHistory);
             }
+        
+        
+        
+        
+        location.setLatitude(formatarDecimais(latitude,6));
+        location.setLongitude(formatarDecimais(longitude,6));
+        location.setBearing((float)formatarDecimais((double)bearing,2));
+        location.setSpeed((float)formatarDecimais(velocidade/3l,2));
+        location.setTime(Timef);
+        location.setAltitude(formatarDecimais(altitude,2));
+        location.setAccuracy(ThreadLocalRandom.current().nextInt(1, 3));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            location.setVerticalAccuracyMeters(Math.abs((float) (ThreadLocalRandom.current().nextInt(1, 3))));
+            location.setSpeedAccuracyMetersPerSecond(Math.abs((float) formatarDecimais(ThreadLocalRandom.current().nextInt(1, 3)/3.6,2)));
+            location.setBearingAccuracyDegrees(Math.abs(ThreadLocalRandom.current().nextInt(1, 3)));
+        }
+        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos()+ThreadLocalRandom.current().nextInt(1, 50));
+           
+            if (isMockLocationsEnabled){
+                try {
+                    Bundle extras = new Bundle();                          
+                    extras.putInt("satellites", 
+                    SpaceManService.getSatelliteCount());
+                    extras.putDouble("maxCn0", 
+                    formatarDecimais((double)SpaceManService.getMaxCn0(),2)); 
+                    extras.putDouble("meanCn0", 
+                    formatarDecimais((double)SpaceManService.getMeanCn0(),2));      
+                    location.setExtras(extras);
+                    //Log.d(TAG, "max" + SpaceManService.getMaxCn0());
+                    if (provider == FUSED_PROVIDER){
+                        fusedLocationsProvider.spoof(location);
+                    } else {
+                        locationManager.setTestProviderLocation(provider, location);
+                    }
+                } catch (SecurityException se) {
+                    Log.d(TAG, "Falha no Mock", se);
+                    return null;
+                }
+            } 
             
             if (provider == GPS_PROVIDER) {
+                       Log.i(TAG, "set mock location:"+location.toString());
+               
+            
                 saveLocationPreferences(context, latitude, longitude, bearing, (float)velocidade, altitude);
-                Log.i(TAG, "set mock location:"+location.toString());
-                SensorProcessor.setAltitude(altitude);
-                SensorProcessor.setLatitude(latitude);
-                SensorProcessor.setLongitude(longitude);
-                SensorProcessor.setBearing(bearing);
-                SensorProcessor.setSpeed(velocidade);
-                SensorProcessor.setTempo(System.currentTimeMillis()-uTempo); 
-                boolean runs = SensorProcessor.starTask(); 
-                Log.i(TAG, "Sensor proceced:"+runs);
+         
+            
+                if (locSave){
+                    if (locationHistory.size() >= 3) dataLoc.updateData(context, locationHistory);
+                } else locSave = dataLocation();
+            
             }
-           
             return location;
-        }
-        return null;
     }
 
-    private static void updateSpaceMan(Location location) {
-        SpaceMan.setGroundStationPosition(location);
-        //Log.d(TAG, "Max C/N0: " + SpaceMan.getMaxCn0());
-        //Log.d(TAG, "Mean C/N0: " + SpaceMan.getMeanCn0());
-        //Log.d(TAG, "Satellite Count: " + SpaceMan.getSatelliteCount());
-    }
+    
 
     public static  float getGpsSpeed() {
         return new Location(GPS_PROVIDER).getSpeed();
@@ -583,7 +707,7 @@ public class FakeLocationService1 extends Service {
         }
     }
 
-    private static NotificationCompat.Builder getNotification(String message) {
+    private  NotificationCompat.Builder getNotification(String message) {
         return new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle("Fake Location Service")
                 .setContentText(message)
@@ -615,34 +739,37 @@ public class FakeLocationService1 extends Service {
 
    
     
-   public static void initTestProvider() {
-	    if (isMockLocationsEnabled || isRunning) {
-            removeProviders();
+   public  boolean  initTestProvider() {
+	   //b if (isMockLocationsEnabled || isRunning) {
+            boolean remo =  removeProviders();
             locationManager.addTestProvider(GPS_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE);
             locationManager.setTestProviderEnabled(GPS_PROVIDER, true);
             locationManager.addTestProvider(NETWORK_PROVIDER,false, false, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_COARSE);
             locationManager.setTestProviderEnabled(NETWORK_PROVIDER, true);
-	    }
+	   // }
+        return remo;
     }
 
     
     
-    public static boolean areLocationPermissionsGranted(Context context) {
+    public  boolean areLocationPermissionsGranted(Context context) {
           return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     
 
-    public static void removeProviders() {
-	     if (isMockLocationsEnabled) {
+    public  boolean removeProviders() {
+	   //  if (isMockLocationsEnabled) {
 		     try {
 			     locationManager.removeTestProvider(GPS_PROVIDER);
 			     locationManager.removeTestProvider(NETWORK_PROVIDER);
 		     } catch (IllegalArgumentException | SecurityException e) {
 			    Log.d("Fakelocatinservice", "erro remover provedores", e);
+                return false;
 		    }                                                    
-         }
+        return true;
      }
     
-
+    
+    
 }

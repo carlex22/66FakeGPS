@@ -2,5 +2,8 @@
     <color name="colorPrimary">#Ffffff</color> <!-- Cor primária -->
     <color name="colorPrimaryDark">#555555</color> <!-- Cor primária escura -->
     <color name="colorAccent">#888888</color> <!-- Cor de destaque -->
+   <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
 </resources>
 

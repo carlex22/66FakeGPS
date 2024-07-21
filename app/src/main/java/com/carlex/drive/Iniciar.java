@@ -42,12 +42,12 @@ public class Iniciar {
             protected void onPostExecute(Void aVoid) {
 		if (!FakeLocationService1.isServiceRunning()) {
             		mainActivity.runOnUiThread(() -> {
-				mainActivity.mToast("Localização Simulada Ligada");
+			    //	mainActivity.mToast("Localização Simulada Ligada");
 			});
 		} else {                                      
 			mainActivity.startFakeLoc();
 			mainActivity.runOnUiThread(() -> {
-				mainActivity.mToast("Iniciando Localização Simulada");
+			//	mainActivity.mToast("Iniciando Localização Simulada");
 			});
             	}
 		mainActivity.runOnUiThread(() -> {

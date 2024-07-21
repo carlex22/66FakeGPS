@@ -1,10 +1,11 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:sharedUserId="com.carlex">
+    
   <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!--android:sharedUserId="android.uid.system"-->   
-     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -27,9 +28,11 @@
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
 
-
 <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/> <!-- Permissão de root, se aplicável -->
+
+   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    
 
     
     
@@ -37,12 +40,21 @@
         android:allowBackup="true"
         android:icon="@drawable/ico"
         android:label="@string/app_name"
-	android:theme="@style/AppTheme"
-	android:name=".MyApp"
-	android:resizeableActivity="true"
+    	android:theme="@style/AppTheme"
+    	android:name=".MyApp"
+    	android:resizeableActivity="true"
         tools:replace="android:appComponentFactory"
-	android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+    	android:appComponentFactory="androidx.core.app.CoreComponentFactory">
 
+        
+       <provider
+    android:name=".DataContentProvider"
+    android:authorities="com.carlex.drive.fakesensor"
+    android:exported="true"
+>
+</provider>
+
+        .
         
        <activity
             android:theme="@style/Theme.AppCompat"
@@ -74,86 +86,10 @@
 
 
 
-	<activity 
-	android:name="com.carlex.drive.gnssData.Main" 
-	android:launchMode="singleTask"  
-	android:theme="@style/Theme.AppCompat" 
-	android:taskAffinity="com.carlex.drive"
-	android:exported="true">             
-	  <intent-filter>     
-		<action
-		android:name="android.intent.action.VIEW" />    
-		<category
-		android:name="android.intent.category.DEFAULT" />     
-	  </intent-filter>   
-  </activity>
-
-  <activity        
-	  android:name="com.carlex.drive.logActivity"          
-	  android:launchMode="singleTask"     
-	  android:theme="@style/Theme.AppCompat"
-        android:taskAffinity="com.carlex.drive"                                     android:exported="true">                                                      <intent-filter>
-                <action                                                                     android:name="android.intent.action.VIEW" />                                <category                                                                   android:name="android.intent.category.DEFAULT" />                     </intent-filter>                                                    </activity>
 
 
-  <activity                   
-	  android:name="com.carlex.drive.gnssData.gpsGetStatus"   
-	  android:launchMode="singleTask"                 
-	  android:theme="@style/Theme.AppCompat"       
-	  android:taskAffinity="com.carlex.drive"       
-	  android:exported="true">                 
-  	  <intent-filter>                            
-	  <action                             
-		  android:name="android.intent.action.VIEW" />   
-	  <category                                 
-		  android:name="android.intent.category.DEFAULT" />  
-  	</intent-filter>
-        </activity>
+	
 
-<activity                                                                           android:name="com.carlex.drive.PreferencesActivity"                       android:launchMode="singleTask"
-          android:theme="@style/Theme.AppCompat"                                      android:taskAffinity="com.carlex.drive"                                     android:exported="true">                                                    <intent-filter>                                                             <action
-                  android:name="android.intent.action.VIEW" />                        <category                                                                           android:name="android.intent.category.DEFAULT" />                 </intent-filter>
-        </activity>
-
-
-	<meta-data
-            android:name="xposedmodule"
-            android:value="true" />
-        <meta-data
-            android:name="xposeddescription"
-            android:value="Fake Gps, and auto drive, simulate gnss and wls locatin, very realistic" />
-	<meta-data
-	    android:name="xposedname"
-	    android:value="66 Fake Gps" />
-	<meta-data
-	    android:name="xposedpackage"
-	    android:value="com.carlex.drive" />
-	<meta-data
-		android:name="xposedminversion"
-	    android:value="82" />
-	<meta-data
-	    android:name="xposedauthor"
-	    android:value="Carlex" />
-	<meta-data
-	    android:name="xposeddonate"
-	    android:value="https://www.paypal.me/carlex" />
-	<meta-data
-		android:name="xposedhomepage"
-		android:value="http://www.github.com/carlex22" />
-
-		<meta-data
-            android:name="xposedscope"
-            android:resource="@array/scope" />
-
-<provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.carlex.drive.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
 
 
 	<meta-data           
@@ -170,21 +106,6 @@
         <!-- Suas meta-dados e atividades aqui -->
 
 
-<service android:name=".GnssLoggerService" android:exported="true">
-    <intent-filter>
-        <action android:name="com.carlex.drive.gnsslogger.IGnssLoggerService" />
-    </intent-filter>
-</service>
-
-        <activity android:name=".nmea.SettingsActivity"
-          android:enabled="true"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.VIEW" />
-            </intent-filter>
-        </activity>
-
         <service
             android:name=".FakeLocationService1"
             android:enabled="true"
@@ -192,56 +113,40 @@
             android:permission="android.permission.FOREGROUND_SERVICE">
         </service>
         
-        
-        
         <service
             android:name=".SpaceManService"
             android:enabled="true"
             android:exported="true"
-                android:foregroundServiceType="location" />
-    	
-
-        
-       <service
-            android:name=".SensorProcessorService"
-            android:enabled="true"
-            android:exported="true"
-       android:foregroundServiceType="location"
-          android:permission="android.permission.FOREGROUND_SERVICE"/>
-    
-    	
+            android:permission="android.permission.FOREGROUND_SERVICE">
+        </service>
 
        <service
             android:name=".ElevationService"
             android:enabled="true"
             android:exported="true"
-       android:foregroundServiceType="location" />
-    	
+            android:permission="android.permission.FOREGROUND_SERVICE">
+        </service>
 
         
-        
-
-<service                       
-    android:name="com.carlex.drive.gnssData.gpstatusService"
-	android:enabled="true"           
-	android:exported="true"               
-	android:foregroundServiceType="location"
-	android:permission="android.permission.FOREGROUND_SERVICE">                     
-<intent-filter>                        
-	<action android:name="com.carlex.drive.FakeLocationService1"/>  
-	</intent-filter>                   
-</service>
-
 	<service
-    	android:name=".OverlayService"
+    	android:name=".DataService"
     	android:enabled="true"
     	android:exported="true"
-    	android:foregroundServiceType="location"
+        android:foregroundServiceType="dataSync"
     	android:permission="android.permission.FOREGROUND_SERVICE">
-    	<intent-filter>
-        	<action android:name="com.carlex.drive.OverlayService"/>
-    		</intent-filter>
+    	
 	</service>
+        
+        
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        
+        
+        
+     
 
     </application>
 </manifest>

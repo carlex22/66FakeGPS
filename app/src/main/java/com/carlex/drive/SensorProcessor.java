@@ -7,7 +7,6 @@ import android.os.IBinder;
 import android.os.Handler;
 import android.util.Log;
 import java.math.BigDecimal;
-import com.topjohnwu.superuser.io.SuFile;
 import java.io.BufferedReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +14,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Locale;
 import java.util.LinkedList;
 
-import com.topjohnwu.superuser.Shell;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,7 +23,6 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.topjohnwu.superuser.io.SuFile;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -38,10 +35,7 @@ import java.math.RoundingMode;
 
 public class SensorProcessor  {
     private static final String TAG = "SensorProcessorService";
-    private static final String DIRECTORY_PATH = "/storage/self/primary/carlex/";
-    private static final String INPUT_FILE = "locations.json";
-    private static final String OUTPUT_FILE = "sensor.json";
-    private static final double GRAVITY = 9.81;
+        private static final double GRAVITY = 9.81;
 
     public static double lat = 0.1, lon = 0.1, alt  = 0.1, bear = 0.1, speed = 0.1;
     public static double tempo = 100.0;
@@ -58,7 +52,7 @@ public class SensorProcessor  {
     
     public static boolean isRunning = false;
     
-    private static Thread backgroundThread;
+    
     
     private Timer timer;
     private Handler handler;
@@ -151,42 +145,47 @@ public class SensorProcessor  {
         
         tempo/= 100;
             
-       // Log.d(TAG, "Processing location data...");
         
+        //laat = valor medicao anterior
         double distanciaT = Math.abs(calculateDistance(lat, lon, last[4], last[5]));
        // double distanciaLon = Math.abs(calculateDistance(lon1, lon1, last[7], last[7]) + generateNoise());
         double distanciaLat =   Math.abs(calculateLatDistance(lat, last[4]));
         double distanciaLon = Math.abs(calculateLonDistance(lon, last[5], lat));
       
-        double distanciaAlt = (alt-last[6]);
-        Log.d(TAG, "Calculated diferencd altitude:"  + distanciaAlt);
-        double anguloZ = calcularAngulo(distanciaAlt,distanciaT);
         
-        double difanZ = (anguloZ - last[8]);
+        
+        double distanciaAlt = (last[6]-alt)/100;
+        double anguloZ = calcularAngulo(distanciaAlt,distanciaT); //teorema pitagoras
+        double angulox = calcularDiferencaAngulos(last[7], bear);
+        
+        
+       double difanZ = (anguloZ - last[8]);
         
         // Garantir que a diferença seja sempre menor ou igual a 180 graus
         if (difanZ > 180.0) {
             difanZ = 360.0 - difanZ;
         }
         
-        Log.d(TAG, "Calculated diferencd ang alt:"  + distanciaAlt);
-    
-        double angulox = calcularDiferencaAngulos( last[7], bear);
         
-         
+        double velocidadeX = ((distanciaLon) / (tempo));
+        double velocidadeY = ((distanciaT) / (tempo));
+        double velocidadeZ = (distanciaAlt) / (tempo);
+
+        
         double yaw =  calcularVelocidadeAngular(angulox,tempo);
         double roll = calcularVelocidadeAngular(grausParaRadianos(difanZ), tempo);
         double pitch = 0.0000000;
 
         
         
-        double velocidadeX = ((distanciaLon) / (tempo));
-        double velocidadeY = ((distanciaT) / (tempo));
-        double velocidadeZ = (calcularHipotenusa(distanciaAlt,distanciaT)) / (tempo);
+        double acex = (Math.pow(yaw, 2) * (distanciaT))/9.8;
+      //  double acez = (Math.pow(roll, 2) * calcularHipotenusa(distanciaAlt,distanciaT))/9.8;
 
-        double acex =  (9.8-calcularDistribuicao(grausParaRadianos(angulox))); //(((velocidadeX-last[1])) / (tempo));
-        double acey = -3+((speed - last[9])/tempo) + calcularDistribuicao(grausParaRadianos(anguloZ-angulox));; //(((velocidadeY-last[2])) / (tempo));//+calcularDistribuicao(grausParaRadianos(anguloZ));
-        double acez =  9.8-(calcularDistribuicao(grausParaRadianos(anguloZ)));//(((velocidadeZ-last[3])) / (tempo));//+(9.8-(calcularDistribuicao(grausParaRadianos(anguloZ))));
+         
+       // Calcular acelerações usando a fórmula unificada
+      // double acex = (((velocidadeX + last[1]) / 2) / (last[0]-tempo))/9.81;
+        double acey = 6.3 + (((velocidadeY + last[2]) / 2) / ( last[0] - tempo))/9.81;
+        double acez = 3.41 + (((velocidadeZ + last[3]) / 2) / ( last[0]- tempo))/9.81;
 
         
         Log.d(TAG, "Calculated values - acex: "+acex+", acey: "+acey+", acez: "+acez+", yaw: "+yaw+", pitch: "+pitch+", roll: "+roll);
@@ -207,7 +206,7 @@ public class SensorProcessor  {
 
         // Enquanto a soma dos registros + novo tempo for maior que 1000, remova o registro mais antigo
         if (timeQueue.size()>2){
-            while (totalSum > 2.00) {
+            while (totalSum > 1) {
                 double removedTime = timeQueue.poll(); // Remove o registro mais antigo (início da fila)
                 yawHistory.poll();
                 rowHistory.poll();
@@ -222,15 +221,7 @@ public class SensorProcessor  {
         }
         
         
-       
-        
-        double totalPt = calculateWeightedAverage(pithHistory);
-        double totalYa = calculateWeightedAverage(yawHistory);
-        double totalRol = calculateWeightedAverage(rowHistory);
-
-        double totalax = calculateWeightedAverage(axHistory);
-        double totalay = calculateWeightedAverage(ayHistory);
-        double totalaz = calculateWeightedAverage(azHistory);
+         
 
         
         
@@ -238,27 +229,20 @@ public class SensorProcessor  {
             JSONArray outputData = new JSONArray();
             JSONObject interpolatedData = new JSONObject();
             interpolatedData.putOpt("Timestamp", Instant.now().toEpochMilli());
-            interpolatedData.putOpt("Ax", formatarParaQuatroDecimais(totalax+generateNoise()));
-            interpolatedData.putOpt("Ay", formatarParaQuatroDecimais(totalay+generateNoise()));
-            interpolatedData.putOpt("Az", formatarParaQuatroDecimais(totalaz+generateNoise()));
-            interpolatedData.putOpt("Gz", formatarParaQuatroDecimais(totalPt+generateNoise()));
-            interpolatedData.putOpt("Gy", formatarParaQuatroDecimais(totalYa+generateNoise()));
-            interpolatedData.putOpt("Gx", formatarParaQuatroDecimais(totalRol+generateNoise()));
+            interpolatedData.putOpt("Ax", (acex+generateNoise()));
+            interpolatedData.putOpt("Ay", (acey+generateNoise()));
+            interpolatedData.putOpt("Az", (acez+generateNoise()));
+            interpolatedData.putOpt("Gz", (roll+generateNoise()));
+            interpolatedData.putOpt("Gy", (yaw+generateNoise()));
+            interpolatedData.putOpt("Gx", (pitch+generateNoise()));
             outputData.put(interpolatedData);
             
-            // Salvar todos os dados processados no arquivo JSON de saída
-            File file = SuFile.open(DIRECTORY_PATH, OUTPUT_FILE);
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(outputData.toString());
-                Shell.su("chmod 777 " + file.getAbsolutePath()).exec();
-                Log.d(TAG, "sensor Saved  data to: " + file.getAbsolutePath());
-            } catch (IOException e) {
-                Log.d(TAG, "Error writing cell data to file: " + e.getMessage());
-                return last;
-            }
+            boolean save = FakeLocationService1.saveSensor.saveJson(outputData.toString());
+            
+           
 
-            //Log.d(TAG, "Processed data saved to file");
-          //  Log.d(TAG, "Latdata: "+ doubleArrayToString(last));
+            Log.d(TAG, "Processed data saved to file" + save);
+            Log.d(TAG, "Latdata: "+ outputData.toString());
             
             
             double[] data = { 
@@ -268,7 +252,7 @@ public class SensorProcessor  {
                  alt,
                  bear ,
                  anguloZ,  
-                  speed
+                 speed
             };
             
             
@@ -276,9 +260,11 @@ public class SensorProcessor  {
                 
            Log.d(TAG, "Post data:"+ doubleArrayToString(data));
             
-            last = data;
+            if (save)
+             last = data;
 
-            Log.d(TAG, "---------- end sensor cycle-----------");
+            Log.d(TAG, "Sensor safe: "+save);
+            
 
             /*// Atualizar último dado para o próximo ciclo
             JSONObject lastData = new JSONObject();
@@ -317,11 +303,11 @@ public class SensorProcessor  {
     private static double calculateWeightedAverage(Queue<Double> history) {
         double total = 0;
         double weightSum = 0;
-        int index = history.size();
+        int index = 1;
         for (double value : history) {
             total += value * index;
             weightSum += index;
-            index--;
+            index++;
         }
         return total / weightSum;
     }
@@ -341,7 +327,7 @@ public class SensorProcessor  {
     // Função para calcular a distância entre duas latitudes
     private static double calculateLatDistance(double lat1, double lat2) {
         try {
-            final int R = 6371000;
+            final int R = 63710;
             double latDistance = Math.abs(Math.toRadians(lat2 - lat1));
             double distance = R * latDistance ; // converter para metros
             Log.d(TAG, String.format("Latitude distance calculated: %f meters", distance));
@@ -355,14 +341,16 @@ public class SensorProcessor  {
     
     public static double formatarParaQuatroDecimais(double numero) {
         BigDecimal bd = new BigDecimal(Double.toString(numero));
-        bd = bd.setScale(3, RoundingMode.HALF_UP); // Arredonda para 4 casas decimais
+        bd = bd.setScale(3, RoundingMode.HALF_UP); 
+        if (bd.doubleValue() ==0.0) return 0.001;
+        // Arredonda para 4 casas decimais
         return bd.doubleValue();
     }
     
     // Função para calcular a distância entre duas longitudes considerando a latitude
     private static double calculateLonDistance(double lon1, double lon2, double lat) {
         try {
-            final int R = 6371000;
+            final int R = 63710;
             double lonDistance = Math.abs(Math.toRadians(lon2 - lon1));
             double distance = Math.abs(R * lonDistance * Math.cos(Math.toRadians(lat))); // converter para metros
 
@@ -395,34 +383,16 @@ public class SensorProcessor  {
         double delta = grausParaRadianos(angulo2) - grausParaRadianos(angulo1);
         
         // Ajusta para o intervalo [-π, π]
-       /* if (delta > Math.PI) {
+        if (delta > Math.PI) {
             delta -= 2 * Math.PI;
         } else if (delta < -Math.PI) {
             delta += 2 * Math.PI;
-        }*/
+        }
         
         return delta;
     }
     
-    
-    /*
-    // Função para calcular a diferença entre dois ângulos em radianos
-    public static double calcularDiferencaAngulos(double angulo1, double angulo2) {
-        // Calcula a diferença entre os ângulos
-        double diferenca = angulo2 - angulo1;
-
-        // Ajusta a diferença para estar no intervalo [-π, π]
-     //   diferenca = (diferenca + Math.PI) % (2 * Math.PI) - Math.PI;
-
-        // Converter diferença negativa para positiva
-     // /  if (diferenca < 0) {
-        //    diferenca += 2 * Math.PI;
-     //   }
-        
-        Log.d(TAG, String.format("Diferença entre os ânguloss calculated: %f rad | %f | %f", diferenca, angulo1, angulo2));
-  
-        return diferenca + generateNoise();
-    }*/
+   
     
     
    // Método para calcular a hipotenusa
@@ -452,7 +422,7 @@ public class SensorProcessor  {
     private static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         try {
            // Log.d(TAG, "Calculating distance...");
-            final int R = 6371000; // Radius of the Earth in km
+            final int R = 63710; // Radius of the Earth in km
             double latDistance = Math.toRadians(lat2 - lat1);
             double lonDistance = Math.toRadians(lon2 - lon1);
             double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
@@ -473,8 +443,8 @@ public class SensorProcessor  {
     // Função para gerar ruído
     public static double generateNoise() {
         double noise = Math.abs(ThreadLocalRandom.current().nextDouble(0.001, 0.005) );
-        double noise2 = Math.abs(ThreadLocalRandom.current().nextDouble(0.001, 0.005) );
+        double noise2 = Math.abs(ThreadLocalRandom.current().nextDouble(0.001, 0.003) );
      
-        return noise-noise2;
+        return ((noise*4)-(noise2*3)+noise)/2;
     }
 }

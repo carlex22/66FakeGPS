@@ -82,11 +82,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
+
 import androidx.appcompat.app.AppCompatActivity;
 import uk.me.g4dpz.satellite.GroundStationPosition;
 	import uk.me.g4dpz.satellite.SatPos;
@@ -125,8 +121,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-//import com.topjohnwu.libsuexample.databinding.ActivityMainBinding;
-//import com.topjohnwu.superuser.CallbackList;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
@@ -175,7 +169,7 @@ public static Runnable centralizeRunnable;
 public static SeekBar turboSeekBar;
 public static BitmapDescriptor transparentIcon;
 public static List<Long> timeValues = new ArrayList<>();
-public static  Handler centralizeHandler = new Handler();
+public static  CentralizeHandler centralizeHandler;
 private Handler cellInfoHandler = new Handler();
 	private Handler gnssHandler = new Handler();
 //private xCellLoc cellLoc;
@@ -230,9 +224,16 @@ public static boolean su = false;
 private static final long MINUTE_IN_MILLIS = 15000;
     
     
+    
     public boolean pro = false;
 
+    private static final int RETRY_INTERVAL_MS = 5000; // Intervalo de retry em milissegundos
+    private Handler handler;
+    private Runnable retryRunnable;
 
+    
+    
+    
 /////
 //
 //
@@ -256,6 +257,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 }
 */
 
+    
 
 
 protected void onCreate(Bundle savedInstanceState) {
@@ -268,7 +270,7 @@ Locale.setDefault(Locale.US);
         
 	    if (!FakeLocationService1.isServiceRunning()) {
             	new Iniciar(this).iniciar();
-	    }
+	    };
 
 
         
@@ -285,7 +287,7 @@ Locale.setDefault(Locale.US);
 	checkfake = findViewById(R.id.checkfake);
 	turboSeekBar = findViewById(R.id.turboSeekBar);
 	textViewTempo = findViewById(R.id.tTempo);             
-	mapView = findViewById(R.id.mapView);
+//	mapView = findViewById(R.id.mapView);
 	wClicked = false;
 	tSat = findViewById(R.id.tSat);
 	tCel = findViewById(R.id.tCel);
@@ -294,12 +296,10 @@ Locale.setDefault(Locale.US);
 
 	Runnable centralizeRunnable;
 
-	ImageView fundo  = findViewById(R.id.fundo);
-	fundo.setVisibility(View.VISIBLE);
+iniciou = false;
         
-    // processado =  showProgressDialog("Aguarde teletransporte...");
-   
-   // carregando.setVisibility(View.VISIBLE);
+    // processado =  showProgressDialog("Modo Demo...");
+   //  carregando.setVisibility(View.VISIBLE);
         
 	
 	//Context static 
@@ -453,8 +453,14 @@ Locale.setDefault(Locale.US);
 
 	});
 
+       handler = new Handler();
+        retryRunnable = this::loadMap;
+        
+       loadMap();
 	//mapView.setVisibility(View.VISIBLE);
-
+        
+        iniciou = false;
+        
 }
     
 
@@ -462,8 +468,8 @@ Locale.setDefault(Locale.US);
 @Override
 protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
-    mapView.onCreate(savedInstanceState);
-    mapView.getMapAsync(this);
+    //mapView.onCreate(savedInstanceState);
+    //mapView.getMapAsync(this);
 }
 
 @Override
@@ -476,7 +482,8 @@ public void onBackPressed() {
 
 protected void onStart() {
     super.onStart();
-	
+        
+iniciou = false;
 
 	if (!FakeLocationService1.isServiceRunning()) {     
 		//checkloc.setChecked(true);       
@@ -486,16 +493,8 @@ protected void onStart() {
 }
 	
 
-private boolean isDeviceRooted() {
-   /* // Verifica se o arquivo su está presente
-    File file = new File("/system/xbin/su");
-    if (file.exists()) {
-        return true;
-    }
-
-    // Verifica se o arquivo su está presente
-    file = new File("/system/bin/su");*/
-    return false;
+private boolean iniciou() {
+    return true;
 }
 
 
@@ -504,10 +503,10 @@ private boolean isDeviceRooted() {
 protected void onResume() {         
     super.onResume();                
 
-  
-    boolean isRooted = isDeviceRooted();
-    mapView.onResume();            
-    mapView.setVisibility(View.VISIBLE);
+ iniciou = false;
+    
+   // mapView.onResume();            
+   // mapView.setVisibility(View.VISIBLE);
         
         
      if (latLng ==null){
@@ -547,11 +546,33 @@ protected void onResume() {
         
         long intervaloMillisegundos = 100L;
           
-    CentralizeHandler centralizeHandler = new CentralizeHandler(this, context);
+    centralizeHandler = new CentralizeHandler(this, context);
     centralizeHandler.startCentralizing(intervaloMillisegundos);
+        
+        
+     iniciou = iniciou();
        
 }
+   public static boolean iniciou;
+    
 
+   private void loadMap() {
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapView);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        } else {
+            showRetryMessage();
+        }
+    }
+    
+    
+   private void showRetryMessage() {
+        Toast.makeText(this, "Falha ao carregar o mapa. Tentando novamente em 5 segundos...", Toast.LENGTH_SHORT).show();
+        handler.postDelayed(retryRunnable, RETRY_INTERVAL_MS);
+    }
+    
+    
 
 private String readRawTextFile(int resId) {
         InputStream inputStream = getResources().openRawResource(resId);
@@ -599,7 +620,7 @@ private boolean saveTurboValue(int value) {
 
 public boolean startFakeLoc() {
     if (!FakeLocationService1.isServiceRunning()) {
-        ContextCompat.startForegroundService(this, fIntent);
+            ContextCompat.startForegroundService(this, fIntent);
     }
         return true;
 }
@@ -647,7 +668,7 @@ public boolean onGerarotaClick() {
         odometro = 0;
         intervaloMillisegundos = 0;
         rotaFake = new ArrayList<>();
-        Object[] dadosSegmento = new Object[]{0, latLng, currentBearing, 0.0, 100.0, 0.0, 100L, 0.0, 0.0};
+        Object[] dadosSegmento = new Object[]{0, latLng, currentBearing, 0.0, 100.0, 0.0, 300L, 0.0, 0.0};
         rotaFake.add(dadosSegmento);
     
     salvarRotafakeEmArquivo(this);
@@ -714,7 +735,7 @@ public boolean onSaltoClick(){
         
 	//limpar dados fake e salvar novo ponto      
 	rotaFake = new ArrayList<>();         
-	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 100, 0.0, 0.0};
+	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 500, 0.0, 0.0};
 	rotaFake.add(dadosSegmento);
     salvarRotafakeEmArquivo(this);
 
@@ -1188,11 +1209,12 @@ private void salvarRotafakeEmArquivo() {
         executor.execute(() -> {
             String result;
             try {
-                long cTime = System.currentTimeMillis() + 1000;
+                long cTime = System.currentTimeMillis() + 10;
 
                 // Remover todos os registros exceto
                 MyApp.getDatabase().rotaFakeDao().deleteAll();
 
+                  long tc=0l;
                 for (Object[] dadosSegmento : rotaFake) {
                     int indiceSegmento = (int) dadosSegmento[0];
                     LatLng pontoAtual = (LatLng) dadosSegmento[1];
@@ -1201,10 +1223,16 @@ private void salvarRotafakeEmArquivo() {
                     double tempoo = (double) dadosSegmento[4];
                     long tempo1 = (long) tempoo / (turbo + 1);
 
+                        
                     cTime += tempo1;
+                    tc+= tempo1;
+                        
 
+                    if (tc> 80){
                     RotaFake rotaFakeEntry = new RotaFake(pontoAtual.latitude, pontoAtual.longitude, bearing, velocidade, cTime);
                     MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
+                    tc=0L;
+                    }
                 }
 
                 result = "Dados salvos no banco de dados com sucesso. turbo:" + turbo;
@@ -1329,7 +1357,7 @@ private boolean procesarrMovimentofim() {
 		double freio  = (double) dadosSegmento[8]; 
 		//double ntempo = (double) dadosSegmento[4]; 
 		velocidade *= (1 - freio);
-		velocidade = Math.max(1, Math.min(velocidade, 45));
+		velocidade = Math.max(1, Math.min(velocidade, (50/(turbo + 1))));
 		float distancia = (float) dadosSegmento[5]; 
 		double ntempo = (distancia / velocidade) * 1000;
 		dadosSegmento[3] = (double) velocidade;
@@ -1604,12 +1632,13 @@ public boolean centralizar(){
 		return true;
 	}
         
-        mapaCentralizar = false;
+      //  mapaCentralizar = false;
 
 	//cellInfoHandler.postDelayed(cellInfoRunnable, 10000);
 	//gnssHandler.postDelayed(gnssRunnable, 1000);
 
 
+        
 	String schro = "00:00:00";
 
         new AsyncTask<Void, Void, RotaFake>() {
@@ -1663,7 +1692,7 @@ public boolean centralizar(){
 	carMarker.setRotation(currentBearing);
     }
 	
-        mapaCentralizar = false;
+       // mapaCentralizar = false;
 
 	//centralizar mapa e camera
 	if (!mapaCentralizar){
@@ -1778,8 +1807,8 @@ public void onMapReady(GoogleMap googleMap) {
 
 //inicializacao mapa
 @Override
-public void onMapReady(GoogleMap googleMap) {
-    this.googleMap = googleMap;
+public void onMapReady(GoogleMap googleMa) {
+    googleMap = googleMa;
 
     LatLng initialPosition = latLng;
     CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -1791,7 +1820,7 @@ public void onMapReady(GoogleMap googleMap) {
 
     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-   // cameraPosition = new CameraPosition.Builder().target(latLng).zoom(15).build();
+    cameraPosition = new CameraPosition.Builder().target(latLng).zoom(15).build();
 
     // Bloquear a rotação do mapa
     googleMap.getUiSettings().setRotateGesturesEnabled(false);
@@ -1839,7 +1868,6 @@ private Bitmap resizeBitmap(int resourceId, int width, int height) {
 @Override
 protected void onPause() {
     super.onPause();
-    mapView.onPause();
   /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         if (!Settings.canDrawOverlays(MainActivity.this)) {
             Intent oIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -1867,9 +1895,10 @@ private void stopOverlayService() {
 public void onDestroy() {      
 	super.onDestroy();   
 	//stopFakeLoc();
+        if (mapView!=null)
 	mapView.onDestroy();
-	//
-
+        centralizeHandler.stopCentralizing();
+        //handler.removeCallbacks(retryRunnable);
 }                                  
 
 //baixa memoria android
@@ -1882,6 +1911,7 @@ public void onLowMemory() {
     protected void onStop() {
         super.onStop();
 	saveTurboValue(turbo);
+        
     }
 
 

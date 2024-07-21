@@ -5,12 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import com.google.android.gms.maps.model.LatLng;
 import android.os.Looper;
+import android.content.SharedPreferences;
 
 public class CentralizeHandler {
     private final Handler handler;
     private final Context context;
     private final MainActivity mainActivity;
-    private static final String PREFS_NAME = "LocationPreferences";
+    private static final String PREFS_NAME = "FakeLoc";
 
     public CentralizeHandler(MainActivity mainActivity, Context context) {
         this.mainActivity = mainActivity;
@@ -47,23 +48,23 @@ public class CentralizeHandler {
                 mainActivity.centralizar();
             });
 
-            // Carregar dados de localização das preferências
+          /*  // Carregar dados de localização das preferências
             SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-            double latitude = Double.parseDouble(prefs.getString("latitude", "0.0"));
-            double longitude = Double.parseDouble(prefs.getString("longitude", "0.0"));
-            float bearing = Float.parseFloat(prefs.getString("bearing", "0.0"));
-            float speed = Float.parseFloat(prefs.getString("speed", "0.0"));
-            speed *= 3.6f;
-            double altitude = Double.parseDouble(prefs.getString("altitude", "0.0"));
+            double latitude =  (double)prefs.getFloat("latitude", -23.5879554f);
+            double longitude = (double)prefs.getFloat( "longitude", 46.63816059f);
+            float bearing = prefs.getFloat("bearing", 45f);
+            float velocidade = prefs.getFloat("speed", 0f)*3.6f;
+            double altitude = (double) prefs.getFloat("altitude", 750f);*/
 
+   
             // Atualizar com dados carregados
-            mainActivity.latLng = new LatLng(latitude, longitude);
-            mainActivity.currentSpeed = speed;
-            mainActivity.currentBearing = bearing;
-            mainActivity.currentAlt = altitude;
+            mainActivity.latLng = new LatLng(FakeLocationService1.latitude, FakeLocationService1.longitude);
+            mainActivity.currentSpeed = (float) (  FakeLocationService1.velocidade*3.6);
+            mainActivity.currentBearing = FakeLocationService1.bearing;
+            mainActivity.currentAlt = FakeLocationService1.altitude;
 
             // Agendar próxima execução
-            handler.postDelayed(this, intervaloMillisegundos);
+            handler.postDelayed(this, 100l);
         }
     }
 }
