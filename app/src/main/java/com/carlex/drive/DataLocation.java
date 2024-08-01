@@ -210,7 +210,7 @@ public class DataLocation {
             
             
             try {
-                JSONArray outputData = new JSONArray();
+                /*JSONArray outputData = new JSONArray();
                 JSONObject interpolatedData = new JSONObject();
                 interpolatedData.putOpt("Timestamp", Instant.now().toEpochMilli());
                 interpolatedData.putOpt("Ax",formatarParaQuatroDecimais(finalAxy));
@@ -224,8 +224,8 @@ public class DataLocation {
                 interpolatedData.put("MagZ",formatarParaQuatroDecimais(finalMagZ));
                 
                 outputData.put(interpolatedData);
-                
-                compartilharDados(context, outputData);
+                */
+               // compartilharDados(context, outputData);
                 
                 
                 
@@ -234,9 +234,9 @@ public class DataLocation {
                 editor.putLong("Timestamp", Instant.now().toEpochMilli());
                 editor.putFloat("Ax", (float) formatarParaQuatroDecimais(finalAxy/9.8));
                 editor.putFloat("Ay", (float)formatarParaQuatroDecimais(finalAy/9.8));
-                editor.putFloat("Az",(float) formatarParaQuatroDecimais(finalAz/9.8));
+                editor.putFloat("Az",(float) formatarParaQuatroDecimais((finalAz/9.8)/9.8));
                 editor.putFloat("Gy",(float)formatarParaQuatroDecimais(finalYaw));
-                editor.putFloat("Gz",(float) formatarParaQuatroDecimais(finalRoll));
+                editor.putFloat("Gz",(float) formatarParaQuatroDecimais(finalRoll/9.8));
                 editor.putFloat("Gx", (float)formatarParaQuatroDecimais(generateNoise(0.000)));
                 editor.putFloat("MagX",(float)formatarParaQuatroDecimais (finalMagX));
                 editor.putFloat("MagY",(float)formatarParaQuatroDecimais(finalMagY));

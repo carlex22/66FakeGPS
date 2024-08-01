@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:1:1-152:12
-MERGED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:1:1-152:12
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml:1:1-6:12
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml:1:1-6:12
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml:1:1-6:12
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-164:12
+MERGED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:1:1-164:12
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml:1:1-6:12
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml:1:1-6:12
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml:1:1-6:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/117806c5e8c671895bd92b9638fe29c2/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/743666646bbcb58f196fa9bee9bd71fa/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:17:1-44:12
@@ -56,123 +56,120 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /data/d
 MERGED from [androidx.print:print:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/bd725bbcee81415cc9c5677370a4838a/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/44c0a3f9dbbc2522d5c36febe8799ad9/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
 	package
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml:2:5-31
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
-	android:sharedUserId
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:4:5-38
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:4:5-38
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml:2:5-31
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:3:5-51
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:3:5-51
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:3:5-51
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:2:5-63
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:2:5-63
 uses-permission#android.permission.BODY_SENSORS
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:6:3-69
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:6:3-69
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:6:20-66
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:6:20-66
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:7:5-79
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:7:22-76
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:7:22-76
 uses-feature#0x00020000
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:8:5-78
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:8:5-78
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:8:19-51
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:8:19-51
 	android:required
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:8:52-75
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:8:52-75
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:10:5-81
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:10:5-81
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:10:22-78
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:10:22-78
 uses-permission#android.permission.INTERNET
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:11:5-67
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:11:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:11:22-64
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:11:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:12:5-79
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:12:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:12:22-76
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:12:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:13:5-81
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:13:5-81
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:13:22-78
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:13:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:14:5-80
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:14:5-80
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:14:22-77
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:14:22-77
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:15:5-77
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:15:5-77
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:15:22-74
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:15:22-74
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:16:5-78
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:16:5-78
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:16:22-75
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:16:22-75
 uses-permission#android.permission.FOREGROUND_SERVICE_LOCATION
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:17:5-86
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:17:5-86
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:17:22-83
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:17:22-83
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:18:5-77
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:18:5-77
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:18:22-74
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:18:22-74
 uses-permission#android.permission.READ_WIFI_CREDENTIAL
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:19:5-78
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:19:5-78
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:19:22-76
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:19:22-76
 uses-permission#android.permission.BLUETOOTH
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:21:5-67
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:21:5-67
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:21:22-65
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:21:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:22:5-73
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:22:5-73
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:22:22-71
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:22:22-71
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:24:5-84
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:24:5-84
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:24:22-82
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:24:22-82
 uses-permission#android.permission.ACCESS_MOCK_LOCATION
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:25:5-78
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:25:5-78
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:25:22-76
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:25:22-76
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:26:5-75
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:26:5-75
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:26:22-72
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:26:22-72
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:27:5-76
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:27:5-76
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:27:22-73
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:27:22-73
 uses-permission#android.permission.WRITE_SECURE_SETTINGS
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:28:5-80
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:28:5-80
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:28:22-77
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:28:22-77
 uses-permission#android.permission.READ_PRIVILEGED_PHONE_STATE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:29:5-85
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:29:5-85
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:29:22-83
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:29:22-83
 uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:31:1-84
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:31:1-84
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:31:18-82
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:31:18-82
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:33:4-80
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:33:4-80
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:33:21-77
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:33:21-77
 application
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:39:5-151:19
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:39:5-163:19
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/117806c5e8c671895bd92b9638fe29c2/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/117806c5e8c671895bd92b9638fe29c2/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/743666646bbcb58f196fa9bee9bd71fa/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:7:5-11:19
@@ -204,154 +201,166 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /data/data/
 MERGED from [androidx.startup:startup-runtime:1.1.1] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/d905bb75dc3cafa2f8468684d3492aa0/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/d905bb75dc3cafa2f8468684d3492aa0/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 	android:extractNativeLibs
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 	android:label
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:42:9-41
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:42:9-41
 	android:appComponentFactory
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:47:6-74
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:47:6-74
 		REJECTED from [androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/8b729d26ddac5cf3350f1073c82867cb/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:resizeableActivity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:45:6-39
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:45:6-39
 	android:icon
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:41:9-37
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:41:9-37
 	android:allowBackup
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:40:9-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:40:9-35
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:43:6-37
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:43:6-37
 	tools:replace
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:46:9-52
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:46:9-52
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:44:6-27
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:44:6-27
 provider#com.carlex.drive.DataContentProvider
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:50:8-55:12
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:50:8-55:12
 	android:authorities
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:52:5-54
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:52:5-54
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:53:5-28
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:53:5-28
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:51:5-40
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:51:5-40
 activity#com.carlex.drive.SplashActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:59:8-67:16
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:59:8-67:16
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:62:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:62:13-36
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:60:13-51
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:60:13-51
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:61:9-39
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:61:9-39
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:63:9-66:25
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:63:9-66:25
 action#android.intent.action.MAIN
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:64:13-65
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:64:13-65
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:64:21-62
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:64:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:65:13-73
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:65:13-73
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:65:23-70
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:65:23-70
 activity#com.carlex.drive.MainActivity
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:70:2-85:13
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:70:2-85:13
 	android:launchMode
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:71:3-34
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:71:3-34
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:74:10-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:74:10-33
 	android:theme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:72:3-41
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:72:3-41
 	android:taskAffinity
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:73:14-53
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:73:14-53
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:70:12-40
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:70:12-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:75:3-78:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:75:3-78:19
 category#android.intent.category.DEFAULT
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:77:4-63
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:77:4-63
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:77:14-60
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:77:14-60
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:waze
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:79:3-84:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:79:3-84:19
 action#android.intent.action.VIEW
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:80:4-56
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:80:4-56
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:80:12-53
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:80:12-53
 category#android.intent.category.BROWSABLE
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:82:4-65
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:82:4-65
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:82:14-62
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:82:14-62
 data
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:83:4-34
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:83:4-34
 	android:scheme
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:83:10-31
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:83:10-31
 meta-data#com.google.android.geo.API_KEY
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:95:2-97:61
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:95:2-97:61
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:97:3-58
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:97:3-58
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:96:3-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:96:3-48
 meta-data#com.google.android.gms.version
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:101:2-103:58
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:101:2-103:58
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/743666646bbcb58f196fa9bee9bd71fa/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/743666646bbcb58f196fa9bee9bd71fa/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/0f48be252d71fdaab0e648c497182ba4/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/0f48be252d71fdaab0e648c497182ba4/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:103:3-56
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:103:3-56
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:102:3-48
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:102:3-48
 service#com.carlex.drive.FakeLocationService1
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:109:9-114:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:109:9-114:19
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:111:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:111:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:112:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:112:13-36
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:113:13-71
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:113:13-71
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:110:13-49
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:110:13-49
 service#com.carlex.drive.SpaceManService
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:116:9-121:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:116:9-121:19
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:118:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:118:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:119:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:119:13-36
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:120:13-71
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:120:13-71
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:117:13-44
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:117:13-44
 service#com.carlex.drive.ElevationService
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:123:8-128:19
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:123:8-128:19
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:125:13-35
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:125:13-35
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:126:13-36
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:126:13-36
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:127:13-71
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:127:13-71
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:124:13-45
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:124:13-45
 service#com.carlex.drive.DataService
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:131:2-138:12
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:131:2-138:12
 	android:enabled
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:133:6-28
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:133:6-28
 	android:exported
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:134:6-29
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:134:6-29
 	android:permission
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:136:6-64
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:136:6-64
 	android:foregroundServiceType
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:135:9-49
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:135:9-49
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:132:6-33
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:132:6-33
+service#com.carlex.drive.DataServiceGnss
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:141:2-148:12
+	android:enabled
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:143:6-28
+	android:exported
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:144:6-29
+	android:permission
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:146:6-64
+	android:foregroundServiceType
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:145:9-49
+	android:name
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:142:6-37
 receiver#com.carlex.drive.BootReceiver
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:141:9-145:20
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:153:9-157:20
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:141:19-47
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:153:19-47
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:142:13-144:29
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:154:13-156:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:143:17-79
+ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:155:17-79
 	android:name
-		ADDED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/main/AndroidManifest.xml:143:25-76
+		ADDED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/main/AndroidManifest.xml:155:25-76
 uses-sdk
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
-INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
+INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/117806c5e8c671895bd92b9638fe29c2/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/117806c5e8c671895bd92b9638fe29c2/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.8.2] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/743666646bbcb58f196fa9bee9bd71fa/transformed/jetified-android-maps-utils-3.8.2/AndroidManifest.xml:5:5-44
@@ -453,9 +462,9 @@ MERGED from [androidx.print:print:1.0.0] /data/data/com.itsaky.androidide/files/
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/44c0a3f9dbbc2522d5c36febe8799ad9/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/44c0a3f9dbbc2522d5c36febe8799ad9/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /storage/emulated/0/AndroidIDEProjects/66appk/app/src/debug/AndroidManifest.xml
+		INJECTED from /storage/emulated/0/AndroidIDEProjects/66FakeGPS/app/src/debug/AndroidManifest.xml
 queries
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/68ffc3f79e0e48b4ead3ae814c90e29b/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:30:5-34:15
 package#com.google.android.apps.maps

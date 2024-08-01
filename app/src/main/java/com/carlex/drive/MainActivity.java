@@ -727,16 +727,18 @@ public boolean onSaltoClick(){
     }
     
     else {
-	    latLngfake = cameraPosition.target;      
+	    latLngfake = cameraPosition.target;
     }
+       
         
         
         
         
+        ;
 	//limpar dados fake e salvar novo ponto      
-	rotaFake = new ArrayList<>();         
+  /*	rotaFake = new ArrayList<>();         
 	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 500, 0.0, 0.0};
-	rotaFake.add(dadosSegmento);
+	rotaFake.add(dadosSegmento);*/
     salvarRotafakeEmArquivo(this);
 
 
@@ -749,6 +751,14 @@ public boolean onSaltoClick(){
 		polyline.remove();           
 		polyline = null;           
 	}
+        
+        
+    FakeLocationService1.latitude =    latLngfake.latitude;
+    FakeLocationService1.longitude =    latLngfake.longitude;
+    FakeLocationService1.velocidade =    0.0;
+        
+        
+        
 
 //	toast = Toast.makeText(MainActivity.this, "Teletransportado de:" + latLng.toString() + "para: " + latLngfake.toString(), Toast.LENGTH_SHORT);
 //	toast.show();

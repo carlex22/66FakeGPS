@@ -191,7 +191,7 @@ public class SpaceManService extends Service {
             }
     
             
-            SharedPreferences prefs = context.getSharedPreferences("FakeCellData", Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences("FakeSensor", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("getCid", (int) cellInfoData.getCellId());
             editor.putInt("getLac", cellInfoData.getLac());
@@ -247,9 +247,9 @@ public class SpaceManService extends Service {
 
     public static  boolean  saveLocationToPreferences() {
        
-            SharedPreferences prefs = context.getSharedPreferences("FakeNmea", Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences("FakeSensor", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("nmea", getNmea());            
+            editor.putString("nmea",'"'+getNmea()+'"');            
             editor.apply();
         
         
@@ -343,12 +343,12 @@ public class SpaceManService extends Service {
                 meanSnr = satelliteCount > 0 ? sumSnr / satelliteCount : 0;
 
             
-                SharedPreferences prefs = context.getSharedPreferences("FakeGnssStatus", Context.MODE_PRIVATE);
+                SharedPreferences prefs = context.getSharedPreferences("FakeSensorGnss", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putInt("NumeroSatellites", satelliteCount);
                 editor.putFloat("MediaSnr", meanSnr);
                 editor.putFloat("MaximoSnr", maxSnr);
-                editor.putString("SatelitesData", satellitesArray.toString());
+                editor.putString("SatelitesData", "'"+satellitesArray.toString()+"'");
                 editor.apply();
         
             

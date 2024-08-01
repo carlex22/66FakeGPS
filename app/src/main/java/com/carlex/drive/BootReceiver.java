@@ -11,6 +11,8 @@ public class BootReceiver extends BroadcastReceiver {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             Intent serviceIntent = new Intent(context, DataService.class);
             context.startForegroundService(serviceIntent);
+            Intent serviceGIntent = new Intent(context, DataServiceGnss.class);
+            context.startForegroundService(serviceGIntent);
         }
     }
 }
