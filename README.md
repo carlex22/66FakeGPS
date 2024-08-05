@@ -1,8 +1,6 @@
-**66FakeGPS** é uma ferramenta essencial para desenvolvedores Android, proporcionando a capacidade de simular coordenadas GPS para testar aplicativos que dependem de dados de localização. Este aplicativo é projetado para funcionar em modo de desenvolvimento, exigindo a ativação de localização simulada no dispositivo. Desenvolver aplicativos que utilizam dados de localização pode ser desafiador sem a capacidade de simular diferentes cenários de localização.
+### 66FakeGPS - Descrição do Aplicativo
 
-Com **66FakeGPS**, os desenvolvedores podem testar suas aplicações de forma eficaz e eficiente, garantindo que todas as funcionalidades dependentes de localização sejam validadas adequadamente antes do lançamento.
-
-
+**66FakeGPS** é uma ferramenta essencial para desenvolvedores Android, proporcionando a capacidade de simular coordenadas GPS para testar aplicativos que dependem de dados de localização. Este aplicativo é projetado para funcionar em modo de desenvolvimento, exigindo a ativação de localização simulada no dispositivo. Desenvolver aplicativos que utilizam dados de localização pode ser desafiador sem a capacidade de simular diferentes cenários de localização. Com **66FakeGPS**, os desenvolvedores podem testar suas aplicações de forma eficaz e eficiente, garantindo que todas as funcionalidades dependentes de localização sejam validadas adequadamente antes do lançamento.
 
 #### Simulação de Localização
 
@@ -45,3 +43,14 @@ O **66FakeGPS** facilita a criação de rotas automáticas a partir de plataform
 Para utilizar o **66FakeGPS**, primeiro é necessário ativar o modo desenvolvedor no dispositivo Android e permitir localizações simuladas nas configurações. Em seguida, o aplicativo deve ser baixado e instalado. Após a instalação, os desenvolvedores podem configurar as preferências de localização fictícia conforme necessário, definindo parâmetros como pontos de partida, destino e comportamento da rota. Uma vez configurado, o serviço de localização fictícia pode ser iniciado, permitindo que outros serviços complementares também sejam executados conforme necessário para o teste. O **66FakeGPS** é uma ferramenta poderosa que facilita a simulação de diferentes cenários de navegação, permitindo que os desenvolvedores validem todas as funcionalidades de seus aplicativos em um ambiente controlado.
 
 Para mais informações e detalhes técnicos, os desenvolvedores podem acessar o código-fonte disponível no repositório GitHub, onde encontrarão documentação adicional e exemplos de uso para maximizar a eficácia dos testes de localização.
+
+#### Plugin 66FakeGPSXpMod
+
+Além disso, para ampliar ainda mais as capacidades do **66FakeGPS**, os desenvolvedores podem utilizar o [66FakeGPSXpMod](https://github.com/carlex22/66fakegpsXpMod), um módulo plugin compatível com o Xposed Framework e Magisk. Este plugin oferece funcionalidades adicionais, como:
+
+- **Simulação Avançada de Coordenadas GPS**: Permite simulações mais detalhadas e precisas, ideal para testes avançados.
+- **Personalização de Status GNSS**: Simula diferentes condições de recepção de sinal GPS, incluindo a manipulação de dados de satélites.
+- **Geração de Sentenças NMEA**: Suporta a criação de sentenças NMEA para validação de sistemas de navegação.
+- **Simulação de Dados de Rede Móvel**: Emula diferentes condições de conectividade de rede móvel para testes de performance.
+
+O **66FakeGPSXpMod** é uma extensão poderosa que, quando combinada com o **66FakeGPS**, proporciona um ambiente de teste completo e robusto para desenvolvedores Android, garantindo a validação eficaz de todas as funcionalidades baseadas em localização. Para mais detalhes e instalação, acesse o [repositório GitHub](https://github.com/carlex22/66fakegpsXpMod).
