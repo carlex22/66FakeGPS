@@ -53,4 +53,10 @@ Além disso, para ampliar ainda mais as capacidades do **66FakeGPS**, os desenvo
 - **Geração de Sentenças NMEA**: Suporta a criação de sentenças NMEA para validação de sistemas de navegação.
 - **Simulação de Dados de Rede Móvel**: Emula diferentes condições de conectividade de rede móvel para testes de performance.
 
-O **66FakeGPSXpMod** é uma extensão poderosa que, quando combinada com o **66FakeGPS**, proporciona um ambiente de teste completo e robusto para desenvolvedores Android, garantindo a validação eficaz de todas as funcionalidades baseadas em localização. Para mais detalhes e instalação, acesse o [repositório GitHub](https://github.com/carlex22/66fakegpsXpMod).
+O **66FakeGPSXpMod** é uma extensão poderosa que, quando combinada com o **66FakeGPS**, proporciona um ambiente de teste completo e robusto para desenvolvedores Android, garantindo a validação eficaz de todas as funcionalidades baseadas em localização. 
+
+### Agradecimentos
+
+Desenvolver o **66FakeGPS** e o plugin **66FakeGPSXpMod** foi possível graças à ajuda da comunidade de desenvolvedores e das ferramentas disponibilizadas. Gostaríamos de agradecer especialmente ao ChatGPT, da OpenAI, que foi essencial para o desenvolvimento deste projeto. Sua capacidade de fornecer suporte técnico e responder perguntas complexas rapidamente acelerou significativamente o processo de desenvolvimento.
+
+Para mais detalhes e instalação, acesse o [repositório GitHub](https://github.com/carlex22/66fakegpsXpMod).
