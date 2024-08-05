@@ -6,6 +6,7 @@ import android.app.people.ConversationStatus;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import java.util.Random;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -179,7 +180,7 @@ public class SpaceManService extends Service {
     
     private static boolean saveCellToPreferences(Location loc) {
         
-        if (isSignificantLocationChange(loc) && checkSaveM()){
+        if (cellInfoData == null || isSignificantLocationChange(loc) || checkSaveM()){
              log("xCell obtendo informações da célula.");
           
             // Usando a classe GetCell para obter informações da célula
@@ -195,6 +196,14 @@ public class SpaceManService extends Service {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("getCid", (int) cellInfoData.getCellId());
             editor.putInt("getLac", cellInfoData.getLac());
+            editor.putInt("getCi", (int) cellInfoData.getCellId());
+            editor.putInt("getTac", cellInfoData.getLac());
+            editor.putInt("getMcc", cellInfoData.getMcc());
+            editor.putInt("getMnc", cellInfoData.getMnc());
+            editor.putInt("getCidString", (int) cellInfoData.getCellId());
+            editor.putInt("getLacString", cellInfoData.getLac());
+            editor.putInt("getCiString", (int) cellInfoData.getCellId());
+            editor.putInt("getTacString", cellInfoData.getLac());
             editor.putInt("getMccString", cellInfoData.getMcc());
             editor.putInt("getMncString", cellInfoData.getMnc());
             editor.putFloat("getLatitude", (float)cellInfoData.getLat());
@@ -305,7 +314,7 @@ public class SpaceManService extends Service {
     
     public static boolean saveSatellitesToPreferences() {
         
-        if (checkSave())
+        //if (checkSave())
         if (gpsSatellites.size() >0)
             try {
                 
@@ -321,9 +330,9 @@ public class SpaceManService extends Service {
                     JSONObject satelliteObject = new JSONObject();
                     try {
                     
-                        satelliteObject.put("azimuth", satellite.getAzimuth());
-                        satelliteObject.put("elevation", satellite.getElevation());
-                        satelliteObject.put("snr", satellite.getSnr());
+                        satelliteObject.put("azimuth", adicionarRuido(satellite.getAzimuth(),0.1));
+                        satelliteObject.put("elevation", adicionarRuido(satellite.getElevation(), 0.1));
+                        satelliteObject.put("snr", adicionarRuido(satellite.getSnr(),0.1));
                         satelliteObject.put("range", satellite.getRange());
                         satelliteObject.put("hasAlmanac", satellite.getHasAlmanac());
                         satelliteObject.put("hasEphemeris", satellite.getHasEphemeris());
@@ -343,12 +352,16 @@ public class SpaceManService extends Service {
                 meanSnr = satelliteCount > 0 ? sumSnr / satelliteCount : 0;
 
             
-                SharedPreferences prefs = context.getSharedPreferences("FakeSensorGnss", Context.MODE_PRIVATE);
+                String sattext = satellitesArray.toString();
+                sattext = sattext.replace("\"", "\\\"");
+
+            
+                SharedPreferences prefs = context.getSharedPreferences("FakeSensor", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putInt("NumeroSatellites", satelliteCount);
                 editor.putFloat("MediaSnr", meanSnr);
                 editor.putFloat("MaximoSnr", maxSnr);
-                editor.putString("SatelitesData", "'"+satellitesArray.toString()+"'");
+                editor.putString("SatelitesData", '"'+sattext+'"');
                 editor.apply();
         
             
@@ -405,6 +418,14 @@ public class SpaceManService extends Service {
     }
 
     private static  boolean isRunning = false;
+    
+   private static double adicionarRuido(double valorOriginal, double nivelRuido) {
+        Random random = new Random();
+        double ruido = (random.nextDouble() * 2 - 1) * nivelRuido;
+        return valorOriginal + ruido;
+    }
+    
+    
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -600,7 +621,7 @@ public class SpaceManService extends Service {
         
         
     public static void updateSatelliteList(Location loc) { 
-      if (checkSaveM() || isSignificantLocationChange(loc)) {
+      //if (checkSaveM() || isSignificantLocationChange(loc)) {
        calculatedLocation = loc;       
        // if (calculatedLocation != null) {
             groundStationPosition = new GroundStationPosition(calculatedLocation.getLatitude(), calculatedLocation.getLongitude(), calculatedLocation.getAltitude());
@@ -613,7 +634,7 @@ public class SpaceManService extends Service {
             boolean scel = saveCellToPreferences(calculatedLocation);
        // } else {
            log("Calculated and  update satellite list");
-       }
+     //  }
     }
 
     public static String getFakeMessage() {

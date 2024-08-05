@@ -342,12 +342,12 @@ public class FakeLocationService1 extends Service {
         if (rotaFake1 != null) {
             //Verificar se o veículo está parado
             if (gpsLocation != null){
-                if (gpsLocation.getSpeed()> 1 && parado == true){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 em Rota").build()); }              
+                if (gpsLocation.getSpeed()> 0.3 && parado == true){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 em Rota").build()); }              
                     parado = false;       
                     notifyState("Em Rota");    
                     Log.i(TAG, "Fake 66 Rota created");
                 } 
-                if (gpsLocation.getSpeed()<= 1 && parado == false){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 Estacionado").build()); }            
+                if (gpsLocation.getSpeed()<= 0.3 && parado == false){ //if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) { NotificationManagerCompat.from(context).notify(2, getNotification("66 Estacionado").build()); }            
                     parado = true;    
                     notifyState("Estacionado");  
                     Log.i(TAG, "Fake 66 Rota stop");

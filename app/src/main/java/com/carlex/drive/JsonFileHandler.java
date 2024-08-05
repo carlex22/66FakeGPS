@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+import android.os.Environment;
+
 public class JsonFileHandler {
 
     private final String directoryPath;
@@ -20,7 +23,7 @@ public class JsonFileHandler {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-        File file = new File(directory, fileName);
+        File file = new File(Environment.getExternalStorageDirectory(), fileName);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -33,7 +36,8 @@ public class JsonFileHandler {
     }
 
     public boolean saveJson(String jsonString) {
-        File file = new File(directoryPath, fileName);
+        File file = new File(Environment.getExternalStorageDirectory(), fileName);
+   
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(jsonString);
             setFilePermissions(file);

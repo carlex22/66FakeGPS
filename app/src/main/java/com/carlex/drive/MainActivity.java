@@ -182,15 +182,16 @@ public static  Polyline polyline;
 public static int desMarkerWidth = 150;
 public static int desMarkerHeight = 150;
 public static int turbo = 2;
-public static int oriMarkerWidth = 160;
-public static int oriMarkerHeight = 160;
-public static int carMarkerWidth = 135;
-public static int carMarkerHeight = 135;
+public static int oriMarkerWidth = 150;
+public static int oriMarkerHeight = 150;
+public static int carMarkerWidth = 200;
+public static int carMarkerHeight = 200;
 public static double  odometro = 0;
 public static CameraPosition cameraPosition;
 public static double ttt = 100;
 public static LatLng latLng = new LatLng(-23.5879554, -46.63816059);
 public static LatLng latLngfake;
+   public static LatLng latLngfake1;
 public static LocationListener locationListener;
 public static xLocationManager locationManager;
 public static Toast toast;
@@ -430,28 +431,29 @@ iniciou = false;
 	});
 
 	///////////////controle deslizante 
-	
-	//controle turbo velocidade deslocamento rota 
 	turboSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-		@Override
-		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        // Aqui você pode atualizar a UI em tempo real se necessário
+    }    
 
-			//definir valor turbo
-			//if (MainActivity.inicar){
-				turbo = progress;
-			//}
-		
-        	}	
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        // Este método é chamado quando o usuário começa a interagir com o SeekBar
+    }
 
-		@Override
-		public void onStartTrackingTouch(SeekBar seekBar) {}
-
-			
-		@Override                                           
-		public void onStopTrackingTouch(SeekBar seekBar) {}	
-
-	});
+    @Override                                           
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        // Este método é chamado quando o usuário para de interagir com o SeekBar
+        int progress = seekBar.getProgress();
+        
+        // Definir valor turbo e executar lógica após parada do usuário
+        latLngfake = latLngfake1;
+        turbo = progress;
+        processado = onGerarotaClick();
+    }    
+});
 
        handler = new Handler();
         retryRunnable = this::loadMap;
@@ -663,6 +665,7 @@ public boolean onGerarotaClick() {
         }
 
 
+       latLngfake1 = latLngfake;
 
         // Iniciar nova 
         odometro = 0;
@@ -713,12 +716,8 @@ public boolean onSaltoClick(){
 		return true;
            
 	}
+       rotaFake = new ArrayList<>();
         
-        
-        
-        if (!FakeLocationService1.isServiceRunning()) { 
-	processado = startFakeLoc(); 
-	}
 
 	//obter nova cordenada salto           
     if (latLng ==null){
@@ -730,15 +729,15 @@ public boolean onSaltoClick(){
 	    latLngfake = cameraPosition.target;
     }
        
-        
-        
+       latLngfake1 = latLngfake;
         
         
         ;
 	//limpar dados fake e salvar novo ponto      
-  /*	rotaFake = new ArrayList<>();         
-	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 100.0, 0.0, (long) 500, 0.0, 0.0};
-	rotaFake.add(dadosSegmento);*/
+  	rotaFake = new ArrayList<>();         
+	Object[] dadosSegmento = new Object[]{0, latLngfake, currentBearing, 0.0, 1000.0, 0.0, (long) 500, 0.0, 0.0};
+	rotaFake.add(dadosSegmento);
+        
     salvarRotafakeEmArquivo(this);
 
 
@@ -751,12 +750,6 @@ public boolean onSaltoClick(){
 		polyline.remove();           
 		polyline = null;           
 	}
-        
-        
-    FakeLocationService1.latitude =    latLngfake.latitude;
-    FakeLocationService1.longitude =    latLngfake.longitude;
-    FakeLocationService1.velocidade =    0.0;
-        
         
         
 
@@ -1204,6 +1197,18 @@ private void salvarRotafakeEmArquivo() {
     }.execute();
 }*/
 
+    
+    
+   public boolean deleteAll() {
+        try {
+            MyApp.getDatabase().rotaFakeDao().deleteAll();
+            return true; // Retorna true se a operação for bem-sucedida
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Retorna false se houver uma exceção
+        }
+    }
+    
 
     public boolean salvarRotafakeEmArquivo(Context context) {
         // Exibir ProgressDialog
@@ -1222,7 +1227,7 @@ private void salvarRotafakeEmArquivo() {
                 long cTime = System.currentTimeMillis() + 10;
 
                 // Remover todos os registros exceto
-                MyApp.getDatabase().rotaFakeDao().deleteAll();
+               boolean ttt = deleteAll();
 
                   long tc=0l;
                 for (Object[] dadosSegmento : rotaFake) {
@@ -1238,7 +1243,7 @@ private void salvarRotafakeEmArquivo() {
                     tc+= tempo1;
                         
 
-                    if (tc> 80){
+                    if (tc> 50){
                     RotaFake rotaFakeEntry = new RotaFake(pontoAtual.latitude, pontoAtual.longitude, bearing, velocidade, cTime);
                     MyApp.getDatabase().rotaFakeDao().insert(rotaFakeEntry);
                     tc=0L;
@@ -1556,8 +1561,9 @@ public boolean drawRoute(List<LatLng> routePoints) {
 	desMarker.setPosition(fim);
 
 	PolylineOptions polylineOptions = new PolylineOptions();
-	polylineOptions.width(5);
-	polylineOptions.color(Color.argb(255, 255, 165, 0)); 
+	polylineOptions.width(8);
+	polylineOptions.color(0xFF00FFFF); 
+       // .color(Color.argb(255, 255, 165, 0)); 
 
 	for (LatLng point : routePoints) {
 		polylineOptions.add(point);
@@ -1689,7 +1695,7 @@ public boolean centralizar(){
 
 	//atualizar textview
 	sspeed = String.format("⏱️ %.1f", currentSpeed)+ " km/h";
-	salti = String.format("🏔️%.1f", currentAlt)+ "m";
+	salti = String.format("🏔️ %.1f", currentAlt)+ "m";
 
 	tspeed.setText(sspeed);    
 	talti.setText(salti);            
@@ -1819,8 +1825,22 @@ public void onMapReady(GoogleMap googleMap) {
 @Override
 public void onMapReady(GoogleMap googleMa) {
     googleMap = googleMa;
+        
+        
+       // Aplique o estilo de mapa noturno
+        try {
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            this, R.raw.map_style));
+            if (!success) {
+                Log.e("MapsActivity", "Falha ao aplicar o estilo do mapa.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e("MapsActivity", "Não foi possível encontrar o estilo do mapa. Erro: ", e);
+        }
+        
 
-    LatLng initialPosition = latLng;
+    LatLng initialPosition = new LatLng(FakeLocationService1.latitude, FakeLocationService1.longitude);//latLng;
     CameraPosition cameraPosition = new CameraPosition.Builder()
             .target(initialPosition)
             .zoom(14)
@@ -1836,8 +1856,10 @@ public void onMapReady(GoogleMap googleMa) {
     googleMap.getUiSettings().setRotateGesturesEnabled(false);
 
     // Adicionar marcadores e configurações adicionais
-    oriIcon = BitmapDescriptorFactory.fromBitmap(resizeBitmap(R.drawable.ini, oriMarkerWidth, oriMarkerHeight));
-    desIcon = BitmapDescriptorFactory.fromBitmap(resizeBitmap(R.drawable.fim, desMarkerWidth, desMarkerHeight));
+    oriIcon = //BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN);
+         BitmapDescriptorFactory.fromBitmap(resizeBitmap(R.drawable.ini, oriMarkerWidth, oriMarkerHeight));
+    desIcon = //BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN);//;
+        BitmapDescriptorFactory.fromBitmap(resizeBitmap(R.drawable.fim, desMarkerWidth, desMarkerHeight));
     carIcon = BitmapDescriptorFactory.fromBitmap(resizeBitmap(R.drawable.xar, carMarkerWidth, carMarkerHeight));
     transparentIcon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
     carMarker = googleMap.addMarker(new MarkerOptions().position(initialPosition).anchor(0.5f, 0.5f).icon(carIcon));
@@ -1850,6 +1872,9 @@ public void onMapReady(GoogleMap googleMa) {
     oriMarker.setVisible(true);
     desMarker.setVisible(true);
 
+        carMarker.setZIndex(5.0f); 
+        
+        
 
 
     //habilitar selecao ponto destino noca rota

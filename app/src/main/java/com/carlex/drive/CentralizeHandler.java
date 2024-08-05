@@ -64,7 +64,7 @@ public class CentralizeHandler {
             mainActivity.currentAlt = FakeLocationService1.altitude;
 
             // Agendar próxima execução
-            handler.postDelayed(this, 100l);
+            handler.postDelayed(this, 50l);
         }
     }
 }

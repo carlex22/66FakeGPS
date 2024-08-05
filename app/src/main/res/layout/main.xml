@@ -1,18 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_height="match_parent"
-     android:layout_width="match_parent">
+     android:layout_width="match_parent"
+     android:background="#1C1C1C">
 
-    
-   <fragment
+    <fragment
         android:id="@+id/mapView"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       
-        />
-
+        android:layout_height="match_parent"/>
 
     <LinearLayout
          android:layout_height="match_parent"
@@ -31,7 +27,7 @@
                  android:scrollbars="vertical"
                  android:gravity="top"
                  android:textSize="20sp"
-                 android:textColor="#000000"
+                 android:textColor="#E0E0E0"
                  android:id="@+id/tSat" />
 
         </ScrollView>
@@ -60,7 +56,7 @@
                  android:gravity="center"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#000000"
+                 android:textColor="#FFC107"
                  android:layout_weight="1"
                  android:id="@+id/tbear"
                  android:text="bear" />
@@ -72,7 +68,7 @@
                  android:gravity="center"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#000000"
+                 android:textColor="#FFC107"
                  android:layout_weight="1"
                  android:id="@+id/tCel"
                  android:text="cell" />
@@ -86,7 +82,7 @@
          android:layout_width="match_parent"
          android:gravity="center"
          android:orientation="vertical"
-        android:visibility="gone"
+         android:visibility="gone"
          android:layout_alignParentTop="true"
          android:id="@+id/loading">
 
@@ -94,11 +90,11 @@
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
              android:gravity="center"
-             android:background="#7B1800"
+             android:background="#333333"
              android:layout_margin="3dp"
              android:padding="10dp"
              android:textSize="30sp"
-             android:textColor="#Ffffff"
+             android:textColor="#FFFFFF"
              android:id="@+id/tcarrgando"
              android:text="Modo Demo..." />
 
@@ -123,7 +119,7 @@
                  android:layout_width="match_parent"
                  android:gravity="center"
                  android:layout_margin="3dp"
-                 android:textColor="#000000"
+                 android:textColor="#FFC107"
                  android:id="@+id/tTempo"
                  android:text="00:00:00" />
 
@@ -140,7 +136,7 @@
                  android:layout_width="wrap_content"
                  android:gravity="center"
                  android:layout_margin="3dp"
-                 android:textColor="#000000"
+                 android:textColor="#FFC107"
                  android:id="@+id/turboTextView"
                  android:text="Velocidade" />
 
@@ -158,14 +154,14 @@
              android:layout_height="2dp"
              android:layout_width="match_parent"
              android:gravity="center"
-             android:background="#000000">
+             android:background="#333333">
 
         </LinearLayout>
 
         <LinearLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
-             android:background="#7B1800"
+             android:background="#333333"
              android:gravity="center"
              android:orientation="horizontal"
              android:paddingBottom="3dp"
@@ -178,7 +174,7 @@
                  android:gravity="center"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_weight="1"
                  android:id="@+id/tspeed"
                  android:text="Speed" />
@@ -189,7 +185,7 @@
                  android:gravity="center"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_weight="1"
                  android:id="@+id/talti"
                  android:text="Altitude" />
@@ -201,7 +197,7 @@
              android:layout_width="match_parent"
              android:layout_marginBottom="0dp"
              android:gravity="center"
-             android:background="#FF8100"
+             android:background="#333333"
              android:padding="6dp"
              android:layout_marginTop="1dp">
 
@@ -211,7 +207,7 @@
                  android:layout_marginBottom="0dp"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_marginTop="0dp"
                  android:checked="false"
                  android:text="Fake gps"
@@ -223,7 +219,7 @@
                  android:layout_marginBottom="0dp"
                  android:layout_margin="3dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_marginTop="0dp"
                  android:checked="true"
                  android:text="Centralizar mapa"
@@ -235,7 +231,7 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
              android:gravity="center"
-             android:background="#FF8100"
+             android:background="#333333"
              android:layout_marginTop="0dp"
              android:paddingTop="0dp">
 
@@ -243,10 +239,10 @@
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:gravity="center"
-                 android:background="#7B1800"
+                 android:background="#555555"
                  android:layout_margin="8dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_marginTop="3dp"
                  android:layout_weight="1"
                  android:text="Gerar Rota"
@@ -255,10 +251,10 @@
             <Button
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
-                 android:background="#7B1800"
+                 android:background="#555555"
                  android:layout_margin="8dp"
                  android:textSize="20sp"
-                 android:textColor="#FFD888"
+                 android:textColor="#FFC107"
                  android:layout_marginTop="3dp"
                  android:layout_weight="1"
                  android:text="Teletransporte"
@@ -269,3 +265,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+
