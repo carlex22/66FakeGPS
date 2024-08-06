@@ -1,4 +1,3 @@
-### 66FakeGPS - Descrição do Aplicativo
 
 **66FakeGPS** é uma ferramenta essencial para desenvolvedores Android, proporcionando a capacidade de simular coordenadas GPS para testar aplicativos que dependem de dados de localização. Este aplicativo é projetado para funcionar em modo de desenvolvimento, exigindo a ativação de localização simulada no dispositivo. Desenvolver aplicativos que utilizam dados de localização pode ser desafiador sem a capacidade de simular diferentes cenários de localização. Com **66FakeGPS**, os desenvolvedores podem testar suas aplicações de forma eficaz e eficiente, garantindo que todas as funcionalidades dependentes de localização sejam validadas adequadamente antes do lançamento.
 
